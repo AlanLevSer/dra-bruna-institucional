@@ -10,23 +10,37 @@ import { CTAFinal } from "@/components/CTAFinal";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { MobileCTA } from "@/components/MobileCTA";
+import { SEOHead } from "@/components/SEOHead";
+import { StructuredData } from "@/components/StructuredData";
+import { defaultSEO, generateStructuredData } from "@/lib/seo";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
-      <Navigation />
-      <Hero />
-      <ProgramaLevSer />
-      <Procedimentos />
-      <Nutricao />
-      <Diferenciais />
-      <Depoimentos />
-      <FAQ />
-      <CTAFinal />
-      <Footer />
-      <WhatsAppButton />
-      <MobileCTA />
-    </div>
+    <>
+      <SEOHead data={defaultSEO} />
+      <StructuredData data={[
+        generateStructuredData.organization,
+        generateStructuredData.physician,
+        generateStructuredData.localBusiness
+      ]} />
+      
+      <div className="min-h-screen">
+        <Navigation />
+        <main>
+          <Hero />
+          <ProgramaLevSer />
+          <Procedimentos />
+          <Nutricao />
+          <Diferenciais />
+          <Depoimentos />
+          <FAQ />
+          <CTAFinal />
+        </main>
+        <Footer />
+        <WhatsAppButton />
+        <MobileCTA />
+      </div>
+    </>
   );
 };
 

@@ -14,8 +14,17 @@ export default {
     },
     extend: {
       fontFamily: {
-        serif: ['Playfair Display', 'serif'],
-        sans: ['Inter', 'sans-serif'],
+        serif: ['Crimson Text', 'Georgia', 'Times New Roman', 'serif'],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+      },
+      letterSpacing: {
+        'luxury': '0.025em',
+        'wider-xl': '0.05em',
+        'premium': '0.035em',
+      },
+      lineHeight: {
+        'relaxed-xl': '1.75',
+        'loose-xl': '1.85',
       },
       colors: {
         border: "hsl(var(--border))",

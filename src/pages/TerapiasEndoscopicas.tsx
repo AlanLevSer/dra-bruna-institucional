@@ -4,15 +4,29 @@ import { TreatmentSection } from "@/components/TreatmentSection";
 import { IndicationList } from "@/components/IndicationList";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
+import { SEOHead } from "@/components/SEOHead";
+import { StructuredData } from "@/components/StructuredData";
+import { pageSEO, generateStructuredData } from "@/lib/seo";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import patientImage from "@/assets/patient-confident.jpg";
 
 const TerapiasEndoscopicas = () => {
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalProcedure",
+    "name": "Terapias Endoscópicas",
+    "description": "Procedimentos endoscópicos minimamente invasivos para tratamento da obesidade"
+  };
+
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <>
+      <SEOHead data={pageSEO.terapiasEndoscopicas} />
+      <StructuredData data={[generateStructuredData.organization, serviceSchema]} />
+      
+      <div className="min-h-screen">
+        <Navigation />
       <SubpageHero
         title="Terapias Endoscópicas"
         subtitle="Menos invasivas, mais resultado"
@@ -115,7 +129,8 @@ const TerapiasEndoscopicas = () => {
       />
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

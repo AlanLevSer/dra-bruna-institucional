@@ -107,11 +107,39 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  
+  h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+  
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+  
+  p {
+    line-height: 1.75;
+    letter-spacing: 0.01em;
   }
   
   html {
@@ -162,5 +190,28 @@ All colors MUST be HSL.
   /* Scroll offset for fixed header */
   :where(section, div, article, main)[id] {
     scroll-margin-top: calc(var(--header-height) + 8px);
+  }
+}
+
+@layer components {
+  /* Premium Typography Utilities */
+  .text-luxury {
+    @apply tracking-luxury leading-relaxed-xl;
+  }
+  
+  .heading-premium {
+    @apply font-serif font-bold tracking-tight leading-tight;
+  }
+  
+  .body-elegant {
+    @apply font-sans leading-loose-xl tracking-wide;
+  }
+  
+  .display-xl {
+    @apply font-serif text-5xl lg:text-7xl font-bold tracking-tighter leading-none;
+  }
+  
+  .subtitle-elegant {
+    @apply font-sans text-lg lg:text-xl font-medium tracking-premium leading-relaxed-xl;
   }
 }

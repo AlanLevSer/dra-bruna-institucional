@@ -34,11 +34,11 @@ export const Hero = () => {
               </span>
             </div>
             
-            <h1 className="text-5xl lg:text-6xl font-serif font-bold text-foreground leading-tight">
+            <h1 className="display-xl text-foreground">
               Transforme sua relação com o peso
             </h1>
             
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <p className="subtitle-elegant text-muted-foreground">
               Um cuidado médico personalizado, humanizado e baseado em ciência. 
               Descubra o caminho para uma vida mais leve, saudável e plena.
             </p>

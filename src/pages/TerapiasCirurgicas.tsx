@@ -5,12 +5,26 @@ import { IndicationList } from "@/components/IndicationList";
 import { BenefitsList } from "@/components/BenefitsList";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
+import { SEOHead } from "@/components/SEOHead";
+import { StructuredData } from "@/components/StructuredData";
+import { pageSEO, generateStructuredData } from "@/lib/seo";
 import doctorImage from "@/assets/dra-bruna-professional.jpg";
 
 const TerapiasCirurgicas = () => {
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalProcedure",
+    "name": "Cirurgia Bariátrica",
+    "description": "Bypass Gástrico e Sleeve Gástrico com técnica videolaparoscópica"
+  };
+
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <>
+      <SEOHead data={pageSEO.terapiasCirurgicas} />
+      <StructuredData data={[generateStructuredData.organization, serviceSchema]} />
+      
+      <div className="min-h-screen">
+        <Navigation />
       <SubpageHero
         title="Terapias Cirúrgicas"
         subtitle="Bariátrica Bypass e Sleeve"
@@ -103,7 +117,8 @@ const TerapiasCirurgicas = () => {
       />
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

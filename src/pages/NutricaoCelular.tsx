@@ -5,12 +5,26 @@ import { IndicationList } from "@/components/IndicationList";
 import { BenefitsList } from "@/components/BenefitsList";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
+import { SEOHead } from "@/components/SEOHead";
+import { StructuredData } from "@/components/StructuredData";
+import { pageSEO, generateStructuredData } from "@/lib/seo";
 import patientImage from "@/assets/patient-wellness-1.jpg";
 
 const NutricaoCelular = () => {
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalTherapy",
+    "name": "Nutrição Celular",
+    "description": "Reposição de nutrientes diretamente na corrente sanguínea"
+  };
+
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <>
+      <SEOHead data={pageSEO.nutricaoCelular} />
+      <StructuredData data={[generateStructuredData.organization, serviceSchema]} />
+      
+      <div className="min-h-screen">
+        <Navigation />
       <SubpageHero
         title="Nutrição Celular"
         subtitle="Terapia Moderna"
@@ -81,7 +95,8 @@ const NutricaoCelular = () => {
       />
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

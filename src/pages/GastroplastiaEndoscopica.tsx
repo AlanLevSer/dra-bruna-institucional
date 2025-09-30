@@ -5,12 +5,26 @@ import { IndicationList } from "@/components/IndicationList";
 import { BenefitsList } from "@/components/BenefitsList";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
+import { SEOHead } from "@/components/SEOHead";
+import { StructuredData } from "@/components/StructuredData";
+import { pageSEO, generateStructuredData } from "@/lib/seo";
 import doctorImage from "@/assets/dra-bruna-elegant.jpg";
 
 const GastroplastiaEndoscopica = () => {
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalProcedure",
+    "name": "Gastroplastia Endoscópica",
+    "description": "Procedimento minimamente invasivo para redução do estômago sem cortes"
+  };
+
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <>
+      <SEOHead data={pageSEO.gastroplastiaEndoscopica} />
+      <StructuredData data={[generateStructuredData.organization, serviceSchema]} />
+      
+      <div className="min-h-screen">
+        <Navigation />
       <SubpageHero
         title="Gastroplastia Endoscópica"
         subtitle="Redução gástrica sem cirurgia"
@@ -114,7 +128,8 @@ const GastroplastiaEndoscopica = () => {
       />
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

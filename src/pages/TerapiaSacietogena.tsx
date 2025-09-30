@@ -5,13 +5,31 @@ import { IndicationList } from "@/components/IndicationList";
 import { BenefitsList } from "@/components/BenefitsList";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
+import { SEOHead } from "@/components/SEOHead";
+import { StructuredData } from "@/components/StructuredData";
+import { pageSEO, generateStructuredData } from "@/lib/seo";
 import patientImage from "@/assets/patient-happy.jpg";
 import terapiaImage from "@/assets/Design-sem-nome-5-1.png";
 
 const TerapiaSacietogena = () => {
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalTherapy",
+    "name": "Terapia Sacietogênica",
+    "description": "Tratamento com medicações injetáveis que atuam nos hormônios da saciedade e do apetite",
+    "availableService": {
+      "@type": "MedicalProcedure",
+      "name": "Terapia Sacietogênica"
+    }
+  };
+
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <>
+      <SEOHead data={pageSEO.terapiaSacietogena} />
+      <StructuredData data={[generateStructuredData.organization, serviceSchema]} />
+      
+      <div className="min-h-screen">
+        <Navigation />
       <SubpageHero
         title="Terapia Sacietógena"
         subtitle="Controle da fome com segurança"
@@ -134,7 +152,8 @@ const TerapiaSacietogena = () => {
       />
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 
