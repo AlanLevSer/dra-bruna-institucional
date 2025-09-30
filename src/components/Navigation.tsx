@@ -1,20 +1,41 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const navItems = [
-  { label: "Início", href: "#inicio" },
-  { label: "Programa LevSer", href: "#programa" },
-  { label: "Procedimentos", href: "#procedimentos" },
-  { label: "Nutrição & Metabolismo", href: "#nutricao" },
-  { label: "Diferenciais", href: "#diferenciais" },
-  { label: "Depoimentos", href: "#depoimentos" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Início", href: "#inicio", type: "anchor" },
+  { label: "Programa LevSer", href: "#programa", type: "anchor" },
+  {
+    label: "Procedimentos",
+    href: "#procedimentos",
+    type: "dropdown",
+    subItems: [
+      { label: "Terapias Cirúrgicas", href: "/terapias-cirurgicas" },
+      { label: "Terapias Endoscópicas", href: "/terapias-endoscopicas" },
+      { label: "Gastroplastia Endoscópica", href: "/gastroplastia-endoscopica" },
+    ],
+  },
+  {
+    label: "Nutrição & Metabolismo",
+    href: "#nutricao",
+    type: "dropdown",
+    subItems: [
+      { label: "Nutrição Celular", href: "/nutricao-celular" },
+      { label: "Terapia Sacietógena", href: "/terapia-sacietogena" },
+    ],
+  },
+  { label: "Diferenciais", href: "#diferenciais", type: "anchor" },
+  { label: "Depoimentos", href: "#depoimentos", type: "anchor" },
+  { label: "FAQ", href: "#faq", type: "anchor" },
 ];
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,10 +46,14 @@ export const Navigation = () => {
   }, []);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-      setIsMobileMenuOpen(false);
+    if (isHomePage) {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+        setIsMobileMenuOpen(false);
+      }
+    } else {
+      window.location.href = "/" + href;
     }
   };
 
@@ -53,19 +78,57 @@ export const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(item.href);
-                }}
-                className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) =>
+              item.type === "dropdown" ? (
+                <div
+                  key={item.label}
+                  className="relative group"
+                  onMouseEnter={() => setOpenDropdown(item.label)}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
+                  <button className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-1">
+                    {item.label}
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+                  {openDropdown === item.label && (
+                    <div className="absolute top-full left-0 mt-2 w-64 bg-card border border-border rounded-lg shadow-elegant z-50 py-2">
+                      {item.subItems?.map((subItem) => (
+                        <Link
+                          key={subItem.href}
+                          to={subItem.href}
+                          className="block px-4 py-3 text-sm text-foreground/80 hover:text-primary hover:bg-muted/30 transition-colors"
+                        >
+                          {subItem.label}
+                        </Link>
+                      ))}
+                      {item.href.startsWith("#") && (
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            scrollToSection(item.href);
+                          }}
+                          className="block w-full text-left px-4 py-3 text-sm text-foreground/80 hover:text-primary hover:bg-muted/30 transition-colors border-t border-border mt-2 pt-3"
+                        >
+                          Ver tudo
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(item.href);
+                  }}
+                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                >
+                  {item.label}
+                </a>
+              )
+            )}
             <Button
               onClick={() => scrollToSection("#agendar")}
               className="bg-gradient-premium hover:opacity-90 transition-opacity"
@@ -86,19 +149,53 @@ export const Navigation = () => {
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <div className="lg:hidden mt-4 pb-4 space-y-4 animate-fade-in">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(item.href);
-                }}
-                className="block text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) =>
+              item.type === "dropdown" ? (
+                <div key={item.label} className="space-y-2">
+                  <button
+                    onClick={() =>
+                      setOpenDropdown(
+                        openDropdown === item.label ? null : item.label
+                      )
+                    }
+                    className="w-full flex items-center justify-between text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                  >
+                    {item.label}
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform ${
+                        openDropdown === item.label ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {openDropdown === item.label && (
+                    <div className="pl-4 space-y-2">
+                      {item.subItems?.map((subItem) => (
+                        <Link
+                          key={subItem.href}
+                          to={subItem.href}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="block text-sm text-foreground/70 hover:text-primary transition-colors"
+                        >
+                          {subItem.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(item.href);
+                  }}
+                  className="block text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                >
+                  {item.label}
+                </a>
+              )
+            )}
             <Button
               onClick={() => scrollToSection("#agendar")}
               className="w-full bg-gradient-premium hover:opacity-90 transition-opacity"
