@@ -156,4 +156,9 @@ All colors MUST be HSL.
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--primary) / 0.8);
   }
+
+  /* Scroll offset for fixed header */
+  section[id] {
+    scroll-margin-top: 100px;
+  }
 }

@@ -6,6 +6,7 @@ import { BenefitsList } from "@/components/BenefitsList";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
 import patientImage from "@/assets/patient-happy.jpg";
+import medicationsImage from "@/assets/medications-sacietogena.png";
 
 const TerapiaSacietogena = () => {
   return (
@@ -19,23 +20,35 @@ const TerapiaSacietogena = () => {
       />
 
       <TreatmentSection title="O que é Terapia Sacietógena?">
-        <p className="mb-4">
-          Você sente que sua fome não tem fim, mesmo fazendo dieta? Tem dificuldade de controlar a vontade de comer, principalmente à noite? Ou já tentou de tudo e sente que o metabolismo não colabora?
-        </p>
-        <p className="mb-4">
-          A <strong>terapia sacietógena</strong> pode ser a peça que faltava para fazer seu corpo e sua mente caminharem na mesma direção.
-        </p>
-        <p>
-          É um tratamento médico com <strong>medicações injetáveis</strong> que atuam diretamente nos hormônios da saciedade e do apetite. As substâncias mais utilizadas são:
-        </p>
-        <ul className="list-disc list-inside space-y-2 mt-4 text-muted-foreground">
-          <li><strong>Mounjaro</strong> (tirzepatida)</li>
-          <li><strong>Ozempic</strong> (semaglutida)</li>
-          <li><strong>Saxenda</strong> (liraglutida)</li>
-        </ul>
-        <p className="mt-4">
-          Essas medicações regulam a fome, melhoram a glicemia e facilitam a adesão a uma nova rotina alimentar.
-        </p>
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <p className="mb-4">
+              Você sente que sua fome não tem fim, mesmo fazendo dieta? Tem dificuldade de controlar a vontade de comer, principalmente à noite? Ou já tentou de tudo e sente que o metabolismo não colabora?
+            </p>
+            <p className="mb-4">
+              A <strong>terapia sacietógena</strong> pode ser a peça que faltava para fazer seu corpo e sua mente caminharem na mesma direção.
+            </p>
+            <p>
+              É um tratamento médico com <strong>medicações injetáveis</strong> que atuam diretamente nos hormônios da saciedade e do apetite. As substâncias mais utilizadas são:
+            </p>
+            <ul className="list-disc list-inside space-y-2 mt-4 text-muted-foreground">
+              <li><strong>Mounjaro</strong> (tirzepatida)</li>
+              <li><strong>Ozempic</strong> (semaglutida)</li>
+              <li><strong>Saxenda</strong> (liraglutida)</li>
+            </ul>
+            <p className="mt-4">
+              Essas medicações regulam a fome, melhoram a glicemia e facilitam a adesão a uma nova rotina alimentar.
+            </p>
+          </div>
+          <div className="relative animate-fade-in">
+            <div className="absolute inset-0 bg-gradient-premium opacity-20 blur-3xl rounded-full"></div>
+            <img
+              src={medicationsImage}
+              alt="Medicações para Terapia Sacietógena - Mounjaro, Ozempic e Saxenda"
+              className="relative rounded-2xl shadow-elegant w-full h-auto object-cover"
+            />
+          </div>
+        </div>
       </TreatmentSection>
 
       <TreatmentSection title="Como funciona no corpo?" variant="muted">
