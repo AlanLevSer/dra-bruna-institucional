@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
+import { GrafismoDecor } from "@/components/GrafismoDecor";
 import heroImage from "@/assets/dra-bruna-professional.jpg";
 
 export const Hero = () => {
@@ -21,8 +22,10 @@ export const Hero = () => {
   };
 
   return (
-    <section id="inicio" className="min-h-screen flex items-center pt-20">
-      <div className="container mx-auto px-4">
+    <section id="inicio" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+      <GrafismoDecor variant="background" position="top-right" size="xl" opacity={0.08} rotate={-15} color="primary" />
+      <GrafismoDecor variant="background" position="bottom-left" size="lg" opacity={0.05} rotate={45} color="accent" />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 animate-fade-in">
             <div className="inline-block px-4 py-2 bg-accent/10 rounded-full">

@@ -1,4 +1,5 @@
 import { Award, Users, Clock, Shield } from "lucide-react";
+import { GrafismoDecor } from "@/components/GrafismoDecor";
 import draImage from "@/assets/dra-bruna-profile.jpg";
 
 const differentials = [
@@ -26,8 +27,9 @@ const differentials = [
 
 export const Diferenciais = () => {
   return (
-    <section id="diferenciais" className="py-24 bg-card">
-      <div className="container mx-auto px-4">
+    <section id="diferenciais" className="relative py-24 bg-card overflow-hidden">
+      <GrafismoDecor variant="background" position="bottom-left" size="xl" opacity={0.06} rotate={20} color="accent" />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in">
             <div>

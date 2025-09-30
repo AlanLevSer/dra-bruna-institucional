@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { GrafismoDecor } from "@/components/GrafismoDecor";
 
 interface CTASectionProps {
   title: string;
@@ -22,8 +23,10 @@ export const CTASection = ({
   };
 
   return (
-    <section className="py-20 bg-gradient-premium">
-      <div className="container mx-auto px-4 text-center">
+    <section className="relative py-20 bg-gradient-premium overflow-hidden">
+      <GrafismoDecor variant="floating" position="top-left" size="lg" opacity={0.12} rotate={-15} color="primary" />
+      <GrafismoDecor variant="floating" position="bottom-right" size="md" opacity={0.1} rotate={45} color="accent" />
+      <div className="container mx-auto px-4 text-center relative z-10">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-primary-foreground mb-6">
           {title}
         </h2>

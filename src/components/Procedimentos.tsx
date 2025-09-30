@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Syringe, Activity, Pill, Stethoscope, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { GrafismoDecor } from "@/components/GrafismoDecor";
 
 const procedures = [
   {
@@ -34,8 +35,9 @@ export const Procedimentos = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="procedimentos" className="py-24 bg-card">
-      <div className="container mx-auto px-4">
+    <section id="procedimentos" className="relative py-24 bg-card overflow-hidden">
+      <GrafismoDecor variant="background" position="center" size="xl" opacity={0.05} rotate={0} color="primary" />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
           <div className="inline-block px-4 py-2 bg-secondary/10 rounded-full mb-4">
             <span className="text-sm font-medium text-secondary">Tratamentos Avançados</span>

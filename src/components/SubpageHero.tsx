@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { GrafismoDecor } from "@/components/GrafismoDecor";
 
 interface SubpageHeroProps {
   title: string;
@@ -20,7 +21,9 @@ export const SubpageHero = ({
 }: SubpageHeroProps) => {
   return (
     <section className="relative pt-32 pb-20 overflow-hidden">
-      <div className="container mx-auto px-4">
+      <GrafismoDecor variant="hero" position="top-right" size="xl" opacity={0.1} rotate={-20} color="primary" />
+      <GrafismoDecor variant="background" position="bottom-left" size="md" opacity={0.06} rotate={30} color="secondary" />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 animate-fade-in">
             <div className="inline-block px-4 py-2 bg-primary/10 rounded-full">

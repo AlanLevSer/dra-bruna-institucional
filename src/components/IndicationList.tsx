@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import { GrafismoDecor } from "@/components/GrafismoDecor";
 
 interface IndicationListProps {
   title: string;
@@ -7,8 +8,9 @@ interface IndicationListProps {
 
 export const IndicationList = ({ title, items }: IndicationListProps) => {
   return (
-    <section className="py-16 bg-card">
-      <div className="container mx-auto px-4">
+    <section className="relative py-16 bg-card overflow-hidden">
+      <GrafismoDecor variant="background" position="top-right" size="lg" opacity={0.06} rotate={-30} color="primary" />
+      <div className="container mx-auto px-4 relative z-10">
         <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-8">
           {title}
         </h2>

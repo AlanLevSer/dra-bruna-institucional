@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { GrafismoDecor } from "@/components/GrafismoDecor";
 
 interface TreatmentSectionProps {
   title: string;
@@ -13,11 +14,19 @@ export const TreatmentSection = ({
 }: TreatmentSectionProps) => {
   return (
     <section
-      className={`py-16 ${
+      className={`relative py-16 overflow-hidden ${
         variant === "muted" ? "bg-muted/30" : "bg-background"
       }`}
     >
-      <div className="container mx-auto px-4">
+      <GrafismoDecor 
+        variant="background" 
+        position={variant === "muted" ? "bottom-right" : "top-left"} 
+        size="md" 
+        opacity={0.05} 
+        rotate={variant === "muted" ? -25 : 25}
+        color="secondary"
+      />
+      <div className="container mx-auto px-4 relative z-10">
         <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-8">
           {title}
         </h2>

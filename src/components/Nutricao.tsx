@@ -1,6 +1,7 @@
 import { Brain, Heart, Flame, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { GrafismoDecor } from "@/components/GrafismoDecor";
 import nutricaoImage from "@/assets/patient-happy.jpg";
 
 const pillars = [
@@ -25,8 +26,9 @@ export const Nutricao = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="nutricao" className="py-24 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section id="nutricao" className="relative py-24 bg-muted/30 overflow-hidden">
+      <GrafismoDecor variant="background" position="bottom-right" size="xl" opacity={0.06} rotate={-30} color="primary" />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
           <h2 className="text-4xl lg:text-5xl font-serif font-bold text-foreground mb-6">
             Nutrição & Metabolismo

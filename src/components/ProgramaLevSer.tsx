@@ -1,6 +1,7 @@
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { GrafismoDecor } from "@/components/GrafismoDecor";
 import programImage from "@/assets/patient-wellness-1.jpg";
 
 const benefits = [
@@ -16,8 +17,9 @@ export const ProgramaLevSer = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="programa" className="py-24 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section id="programa" className="relative py-24 bg-muted/30 overflow-hidden">
+      <GrafismoDecor variant="background" position="top-left" size="lg" opacity={0.08} rotate={15} color="accent" />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="order-2 lg:order-1 animate-fade-in">
             <img
