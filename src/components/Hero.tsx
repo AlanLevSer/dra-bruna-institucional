@@ -7,7 +7,9 @@ export const Hero = () => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      const headerOffset = 80;
+      const rootStyles = getComputedStyle(document.documentElement);
+      const headerVar = rootStyles.getPropertyValue('--header-height').trim();
+      const headerOffset = (parseInt(headerVar.replace('px','')) || 80) + 8;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 

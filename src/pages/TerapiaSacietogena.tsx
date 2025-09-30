@@ -43,8 +43,8 @@ const TerapiaSacietogena = () => {
           <div className="relative animate-fade-in">
             <div className="absolute inset-0 bg-gradient-premium opacity-20 blur-3xl rounded-full"></div>
             <img
-              src={medicationsImage}
-              alt="Medicações para Terapia Sacietógena - Mounjaro, Ozempic e Saxenda"
+              src={terapiaImage}
+              alt="Terapia Sacietógena - imagem ilustrativa do tratamento"
               className="relative rounded-2xl shadow-elegant w-full h-auto object-cover"
             />
           </div>

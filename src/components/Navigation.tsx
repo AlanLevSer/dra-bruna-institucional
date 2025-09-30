@@ -58,7 +58,9 @@ export const Navigation = () => {
     if (isHomePage) {
       const element = document.querySelector(href);
       if (element) {
-        const headerOffset = 80;
+        const rootStyles = getComputedStyle(document.documentElement);
+        const headerVar = rootStyles.getPropertyValue('--header-height').trim();
+        const headerOffset = (parseInt(headerVar.replace('px','')) || 80) + 8;
         const elementPosition = element.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -75,6 +77,7 @@ export const Navigation = () => {
 
   return (
     <nav
+      ref={navRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? "bg-card/95 backdrop-blur-md shadow-elegant" : "bg-transparent"
       }`}
