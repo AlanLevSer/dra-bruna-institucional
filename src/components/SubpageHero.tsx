@@ -21,8 +21,8 @@ export const SubpageHero = ({
 }: SubpageHeroProps) => {
   return (
     <section className="relative pt-32 pb-20 overflow-hidden">
-      <GrafismoDecor variant="hero" position="top-right" size="xl" opacity={0.1} rotate={-20} color="primary" />
-      <GrafismoDecor variant="background" position="bottom-left" size="md" opacity={0.06} rotate={30} color="secondary" />
+      <GrafismoDecor variant="hero" position="top-right" size="xl" opacity={0.25} rotate={-20} color="gray" />
+      <GrafismoDecor variant="background" position="bottom-left" size="md" opacity={0.2} rotate={30} color="gray" />
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 animate-fade-in">

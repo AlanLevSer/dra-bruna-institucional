@@ -18,7 +18,7 @@ export const ProgramaLevSer = () => {
 
   return (
     <section id="programa" className="relative py-24 bg-muted/30 overflow-hidden">
-      <GrafismoDecor variant="background" position="top-left" size="lg" opacity={0.08} rotate={15} color="accent" />
+      <GrafismoDecor variant="background" position="top-left" size="lg" opacity={0.18} rotate={15} color="gray" />
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="order-2 lg:order-1 animate-fade-in">

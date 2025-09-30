@@ -22,9 +22,9 @@ export const TreatmentSection = ({
         variant="background" 
         position={variant === "muted" ? "bottom-right" : "top-left"} 
         size="md" 
-        opacity={0.05} 
+        opacity={0.15} 
         rotate={variant === "muted" ? -25 : 25}
-        color="secondary"
+        color="gray"
       />
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-8">

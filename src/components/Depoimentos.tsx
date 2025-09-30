@@ -26,7 +26,7 @@ const testimonials = [
 export const Depoimentos = () => {
   return (
     <section id="depoimentos" className="relative py-24 bg-muted/30 overflow-hidden">
-      <GrafismoDecor variant="background" position="top-right" size="lg" opacity={0.07} rotate={-20} color="secondary" />
+      <GrafismoDecor variant="background" position="top-right" size="lg" opacity={0.18} rotate={-20} color="gray" />
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
           <div className="inline-block px-4 py-2 bg-primary/10 rounded-full mb-4">

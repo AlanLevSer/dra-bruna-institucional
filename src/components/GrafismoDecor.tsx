@@ -6,16 +6,16 @@ interface GrafismoDecorProps {
   size?: "sm" | "md" | "lg" | "xl";
   opacity?: number;
   rotate?: number;
-  color?: "primary" | "secondary" | "accent";
+  color?: "primary" | "secondary" | "accent" | "gray";
 }
 
 export const GrafismoDecor = ({
   variant = "background",
   position = "top-right",
   size = "md",
-  opacity = 0.15,
+  opacity = 0.25,
   rotate = 0,
-  color = "primary",
+  color = "gray",
 }: GrafismoDecorProps) => {
   const sizeClasses = {
     sm: "w-32 h-32",
@@ -33,16 +33,17 @@ export const GrafismoDecor = ({
   };
 
   const variantStyles = {
-    hero: "blur-sm",
-    background: "blur-xl",
+    hero: "",
+    background: "blur-sm",
     accent: "",
-    floating: "animate-pulse",
+    floating: "animate-pulse blur-sm",
   };
 
   const colorFilters = {
     primary: "hue-rotate-0",
     secondary: "hue-rotate-[145deg]",
     accent: "hue-rotate-[35deg]",
+    gray: "grayscale",
   };
 
   return (
