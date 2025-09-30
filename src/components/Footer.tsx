@@ -1,4 +1,4 @@
-import logoFooter from "@/assets/logo-original.png";
+import logoFooter from "@/assets/logo-header.svg";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,8 +10,7 @@ export const Footer = () => {
           <img 
             src={logoFooter}
             alt="Dra. Bruna Durelli - Especialista em Obesidade e Metabolismo"
-            className="h-12 w-auto mx-auto transition-all hover:brightness-110 mix-blend-lighten dark:mix-blend-normal brightness-150 contrast-125"
-            style={{ filter: 'drop-shadow(0 0 6px rgba(255,255,255,0.2))' }}
+            className="h-10 w-auto mx-auto opacity-90 hover:opacity-100 transition-opacity"
             loading="lazy"
           />
           

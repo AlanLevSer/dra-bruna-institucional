@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logoHeader from "@/assets/logo-original.png";
+import logoHeader from "@/assets/logo-header.svg";
 
 const navItems = [
   { label: "Início", href: "#inicio", type: "anchor" },
@@ -100,8 +100,7 @@ export const Navigation = () => {
             <img 
               src={logoHeader}
               alt="Dra. Bruna Durelli - Especialista em Obesidade e Metabolismo"
-              className="h-12 md:h-14 w-auto transition-all hover:brightness-110 mix-blend-lighten dark:mix-blend-normal brightness-150 contrast-125"
-              style={{ filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.3))' }}
+              className="h-10 md:h-12 w-auto transition-opacity hover:opacity-90"
               loading="eager"
             />
           </a>
