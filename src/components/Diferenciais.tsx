@@ -34,7 +34,7 @@ export const Diferenciais = () => {
           <div className="space-y-8 animate-fade-in">
             <div>
               <div className="inline-block px-4 py-2 bg-accent/10 rounded-full mb-4">
-                <span className="text-sm font-medium text-accent-foreground">Por que escolher</span>
+                <span className="text-sm font-medium text-foreground">Por que escolher</span>
               </div>
               
               <h2 className="text-4xl lg:text-5xl font-serif font-bold text-foreground mb-6">
