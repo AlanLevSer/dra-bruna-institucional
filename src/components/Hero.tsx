@@ -29,7 +29,7 @@ export const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 animate-fade-in">
             <div className="inline-block px-4 py-2 bg-accent/10 rounded-full">
-              <span className="text-sm font-medium text-accent-foreground">
+              <span className="text-sm font-medium text-black">
                 Especialista em Obesidade
               </span>
             </div>
