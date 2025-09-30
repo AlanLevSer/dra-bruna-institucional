@@ -56,6 +56,17 @@ export const Navigation = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   const scrollToSection = (href: string) => {
     // Always close mobile menu and dropdowns before navigating
     setIsMobileMenuOpen(false);
@@ -84,7 +95,7 @@ export const Navigation = () => {
     <nav
       ref={navRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-card/95 backdrop-blur-md shadow-elegant" : "bg-transparent"
+        isScrolled || isMobileMenuOpen ? "bg-background/95 backdrop-blur-md shadow-elegant border-b border-border" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 py-4">
@@ -188,61 +199,68 @@ export const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div id="mobile-menu" className="lg:hidden mt-4 pb-4 space-y-4 animate-fade-in">
-            {navItems.map((item) =>
-              item.type === "dropdown" ? (
-                <div key={item.label} className="space-y-2">
-                  <button
-                    onClick={() =>
-                      setOpenDropdown(
-                        openDropdown === item.label ? null : item.label
-                      )
-                    }
-                    className="w-full flex items-center justify-between text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+          <>
+            <div
+              className="fixed inset-0 top-[var(--header-height)] bg-foreground/30 z-40"
+              onClick={() => setIsMobileMenuOpen(false)}
+              aria-hidden="true"
+            />
+            <div id="mobile-menu" className="lg:hidden mt-4 p-4 pb-6 space-y-4 rounded-xl border border-border bg-card shadow-hover animate-fade-in relative z-50">
+              {navItems.map((item) =>
+                item.type === "dropdown" ? (
+                  <div key={item.label} className="space-y-2">
+                    <button
+                      onClick={() =>
+                        setOpenDropdown(
+                          openDropdown === item.label ? null : item.label
+                        )
+                      }
+                      className="w-full flex items-center justify-between text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                    >
+                      {item.label}
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform ${
+                          openDropdown === item.label ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {openDropdown === item.label && (
+                      <div className="pl-4 space-y-2">
+                        {item.subItems?.map((subItem) => (
+                          <Link
+                            key={subItem.href}
+                            to={subItem.href}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="block text-sm text-foreground/70 hover:text-primary transition-colors"
+                          >
+                            {subItem.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSection(item.href);
+                    }}
+                    className="block text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
                   >
                     {item.label}
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform ${
-                        openDropdown === item.label ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-                  {openDropdown === item.label && (
-                    <div className="pl-4 space-y-2">
-                      {item.subItems?.map((subItem) => (
-                        <Link
-                          key={subItem.href}
-                          to={subItem.href}
-                          onClick={() => setIsMobileMenuOpen(false)}
-                          className="block text-sm text-foreground/70 hover:text-primary transition-colors"
-                        >
-                          {subItem.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(item.href);
-                  }}
-                  className="block text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-                >
-                  {item.label}
-                </a>
-              )
-            )}
-            <Button
-              onClick={() => scrollToSection("#agendar")}
-              className="w-full bg-gradient-premium hover:opacity-90 transition-opacity"
-            >
-              Agende sua Avaliação
-            </Button>
-          </div>
+                  </a>
+                )
+              )}
+              <Button
+                onClick={() => scrollToSection("#agendar")}
+                className="w-full bg-gradient-premium hover:opacity-90 transition-opacity"
+              >
+                Agende sua Avaliação
+              </Button>
+            </div>
+          </>
         )}
       </div>
     </nav>
