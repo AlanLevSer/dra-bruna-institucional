@@ -75,12 +75,12 @@ export const Hero = () => {
             
             <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-xl shadow-elegant max-w-xs hidden lg:block animate-scale-in">
               <p className="text-sm font-medium text-muted-foreground mb-1">
-                Transformações reais
+                Vidas transformadas
               </p>
               <AnimatedCounter 
                 end={500} 
                 prefix="+"
-                suffix=" pacientes atendidos"
+                suffix=" pessoas"
                 className="text-2xl font-serif font-bold text-primary"
               />
             </div>

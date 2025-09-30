@@ -5,12 +5,12 @@ import { GrafismoDecor } from "@/components/GrafismoDecor";
 import programImage from "@/assets/patient-wellness-1.jpg";
 
 const benefits = [
-  "Acompanhamento médico personalizado e contínuo",
-  "Estratégias nutricionais baseadas em evidências",
-  "Suporte psicológico e comportamental",
-  "Plano de atividades físicas adaptado ao seu ritmo",
-  "Monitoramento metabólico completo",
-  "Grupo de apoio exclusivo para pacientes",
+  "Transformação integral: corpo, mente e autoestima",
+  "Acompanhamento médico que respeita sua individualidade",
+  "Estratégias nutricionais que cabem na sua rotina",
+  "Suporte emocional para mudanças sustentáveis",
+  "Recuperação da sua confiança e qualidade de vida",
+  "Comunidade de apoio que celebra cada conquista",
 ];
 
 export const ProgramaLevSer = () => {
@@ -39,9 +39,9 @@ export const ProgramaLevSer = () => {
             </h2>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Uma jornada completa de transformação que vai além da perda de peso. 
-              O LevSer integra medicina, nutrição, psicologia e exercícios em um 
-              protocolo personalizado para resultados sustentáveis.
+              Muito mais que um programa de emagrecimento. O LevSer é uma jornada de 
+              transformação integral que reconecta você com seu bem-estar, autoestima 
+              e qualidade de vida. Resultados que vão além da balança.
             </p>
 
             <div className="space-y-4 pt-4">

@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { ProgramaLevSer } from "@/components/ProgramaLevSer";
+import { JornadaTransformacao } from "@/components/JornadaTransformacao";
 import { Procedimentos } from "@/components/Procedimentos";
 import { Nutricao } from "@/components/Nutricao";
 import { Diferenciais } from "@/components/Diferenciais";
@@ -29,6 +30,7 @@ const Index = () => {
         <main>
           <Hero />
           <ProgramaLevSer />
+          <JornadaTransformacao />
           <Procedimentos />
           <Nutricao />
           <Diferenciais />

@@ -1,0 +1,111 @@
+import { Heart, Sparkles, TrendingUp, Star } from "lucide-react";
+import { GrafismoDecor } from "@/components/GrafismoDecor";
+import transformationBeginning from "@/assets/transformation-beginning.jpg";
+import transformationSelfcare from "@/assets/transformation-selfcare.jpg";
+import transformationJoy from "@/assets/transformation-joy.jpg";
+import transformationConfidence from "@/assets/transformation-confidence.jpg";
+
+const journeySteps = [
+  {
+    icon: Heart,
+    title: "Autoaceitação",
+    description: "O primeiro passo é acolher quem você é hoje. Sua jornada começa com respeito e amor próprio.",
+    image: transformationBeginning,
+  },
+  {
+    icon: Sparkles,
+    title: "Cuidado Pessoal",
+    description: "Aprenda a priorizar seu bem-estar. Pequenos gestos diários que transformam sua relação com você mesma.",
+    image: transformationSelfcare,
+  },
+  {
+    icon: TrendingUp,
+    title: "Confiança Crescente",
+    description: "À medida que você se cuida, sua confiança floresce. Sinta a alegria de se reconectar consigo mesma.",
+    image: transformationJoy,
+  },
+  {
+    icon: Star,
+    title: "Nova Versão de Si",
+    description: "Não se trata apenas de mudança física. É sobre descobrir a melhor versão de você, plena e realizada.",
+    image: transformationConfidence,
+  },
+];
+
+export const JornadaTransformacao = () => {
+  return (
+    <section id="jornada" className="relative py-24 bg-background overflow-hidden">
+      <GrafismoDecor variant="background" position="top-right" size="lg" opacity={0.12} rotate={-25} color="gray" />
+      <GrafismoDecor variant="background" position="bottom-left" size="md" opacity={0.1} rotate={35} color="gray" />
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
+          <div className="inline-block px-4 py-2 bg-primary/10 rounded-full mb-4">
+            <span className="text-sm font-medium text-primary">Sua Transformação</span>
+          </div>
+          
+          <h2 className="text-4xl lg:text-5xl font-serif font-bold text-foreground mb-6">
+            Uma Jornada de Transformação Completa
+          </h2>
+          
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            Mais do que perder peso, nosso programa transforma sua vida. Veja como cada etapa 
+            da sua jornada te reconecta com seu bem-estar, autoestima e qualidade de vida.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+          {journeySteps.map((step, index) => {
+            const Icon = step.icon;
+            return (
+              <div
+                key={index}
+                className="group animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border/50 hover:shadow-elegant transition-all duration-300">
+                  <div className="relative h-72 overflow-hidden">
+                    <img
+                      src={step.image}
+                      alt={step.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
+                    
+                    <div className="absolute bottom-6 left-6 right-6">
+                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 border-2 border-primary/20 mb-3">
+                        <Icon className="text-primary" size={24} />
+                      </div>
+                      <h3 className="text-2xl font-serif font-bold text-foreground">
+                        {step.title}
+                      </h3>
+                    </div>
+                  </div>
+                  
+                  <div className="p-6">
+                    <p className="text-muted-foreground leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="mt-16 text-center animate-fade-in" style={{ animationDelay: "0.5s" }}>
+          <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-8 lg:p-12 border border-primary/10">
+            <p className="text-lg lg:text-xl text-muted-foreground mb-4">
+              <span className="font-serif font-bold text-foreground text-2xl lg:text-3xl block mb-2">
+                Transformação que vai além dos números
+              </span>
+              Nossa abordagem integrada combina medicina, nutrição, psicologia e exercícios 
+              para criar mudanças duradouras na sua vida. Não é apenas sobre perder peso — 
+              é sobre ganhar autoestima, confiança e bem-estar.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
