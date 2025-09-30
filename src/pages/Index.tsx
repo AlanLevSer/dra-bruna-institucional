@@ -5,6 +5,7 @@ import { JornadaTransformacao } from "@/components/JornadaTransformacao";
 import { Procedimentos } from "@/components/Procedimentos";
 import { Nutricao } from "@/components/Nutricao";
 import { Diferenciais } from "@/components/Diferenciais";
+import { ReconhecimentoMidia } from "@/components/ReconhecimentoMidia";
 import { Depoimentos } from "@/components/Depoimentos";
 import { FAQ } from "@/components/FAQ";
 import { CTAFinal } from "@/components/CTAFinal";
@@ -34,6 +35,7 @@ const Index = () => {
           <Procedimentos />
           <Nutricao />
           <Diferenciais />
+          <ReconhecimentoMidia />
           <Depoimentos />
           <FAQ />
           <CTAFinal />
