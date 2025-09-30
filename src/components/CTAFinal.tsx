@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Phone, Mail, MapPin, Instagram } from "lucide-react";
+import { Phone, MessageCircle, MapPin, Instagram } from "lucide-react";
 import ctaImage from "@/assets/dra-bruna-elegant.jpg";
 
 export const CTAFinal = () => {
@@ -29,17 +29,19 @@ export const CTAFinal = () => {
               size="lg"
               variant="secondary"
               className="shadow-elegant hover:shadow-hover transition-all"
+              onClick={() => window.open('https://wa.me/5511997023024?text=Olá! Gostaria de agendar uma avaliação.', '_blank')}
             >
               <Phone className="mr-2" size={20} />
-              (XX) XXXXX-XXXX
+              (11) 99702-3024
             </Button>
             
             <Button
               size="lg"
               className="bg-card text-foreground hover:bg-card/90 shadow-elegant hover:shadow-hover transition-all"
+              onClick={() => window.open('https://wa.me/5511997023024?text=Olá! Gostaria de agendar uma avaliação.', '_blank')}
             >
-              <Mail className="mr-2" size={20} />
-              Enviar mensagem
+              <MessageCircle className="mr-2" size={20} />
+              WhatsApp
             </Button>
           </div>
 
@@ -57,17 +59,27 @@ export const CTAFinal = () => {
               <div className="flex flex-col items-center gap-2">
                 <Phone className="mb-2" size={24} />
                 <p className="font-medium">Telefone</p>
-                <p className="text-sm opacity-80">
-                  (XX) XXXXX-XXXX
-                </p>
+                <a 
+                  href="https://wa.me/5511997023024" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sm opacity-80 hover:opacity-100 transition-opacity"
+                >
+                  (11) 99702-3024
+                </a>
               </div>
 
               <div className="flex flex-col items-center gap-2">
                 <Instagram className="mb-2" size={24} />
                 <p className="font-medium">Instagram</p>
-                <p className="text-sm opacity-80">
+                <a 
+                  href="https://www.instagram.com/dra.brunadurelli" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sm opacity-80 hover:opacity-100 transition-opacity"
+                >
                   @dra.brunadurelli
-                </p>
+                </a>
               </div>
             </div>
           </div>

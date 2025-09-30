@@ -1,4 +1,5 @@
 import logoFooter from "@/assets/logo-header.svg";
+import { Instagram, Linkedin, Globe } from "lucide-react";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -18,7 +19,46 @@ export const Footer = () => {
             CRM XXXXX - Especialista em Obesidade e Metabolismo
           </p>
           
-          <div className="flex justify-center gap-6 text-sm text-muted-foreground">
+          <div className="flex justify-center gap-6 pt-2">
+            <a
+              href="https://www.instagram.com/dra.brunadurelli"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors"
+              aria-label="Instagram Dra. Bruna Durelli"
+            >
+              <Instagram size={20} />
+            </a>
+            <a
+              href="https://www.instagram.com/levsersaude/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors"
+              aria-label="Instagram LevSer Saúde"
+            >
+              <Instagram size={20} />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/levser"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors"
+              aria-label="LinkedIn LevSer"
+            >
+              <Linkedin size={20} />
+            </a>
+            <a
+              href="https://www.levser.com.br/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors"
+              aria-label="Site LevSer"
+            >
+              <Globe size={20} />
+            </a>
+          </div>
+          
+          <div className="flex justify-center gap-6 text-sm text-muted-foreground pt-2">
             <a href="#" className="hover:text-primary transition-colors">
               Política de Privacidade
             </a>
