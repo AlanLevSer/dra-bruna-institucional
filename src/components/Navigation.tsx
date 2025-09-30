@@ -100,7 +100,7 @@ export const Navigation = () => {
             <img 
               src={logoHeader}
               alt="Dra. Bruna Durelli - Especialista em Obesidade e Metabolismo"
-              className="h-10 md:h-12 w-auto transition-opacity hover:opacity-90"
+              className="h-12 md:h-16 lg:h-20 w-auto transition-opacity hover:opacity-90"
               loading="eager"
             />
           </a>
