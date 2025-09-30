@@ -6,7 +6,7 @@ import { BenefitsList } from "@/components/BenefitsList";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
 import patientImage from "@/assets/patient-happy.jpg";
-import medicationsImage from "@/assets/medications-sacietogena.png";
+import terapiaImage from "@/assets/Design-sem-nome-5-1.png";
 
 const TerapiaSacietogena = () => {
   return (

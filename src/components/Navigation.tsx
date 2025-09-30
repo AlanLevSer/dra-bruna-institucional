@@ -35,15 +35,23 @@ export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const navRef = useRef<HTMLElement | null>(null);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScrollOrResize = () => {
       setIsScrolled(window.scrollY > 20);
+      const h = navRef.current?.getBoundingClientRect().height ?? 80;
+      document.documentElement.style.setProperty('--header-height', `${Math.ceil(h)}px`);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScrollOrResize);
+    window.addEventListener("resize", handleScrollOrResize);
+    handleScrollOrResize();
+    return () => {
+      window.removeEventListener("scroll", handleScrollOrResize);
+      window.removeEventListener("resize", handleScrollOrResize);
+    };
   }, []);
 
   const scrollToSection = (href: string) => {
