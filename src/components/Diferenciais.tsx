@@ -49,15 +49,15 @@ export const Diferenciais = () => {
               {differentials.map((diff, index) => (
                 <div
                   key={index}
-                  className="flex gap-4 p-6 rounded-xl bg-muted/30 hover:bg-muted/50 transition-colors animate-fade-in"
+                  className="flex gap-4 p-6 rounded-xl bg-muted/30 hover:bg-muted/50 hover:shadow-elegant hover:-translate-y-1 transition-all duration-300 animate-fade-in group cursor-pointer"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
                     <diff.icon className="text-primary" size={24} />
                   </div>
                   
                   <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                    <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
                       {diff.title}
                     </h3>
                     <p className="text-muted-foreground">

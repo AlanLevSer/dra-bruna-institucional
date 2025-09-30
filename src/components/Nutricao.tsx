@@ -1,4 +1,6 @@
-import { Brain, Heart, Flame } from "lucide-react";
+import { Brain, Heart, Flame, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import nutricaoImage from "@/assets/patient-happy.jpg";
 
 const pillars = [
@@ -20,6 +22,8 @@ const pillars = [
 ];
 
 export const Nutricao = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="nutricao" className="py-24 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -66,9 +70,16 @@ export const Nutricao = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent flex items-end">
             <div className="p-8 text-background">
               <p className="text-sm font-medium mb-2 opacity-90">Resultados baseados em ciência</p>
-              <p className="text-2xl font-serif font-bold">
+              <p className="text-2xl font-serif font-bold mb-4">
                 Transformação que respeita sua individualidade
               </p>
+              <Button
+                onClick={() => navigate("/nutricao-celular")}
+                className="bg-background text-foreground hover:bg-background/90 group"
+              >
+                Conheça a Nutrição Celular
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </div>
           </div>
         </div>

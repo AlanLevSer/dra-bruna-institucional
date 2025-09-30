@@ -1,4 +1,6 @@
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import programImage from "@/assets/patient-wellness-1.jpg";
 
 const benefits = [
@@ -11,6 +13,8 @@ const benefits = [
 ];
 
 export const ProgramaLevSer = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="programa" className="py-24 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -47,7 +51,7 @@ export const ProgramaLevSer = () => {
               ))}
             </div>
 
-            <div className="pt-6">
+            <div className="pt-6 space-y-4">
               <div className="bg-card p-6 rounded-xl shadow-sm border border-border/50">
                 <p className="text-sm text-muted-foreground mb-2">
                   Duração mínima recomendada
@@ -59,6 +63,15 @@ export const ProgramaLevSer = () => {
                   Para resultados consistentes e duradouros
                 </p>
               </div>
+
+              <Button
+                size="lg"
+                onClick={() => navigate("/terapias-cirurgicas")}
+                className="w-full sm:w-auto bg-gradient-premium hover:opacity-90 transition-opacity group"
+              >
+                Conheça mais sobre o programa
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </div>
           </div>
         </div>

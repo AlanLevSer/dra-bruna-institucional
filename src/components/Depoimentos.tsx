@@ -45,13 +45,13 @@ export const Depoimentos = () => {
           {testimonials.map((testimonial, index) => (
             <Card
               key={index}
-              className="hover:shadow-hover transition-all duration-300 border-border/50 animate-fade-in"
+              className="hover:shadow-hover hover:-translate-y-2 transition-all duration-300 border-border/50 animate-fade-in group"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardContent className="pt-6">
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="fill-accent text-accent" size={18} />
+                    <Star key={i} className="fill-accent text-accent group-hover:scale-110 transition-transform" size={18} />
                   ))}
                 </div>
                 

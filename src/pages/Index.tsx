@@ -8,6 +8,8 @@ import { Depoimentos } from "@/components/Depoimentos";
 import { FAQ } from "@/components/FAQ";
 import { CTAFinal } from "@/components/CTAFinal";
 import { Footer } from "@/components/Footer";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { MobileCTA } from "@/components/MobileCTA";
 
 const Index = () => {
   return (
@@ -22,6 +24,8 @@ const Index = () => {
       <FAQ />
       <CTAFinal />
       <Footer />
+      <WhatsAppButton />
+      <MobileCTA />
     </div>
   );
 };

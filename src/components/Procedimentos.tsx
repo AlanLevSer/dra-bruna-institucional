@@ -1,30 +1,38 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Syringe, Activity, Pill, Stethoscope } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Syringe, Activity, Pill, Stethoscope, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const procedures = [
   {
     icon: Syringe,
     title: "Balão Intragástrico",
     description: "Procedimento não cirúrgico que auxilia na redução do apetite e promove saciedade precoce.",
+    link: "/terapias-endoscopicas",
   },
   {
     icon: Activity,
-    title: "Endoscopia Bariátrica",
+    title: "Gastroplastia Endoscópica",
     description: "Técnica endoscópica minimamente invasiva para redução do estômago e perda de peso.",
+    link: "/gastroplastia-endoscopica",
   },
   {
     icon: Pill,
-    title: "Farmacoterapia Avançada",
+    title: "Terapia Sacietógena",
     description: "Medicações modernas e seguras para controle de peso, prescritas com acompanhamento rigoroso.",
+    link: "/terapia-sacietogena",
   },
   {
     icon: Stethoscope,
-    title: "Avaliação Metabólica",
-    description: "Exames completos para identificar fatores que podem estar dificultando a perda de peso.",
+    title: "Cirurgia Bariátrica",
+    description: "Procedimentos cirúrgicos avançados para tratamento definitivo da obesidade grave.",
+    link: "/terapias-cirurgicas",
   },
 ];
 
 export const Procedimentos = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="procedimentos" className="py-24 bg-card">
       <div className="container mx-auto px-4">
@@ -47,19 +55,32 @@ export const Procedimentos = () => {
           {procedures.map((procedure, index) => (
             <Card
               key={index}
-              className="group hover:shadow-hover transition-all duration-300 border-border/50 animate-fade-in"
+              className="group hover:shadow-hover transition-all duration-300 border-border/50 animate-fade-in cursor-pointer"
               style={{ animationDelay: `${index * 0.1}s` }}
+              onClick={() => navigate(procedure.link)}
             >
               <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors group-hover:scale-110 duration-300">
                   <procedure.icon className="text-primary" size={24} />
                 </div>
-                <CardTitle className="text-xl font-serif">{procedure.title}</CardTitle>
+                <CardTitle className="text-xl font-serif group-hover:text-primary transition-colors">{procedure.title}</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-4">
                 <p className="text-muted-foreground leading-relaxed">
                   {procedure.description}
                 </p>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="w-full group/btn"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(procedure.link);
+                  }}
+                >
+                  Saiba mais
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                </Button>
               </CardContent>
             </Card>
           ))}

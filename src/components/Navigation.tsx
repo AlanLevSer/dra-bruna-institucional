@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
@@ -34,6 +34,7 @@ export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -83,15 +84,24 @@ export const Navigation = () => {
                 <div
                   key={item.label}
                   className="relative group"
-                  onMouseEnter={() => setOpenDropdown(item.label)}
-                  onMouseLeave={() => setOpenDropdown(null)}
+                  onMouseEnter={() => {
+                    if (dropdownTimeoutRef.current) {
+                      clearTimeout(dropdownTimeoutRef.current);
+                    }
+                    setOpenDropdown(item.label);
+                  }}
+                  onMouseLeave={() => {
+                    dropdownTimeoutRef.current = setTimeout(() => {
+                      setOpenDropdown(null);
+                    }, 150);
+                  }}
                 >
-                  <button className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-1">
+                  <button className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-1 py-2">
                     {item.label}
-                    <ChevronDown className="w-4 h-4" />
+                    <ChevronDown className={`w-4 h-4 transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`} />
                   </button>
                   {openDropdown === item.label && (
-                    <div className="absolute top-full left-0 mt-2 w-64 bg-card border border-border rounded-lg shadow-elegant z-50 py-2">
+                    <div className="absolute top-full left-0 mt-0 w-64 bg-card border border-border rounded-lg shadow-hover z-50 py-2 animate-fade-in">
                       {item.subItems?.map((subItem) => (
                         <Link
                           key={subItem.href}

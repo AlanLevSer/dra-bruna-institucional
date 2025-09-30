@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
 import heroImage from "@/assets/dra-bruna-professional.jpg";
 
 export const Hero = () => {
@@ -60,13 +61,16 @@ export const Hero = () => {
               />
             </div>
             
-            <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-xl shadow-elegant max-w-xs hidden lg:block">
+            <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-xl shadow-elegant max-w-xs hidden lg:block animate-scale-in">
               <p className="text-sm font-medium text-muted-foreground mb-1">
                 Transformações reais
               </p>
-              <p className="text-2xl font-serif font-bold text-primary">
-                +500 pacientes atendidos
-              </p>
+              <AnimatedCounter 
+                end={500} 
+                prefix="+"
+                suffix=" pacientes atendidos"
+                className="text-2xl font-serif font-bold text-primary"
+              />
             </div>
           </div>
         </div>
