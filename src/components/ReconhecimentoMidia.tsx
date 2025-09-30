@@ -57,6 +57,10 @@ export const ReconhecimentoMidia = () => {
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
             Dra. Bruna é reconhecida como autoridade no tratamento da obesidade
+            <br />
+            <span className="text-sm md:text-base opacity-80 font-medium">
+              (clique nas imagens para ler ou ouvir as reportagens na íntegra)
+            </span>
           </p>
         </div>
 
@@ -67,14 +71,14 @@ export const ReconhecimentoMidia = () => {
               href={media.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-center p-6 bg-card rounded-xl border border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/10 animate-fade-in"
+              className="group flex items-center justify-center p-6 bg-card rounded-xl border border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-lg hover:shadow-primary/10 animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
               title={media.title}
             >
               <img
                 src={media.logo}
                 alt={`Logo ${media.name}`}
-                className="w-full h-auto max-h-12 object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
+                className="w-full h-auto max-h-12 object-contain transition-all duration-300 opacity-100 group-hover:opacity-100 group-active:opacity-50 active:opacity-50"
               />
             </a>
           ))}
