@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const navItems = [
   { label: "Início", href: "#inicio", type: "anchor" },
@@ -38,6 +38,7 @@ export const Navigation = () => {
   const navRef = useRef<HTMLElement | null>(null);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScrollOrResize = () => {
@@ -55,6 +56,10 @@ export const Navigation = () => {
   }, []);
 
   const scrollToSection = (href: string) => {
+    // Always close mobile menu and dropdowns before navigating
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
+
     if (isHomePage) {
       const element = document.querySelector(href);
       if (element) {
@@ -66,12 +71,11 @@ export const Navigation = () => {
 
         window.scrollTo({
           top: offsetPosition,
-          behavior: "smooth"
+          behavior: "smooth",
         });
-        setIsMobileMenuOpen(false);
       }
     } else {
-      window.location.href = "/" + href;
+      navigate(`/${href}`);
     }
   };
 
@@ -169,6 +173,8 @@ export const Navigation = () => {
           <button
             className="lg:hidden text-foreground"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -176,7 +182,7 @@ export const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 space-y-4 animate-fade-in">
+          <div id="mobile-menu" className="lg:hidden mt-4 pb-4 space-y-4 animate-fade-in">
             {navItems.map((item) =>
               item.type === "dropdown" ? (
                 <div key={item.label} className="space-y-2">

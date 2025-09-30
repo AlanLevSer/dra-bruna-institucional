@@ -2,7 +2,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import NutricaoCelular from "./pages/NutricaoCelular";
@@ -13,12 +14,33 @@ import TerapiaSacietogena from "./pages/TerapiaSacietogena";
 
 const queryClient = new QueryClient();
 
+const ScrollManager = () => {
+  const location = useLocation();
+  useEffect(() => {
+    const rootStyles = getComputedStyle(document.documentElement);
+    const headerVar = rootStyles.getPropertyValue('--header-height').trim();
+    const headerOffset = (parseInt(headerVar.replace('px','')) || 80) + 8;
+
+    if (!location.hash) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    const el = document.querySelector(location.hash);
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }, [location.pathname, location.hash]);
+  return null;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollManager />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/nutricao-celular" element={<NutricaoCelular />} />

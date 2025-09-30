@@ -17,7 +17,12 @@ export const MobileCTA = () => {
   const scrollToSection = () => {
     const element = document.querySelector("#agendar");
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      const rootStyles = getComputedStyle(document.documentElement);
+      const headerVar = rootStyles.getPropertyValue('--header-height').trim();
+      const headerOffset = (parseInt(headerVar.replace('px','')) || 80) + 8;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
   };
 

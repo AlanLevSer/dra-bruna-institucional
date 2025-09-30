@@ -116,6 +116,7 @@ All colors MUST be HSL.
   
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
   }
 
   /* Premium hover effects */
