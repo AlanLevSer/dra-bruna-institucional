@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import logoHeader from "@/assets/logo-original.png";
 
 const navItems = [
   { label: "Início", href: "#inicio", type: "anchor" },
@@ -94,9 +95,14 @@ export const Navigation = () => {
               e.preventDefault();
               scrollToSection("#inicio");
             }}
-            className="text-xl font-serif font-semibold text-foreground"
+            className="flex items-center"
           >
-            Dra. Bruna Durelli
+            <img 
+              src={logoHeader}
+              alt="Dra. Bruna Durelli - Especialista em Obesidade e Metabolismo"
+              className="h-10 md:h-12 w-auto transition-opacity hover:opacity-90"
+              loading="eager"
+            />
           </a>
 
           {/* Desktop Navigation */}

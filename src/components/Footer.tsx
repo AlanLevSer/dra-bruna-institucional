@@ -1,3 +1,5 @@
+import logoFooter from "@/assets/logo-original.png";
+
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -5,9 +7,12 @@ export const Footer = () => {
     <footer className="bg-card border-t border-border/50 py-8">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4">
-          <p className="text-2xl font-serif font-semibold text-foreground">
-            Dra. Bruna Durelli
-          </p>
+          <img 
+            src={logoFooter}
+            alt="Dra. Bruna Durelli - Especialista em Obesidade e Metabolismo"
+            className="h-10 w-auto mx-auto opacity-90 hover:opacity-100 transition-opacity"
+            loading="lazy"
+          />
           
           <p className="text-sm text-muted-foreground">
             CRM XXXXX - Especialista em Obesidade e Metabolismo
