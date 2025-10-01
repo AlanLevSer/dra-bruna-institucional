@@ -124,17 +124,17 @@ All colors MUST be HSL.
   }
   
   h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.25rem, 4vw, 3.5rem);
     font-weight: 700;
     letter-spacing: -0.02em;
   }
   
   h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.875rem, 3vw, 2.5rem);
   }
   
   h3 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.5rem, 2.5vw, 1.875rem);
   }
   
   p {
@@ -208,10 +208,10 @@ All colors MUST be HSL.
   }
   
   .display-xl {
-    @apply font-serif text-5xl lg:text-7xl font-bold tracking-tighter leading-none;
+    @apply font-serif text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-tight;
   }
   
   .subtitle-elegant {
-    @apply font-sans text-lg lg:text-xl font-medium tracking-premium leading-relaxed-xl;
+    @apply font-sans text-base md:text-lg lg:text-xl font-normal leading-relaxed;
   }
 }

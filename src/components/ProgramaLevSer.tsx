@@ -17,28 +17,30 @@ export const ProgramaLevSer = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="programa" className="relative py-24 bg-muted/30 overflow-hidden">
+    <section id="programa" className="relative py-16 xl:py-20 bg-muted/30 overflow-hidden">
       <GrafismoDecor variant="background" position="top-left" size="lg" opacity={0.18} rotate={15} color="gray" />
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 xl:gap-12 items-center max-w-7xl mx-auto">
           <div className="order-2 lg:order-1 animate-fade-in">
-            <img
-              src={programImage}
-              alt="Programa LevSer - Transformação com acompanhamento médico"
-              className="rounded-2xl shadow-elegant w-full h-auto object-cover"
-            />
+            <div className="relative rounded-2xl overflow-hidden shadow-elegant max-w-lg xl:max-w-xl mx-auto lg:mx-0">
+              <img
+                src={programImage}
+                alt="Programa LevSer - Transformação com acompanhamento médico"
+                className="w-full h-auto object-cover"
+              />
+            </div>
           </div>
 
-          <div className="order-1 lg:order-2 space-y-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+          <div className="order-1 lg:order-2 space-y-5 animate-fade-in" style={{ animationDelay: "0.1s" }}>
             <div className="inline-block px-4 py-2 bg-primary/10 rounded-full">
               <span className="text-sm font-medium text-primary">Programa Premium</span>
             </div>
 
-            <h2 className="text-4xl lg:text-5xl font-serif font-bold text-foreground">
+            <h2 className="text-3xl md:text-4xl xl:text-5xl font-serif font-bold text-foreground">
               Programa LevSer
             </h2>
 
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
               Muito mais que um programa de emagrecimento. O LevSer é uma jornada de 
               transformação integral que reconecta você com seu bem-estar, autoestima 
               e qualidade de vida. Resultados que vão além da balança.

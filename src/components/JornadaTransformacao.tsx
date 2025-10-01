@@ -34,27 +34,27 @@ const journeySteps = [
 
 export const JornadaTransformacao = () => {
   return (
-    <section id="jornada" className="relative py-24 bg-background overflow-hidden">
+    <section id="jornada" className="relative py-16 xl:py-20 bg-background overflow-hidden">
       <GrafismoDecor variant="background" position="top-right" size="lg" opacity={0.12} rotate={-25} color="gray" />
       <GrafismoDecor variant="background" position="bottom-left" size="md" opacity={0.1} rotate={35} color="gray" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
+        <div className="text-center max-w-3xl mx-auto mb-12 xl:mb-16 animate-fade-in">
           <div className="inline-block px-4 py-2 bg-primary/10 rounded-full mb-4">
             <span className="text-sm font-medium text-primary">Sua Transformação</span>
           </div>
           
-          <h2 className="text-4xl lg:text-5xl font-serif font-bold text-foreground mb-6">
+          <h2 className="text-3xl md:text-4xl xl:text-5xl font-serif font-bold text-foreground mb-5">
             Uma Jornada de Transformação Completa
           </h2>
           
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
             Mais do que perder peso, nosso programa transforma sua vida. Veja como cada etapa 
             da sua jornada te reconecta com seu bem-estar, autoestima e qualidade de vida.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid md:grid-cols-2 gap-6 xl:gap-8 max-w-6xl mx-auto">
           {journeySteps.map((step, index) => {
             const Icon = step.icon;
             return (
@@ -64,7 +64,7 @@ export const JornadaTransformacao = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border/50 hover:shadow-elegant transition-all duration-300">
-                  <div className="relative h-72 overflow-hidden">
+                  <div className="relative h-56 xl:h-64 overflow-hidden">
                     <img
                       src={step.image}
                       alt={step.title}
@@ -82,8 +82,8 @@ export const JornadaTransformacao = () => {
                     </div>
                   </div>
                   
-                  <div className="p-6">
-                    <p className="text-muted-foreground leading-relaxed">
+                  <div className="p-5 xl:p-6">
+                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                       {step.description}
                     </p>
                   </div>
@@ -93,10 +93,10 @@ export const JornadaTransformacao = () => {
           })}
         </div>
 
-        <div className="mt-16 text-center animate-fade-in" style={{ animationDelay: "0.5s" }}>
-          <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-8 lg:p-12 border border-primary/10">
-            <p className="text-lg lg:text-xl text-muted-foreground mb-4">
-              <span className="font-serif font-bold text-foreground text-2xl lg:text-3xl block mb-2">
+        <div className="mt-12 xl:mt-16 text-center animate-fade-in max-w-4xl mx-auto" style={{ animationDelay: "0.5s" }}>
+          <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-6 lg:p-10 border border-primary/10">
+            <p className="text-base md:text-lg text-muted-foreground">
+              <span className="font-serif font-bold text-foreground text-xl md:text-2xl xl:text-3xl block mb-3">
                 Transformação que vai além dos números
               </span>
               Nossa abordagem integrada combina medicina, nutrição, psicologia e exercícios 

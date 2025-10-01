@@ -25,45 +25,45 @@ const testimonials = [
 
 export const Depoimentos = () => {
   return (
-    <section id="depoimentos" className="relative py-24 bg-muted/30 overflow-hidden">
+    <section id="depoimentos" className="relative py-16 xl:py-20 bg-muted/30 overflow-hidden">
       <GrafismoDecor variant="background" position="top-right" size="lg" opacity={0.18} rotate={-20} color="gray" />
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
+        <div className="text-center max-w-3xl mx-auto mb-12 xl:mb-16 animate-fade-in">
           <div className="inline-block px-4 py-2 bg-primary/10 rounded-full mb-4">
             <span className="text-sm font-medium text-primary">Histórias Reais</span>
           </div>
           
-          <h2 className="text-4xl lg:text-5xl font-serif font-bold text-foreground mb-6">
+          <h2 className="text-3xl md:text-4xl xl:text-5xl font-serif font-bold text-foreground mb-5">
             O que dizem nossos pacientes
           </h2>
           
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
             Transformações que vão além dos números na balança. 
             Vidas que foram impactadas de forma positiva e duradoura.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6 xl:gap-8 max-w-6xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <Card
               key={index}
-              className="hover:shadow-hover hover:-translate-y-2 transition-all duration-300 border-border/50 animate-fade-in group"
+              className="hover:shadow-hover hover:-translate-y-1 transition-all duration-300 border-border/50 animate-fade-in group"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <CardContent className="pt-6">
+              <CardContent className="pt-5 px-5 pb-5">
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
                     <Star key={i} className="fill-accent text-accent group-hover:scale-110 transition-transform" size={18} />
                   ))}
                 </div>
                 
-                <p className="text-foreground/90 leading-relaxed mb-6 italic">
+                <p className="text-sm md:text-base text-foreground/90 leading-relaxed mb-5 italic">
                   "{testimonial.content}"
                 </p>
                 
-                <div className="pt-4 border-t border-border/50">
-                  <p className="font-semibold text-foreground">{testimonial.name}</p>
-                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                <div className="pt-3 border-t border-border/50">
+                  <p className="font-semibold text-sm md:text-base text-foreground">{testimonial.name}</p>
+                  <p className="text-xs md:text-sm text-muted-foreground">{testimonial.role}</p>
                 </div>
               </CardContent>
             </Card>

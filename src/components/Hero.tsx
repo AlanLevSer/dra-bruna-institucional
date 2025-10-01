@@ -22,11 +22,11 @@ export const Hero = () => {
   };
 
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <section id="inicio" className="relative min-h-[85vh] xl:min-h-[80vh] flex items-center pt-20 pb-12 overflow-hidden">
       <GrafismoDecor variant="hero" position="top-right" size="xl" opacity={0.2} rotate={-15} color="gray" />
       <GrafismoDecor variant="background" position="bottom-left" size="lg" opacity={0.15} rotate={45} color="gray" />
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 xl:gap-12 items-center max-w-7xl mx-auto">
           <div className="space-y-6 animate-fade-in">
             <div className="inline-block px-4 py-2 bg-accent/10 rounded-full">
               <span className="text-sm font-medium text-black">
@@ -65,7 +65,7 @@ export const Hero = () => {
           </div>
 
           <div className="relative animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            <div className="relative rounded-2xl overflow-hidden shadow-hover">
+            <div className="relative rounded-2xl overflow-hidden shadow-hover max-w-lg xl:max-w-xl mx-auto lg:mx-0">
               <img
                 src={heroImage}
                 alt="Dra. Bruna Durelli - Especialista em Obesidade"
