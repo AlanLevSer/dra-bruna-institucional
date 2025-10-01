@@ -62,7 +62,7 @@ export const Nutricao = () => {
           ))}
         </div>
 
-        <div className="relative rounded-2xl overflow-hidden shadow-hover animate-fade-in max-w-4xl mx-auto" style={{ animationDelay: "0.3s" }}>
+        <div className="relative rounded-2xl overflow-hidden shadow-hover animate-fade-in max-w-2xl mx-auto" style={{ animationDelay: "0.3s" }}>
           <img
             src={nutricaoImage}
             alt="Nutrição e bem-estar - Paciente feliz e saudável"

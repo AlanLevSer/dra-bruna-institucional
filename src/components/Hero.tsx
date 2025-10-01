@@ -65,7 +65,7 @@ export const Hero = () => {
           </div>
 
           <div className="relative animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            <div className="relative rounded-2xl overflow-hidden shadow-hover max-w-lg xl:max-w-xl mx-auto lg:mx-0">
+            <div className="relative rounded-2xl overflow-hidden shadow-hover max-w-sm xl:max-w-md mx-auto lg:mx-0">
               <img
                 src={heroImage}
                 alt="Dra. Bruna Durelli - Especialista em Obesidade"
