@@ -35,10 +35,10 @@ const faqs = [
 
 export const FAQ = () => {
   return (
-    <section id="faq" className="relative py-24 bg-card overflow-hidden">
+    <section id="faq" className="relative py-12 xl:py-16 bg-card overflow-hidden">
       <GrafismoDecor variant="background" position="top-left" size="lg" opacity={0.15} rotate={25} color="gray" />
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
+        <div className="text-center max-w-3xl mx-auto mb-10 animate-fade-in">
           <h2 className="text-4xl lg:text-5xl font-serif font-bold text-foreground mb-6">
             Perguntas Frequentes
           </h2>

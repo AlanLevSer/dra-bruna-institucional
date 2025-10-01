@@ -22,7 +22,7 @@ export const Hero = () => {
   };
 
   return (
-    <section id="inicio" className="relative min-h-[85vh] xl:min-h-[80vh] flex items-center pt-20 pb-12 overflow-hidden">
+    <section id="inicio" className="relative min-h-[75vh] xl:min-h-[70vh] flex items-center pt-24 pb-10 overflow-hidden">
       <GrafismoDecor variant="hero" position="top-right" size="xl" opacity={0.2} rotate={-15} color="gray" />
       <GrafismoDecor variant="background" position="bottom-left" size="lg" opacity={0.15} rotate={45} color="gray" />
       <div className="container mx-auto px-4 relative z-10">
@@ -65,7 +65,7 @@ export const Hero = () => {
           </div>
 
           <div className="relative animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            <div className="relative rounded-2xl overflow-hidden shadow-hover max-w-sm xl:max-w-md mx-auto lg:mx-0">
+            <div className="relative rounded-2xl overflow-hidden shadow-hover max-w-xs xl:max-w-sm mx-auto lg:mx-0">
               <img
                 src={heroImage}
                 alt="Dra. Bruna Durelli - Especialista em Obesidade"

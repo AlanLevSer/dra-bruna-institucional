@@ -25,10 +25,10 @@ const testimonials = [
 
 export const Depoimentos = () => {
   return (
-    <section id="depoimentos" className="relative py-16 xl:py-20 bg-muted/30 overflow-hidden">
+    <section id="depoimentos" className="relative py-10 xl:py-12 bg-muted/30 overflow-hidden">
       <GrafismoDecor variant="background" position="top-right" size="lg" opacity={0.18} rotate={-20} color="gray" />
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-12 xl:mb-16 animate-fade-in">
+        <div className="text-center max-w-3xl mx-auto mb-8 xl:mb-10 animate-fade-in">
           <div className="inline-block px-4 py-2 bg-primary/10 rounded-full mb-4">
             <span className="text-sm font-medium text-primary">Histórias Reais</span>
           </div>

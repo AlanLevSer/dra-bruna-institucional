@@ -34,12 +34,12 @@ const journeySteps = [
 
 export const JornadaTransformacao = () => {
   return (
-    <section id="jornada" className="relative py-16 xl:py-20 bg-background overflow-hidden">
+    <section id="jornada" className="relative py-10 xl:py-12 bg-background overflow-hidden">
       <GrafismoDecor variant="background" position="top-right" size="lg" opacity={0.12} rotate={-25} color="gray" />
       <GrafismoDecor variant="background" position="bottom-left" size="md" opacity={0.1} rotate={35} color="gray" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-12 xl:mb-16 animate-fade-in">
+        <div className="text-center max-w-3xl mx-auto mb-8 xl:mb-10 animate-fade-in">
           <div className="inline-block px-4 py-2 bg-primary/10 rounded-full mb-4">
             <span className="text-sm font-medium text-primary">Sua Transformação</span>
           </div>
@@ -64,7 +64,7 @@ export const JornadaTransformacao = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border/50 hover:shadow-elegant transition-all duration-300">
-                  <div className="relative h-56 xl:h-64 overflow-hidden">
+                  <div className="relative h-48 xl:h-52 overflow-hidden">
                     <img
                       src={step.image}
                       alt={step.title}
@@ -93,7 +93,7 @@ export const JornadaTransformacao = () => {
           })}
         </div>
 
-        <div className="mt-12 xl:mt-16 text-center animate-fade-in max-w-4xl mx-auto" style={{ animationDelay: "0.5s" }}>
+        <div className="mt-8 xl:mt-10 text-center animate-fade-in max-w-4xl mx-auto" style={{ animationDelay: "0.5s" }}>
           <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-6 lg:p-10 border border-primary/10">
             <p className="text-base md:text-lg text-muted-foreground">
               <span className="font-serif font-bold text-foreground text-xl md:text-2xl xl:text-3xl block mb-3">

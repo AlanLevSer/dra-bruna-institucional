@@ -93,7 +93,7 @@ const TerapiaSacietogena = () => {
         ]}
       />
 
-      <section className="py-16 bg-card">
+      <section className="py-10 xl:py-12 bg-card">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto bg-accent/10 border-l-4 border-accent p-8 rounded-lg">
             <h3 className="text-xl font-serif font-bold text-foreground mb-3">

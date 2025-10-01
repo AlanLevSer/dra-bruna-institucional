@@ -43,7 +43,7 @@ const TerapiasEndoscopicas = () => {
         </p>
       </TreatmentSection>
 
-      <section className="py-16 bg-muted/30">
+      <section className="py-10 xl:py-12 bg-muted/30">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-12 text-center">
             Procedimentos disponíveis

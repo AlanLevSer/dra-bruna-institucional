@@ -14,7 +14,7 @@ export const TreatmentSection = ({
 }: TreatmentSectionProps) => {
   return (
     <section
-      className={`relative py-16 overflow-hidden ${
+      className={`relative py-10 xl:py-12 overflow-hidden ${
         variant === "muted" ? "bg-muted/30" : "bg-background"
       }`}
     >

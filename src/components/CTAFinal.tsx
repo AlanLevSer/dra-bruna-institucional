@@ -4,7 +4,7 @@ import ctaImage from "@/assets/dra-bruna-elegant.jpg";
 
 export const CTAFinal = () => {
   return (
-    <section id="agendar" className="py-24 bg-gradient-premium text-primary-foreground relative overflow-hidden">
+    <section id="agendar" className="py-12 xl:py-16 bg-gradient-premium text-primary-foreground relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <img
           src={ctaImage}

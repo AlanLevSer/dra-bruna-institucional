@@ -47,11 +47,11 @@ const mediaAppearances = [
 
 export const ReconhecimentoMidia = () => {
   return (
-    <section className="py-16 md:py-24 relative bg-gradient-to-br from-background via-background to-background/95">
+    <section className="py-10 md:py-12 relative bg-gradient-to-br from-background via-background to-background/95">
       <GrafismoDecor position="top-right" />
       
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 md:mb-16 animate-fade-in">
+        <div className="text-center mb-8 md:mb-10 animate-fade-in">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
             Reconhecimento na Mídia
           </h2>
@@ -78,7 +78,7 @@ export const ReconhecimentoMidia = () => {
               <img
                 src={media.logo}
                 alt={`Logo ${media.name}`}
-                className="w-full h-auto max-h-12 object-contain transition-all duration-300 opacity-100 group-hover:opacity-100 group-active:opacity-50 active:opacity-50"
+                className="w-full h-auto max-h-8 object-contain transition-all duration-300 opacity-100 group-hover:opacity-100 group-active:opacity-50 active:opacity-50"
               />
             </a>
           ))}
