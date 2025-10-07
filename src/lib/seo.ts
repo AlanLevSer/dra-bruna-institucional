@@ -49,6 +49,12 @@ export const pageSEO: Record<string, SEOData> = {
     description: "Nutrição celular avançada para otimizar resultados do tratamento. Suplementação personalizada e terapia nutricional especializada.",
     keywords: "nutrição celular, suplementação, terapia nutricional, vitaminas, minerais, tratamento nutricional obesidade",
     canonical: "https://drabrunadurelli.com/nutricao-celular"
+  },
+  medicinaRegenerativa: {
+    title: "Medicina Regenerativa | Saúde Metabólica Avançada - Dra. Bruna Durelli",
+    description: "Abordagem avançada para saúde metabólica: mais energia, menos inflamação, preservação muscular. Protocolos individualizados com base em exames.",
+    keywords: "medicina regenerativa, saúde metabólica, nutrição celular, otimização hormonal, preservação muscular, fadiga crônica, menopausa, pós-bariátrica, performance atlética",
+    canonical: "https://drabrunadurelli.com/medicina-regenerativa"
   }
 };
 

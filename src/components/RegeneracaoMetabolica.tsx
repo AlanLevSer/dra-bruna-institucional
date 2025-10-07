@@ -117,7 +117,7 @@ export const RegeneracaoMetabolica = () => {
         </div>
 
         {/* CTA */}
-        <div className="text-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
           <Button
             size="lg"
             onClick={() => {
@@ -128,6 +128,15 @@ export const RegeneracaoMetabolica = () => {
             className="bg-gradient-premium hover:opacity-90 transition-opacity group"
           >
             Descobrir meu protocolo regenerativo
+            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+          </Button>
+          <Button
+            size="lg"
+            variant="outline"
+            onClick={() => window.location.href = '/medicina-regenerativa'}
+            className="group"
+          >
+            Saiba mais sobre Medicina Regenerativa
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>

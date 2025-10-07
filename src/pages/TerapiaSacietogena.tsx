@@ -131,21 +131,26 @@ const TerapiaSacietogena = () => {
         ]}
       />
 
-      <TreatmentSection title="Integração Regenerativa">
-        <p className="mb-4">
-          A terapia sacietógena potencializa (e é potencializada por) nossa abordagem 
-          de <strong>Medicina Regenerativa</strong>:
-        </p>
-        <ul className="list-disc list-inside space-y-3 text-muted-foreground">
-          <li><strong>Nutrição Celular</strong> para energia, foco e redução de fadiga</li>
-          <li><strong>Moduladores metabólicos</strong> para otimizar insulina e inflamação</li>
-          <li><strong>Suporte comportamental</strong> para mudança sustentável</li>
-          <li><strong>Protocolos de preservação muscular</strong> durante a perda de peso</li>
-        </ul>
-        <p className="mt-4">
-          O protocolo é individualizado, baseado em exames, e ajustado conforme sua evolução.
-        </p>
-      </TreatmentSection>
+          <TreatmentSection title="Integração Regenerativa">
+            <p className="mb-4">
+              A terapia sacietógena potencializa (e é potencializada por) nossa abordagem 
+              de <strong>Medicina Regenerativa</strong>:
+            </p>
+            <ul className="list-disc list-inside space-y-3 text-muted-foreground">
+              <li><strong>Nutrição Celular</strong> para energia, foco e redução de fadiga</li>
+              <li><strong>Moduladores metabólicos</strong> para otimizar insulina e inflamação</li>
+              <li><strong>Suporte comportamental</strong> para mudança sustentável</li>
+              <li><strong>Protocolos de preservação muscular</strong> durante a perda de peso</li>
+            </ul>
+            <p className="mt-4">
+              O protocolo é individualizado, baseado em exames, e ajustado conforme sua evolução.
+            </p>
+            <p className="mt-4">
+              <a href="/medicina-regenerativa" className="text-primary hover:underline font-medium">
+                Conheça nossa abordagem completa de Medicina Regenerativa →
+              </a>
+            </p>
+          </TreatmentSection>
 
       <CTASection
         title="Quer retomar o controle sobre sua fome?"

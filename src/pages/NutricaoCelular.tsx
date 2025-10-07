@@ -95,6 +95,11 @@ const NutricaoCelular = () => {
           Quando integrada ao Programa LevSer, acelera recuperação, preserva massa magra 
           e melhora a qualidade de vida durante (e após) a perda de peso.
         </p>
+        <p className="mt-4">
+          <a href="/medicina-regenerativa" className="text-primary hover:underline font-medium">
+            Saiba mais sobre nossa abordagem de Medicina Regenerativa →
+          </a>
+        </p>
       </TreatmentSection>
 
       <CTASection
