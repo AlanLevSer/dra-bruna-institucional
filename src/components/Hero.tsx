@@ -83,16 +83,72 @@ export const Hero = () => {
               />
             </div>
             
-            <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-xl shadow-elegant max-w-xs hidden lg:block animate-scale-in">
-              <p className="text-sm font-medium text-muted-foreground mb-1">
+            {/* CARD DESKTOP (Horizontal) */}
+            <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-xl shadow-elegant max-w-md hidden lg:block animate-scale-in">
+              <p className="text-sm font-medium text-muted-foreground mb-3">
                 Vidas transformadas
               </p>
-              <AnimatedCounter 
-                end={500} 
-                prefix="+"
-                suffix=" pessoas"
-                className="text-2xl font-serif font-bold text-primary"
-              />
+              
+              <div className="flex items-start gap-6">
+                {/* Métrica 1: Pacientes */}
+                <div className="flex-1">
+                  <AnimatedCounter 
+                    end={3000} 
+                    prefix="+"
+                    suffix=" pacientes"
+                    className="text-2xl font-serif font-bold text-primary block"
+                  />
+                </div>
+                
+                {/* Divisor Vertical */}
+                <div className="w-px h-12 bg-border/50"></div>
+                
+                {/* Métrica 2: Kg Eliminados */}
+                <div className="flex-1">
+                  <AnimatedCounter 
+                    end={60000} 
+                    prefix="+"
+                    suffix=" kg"
+                    className="text-2xl font-serif font-bold text-primary block"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1 leading-tight">
+                    Eliminados de forma sustentável
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            {/* CARD MOBILE (Vertical) */}
+            <div className="mt-6 mx-auto max-w-xs bg-card p-5 rounded-xl shadow-elegant block lg:hidden animate-scale-in">
+              <p className="text-sm font-medium text-muted-foreground mb-3 text-center">
+                Vidas transformadas
+              </p>
+              
+              {/* Métrica 1: Pacientes */}
+              <div className="text-center mb-3">
+                <AnimatedCounter 
+                  end={3000} 
+                  prefix="+"
+                  suffix=" pacientes"
+                  className="text-2xl font-serif font-bold text-primary block"
+                />
+              </div>
+              
+              {/* Divisor Horizontal */}
+              <div className="h-px w-full bg-border/50 my-3"></div>
+              
+              {/* Métrica 2: Kg Eliminados */}
+              <div className="text-center">
+                <AnimatedCounter 
+                  end={60000} 
+                  prefix="+"
+                  suffix=" kg"
+                  className="text-2xl font-serif font-bold text-primary block"
+                />
+                <p className="text-xs text-muted-foreground mt-1 leading-tight">
+                  Eliminados de forma sustentável
+                </p>
+              </div>
             </div>
           </div>
         </div>
