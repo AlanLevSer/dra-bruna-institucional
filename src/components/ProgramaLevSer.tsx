@@ -182,7 +182,11 @@ export const ProgramaLevSer = () => {
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <CheckCircle2 className="text-primary flex-shrink-0 mt-1" size={20} />
-                  <p className="text-foreground/90">{benefit}</p>
+                  <p className="text-foreground/90">
+                    {benefit === "Suporte emocional para mudanças sustentáveis" 
+                      ? "Estratégia comportamental para mudanças sustentáveis"
+                      : benefit}
+                  </p>
                 </div>
               ))}
             </div>
