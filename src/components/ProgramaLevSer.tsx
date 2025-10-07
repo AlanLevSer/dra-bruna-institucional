@@ -1,4 +1,18 @@
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { 
+  CheckCircle2, 
+  ArrowRight, 
+  UtensilsCrossed, 
+  Activity, 
+  Dumbbell, 
+  Brain,
+  MapPin,
+  Zap,
+  Target,
+  Infinity,
+  Syringe,
+  Stethoscope,
+  Wind
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
@@ -11,6 +25,122 @@ const benefits = [
   "Suporte emocional para mudanças sustentáveis",
   "Recuperação da sua confiança e qualidade de vida",
   "Comunidade de apoio que celebra cada conquista",
+];
+
+const pilares = [
+  {
+    icon: UtensilsCrossed,
+    title: "Nutrição Inteligente",
+    subtitle: "Alimentação leve, estratégica e viável no dia a dia",
+    features: [
+      "Plano por fases (não restritivo)",
+      "Estratégias de saciedade e prazer",
+      "Educação alimentar para autonomia"
+    ]
+  },
+  {
+    icon: Activity,
+    title: "Saúde Metabólica",
+    subtitle: "Regula hormônios e marcadores que travam seu peso",
+    features: [
+      "Otimização de insulina, glicemia e inflamação",
+      "Terapias sacietógenas quando indicadas",
+      "Nutrição celular para energia e recuperação"
+    ]
+  },
+  {
+    icon: Dumbbell,
+    title: "Corpo em Movimento",
+    subtitle: "Seu corpo forte, funcional e com mais disposição",
+    features: [
+      "Rotina progressiva (sem exageros)",
+      "Força + mobilidade + condicionamento",
+      "Prevenção de dores e lesões"
+    ]
+  },
+  {
+    icon: Brain,
+    title: "Mente & Comportamento",
+    subtitle: "Constância sem culpa, com apoio emocional real",
+    features: [
+      "Ferramentas de escolha consciente",
+      "Organização alimentar & ambiente",
+      "Estratégias para recaídas e gatilhos"
+    ]
+  }
+];
+
+const fases = [
+  {
+    numero: "01",
+    icon: MapPin,
+    titulo: "Mapeamento & Direção",
+    duracao: "2–4 semanas",
+    objetivo: "Entender sua biologia, hábitos e metas",
+    entregas: [
+      "Exames completos",
+      "Avaliação corporal",
+      "Perfil comportamental",
+      "Plano inicial personalizado"
+    ],
+    sinais: "Clareza de caminho e primeiros ajustes na rotina"
+  },
+  {
+    numero: "02",
+    icon: Zap,
+    titulo: "Reset & Ritmo",
+    duracao: "8–12 semanas",
+    objetivo: "Destravar o peso com estratégia e constância",
+    entregas: [
+      "Intervenções possíveis: balão 4/6/12m, gastroplastia endoscópica, terapias injetáveis (se indicado)"
+    ],
+    sinais: "Queda de medidas, melhora de sono/energia e adesão alimentar",
+    miniComparador: true
+  },
+  {
+    numero: "03",
+    icon: Target,
+    titulo: "Consolidação & Autonomia",
+    duracao: "12–16 semanas",
+    objetivo: "Manter a perda e ganhar independência",
+    entregas: [
+      "Progressão de treino",
+      "Reeducação alimentar avançada",
+      "Alta supervisão clínica"
+    ],
+    sinais: "Estabilidade de rotina, marcadores metabólicos melhores"
+  },
+  {
+    numero: "04",
+    icon: Infinity,
+    titulo: "Manutenção & Estilo de Vida",
+    duracao: "12+ meses",
+    objetivo: "Não 'terminar', e sim sustentar",
+    entregas: [
+      "Calendário de checkpoints trimestrais",
+      "Plano de recaída",
+      "Ajustes finos contínuos"
+    ],
+    sinais: "Peso estável, bem-estar e confiança no longo prazo"
+  }
+];
+
+const intervencoes = [
+  {
+    icon: Wind,
+    nome: "Balão 4/6/12m",
+    descricao: "Saciedade imediata, recuperação rápida, reversível (12m pode ser ajustável)"
+  },
+  {
+    icon: Stethoscope,
+    nome: "Gastroplastia Endoscópica",
+    descricao: "Redução interna do estômago, sem cortes, perda mais robusta, reversível"
+  },
+  {
+    icon: Syringe,
+    nome: "Terapias Injetáveis",
+    descricao: "Controle de apetite/metabolismo, aliadas ao plano, exigem seguimento"
+  }
 ];
 
 export const ProgramaLevSer = () => {
@@ -104,16 +234,212 @@ export const ProgramaLevSer = () => {
                 </p>
               </div>
 
-              <Button
-                size="lg"
-                onClick={() => navigate("/terapias-cirurgicas")}
-                className="w-full sm:w-auto bg-gradient-premium hover:opacity-90 transition-opacity group"
-              >
-                Conheça mais sobre o programa
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
             </div>
           </div>
+        </div>
+
+        {/* Seção: Os 4 Pilares do Método */}
+        <div className="mt-16 xl:mt-20 max-w-7xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl xl:text-5xl font-serif font-bold text-foreground mb-4">
+              Os 4 Pilares do Método
+            </h2>
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+              Menos fricção, mais ciência. Você no centro.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 xl:gap-8 mb-8">
+            {pilares.map((pilar, index) => {
+              const IconComponent = pilar.icon;
+              return (
+                <div 
+                  key={index} 
+                  className="bg-card p-6 xl:p-8 rounded-xl border border-border/50 shadow-sm hover:shadow-elegant transition-all duration-300 animate-fade-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="flex flex-col gap-4">
+                    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
+                      <IconComponent className="w-7 h-7 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-foreground mb-2">
+                        {pilar.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        {pilar.subtitle}
+                      </p>
+                      <div className="space-y-2">
+                        {pilar.features.map((feature, idx) => (
+                          <div key={idx} className="flex items-start gap-2">
+                            <CheckCircle2 className="text-primary flex-shrink-0 mt-0.5" size={16} />
+                            <p className="text-sm text-foreground/90">{feature}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="text-center">
+            <Button
+              size="lg"
+              onClick={() => {
+                const phone = "5511999999999";
+                const message = "Olá! Quero conhecer meu plano personalizado pelos 4 pilares do Programa LevSer.";
+                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+              }}
+              className="bg-gradient-premium hover:opacity-90 transition-opacity group"
+            >
+              Quero meu plano pelos 4 pilares
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </div>
+        </div>
+
+        {/* Seção: Sua Jornada em 4 Fases */}
+        <div className="mt-16 xl:mt-20 max-w-7xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl xl:text-5xl font-serif font-bold text-foreground mb-4">
+              Sua Jornada em 4 Fases
+            </h2>
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+              Resultados que ficam — rotina possível, não perfeita.
+            </p>
+          </div>
+
+          <div className="space-y-8">
+            {fases.map((fase, index) => {
+              const IconComponent = fase.icon;
+              return (
+                <div 
+                  key={index}
+                  className="relative bg-card p-6 xl:p-8 rounded-xl border border-border/50 shadow-sm animate-fade-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="flex flex-col md:flex-row gap-6">
+                    {/* Número e Ícone */}
+                    <div className="flex-shrink-0">
+                      <div className="relative">
+                        <div className="w-16 h-16 rounded-full bg-gradient-premium flex items-center justify-center mb-2">
+                          <span className="text-2xl font-bold text-white">{fase.numero}</span>
+                        </div>
+                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+                          <IconComponent className="w-6 h-6 text-primary" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Conteúdo */}
+                    <div className="flex-1">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                        <h3 className="text-2xl font-serif font-bold text-foreground">
+                          {fase.titulo}
+                        </h3>
+                        <span className="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full w-fit">
+                          {fase.duracao}
+                        </span>
+                      </div>
+
+                      <p className="text-base font-medium text-foreground mb-4">
+                        <span className="text-muted-foreground">Objetivo: </span>
+                        {fase.objetivo}
+                      </p>
+
+                      <div className="space-y-3 mb-4">
+                        <p className="text-sm font-semibold text-foreground">Entregáveis:</p>
+                        <div className="space-y-2">
+                          {fase.entregas.map((entrega, idx) => (
+                            <div key={idx} className="flex items-start gap-2">
+                              <CheckCircle2 className="text-primary flex-shrink-0 mt-0.5" size={16} />
+                              <p className="text-sm text-muted-foreground">{entrega}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <p className="text-sm italic text-muted-foreground/80 border-l-2 border-primary pl-4">
+                        <span className="font-semibold not-italic">Sinais de sucesso: </span>
+                        {fase.sinais}
+                      </p>
+
+                      {/* Mini-Comparador (apenas Fase 2) */}
+                      {fase.miniComparador && (
+                        <div className="mt-6 pt-6 border-t border-border/50">
+                          <p className="text-sm font-semibold text-foreground mb-4">
+                            Intervenções possíveis nesta fase:
+                          </p>
+                          <div className="grid sm:grid-cols-3 gap-4 mb-4">
+                            {intervencoes.map((intervencao, idx) => {
+                              const InterIcon = intervencao.icon;
+                              return (
+                                <div 
+                                  key={idx}
+                                  className="bg-accent/10 p-4 rounded-lg border border-accent/20"
+                                >
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <InterIcon className="w-5 h-5 text-primary" />
+                                    <p className="text-sm font-bold text-foreground">
+                                      {intervencao.nome}
+                                    </p>
+                                  </div>
+                                  <p className="text-xs text-muted-foreground">
+                                    {intervencao.descricao}
+                                  </p>
+                                </div>
+                              );
+                            })}
+                          </div>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => {
+                              const phone = "5511999999999";
+                              const message = "Olá! Quero descobrir meu melhor caminho de tratamento (60s).";
+                              window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+                            }}
+                            className="w-full sm:w-auto"
+                          >
+                            Descobrir meu melhor caminho (60s)
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="text-center mt-8">
+            <Button
+              size="lg"
+              onClick={() => {
+                const phone = "5511999999999";
+                const message = "Olá! Quero seguir a jornada em 4 fases do Programa LevSer.";
+                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+              }}
+              className="bg-gradient-premium hover:opacity-90 transition-opacity group"
+            >
+              Quero seguir a jornada em 4 fases
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </div>
+        </div>
+
+        {/* CTA Final */}
+        <div className="mt-16 xl:mt-20 text-center max-w-3xl mx-auto">
+          <Button
+            size="lg"
+            onClick={() => navigate("/terapias-cirurgicas")}
+            className="w-full sm:w-auto bg-gradient-premium hover:opacity-90 transition-opacity group"
+          >
+            Conheça mais sobre o programa
+            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+          </Button>
         </div>
       </div>
     </section>
