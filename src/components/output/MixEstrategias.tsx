@@ -1,5 +1,5 @@
 import { TransformacaoOutput } from "@/types/quiz";
-import { Utensils, Dumbbell, Brain, Sparkles, Syringe } from "lucide-react";
+import { Utensils, Dumbbell, Brain, Sparkles, Syringe, Scissors, Shield } from "lucide-react";
 
 interface MixEstrategiasProps {
   mixEstrategias: TransformacaoOutput['mixEstrategias'];
@@ -10,7 +10,16 @@ export const MixEstrategias = ({ mixEstrategias }: MixEstrategiasProps) => {
     "Nutrição Inteligente": Utensils,
     "Corpo em Movimento": Dumbbell,
     "Mente & Comportamento": Brain,
-    "Saúde Regenerativa": Sparkles
+    "Saúde Regenerativa": Sparkles,
+    "Prevenção de Recaída": Shield
+  };
+  
+  const intervencaoIcons: Record<string, any> = {
+    gastroplastia: Scissors,
+    balao_4m: Syringe,
+    balao_6m: Syringe,
+    balao_12m: Syringe,
+    injetaveis: Syringe
   };
   
   const enfaseColors = {
@@ -20,18 +29,18 @@ export const MixEstrategias = ({ mixEstrategias }: MixEstrategiasProps) => {
   };
   
   return (
-    <div className="py-12 px-4">
+    <div className="py-8 md:py-12 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-2">
             Mix de Estratégias Personalizado
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-sm md:text-base text-muted-foreground">
             Seu plano integrado para transformação sustentável
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
           {mixEstrategias.pilares.map((pilar) => {
             const Icon = icons[pilar.nome];
             
@@ -68,15 +77,25 @@ export const MixEstrategias = ({ mixEstrategias }: MixEstrategiasProps) => {
         </div>
         
         {mixEstrategias.intervencao && (
-          <div className="p-8 rounded-lg border-2 border-primary bg-gradient-to-br from-primary/5 to-primary/10 shadow-lg">
-            <div className="flex items-start gap-6">
+          <div className="p-6 md:p-8 rounded-lg border-2 border-primary bg-gradient-to-br from-primary/5 to-primary/10 shadow-lg">
+            <div className="flex flex-col md:flex-row items-start gap-6">
               <div className="p-4 rounded-lg bg-primary/20">
-                <Syringe className="w-8 h-8 text-primary" />
+                {(() => {
+                  const IntervencaoIcon = intervencaoIcons[mixEstrategias.intervencao.tipo];
+                  return <IntervencaoIcon className="w-8 h-8 text-primary" />;
+                })()}
               </div>
               <div className="flex-1">
-                <h3 className="text-xl font-bold mb-2">
-                  Intervenção Sugerida
-                </h3>
+                <div className="flex flex-col md:flex-row md:items-center gap-2 mb-2">
+                  <h3 className="text-xl font-bold">
+                    Intervenção Sugerida
+                  </h3>
+                  {mixEstrategias.intervencao.tipo === 'gastroplastia' && (
+                    <span className="px-3 py-1 rounded-full bg-green-500/10 text-green-600 text-xs font-medium w-fit">
+                      Procedimento Endoscópico
+                    </span>
+                  )}
+                </div>
                 <p className="text-lg font-semibold text-primary mb-2">
                   {mixEstrategias.intervencao.nome}
                 </p>
@@ -85,7 +104,7 @@ export const MixEstrategias = ({ mixEstrategias }: MixEstrategiasProps) => {
                 </p>
                 <div className="mt-4 p-4 rounded-lg bg-background/50 border">
                   <p className="text-sm">
-                    💡 <strong>Por que sugerimos:</strong> Esta intervenção complementa os 4 pilares, 
+                    💡 <strong>Por que sugerimos:</strong> Esta intervenção complementa os pilares estratégicos, 
                     acelerando seus resultados de forma segura e sustentável.
                   </p>
                 </div>

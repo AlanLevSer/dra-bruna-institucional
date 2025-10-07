@@ -16,18 +16,18 @@ export const IndiceQLI = ({ qli }: IndiceQLIProps) => {
   ] as const;
   
   return (
-    <div className="py-12 px-4">
+    <div className="py-8 md:py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+        <div className="text-center mb-6 md:mb-8">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-2">
             Índice de Qualidade de Vida (QLI)
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-sm md:text-base text-muted-foreground">
             Evolução esperada em 6–12 meses
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {items.map(({ key, label, icon: Icon }) => {
             const data = qli[key];
             const gain = data.meta - data.baseline;

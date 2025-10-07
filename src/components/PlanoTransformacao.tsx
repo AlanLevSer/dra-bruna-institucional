@@ -2,6 +2,15 @@ import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { QuizData } from "@/types/quiz";
 import { generateTransformacaoOutput } from "@/lib/quiz-logic";
+import { 
+  step1Schema, 
+  step2Schema, 
+  step3Schema, 
+  step4Schema, 
+  step5Schema, 
+  step6Schema 
+} from "@/lib/quiz-validation";
+import { toast } from "@/hooks/use-toast";
 import { QuizProgress } from "./quiz/QuizProgress";
 import { QuizNavigation } from "./quiz/QuizNavigation";
 import { QuizStep1 } from "./quiz/QuizStep1";
@@ -10,6 +19,7 @@ import { QuizStep3 } from "./quiz/QuizStep3";
 import { QuizStep4 } from "./quiz/QuizStep4";
 import { QuizStep5 } from "./quiz/QuizStep5";
 import { QuizStep6 } from "./quiz/QuizStep6";
+import { GeneratingAnimation } from "./quiz/GeneratingAnimation";
 import { DeclaracaoTransformacao } from "./output/DeclaracaoTransformacao";
 import { IndiceQLI } from "./output/IndiceQLI";
 import { RoadmapFases } from "./output/RoadmapFases";
@@ -26,6 +36,7 @@ interface PlanoTransformacaoProps {
 export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoProps) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [showOutput, setShowOutput] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
   const [quizData, setQuizData] = useState<QuizData>({
     peso: 0,
     altura: 0,
@@ -53,6 +64,49 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
     setQuizData(newData);
   };
 
+  const validateCurrentStep = () => {
+    try {
+      switch (currentStep) {
+        case 1:
+          step1Schema.parse({ peso: quizData.peso, altura: quizData.altura, metaPeso: quizData.metaPeso });
+          return true;
+        case 2:
+          step2Schema.parse({ comorbidades: quizData.comorbidades });
+          return true;
+        case 3:
+          step3Schema.parse({ 
+            tentativasAnteriores: quizData.tentativasAnteriores, 
+            efeitoSanfona: quizData.efeitoSanfona, 
+            gatilhos: quizData.gatilhos 
+          });
+          return true;
+        case 4:
+          step4Schema.parse({ 
+            invasividade: quizData.invasividade, 
+            tempoRecuperacao: quizData.tempoRecuperacao, 
+            tempoDisponivel: quizData.tempoDisponivel 
+          });
+          return true;
+        case 5:
+          step5Schema.parse({ dorPrincipal: quizData.dorPrincipal });
+          return true;
+        case 6:
+          step6Schema.parse({ expectativas: quizData.expectativas });
+          return true;
+        default:
+          return false;
+      }
+    } catch (error: any) {
+      const errorMessage = error.errors?.[0]?.message || "Dados inválidos";
+      toast({
+        title: "Validação de dados",
+        description: errorMessage,
+        variant: "destructive"
+      });
+      return false;
+    }
+  };
+
   const canProceed = () => {
     switch (currentStep) {
       case 1: return quizData.peso > 0 && quizData.altura > 0;
@@ -65,8 +119,43 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
     }
   };
 
-  const handleSubmit = () => {
+  const handleNext = () => {
+    if (validateCurrentStep()) {
+      setCurrentStep(Math.min(6, currentStep + 1));
+    }
+  };
+
+  const handleSubmit = async () => {
+    if (!validateCurrentStep()) return;
+    
+    setIsGenerating(true);
+    
+    // Simular processamento para dar sensação de personalização
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
     setShowOutput(true);
+    setIsGenerating(false);
+  };
+
+  const resetQuiz = () => {
+    setCurrentStep(1);
+    setShowOutput(false);
+    setIsGenerating(false);
+    setQuizData({
+      peso: 0,
+      altura: 0,
+      imc: 0,
+      metaPeso: 15,
+      comorbidades: [],
+      tentativasAnteriores: 0,
+      efeitoSanfona: false,
+      gatilhos: [],
+      invasividade: 'moderada',
+      tempoRecuperacao: 'moderado',
+      tempoDisponivel: '3-5h/sem',
+      dorPrincipal: 'energia',
+      expectativas: []
+    });
   };
 
   const output = showOutput ? generateTransformacaoOutput(quizData) : null;
@@ -74,7 +163,9 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
-        {!showOutput ? (
+        {isGenerating ? (
+          <GeneratingAnimation />
+        ) : !showOutput ? (
           <div className="p-8">
             <QuizProgress currentStep={currentStep} totalSteps={6} />
             
@@ -127,7 +218,7 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
               totalSteps={6}
               canProceed={canProceed()}
               onBack={() => setCurrentStep(Math.max(1, currentStep - 1))}
-              onNext={() => setCurrentStep(Math.min(6, currentStep + 1))}
+              onNext={handleNext}
               onSubmit={handleSubmit}
             />
           </div>
@@ -139,7 +230,7 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
             <MixEstrategias mixEstrategias={output.mixEstrategias} />
             <KPIsClinicas kpis={output.kpis} />
             <LifestyleWins lifestyleWins={output.lifestyleWins} />
-            <CTAsFinais />
+            <CTAsFinais onResetQuiz={resetQuiz} />
           </div>
         ) : null}
       </DialogContent>

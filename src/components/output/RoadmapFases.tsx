@@ -9,13 +9,13 @@ export const RoadmapFases = ({ roadmap }: RoadmapFasesProps) => {
   const icons = [MapPin, Target, TrendingUp, Award];
   
   return (
-    <div className="py-12 px-4 bg-muted/20">
+    <div className="py-8 md:py-12 px-4 bg-muted/20">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-2">
             Roadmap em 4 Fases
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-sm md:text-base text-muted-foreground">
             Seu caminho estruturado rumo à transformação
           </p>
         </div>

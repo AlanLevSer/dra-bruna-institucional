@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Calendar, MessageCircle } from "lucide-react";
+import { Calendar, MessageCircle, RotateCcw } from "lucide-react";
 
-export const CTAsFinais = () => {
+interface CTAsFinaisProps {
+  onResetQuiz?: () => void;
+}
+
+export const CTAsFinais = ({ onResetQuiz }: CTAsFinaisProps) => {
   const whatsappNumber = "5511999999999";
   const whatsappMessage = encodeURIComponent(
     "Olá! Acabei de receber meu Plano de Transformação Pessoal e gostaria de agendar uma avaliação."
@@ -49,6 +53,20 @@ export const CTAsFinais = () => {
             </div>
           </Button>
         </div>
+        
+        {onResetQuiz && (
+          <div className="mt-6 flex justify-center">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={onResetQuiz}
+              className="gap-2"
+            >
+              <RotateCcw className="w-4 h-4" />
+              Refazer quiz com outras respostas
+            </Button>
+          </div>
+        )}
         
         <div className="mt-12 p-6 rounded-lg bg-muted/30 border">
           <p className="text-center text-sm text-muted-foreground">

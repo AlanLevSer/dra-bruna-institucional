@@ -104,15 +104,24 @@ function generateRoadmap(data: QuizData) {
     },
     {
       fase: 4,
-      titulo: "Manutenção & Estilo de Vida",
+      titulo: data.efeitoSanfona ? "Manutenção & Anti-Rebote" : "Manutenção & Estilo de Vida",
       duracao: "12+ meses",
-      objetivo: "Sustentar resultados e prevenir recaídas",
-      entregas: [
-        "Checkpoints trimestrais",
-        "Pulsos regenerativos conforme necessário",
-        "Plano de recaída estruturado",
-        "Comunidade de suporte contínuo"
-      ]
+      objetivo: data.efeitoSanfona
+        ? "Consolidar resultados e quebrar o ciclo de recaída definitivamente"
+        : "Sustentar resultados e prevenir recaídas",
+      entregas: data.efeitoSanfona
+        ? [
+            "Plano de manutenção individualizado com gatilhos mapeados",
+            "Check-ins quinzenais nos primeiros 3 meses pós-alta",
+            "Protocolo de emergência para momentos de risco",
+            "Comunidade de suporte e accountability"
+          ]
+        : [
+            "Checkpoints trimestrais",
+            "Pulsos regenerativos conforme necessário",
+            "Plano de recaída estruturado",
+            "Comunidade de suporte contínuo"
+          ]
     }
   ];
 }
@@ -131,8 +140,10 @@ function generateMixEstrategias(data: QuizData) {
     },
     {
       nome: "Mente & Comportamento",
-      enfase: (data.gatilhos.length > 2 ? 'alta' : 'media') as 'alta' | 'media' | 'baixa',
-      descricao: "Estratégias para gatilhos emocionais e organização do ambiente"
+      enfase: (data.efeitoSanfona || data.tentativasAnteriores >= 5 ? 'alta' : data.gatilhos.length > 2 ? 'alta' : 'media') as 'alta' | 'media' | 'baixa',
+      descricao: data.efeitoSanfona 
+        ? "Estratégias para quebrar o ciclo do efeito sanfona e construir sustentabilidade real"
+        : "Estratégias para gatilhos emocionais e organização do ambiente"
     },
     {
       nome: "Saúde Regenerativa",
@@ -141,9 +152,30 @@ function generateMixEstrategias(data: QuizData) {
     }
   ];
   
+  // Adicionar pilar específico se histórico de efeito sanfona
+  if (data.efeitoSanfona) {
+    pilares.push({
+      nome: "Prevenção de Recaída",
+      enfase: 'alta' as const,
+      descricao: "Protocolo estruturado para evitar o efeito rebote e manter resultados a longo prazo"
+    });
+  }
+  
   let intervencao: TransformacaoOutput['mixEstrategias']['intervencao'] = undefined;
   
-  if (data.imc >= 30 && data.metaPeso >= 20) {
+  // Gastroplastia Endoscópica para casos mais robustos
+  if (
+    data.imc >= 35 && 
+    data.metaPeso >= 30 && 
+    data.invasividade !== 'minima' &&
+    (data.comorbidades.filter(c => c !== 'nenhuma').length >= 2 || data.dorPrincipal === 'marcadores_alterados')
+  ) {
+    intervencao = {
+      tipo: 'gastroplastia',
+      nome: 'Gastroplastia Endoscópica',
+      justificativa: "Procedimento endoscópico robusto para perda sustentável de 20-30%, ideal para seu perfil metabólico e meta de transformação profunda"
+    };
+  } else if (data.imc >= 30 && data.metaPeso >= 20) {
     if (data.invasividade === 'minima' && data.tempoRecuperacao === 'minimo') {
       intervencao = {
         tipo: 'injetaveis',
