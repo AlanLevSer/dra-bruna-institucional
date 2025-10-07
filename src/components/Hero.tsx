@@ -49,7 +49,7 @@ export const Hero = () => {
                 onClick={() => scrollToSection("#agendar")}
                 className="bg-gradient-premium hover:opacity-90 transition-all shadow-elegant hover:shadow-hover group"
               >
-                Agende sua Avaliação
+                Agende Sua Avaliação Premium
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
               </Button>
               
@@ -59,9 +59,13 @@ export const Hero = () => {
                 onClick={() => scrollToSection("#programa")}
                 className="border-2 hover:bg-primary hover:text-primary-foreground transition-all"
               >
-                Conheça o Programa LevSer
+                Descobrir Meu Melhor Caminho
               </Button>
             </div>
+            
+            <p className="text-xs text-muted-foreground/80 italic pt-2">
+              Decisão compartilhada, protocolo exclusivo
+            </p>
           </div>
 
           <div className="relative animate-fade-in" style={{ animationDelay: "0.2s" }}>

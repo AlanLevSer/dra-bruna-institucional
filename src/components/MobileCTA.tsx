@@ -36,7 +36,7 @@ export const MobileCTA = () => {
         className="w-full bg-gradient-premium hover:opacity-90 transition-opacity shadow-hover group"
       >
         <Calendar className="mr-2" size={20} />
-        Agendar Avaliação
+        Avaliação Premium
       </Button>
     </div>
   );

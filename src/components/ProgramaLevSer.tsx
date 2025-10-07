@@ -68,6 +68,42 @@ export const ProgramaLevSer = () => {
                 </p>
               </div>
 
+              <div className="bg-accent/10 p-6 rounded-xl border border-accent/20">
+                <h3 className="text-lg font-semibold text-foreground mb-4">
+                  Para Quem É Este Programa?
+                </h3>
+                <div className="space-y-3 mb-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                    <p className="text-sm text-muted-foreground">
+                      IMC e perfil metabólico avaliados individualmente
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                    <p className="text-sm text-muted-foreground">
+                      Comprometimento com mudança sustentável
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                    <p className="text-sm text-muted-foreground">
+                      Disponibilidade para acompanhamento contínuo
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                    <p className="text-sm text-muted-foreground">
+                      Decisão compartilhada médico-paciente
+                    </p>
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground/80 italic border-t border-accent/20 pt-4">
+                  Este programa não é para todos. Nossa avaliação inicial define o melhor caminho — 
+                  que pode incluir acompanhamento clínico, terapias endoscópicas ou cirúrgicas.
+                </p>
+              </div>
+
               <Button
                 size="lg"
                 onClick={() => navigate("/terapias-cirurgicas")}

@@ -68,6 +68,20 @@ export const Footer = () => {
             </a>
           </div>
           
+          <div className="pt-6 border-t border-border/50 max-w-3xl mx-auto">
+            <p className="text-xs text-muted-foreground/80 leading-relaxed text-center space-y-2">
+              <span className="block">
+                <strong>Aviso Legal:</strong> Resultados individuais podem variar. Avaliação médica necessária para indicação de tratamentos.
+              </span>
+              <span className="block">
+                Procedimentos médicos possuem riscos e contraindicações que serão avaliados durante a consulta.
+              </span>
+              <span className="block">
+                Este site não substitui consulta médica presencial.
+              </span>
+            </p>
+          </div>
+          
           <p className="text-xs text-muted-foreground pt-4">
             © {currentYear} Dra. Bruna Durelli. Todos os direitos reservados.
           </p>
