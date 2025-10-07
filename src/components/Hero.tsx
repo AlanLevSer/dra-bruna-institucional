@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
+import { PlanoTransformacao } from "@/components/PlanoTransformacao";
 import heroImage from "@/assets/dra-bruna-professional.jpg";
 
 export const Hero = () => {
+  const [quizOpen, setQuizOpen] = useState(false);
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -46,22 +49,25 @@ export const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button
                 size="lg"
-                onClick={() => scrollToSection("#agendar")}
+                onClick={() => setQuizOpen(true)}
                 className="bg-gradient-premium hover:opacity-90 transition-all shadow-elegant hover:shadow-hover group"
               >
-                Agende Sua Avaliação Premium
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                Descobrir Meu Plano de Transformação
+                <Sparkles className="ml-2 group-hover:scale-110 transition-transform" size={20} />
               </Button>
               
               <Button
                 size="lg"
                 variant="outline"
-                onClick={() => scrollToSection("#programa")}
+                onClick={() => scrollToSection("#agendar")}
                 className="border-2 hover:bg-primary hover:text-primary-foreground transition-all"
               >
-                Descobrir Meu Melhor Caminho
+                Agendar Avaliação
+                <ArrowRight className="ml-2" size={20} />
               </Button>
             </div>
+            
+            <PlanoTransformacao open={quizOpen} onOpenChange={setQuizOpen} />
             
             <p className="text-xs text-muted-foreground/80 italic pt-2">
               Decisão compartilhada, protocolo exclusivo
