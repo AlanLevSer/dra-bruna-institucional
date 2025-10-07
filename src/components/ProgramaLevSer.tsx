@@ -58,13 +58,13 @@ export const ProgramaLevSer = () => {
             <div className="pt-6 space-y-4">
               <div className="bg-card p-6 rounded-xl shadow-sm border border-border/50">
                 <p className="text-sm text-muted-foreground mb-2">
-                  Duração mínima recomendada
+                  Programas personalizados
                 </p>
                 <p className="text-2xl font-serif font-bold text-primary">
-                  6 a 12 meses
+                  16, 24 ou 48 semanas
                 </p>
                 <p className="text-sm text-muted-foreground mt-2">
-                  Para resultados consistentes e duradouros
+                  As mesmas fases de transformação, com duração ajustada conforme sua necessidade de otimização
                 </p>
               </div>
 
