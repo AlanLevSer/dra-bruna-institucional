@@ -5,6 +5,7 @@ import { ExperienciaConcierge } from "@/components/ExperienciaConcierge";
 import { JornadaTransformacao } from "@/components/JornadaTransformacao";
 import { Procedimentos } from "@/components/Procedimentos";
 import { Nutricao } from "@/components/Nutricao";
+import { RegeneracaoMetabolica } from "@/components/RegeneracaoMetabolica";
 import { Diferenciais } from "@/components/Diferenciais";
 import { ReconhecimentoMidia } from "@/components/ReconhecimentoMidia";
 import { Depoimentos } from "@/components/Depoimentos";
@@ -36,6 +37,7 @@ const Index = () => {
           <JornadaTransformacao />
           <Procedimentos />
           <Nutricao />
+          <RegeneracaoMetabolica />
           <Diferenciais />
           <ReconhecimentoMidia />
           <Depoimentos />

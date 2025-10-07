@@ -80,12 +80,20 @@ const NutricaoCelular = () => {
         ]}
       />
 
-      <TreatmentSection title="Resultados potencializados">
-        <p>
-          Ao combinar a Nutrição Celular com outros pilares do tratamento LevSer, como <strong>alimentação personalizada, terapias endoscópicas e suporte hormonal</strong>, o resultado é muito mais potente e sustentável.
+      <TreatmentSection title="Integração Regenerativa">
+        <p className="mb-4">
+          A Nutrição Celular faz parte da nossa abordagem de <strong>Medicina Regenerativa</strong>, 
+          que combina:
         </p>
+        <ul className="list-disc list-inside space-y-3 text-muted-foreground">
+          <li><strong>IVs metabólicos</strong> para energia limpa e foco mental</li>
+          <li><strong>Repleção estratégica</strong> de vitaminas, minerais e antioxidantes</li>
+          <li><strong>Modulação inflamatória</strong> para reduzir resistência metabólica</li>
+          <li><strong>Suporte de sono e humor</strong> para constância na rotina</li>
+        </ul>
         <p className="mt-4">
-          A nutrição celular não substitui uma alimentação equilibrada, mas atua como um complemento poderoso para quem busca resultados mais rápidos e consistentes.
+          Quando integrada ao Programa LevSer, acelera recuperação, preserva massa magra 
+          e melhora a qualidade de vida durante (e após) a perda de peso.
         </p>
       </TreatmentSection>
 

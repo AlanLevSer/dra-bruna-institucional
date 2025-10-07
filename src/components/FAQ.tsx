@@ -31,6 +31,14 @@ const faqs = [
     question: "Qual a diferença do seu tratamento para uma dieta comum?",
     answer: "Nosso tratamento é médico, personalizado e baseado em ciência. Não trabalhamos com dietas restritivas ou fórmulas prontas. Investigamos as causas metabólicas, hormonais e comportamentais que dificultam sua perda de peso e tratamos cada uma delas de forma integrada.",
   },
+  {
+    question: "Medicina regenerativa é segura?",
+    answer: "Sim. Nossos protocolos regenerativos são baseados em evidências científicas e sempre personalizados por exames laboratoriais completos. Todo acompanhamento é feito pela equipe médica, com foco em segurança e resultados sustentáveis.",
+  },
+  {
+    question: "Vou precisar de protocolos regenerativos para sempre?",
+    answer: "Não. Usamos de forma estratégica por fases: mais intensivo no reset inicial, refinado na consolidação e pulsos de manutenção conforme sua evolução. O objetivo é que seu corpo recupere autonomia metabólica ao longo do programa.",
+  },
 ];
 
 export const FAQ = () => {

@@ -40,12 +40,12 @@ const pilares = [
   },
   {
     icon: Activity,
-    title: "Saúde Metabólica",
-    subtitle: "Regula hormônios e marcadores que travam seu peso",
+    title: "Saúde Metabólica & Regenerativa",
+    subtitle: "Regule hormônios, inflamação e energia celular para um corpo que responde",
     features: [
-      "Otimização de insulina, glicemia e inflamação",
-      "Terapias sacietógenas quando indicadas",
-      "Nutrição celular para energia e recuperação"
+      "Otimização de insulina, glicemia e marcadores inflamatórios",
+      "Nutrição celular para mitocôndrias 'eficientes'",
+      "Protocolos regenerativos para preservar massa magra e acelerar recuperação"
     ]
   },
   {
@@ -90,7 +90,7 @@ const fases = [
     icon: Zap,
     titulo: "Reset & Ritmo",
     duracao: "8–12 semanas",
-    objetivo: "Destravar o peso com estratégia e constância",
+    objetivo: "Destravar o peso com estratégia e constância. Introduzimos medidas metabólicas & regenerativas para reduzir inflamação, otimizar saciedade e estabilizar energia.",
     entregas: [
       "Intervenções possíveis: balão 4/6/12m, gastroplastia endoscópica, terapias injetáveis (se indicado)"
     ],
@@ -106,6 +106,7 @@ const fases = [
     entregas: [
       "Progressão de treino",
       "Reeducação alimentar avançada",
+      "Ajustes regenerativos para preservar massa magra e melhorar sono/humor",
       "Alta supervisão clínica"
     ],
     sinais: "Estabilidade de rotina, marcadores metabólicos melhores"
@@ -118,6 +119,7 @@ const fases = [
     objetivo: "Não 'terminar', e sim sustentar",
     entregas: [
       "Calendário de checkpoints trimestrais",
+      "Ciclos leves de protocolos regenerativos (trimestrais/semestrais)",
       "Plano de recaída",
       "Ajustes finos contínuos"
     ],

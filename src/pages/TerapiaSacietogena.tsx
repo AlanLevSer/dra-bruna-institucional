@@ -131,18 +131,19 @@ const TerapiaSacietogena = () => {
         ]}
       />
 
-      <TreatmentSection title="Combinação com outros tratamentos">
+      <TreatmentSection title="Integração Regenerativa">
         <p className="mb-4">
-          A terapia sacietógena pode ser combinada com:
+          A terapia sacietógena potencializa (e é potencializada por) nossa abordagem 
+          de <strong>Medicina Regenerativa</strong>:
         </p>
-        <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-          <li><strong>Nutrição Celular</strong> para otimizar energia e metabolismo</li>
-          <li><strong>Terapias endoscópicas</strong> para resultados mais expressivos</li>
-          <li><strong>Acompanhamento nutricional</strong> para reeducação alimentar</li>
-          <li><strong>Suporte psicológico</strong> para mudança de comportamento</li>
+        <ul className="list-disc list-inside space-y-3 text-muted-foreground">
+          <li><strong>Nutrição Celular</strong> para energia, foco e redução de fadiga</li>
+          <li><strong>Moduladores metabólicos</strong> para otimizar insulina e inflamação</li>
+          <li><strong>Suporte comportamental</strong> para mudança sustentável</li>
+          <li><strong>Protocolos de preservação muscular</strong> durante a perda de peso</li>
         </ul>
         <p className="mt-4">
-          O protocolo é individualizado e ajustado conforme a resposta de cada paciente.
+          O protocolo é individualizado, baseado em exames, e ajustado conforme sua evolução.
         </p>
       </TreatmentSection>
 
