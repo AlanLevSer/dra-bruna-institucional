@@ -7,8 +7,10 @@ import { Procedimentos } from "@/components/Procedimentos";
 import { Nutricao } from "@/components/Nutricao";
 import { RegeneracaoMetabolica } from "@/components/RegeneracaoMetabolica";
 import { Diferenciais } from "@/components/Diferenciais";
+import { InvestimentoPagamento } from "@/components/InvestimentoPagamento";
 import { ReconhecimentoMidia } from "@/components/ReconhecimentoMidia";
 import { Depoimentos } from "@/components/Depoimentos";
+import { SegurancaEvidencias } from "@/components/SegurancaEvidencias";
 import { FAQ } from "@/components/FAQ";
 import { CTAFinal } from "@/components/CTAFinal";
 import { Footer } from "@/components/Footer";
@@ -39,8 +41,10 @@ const Index = () => {
           <Nutricao />
           <RegeneracaoMetabolica />
           <Diferenciais />
+          <InvestimentoPagamento />
           <ReconhecimentoMidia />
           <Depoimentos />
+          <SegurancaEvidencias />
           <FAQ />
           <CTAFinal />
         </main>

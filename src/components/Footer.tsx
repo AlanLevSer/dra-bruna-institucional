@@ -69,15 +69,22 @@ export const Footer = () => {
           </div>
           
           <div className="pt-6 border-t border-border/50 max-w-3xl mx-auto">
-            <p className="text-xs text-muted-foreground/80 leading-relaxed text-center space-y-2">
+            <p className="text-xs text-muted-foreground/80 leading-relaxed space-y-2">
               <span className="block">
-                <strong>Aviso Legal:</strong> Resultados individuais podem variar. Avaliação médica necessária para indicação de tratamentos.
+                <strong>Resultados variam conforme avaliação clínica e adesão.</strong> 
+                Todo tratamento é individualizado e requer comprometimento do paciente.
               </span>
               <span className="block">
-                Procedimentos médicos possuem riscos e contraindicações que serão avaliados durante a consulta.
+                <strong>Intervenções indicadas após critérios médicos e exames.</strong> 
+                Nenhum procedimento é realizado sem avaliação completa e consentimento informado.
               </span>
               <span className="block">
-                Este site não substitui consulta médica presencial.
+                <strong>Decisão compartilhada; segurança em primeiro lugar.</strong> 
+                Você participa ativamente da escolha do melhor protocolo para seu caso.
+              </span>
+              <span className="block mt-2">
+                Procedimentos médicos possuem riscos e contraindicações que serão 
+                avaliados durante a consulta. Este site não substitui consulta médica presencial.
               </span>
             </p>
           </div>
