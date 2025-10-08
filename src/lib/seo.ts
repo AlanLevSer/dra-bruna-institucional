@@ -7,17 +7,17 @@ export interface SEOData {
 }
 
 export const defaultSEO: SEOData = {
-  title: "Dra. Bruna Durelli - Especialista em Obesidade | Tratamento Personalizado",
-  description: "Transforme sua relação com o peso através de tratamento médico personalizado e humanizado. Programa LevSer, terapias endoscópicas e cirúrgicas em Brasília.",
-  keywords: "obesidade, emagrecimento, bariátrica, gastroplastia endoscópica, bypass gástrico, sleeve, tratamento obesidade brasília, médico obesidade, programa levser",
+  title: "Dra. Bruna Durelli - Especialista em Obesidade | Programa LevSer São Paulo",
+  description: "Dra. Bruna Durelli, CRM 124809, especialista em obesidade com +10 anos de experiência. Sócia-fundadora da LevSer. Programa personalizado, terapias endoscópicas e medicina regenerativa no Jardim Paulista, São Paulo.",
+  keywords: "dra bruna durelli, obesidade são paulo, levser, gastroplastia endoscópica, balão gástrico, medicina regenerativa, nutrologia são paulo, jardim paulista, tratamento obesidade",
   canonical: "https://drabrunadurelli.com/"
 };
 
 export const pageSEO: Record<string, SEOData> = {
   home: {
-    title: "Dra. Bruna Durelli - Especialista em Obesidade | Tratamento Personalizado",
-    description: "Transforme sua relação com o peso através de tratamento médico personalizado e humanizado. Programa LevSer, terapias endoscópicas e cirúrgicas em Brasília.",
-    keywords: "obesidade, emagrecimento, bariátrica, gastroplastia endoscópica, bypass gástrico, sleeve, tratamento obesidade brasília, médico obesidade, programa levser",
+    title: "Dra. Bruna Durelli - Especialista em Obesidade | Programa LevSer São Paulo",
+    description: "Dra. Bruna Durelli, CRM 124809, especialista em obesidade com +10 anos de experiência. Sócia-fundadora da LevSer. Programa personalizado, terapias endoscópicas e medicina regenerativa no Jardim Paulista, São Paulo.",
+    keywords: "dra bruna durelli, obesidade são paulo, levser, gastroplastia endoscópica, balão gástrico, medicina regenerativa, nutrologia são paulo, jardim paulista, tratamento obesidade",
     canonical: "https://drabrunadurelli.com/"
   },
   terapiaSacietogena: {
@@ -62,41 +62,66 @@ export const generateStructuredData = {
   organization: {
     "@context": "https://schema.org",
     "@type": "MedicalOrganization",
-    "name": "Dra. Bruna Durelli - Clínica de Obesidade",
-    "description": "Clínica especializada em tratamento de obesidade com abordagem personalizada e humanizada",
+    "name": "LevSer - Dra. Bruna Durelli",
+    "description": "Clínica especializada em tratamento de obesidade com abordagem personalizada, humanizada e baseada em evidências científicas",
     "url": "https://drabrunadurelli.com",
     "logo": "https://drabrunadurelli.com/logo.png",
     "medicalSpecialty": "Bariatric Medicine",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Brasília",
-      "addressRegion": "DF",
+      "streetAddress": "Av. Brasil, 173",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP",
+      "postalCode": "01431-000",
       "addressCountry": "BR"
-    }
+    },
+    "telephone": "+55-11-99702-3024"
   },
   
   physician: {
     "@context": "https://schema.org",
     "@type": "Physician",
     "name": "Dra. Bruna Durelli",
-    "medicalSpecialty": ["Obesity Medicine", "Bariatric Medicine"],
-    "description": "Especialista em Obesidade e Metabolismo com abordagem humanizada e baseada em evidências científicas",
-    "url": "https://drabrunadurelli.com"
+    "honorificPrefix": "Dra.",
+    "givenName": "Bruna",
+    "familyName": "Durelli",
+    "medicalSpecialty": ["Obesity Medicine", "Bariatric Medicine", "Endoscopy", "Nutrology", "Regenerative Medicine"],
+    "description": "Especialista em Obesidade, Endoscopia Digestiva, Nutrologia e Medicina Regenerativa. Sócia-fundadora da LevSer. Mais de 10 anos dedicados ao tratamento da obesidade com abordagem humanizada e baseada em evidências científicas.",
+    "url": "https://drabrunadurelli.com",
+    "alumniOf": ["Hospital Israelita Albert Einstein", "Santa Casa", "ABRAN"],
+    "memberOf": ["SOBED", "ABESO"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Brasil, 173",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP",
+      "postalCode": "01431-000",
+      "addressCountry": "BR"
+    },
+    "telephone": "+55-11-99702-3024"
   },
 
   localBusiness: {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Dra. Bruna Durelli - Obesidade",
-    "description": "Tratamento especializado em obesidade com Programa LevSer",
+    "@type": "MedicalBusiness",
+    "name": "LevSer - Dra. Bruna Durelli",
+    "description": "Clínica especializada em tratamento de obesidade. Programa LevSer personalizado, terapias endoscópicas, medicina regenerativa. Jardim Paulista, São Paulo.",
     "url": "https://drabrunadurelli.com",
-    "telephone": "+55-61-XXXXX-XXXX",
-    "priceRange": "$$",
+    "telephone": "+55-11-99702-3024",
+    "priceRange": "$$$",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Brasília",
-      "addressRegion": "DF",
+      "streetAddress": "Av. Brasil, 173",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP",
+      "postalCode": "01431-000",
       "addressCountry": "BR"
-    }
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "-23.5680",
+      "longitude": "-46.6553"
+    },
+    "openingHours": "Mo-Fr 08:00-18:00"
   }
 };

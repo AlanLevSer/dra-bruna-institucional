@@ -36,8 +36,9 @@ export const RegeneracaoMetabolica = () => {
           </h2>
           
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-            Sua transformação não depende só de comer menos. Nosso enfoque regenerativo melhora 
-            a qualidade celular, reduz inflamação, preserva massa magra e sustenta energia no dia a dia.
+            Como especialista em Medicina Regenerativa, sei que sua transformação não depende só 
+            de comer menos. Meu enfoque regenerativo melhora a qualidade celular, reduz inflamação, 
+            preserva massa magra e sustenta energia no dia a dia.
           </p>
         </div>
 
@@ -121,8 +122,8 @@ export const RegeneracaoMetabolica = () => {
           <Button
             size="lg"
             onClick={() => {
-              const phone = "5511999999999";
-              const message = "Olá! Quero descobrir meu protocolo regenerativo personalizado.";
+              const phone = "5511997023024";
+              const message = "Olá, Dra. Bruna! Quero descobrir meu protocolo regenerativo personalizado.";
               window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
             }}
             className="bg-gradient-premium hover:opacity-90 transition-opacity group"

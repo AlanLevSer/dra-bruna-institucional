@@ -42,7 +42,7 @@ export const Diferenciais = () => {
               </h2>
               
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Um cuidado que vai além do consultório. Aqui você encontra 
+                Meu cuidado vai além do consultório. Comigo, você encontra 
                 expertise médica aliada ao acolhimento que você merece.
               </p>
             </div>

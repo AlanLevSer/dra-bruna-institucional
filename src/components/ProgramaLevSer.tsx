@@ -173,9 +173,10 @@ export const ProgramaLevSer = () => {
             </h2>
 
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              Muito mais que um programa de emagrecimento. O LevSer é uma jornada de 
-              transformação integral que reconecta você com seu bem-estar, autoestima 
-              e qualidade de vida. Resultados que vão além da balança.
+              <strong>Criei o Programa LevSer</strong> para oferecer muito mais que emagrecimento. 
+              É uma jornada de transformação integral que te reconecta com seu bem-estar, 
+              autoestima e qualidade de vida. Na LevSer, minha clínica, desenvolvemos 
+              resultados que vão além da balança.
             </p>
 
             <div className="space-y-4 pt-4">
@@ -251,7 +252,7 @@ export const ProgramaLevSer = () => {
               Os 4 Pilares do Método
             </h2>
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-              Menos fricção, mais ciência. Você no centro.
+              Desenvolvi um método com menos fricção, mais ciência. Você no centro de tudo.
             </p>
           </div>
 

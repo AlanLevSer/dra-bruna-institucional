@@ -15,9 +15,17 @@ export const Footer = () => {
             loading="lazy"
           />
           
-          <p className="text-sm text-muted-foreground">
-            CRM XXXXX - Especialista em Obesidade e Metabolismo
-          </p>
+          <div className="space-y-1">
+            <p className="text-sm font-semibold text-foreground">
+              Dra. Bruna Durelli
+            </p>
+            <p className="text-xs text-muted-foreground">
+              CRM 124809 • RQE 57361
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Sócia-fundadora da LevSer | Especialista em Obesidade, Endoscopia, Nutrologia e Medicina Regenerativa
+            </p>
+          </div>
           
           <div className="flex justify-center gap-6 pt-2">
             <a

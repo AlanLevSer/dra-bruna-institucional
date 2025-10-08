@@ -33,17 +33,18 @@ export const Hero = () => {
           <div className="space-y-6 animate-fade-in">
             <div className="inline-block px-4 py-2 bg-accent/10 rounded-full">
               <span className="text-sm font-medium text-black">
-                Especialista em Obesidade
+                Dra. Bruna Durelli • CRM 124809 • RQE 57361
               </span>
             </div>
             
             <h1 className="display-xl text-foreground">
-              Transforme sua relação com o peso
+              Olá, sou a Dra. Bruna Durelli
             </h1>
             
             <p className="subtitle-elegant text-muted-foreground">
-              Um cuidado médico personalizado, humanizado e baseado em ciência. 
-              Descubra o caminho para uma vida mais leve, saudável e plena.
+              Especialista em Obesidade, Endoscopia Digestiva, Nutrologia e Medicina Regenerativa. 
+              Com mais de 10 anos dedicados ao tratamento da obesidade, vou te ajudar a transformar 
+              sua relação com o peso através de um cuidado médico personalizado, humanizado e baseado em ciência.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -62,7 +63,7 @@ export const Hero = () => {
                 onClick={() => scrollToSection("#agendar")}
                 className="border-2 hover:bg-primary hover:text-primary-foreground transition-all"
               >
-                Agendar Avaliação
+                Agendar Consulta
                 <ArrowRight className="ml-2" size={20} />
               </Button>
             </div>

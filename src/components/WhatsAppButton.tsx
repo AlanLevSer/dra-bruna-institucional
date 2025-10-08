@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 export const WhatsAppButton = () => {
   const handleWhatsAppClick = () => {
     const phoneNumber = "5511997023024";
-    const message = "Olá! Gostaria de agendar uma avaliação.";
+    const message = "Olá, Dra. Bruna! Gostaria de agendar uma consulta.";
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
   };
