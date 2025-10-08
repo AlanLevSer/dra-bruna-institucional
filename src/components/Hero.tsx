@@ -37,11 +37,7 @@ export const Hero = () => {
               Olá, sou a Dra. Bruna Durelli
             </h1>
             
-            <p className="subtitle-elegant text-muted-foreground">
-              Especialista em Obesidade, Endoscopia Digestiva, Nutrologia e Medicina Regenerativa. 
-              Com mais de 10 anos dedicados ao tratamento da obesidade, vou te ajudar a transformar 
-              sua relação com o peso através de um cuidado médico personalizado, humanizado e baseado em ciência.
-            </p>
+            <p className="subtitle-elegant text-muted-foreground">Especialista em Obesidade, Nutrologia, Medicina Regenerativa e Endoscopia Digestiva. Com mais de 10 anos dedicados ao tratamento da obesidade, vou te ajudar a transformar sua relação com o peso através de um cuidado médico personalizado, humanizado e baseado em ciência.</p>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button size="lg" onClick={() => setQuizOpen(true)} className="bg-gradient-premium hover:opacity-90 transition-all shadow-elegant hover:shadow-hover group">
