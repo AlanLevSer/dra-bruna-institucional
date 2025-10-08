@@ -28,9 +28,7 @@ export const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-8 xl:gap-12 items-center max-w-7xl mx-auto">
           <div className="space-y-6 animate-fade-in">
             <div className="inline-block px-4 py-2 bg-accent/10 rounded-full">
-              <span className="text-sm font-medium text-black">
-                Dra. Bruna Durelli • CRM 124809 • RQE 57361
-              </span>
+              <span className="text-sm font-medium text-black">Especialista em Redução da Obesidade</span>
             </div>
             
             <h1 className="display-xl text-foreground">
