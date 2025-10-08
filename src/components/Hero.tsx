@@ -5,7 +5,6 @@ import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { PlanoTransformacao } from "@/components/PlanoTransformacao";
 import heroImage from "@/assets/dra-bruna-professional.jpg";
-
 export const Hero = () => {
   const [quizOpen, setQuizOpen] = useState(false);
   const scrollToSection = (href: string) => {
@@ -13,19 +12,16 @@ export const Hero = () => {
     if (element) {
       const rootStyles = getComputedStyle(document.documentElement);
       const headerVar = rootStyles.getPropertyValue('--header-height').trim();
-      const headerOffset = (parseInt(headerVar.replace('px','')) || 80) + 8;
+      const headerOffset = (parseInt(headerVar.replace('px', '')) || 80) + 8;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth"
       });
     }
   };
-
-  return (
-    <section id="inicio" className="relative min-h-[75vh] xl:min-h-[70vh] flex items-center pt-24 pb-10 overflow-hidden">
+  return <section id="inicio" className="relative min-h-[75vh] xl:min-h-[70vh] flex items-center pt-24 pb-10 overflow-hidden">
       <GrafismoDecor variant="hero" position="top-right" size="xl" opacity={0.2} rotate={-15} color="gray" />
       <GrafismoDecor variant="background" position="bottom-left" size="lg" opacity={0.15} rotate={45} color="gray" />
       <div className="container mx-auto px-4 relative z-10">
@@ -48,21 +44,12 @@ export const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button
-                size="lg"
-                onClick={() => setQuizOpen(true)}
-                className="bg-gradient-premium hover:opacity-90 transition-all shadow-elegant hover:shadow-hover group"
-              >
+              <Button size="lg" onClick={() => setQuizOpen(true)} className="bg-gradient-premium hover:opacity-90 transition-all shadow-elegant hover:shadow-hover group">
                 Descobrir Meu Plano de Transformação
                 <Sparkles className="ml-2 group-hover:scale-110 transition-transform" size={20} />
               </Button>
               
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => scrollToSection("#agendar")}
-                className="border-2 hover:bg-primary hover:text-primary-foreground transition-all"
-              >
+              <Button size="lg" variant="outline" onClick={() => scrollToSection("#agendar")} className="border-2 hover:bg-primary hover:text-primary-foreground transition-all">
                 Agendar Consulta
                 <ArrowRight className="ml-2" size={20} />
               </Button>
@@ -70,18 +57,14 @@ export const Hero = () => {
             
             <PlanoTransformacao open={quizOpen} onOpenChange={setQuizOpen} />
             
-            <p className="text-xs text-muted-foreground/80 italic pt-2">
-              Decisão compartilhada, protocolo exclusivo
-            </p>
+            <p className="text-xs text-muted-foreground/80 italic pt-2">Decisão compartilhada, método exclusivo</p>
           </div>
 
-          <div className="relative animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          <div className="relative animate-fade-in" style={{
+          animationDelay: "0.2s"
+        }}>
             <div className="relative rounded-2xl overflow-hidden shadow-hover max-w-xs xl:max-w-sm mx-auto lg:mx-0">
-              <img
-                src={heroImage}
-                alt="Dra. Bruna Durelli - Especialista em Obesidade"
-                className="w-full h-auto object-cover"
-              />
+              <img src={heroImage} alt="Dra. Bruna Durelli - Especialista em Obesidade" className="w-full h-auto object-cover" />
             </div>
             
             {/* CARD DESKTOP (Horizontal) */}
@@ -93,12 +76,7 @@ export const Hero = () => {
               <div className="flex items-start gap-6">
                 {/* Métrica 1: Pacientes */}
                 <div className="flex-1">
-                  <AnimatedCounter 
-                    end={3000} 
-                    prefix="+"
-                    suffix=" pacientes"
-                    className="text-2xl font-serif font-bold text-primary block"
-                  />
+                  <AnimatedCounter end={3000} prefix="+" suffix=" pacientes" className="text-2xl font-serif font-bold text-primary block" />
                 </div>
                 
                 {/* Divisor Vertical */}
@@ -106,12 +84,7 @@ export const Hero = () => {
                 
                 {/* Métrica 2: Kg Eliminados */}
                 <div className="flex-1">
-                  <AnimatedCounter 
-                    end={60000} 
-                    prefix="+"
-                    suffix=" kg"
-                    className="text-2xl font-serif font-bold text-primary block"
-                  />
+                  <AnimatedCounter end={60000} prefix="+" suffix=" kg" className="text-2xl font-serif font-bold text-primary block" />
                   <p className="text-xs text-muted-foreground mt-1 leading-tight">
                     Eliminados de forma sustentável
                   </p>
@@ -127,12 +100,7 @@ export const Hero = () => {
               
               {/* Métrica 1: Pacientes */}
               <div className="text-center mb-3">
-                <AnimatedCounter 
-                  end={3000} 
-                  prefix="+"
-                  suffix=" pacientes"
-                  className="text-2xl font-serif font-bold text-primary block"
-                />
+                <AnimatedCounter end={3000} prefix="+" suffix=" pacientes" className="text-2xl font-serif font-bold text-primary block" />
               </div>
               
               {/* Divisor Horizontal */}
@@ -140,12 +108,7 @@ export const Hero = () => {
               
               {/* Métrica 2: Kg Eliminados */}
               <div className="text-center">
-                <AnimatedCounter 
-                  end={60000} 
-                  prefix="+"
-                  suffix=" kg"
-                  className="text-2xl font-serif font-bold text-primary block"
-                />
+                <AnimatedCounter end={60000} prefix="+" suffix=" kg" className="text-2xl font-serif font-bold text-primary block" />
                 <p className="text-xs text-muted-foreground mt-1 leading-tight">
                   Eliminados de forma sustentável
                 </p>
@@ -154,6 +117,5 @@ export const Hero = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
