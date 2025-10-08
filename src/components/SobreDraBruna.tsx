@@ -1,8 +1,10 @@
 import { CheckCircle2 } from "lucide-react";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import draImage from "@/assets/dra-bruna-professional.jpg";
+
 export const SobreDraBruna = () => {
-  return <section id="sobre" className="py-12 xl:py-16 bg-muted/30 relative overflow-hidden">
+  return (
+    <section id="sobre" className="py-12 xl:py-16 bg-muted/30 relative overflow-hidden">
       <GrafismoDecor variant="background" position="top-right" size="lg" opacity={0.15} rotate={-20} color="gray" />
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
@@ -10,7 +12,11 @@ export const SobreDraBruna = () => {
           {/* Coluna 1: Foto Profissional */}
           <div className="relative animate-fade-in">
             <div className="relative rounded-2xl overflow-hidden shadow-elegant max-w-md mx-auto lg:mx-0">
-              <img src={draImage} alt="Dra. Bruna Durelli - Especialista em Obesidade" className="w-full h-auto object-cover" />
+              <img 
+                src={draImage} 
+                alt="Dra. Bruna Durelli - Especialista em Obesidade" 
+                className="w-full h-auto object-cover"
+              />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-primary p-6 rounded-xl shadow-elegant max-w-xs">
               <p className="text-sm font-medium text-primary-foreground mb-2">
@@ -23,9 +29,7 @@ export const SobreDraBruna = () => {
           </div>
 
           {/* Coluna 2: Conteúdo */}
-          <div className="space-y-6 animate-fade-in" style={{
-          animationDelay: "0.1s"
-        }}>
+          <div className="space-y-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
             <div className="inline-block px-4 py-2 bg-primary/10 rounded-full">
               <span className="text-sm font-medium text-primary">Quem sou eu</span>
             </div>
@@ -53,8 +57,8 @@ export const SobreDraBruna = () => {
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="text-primary flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-foreground">Nutrologia e Medicina Regenerativa</p>
-                  <p className="text-sm text-muted-foreground">Abordagem integrativa para saúde celular e metabólica</p>
+                  <p className="font-semibold text-foreground">Endoscopia Digestiva</p>
+                  <p className="text-sm text-muted-foreground">Procedimentos minimamente invasivos com segurança e precisão</p>
                 </div>
               </div>
 
@@ -99,5 +103,6 @@ export const SobreDraBruna = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
