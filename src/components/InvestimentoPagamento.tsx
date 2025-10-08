@@ -203,7 +203,7 @@ export const InvestimentoPagamento = () => {
                 <div className="flex items-start gap-3">
                   <ShieldCheck className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Consulta Sem Compromisso</h4>
+                    <h4 className="font-semibold text-foreground mb-1">Consulta Inicial Sem Compromisso</h4>
                     <p className="text-sm text-muted-foreground">Orçamento detalhado e transparente</p>
                   </div>
                 </div>
