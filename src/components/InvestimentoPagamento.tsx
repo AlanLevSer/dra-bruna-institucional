@@ -7,7 +7,7 @@ import { GrafismoDecor } from "@/components/GrafismoDecor";
 const beneficios = [{
   icon: Users,
   title: "Acompanhamento Contínuo",
-  description: "Equipe médica, nutricional, psicológica e educador físico com consultas ilimitadas durante o programa e suporte via app 7 dias/semana"
+  description: "Equipe médica, nutricional, comportamental e educador físico com consultas periódicas durante o programa e comunidade no whatsapp."
 }, {
   icon: ShieldCheck,
   title: "Sem Custos Ocultos",
