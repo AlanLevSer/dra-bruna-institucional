@@ -62,7 +62,7 @@ export const SobreDraBruna = () => {
                 <CheckCircle2 className="text-primary flex-shrink-0 mt-1" size={20} />
                 <div>
                   <p className="font-semibold text-foreground">Endoscopia Digestiva</p>
-                  <p className="text-sm text-muted-foreground">Abordagem integrativa para saúde celular e metabólica</p>
+                  <p className="text-sm text-muted-foreground">Procedimentos minimamente invasivos com segurança e precisão</p>
                 </div>
               </div>
 
