@@ -92,7 +92,7 @@ const fases = [
     duracao: "8–12 semanas",
     objetivo: "Destravar o peso com estratégia e constância. Introduzimos medidas metabólicas & regenerativas para reduzir inflamação, otimizar saciedade e aumentar gasto energético.",
     entregas: [
-      "Intervenções possíveis: balão 4/6/12m, gastroplastia endoscópica, terapias injetáveis (se indicado)"
+      "Intervenções possíveis: balão 6/12m, gastroplastia endoscópica, terapias injetáveis (se indicado)"
     ],
     sinais: "Queda de medidas, melhora de sono/energia e adesão alimentar",
     miniComparador: true
@@ -130,7 +130,7 @@ const fases = [
 const intervencoes = [
   {
     icon: Wind,
-    nome: "Balão 4/6/12m",
+    nome: "Balão 6/12m",
     descricao: "Saciedade imediata, recuperação rápida, reversível (12m pode ser ajustável)"
   },
   {
