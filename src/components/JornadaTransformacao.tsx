@@ -4,37 +4,29 @@ import transformationBeginning from "@/assets/transformation-beginning.jpg";
 import transformationSelfcare from "@/assets/transformation-selfcare.jpg";
 import transformationJoy from "@/assets/transformation-joy.jpg";
 import transformationConfidence from "@/assets/transformation-confidence.jpg";
-
-const journeySteps = [
-  {
-    icon: Heart,
-    title: "Autoaceitação",
-    description: "O primeiro passo é acolher quem você é hoje. Sua jornada começa com respeito e amor próprio.",
-    image: transformationBeginning,
-  },
-  {
-    icon: Sparkles,
-    title: "Cuidado Pessoal",
-    description: "Aprenda a priorizar seu bem-estar. Pequenos gestos diários que transformam sua relação com você mesma.",
-    image: transformationSelfcare,
-  },
-  {
-    icon: TrendingUp,
-    title: "Confiança Crescente",
-    description: "À medida que você se cuida, sua confiança floresce. Sinta a alegria de se reconectar consigo mesma.",
-    image: transformationJoy,
-  },
-  {
-    icon: Star,
-    title: "Nova Versão de Si",
-    description: "Não se trata apenas de mudança física. É sobre descobrir a melhor versão de você, plena e realizada.",
-    image: transformationConfidence,
-  },
-];
-
+const journeySteps = [{
+  icon: Heart,
+  title: "Autoaceitação",
+  description: "O primeiro passo é acolher quem você é hoje. Sua jornada começa com respeito e amor próprio.",
+  image: transformationBeginning
+}, {
+  icon: Sparkles,
+  title: "Cuidado Pessoal",
+  description: "Aprenda a priorizar seu bem-estar. Pequenos gestos diários que transformam sua relação com você mesma.",
+  image: transformationSelfcare
+}, {
+  icon: TrendingUp,
+  title: "Confiança Crescente",
+  description: "À medida que você se cuida, sua confiança floresce. Sinta a alegria de se reconectar consigo mesma.",
+  image: transformationJoy
+}, {
+  icon: Star,
+  title: "Nova Versão de Si",
+  description: "Não se trata apenas de mudança física. É sobre descobrir a melhor versão de você, plena e realizada.",
+  image: transformationConfidence
+}];
 export const JornadaTransformacao = () => {
-  return (
-    <section id="jornada" className="relative py-10 xl:py-12 bg-background overflow-hidden">
+  return <section id="jornada" className="relative py-10 xl:py-12 bg-background overflow-hidden">
       <GrafismoDecor variant="background" position="top-right" size="lg" opacity={0.12} rotate={-25} color="gray" />
       <GrafismoDecor variant="background" position="bottom-left" size="md" opacity={0.1} rotate={35} color="gray" />
       
@@ -48,28 +40,18 @@ export const JornadaTransformacao = () => {
             Uma Jornada de Transformação Completa
           </h2>
           
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-            Mais do que perder peso, nosso programa transforma sua vida. Veja como cada etapa 
-            da sua jornada te reconecta com seu bem-estar, autoestima e qualidade de vida.
-          </p>
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">Mais do que perder peso, meu programa transforma sua vida. Veja como cada etapa da sua jornada te reconecta com seu bem-estar, autoestima e qualidade de vida.</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 xl:gap-8 max-w-6xl mx-auto">
           {journeySteps.map((step, index) => {
-            const Icon = step.icon;
-            return (
-              <div
-                key={index}
-                className="group animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
+          const Icon = step.icon;
+          return <div key={index} className="group animate-fade-in" style={{
+            animationDelay: `${index * 0.1}s`
+          }}>
                 <div className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border/50 hover:shadow-elegant transition-all duration-300">
                   <div className="relative h-48 xl:h-52 overflow-hidden">
-                    <img
-                      src={step.image}
-                      alt={step.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
+                    <img src={step.image} alt={step.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
                     
                     <div className="absolute bottom-6 left-6 right-6">
@@ -88,12 +70,13 @@ export const JornadaTransformacao = () => {
                     </p>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              </div>;
+        })}
         </div>
 
-        <div className="mt-8 xl:mt-10 text-center animate-fade-in max-w-4xl mx-auto" style={{ animationDelay: "0.5s" }}>
+        <div className="mt-8 xl:mt-10 text-center animate-fade-in max-w-4xl mx-auto" style={{
+        animationDelay: "0.5s"
+      }}>
           <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-6 lg:p-10 border border-primary/10">
             <p className="text-base md:text-lg text-muted-foreground">
               <span className="font-serif font-bold text-foreground text-xl md:text-2xl xl:text-3xl block mb-3">
@@ -106,6 +89,5 @@ export const JornadaTransformacao = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
