@@ -56,16 +56,16 @@ const GastroplastiaEndoscopica = () => {
 
       <TreatmentSection title="Como funciona o tratamento?" variant="muted">
         <p className="mb-4">
-          O procedimento é realizado em <strong>centro cirúrgico, com sedação</strong> e acompanhamento da equipe médica especializada.
+          O procedimento é realizado <strong>via ambulatorial, com sedação</strong> e acompanhamento da equipe médica especializada.
         </p>
         <p className="mb-4">
-          <strong>Não há cortes nem cicatrizes externas.</strong> A alta hospitalar ocorre geralmente no mesmo dia ou no dia seguinte.
+          <strong>Não há cortes nem cicatrizes externas.</strong> A alta do paciente ocorre geralmente no mesmo dia ou no dia seguinte.
         </p>
         <p className="mb-4">
           Durante o procedimento, são realizadas suturas internas no estômago, criando pregas que reduzem significativamente seu volume.
         </p>
         <p>
-          O acompanhamento multidisciplinar é fundamental para manter os resultados ao longo do tempo, incluindo nutrição, atividade física e suporte comportamental.
+          O acompanhamento interdisciplinar é fundamental para manter os resultados ao longo do tempo, incluindo nutrição, atividade física e suporte comportamental.
         </p>
       </TreatmentSection>
 

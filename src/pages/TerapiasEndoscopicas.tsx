@@ -89,14 +89,6 @@ const TerapiasEndoscopicas = () => {
             </div>
           </div>
 
-          <div className="mt-12 p-8 bg-primary/5 rounded-xl border border-primary/20">
-            <h3 className="text-xl font-serif font-bold text-foreground mb-3">
-              Balão Deglutível
-            </h3>
-            <p className="text-muted-foreground">
-              Também oferecemos o <strong>balão deglutível (4 meses)</strong>, que não precisa de endoscopia nem sedação. É ingerido como uma cápsula e depois eliminado naturalmente.
-            </p>
-          </div>
         </div>
       </section>
 
