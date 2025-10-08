@@ -435,18 +435,6 @@ export const ProgramaLevSer = () => {
             </Button>
           </div>
         </div>
-
-        {/* CTA Final */}
-        <div className="mt-16 xl:mt-20 text-center max-w-3xl mx-auto">
-          <Button
-            size="lg"
-            onClick={() => navigate("/terapias-cirurgicas")}
-            className="w-full sm:w-auto bg-gradient-premium hover:opacity-90 transition-opacity group"
-          >
-            Conheça mais sobre o programa
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
-        </div>
       </div>
     </section>
   );
