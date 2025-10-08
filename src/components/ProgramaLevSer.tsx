@@ -90,7 +90,7 @@ const fases = [
     icon: Zap,
     titulo: "Reset & Ritmo",
     duracao: "8–12 semanas",
-    objetivo: "Destravar o peso com estratégia e constância. Introduzimos medidas metabólicas & regenerativas para reduzir inflamação, otimizar saciedade e estabilizar energia.",
+    objetivo: "Destravar o peso com estratégia e constância. Introduzimos medidas metabólicas & regenerativas para reduzir inflamação, otimizar saciedade e aumentar gasto energético.",
     entregas: [
       "Intervenções possíveis: balão 4/6/12m, gastroplastia endoscópica, terapias injetáveis (se indicado)"
     ],
