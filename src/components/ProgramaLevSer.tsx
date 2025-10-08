@@ -45,7 +45,7 @@ const pilares = [
     features: [
       "Otimização de insulina, glicemia e marcadores inflamatórios",
       "Nutrição celular para mitocôndrias 'eficientes'",
-      "Protocolos regenerativos para preservar massa magra e acelerar recuperação"
+      "Protocolos regenerativos para preservar massa magra e queimar gordura"
     ]
   },
   {
