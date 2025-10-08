@@ -82,7 +82,7 @@ export const JornadaTransformacao = () => {
               <span className="font-serif font-bold text-foreground text-xl md:text-2xl xl:text-3xl block mb-3">
                 Transformação que vai além dos números
               </span>
-              Nossa abordagem integrada combina medicina, nutrição, psicologia e exercícios 
+              Minha abordagem integrada combina medicina, nutrição, ciência do comportamento e exercícios 
               para criar mudanças duradouras na sua vida. Não é apenas sobre perder peso — 
               é sobre ganhar autoestima, confiança e bem-estar.
             </p>
