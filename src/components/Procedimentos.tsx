@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Syringe, Activity, Pill, Stethoscope, ArrowRight } from "lucide-react";
+import { Syringe, Activity, Pill, Zap, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 
@@ -24,10 +24,10 @@ const procedures = [
     link: "/terapia-sacietogena",
   },
   {
-    icon: Stethoscope,
-    title: "Cirurgia Bariátrica",
-    description: "Procedimentos cirúrgicos avançados para tratamento definitivo da obesidade grave.",
-    link: "/terapias-cirurgicas",
+    icon: Zap,
+    title: "Plasma de Argônio",
+    description: "Técnica endoscópica avançada para tratamento de reganho de peso e dilatação gástrica.",
+    link: "/plasma-argonio",
   },
 ];
 
@@ -44,7 +44,7 @@ export const Procedimentos = () => {
           </div>
           
           <h2 className="text-4xl lg:text-5xl font-serif font-bold text-foreground mb-6">
-            Procedimentos Especializados
+            Procedimentos Endoscópicos
           </h2>
           
           <p className="text-lg text-muted-foreground leading-relaxed">

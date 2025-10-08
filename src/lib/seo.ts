@@ -55,6 +55,12 @@ export const pageSEO: Record<string, SEOData> = {
     description: "Abordagem avançada para saúde metabólica: mais energia, menos inflamação, preservação muscular. Protocolos individualizados com base em exames.",
     keywords: "medicina regenerativa, saúde metabólica, nutrição celular, otimização hormonal, preservação muscular, fadiga crônica, menopausa, pós-bariátrica, performance atlética",
     canonical: "https://drabrunadurelli.com/medicina-regenerativa"
+  },
+  plasmaArgonio: {
+    title: "Plasma de Argônio - Tratamento de Reganho de Peso | LevSer",
+    description: "Técnica endoscópica minimamente invasiva para tratamento de reganho de peso pós-cirurgia bariátrica e dilatação gástrica. Recuperação rápida e resultados consistentes.",
+    keywords: "plasma de argônio, reganho de peso, pós-bariátrica, dilatação gástrica, endoscopia, anastomose dilatada, revisão bariátrica, APC",
+    canonical: "https://drabrunadurelli.com/plasma-argonio"
   }
 };
 

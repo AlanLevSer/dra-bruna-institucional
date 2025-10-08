@@ -8,13 +8,13 @@ const navItems = [
   { label: "Início", href: "#inicio", type: "anchor" },
   { label: "Programa LevSer", href: "#programa", type: "anchor" },
   {
-    label: "Procedimentos",
+    label: "Procedimentos Endoscópicos",
     href: "#procedimentos",
     type: "dropdown",
     subItems: [
-      { label: "Terapias Cirúrgicas", href: "/terapias-cirurgicas" },
-      { label: "Terapias Endoscópicas", href: "/terapias-endoscopicas" },
+      { label: "Balão Intragástrico", href: "/terapias-endoscopicas" },
       { label: "Gastroplastia Endoscópica", href: "/gastroplastia-endoscopica" },
+      { label: "Plasma de Argônio", href: "/plasma-argonio" },
     ],
   },
   {

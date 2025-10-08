@@ -7,11 +7,11 @@ import { useEffect } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import NutricaoCelular from "./pages/NutricaoCelular";
-import TerapiasCirurgicas from "./pages/TerapiasCirurgicas";
 import TerapiasEndoscopicas from "./pages/TerapiasEndoscopicas";
 import GastroplastiaEndoscopica from "./pages/GastroplastiaEndoscopica";
 import TerapiaSacietogena from "./pages/TerapiaSacietogena";
 import MedicinaRegenerativa from "./pages/MedicinaRegenerativa";
+import PlasmaArgonio from "./pages/PlasmaArgonio";
 
 const queryClient = new QueryClient();
 
@@ -45,11 +45,11 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/nutricao-celular" element={<NutricaoCelular />} />
-          <Route path="/terapias-cirurgicas" element={<TerapiasCirurgicas />} />
           <Route path="/terapias-endoscopicas" element={<TerapiasEndoscopicas />} />
           <Route path="/gastroplastia-endoscopica" element={<GastroplastiaEndoscopica />} />
           <Route path="/terapia-sacietogena" element={<TerapiaSacietogena />} />
           <Route path="/medicina-regenerativa" element={<MedicinaRegenerativa />} />
+          <Route path="/plasma-argonio" element={<PlasmaArgonio />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

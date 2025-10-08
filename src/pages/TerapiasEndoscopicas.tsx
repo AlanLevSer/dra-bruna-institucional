@@ -48,7 +48,7 @@ const TerapiasEndoscopicas = () => {
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-12 text-center">
             Procedimentos disponíveis
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-card p-8 rounded-xl shadow-elegant hover:shadow-hover transition-shadow">
               <h3 className="text-2xl font-serif font-bold text-foreground mb-4">
                 Balão Gástrico Endoscópico
@@ -81,6 +81,21 @@ const TerapiasEndoscopicas = () => {
                 Técnica de sutura endoscópica que reduz o tamanho do estômago sem cortes. Solução mais duradoura, sem cirurgia.
               </p>
               <Link to="/gastroplastia-endoscopica">
+                <Button variant="outline" className="mt-4 group">
+                  Saiba mais
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </div>
+
+            <div className="bg-card p-8 rounded-xl shadow-elegant hover:shadow-hover transition-shadow">
+              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">
+                Plasma de Argônio
+              </h3>
+              <p className="text-muted-foreground mb-4">
+                Técnica de cauterização térmica controlada para reduzir dilatação gástrica e tratar reganho de peso pós-bariátrica.
+              </p>
+              <Link to="/plasma-argonio">
                 <Button variant="outline" className="mt-4 group">
                   Saiba mais
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
