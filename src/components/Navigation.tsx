@@ -12,7 +12,7 @@ const navItems = [
     href: "#procedimentos",
     type: "dropdown",
     subItems: [
-      { label: "Balão Intragástrico", href: "/terapias-endoscopicas" },
+      { label: "Balão Intragástrico", href: "/balao-intragastrico" },
       { label: "Gastroplastia Endoscópica", href: "/gastroplastia-endoscopica" },
       { label: "Plasma de Argônio", href: "/plasma-argonio" },
     ],

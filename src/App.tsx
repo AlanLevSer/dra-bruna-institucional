@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import NutricaoCelular from "./pages/NutricaoCelular";
-import TerapiasEndoscopicas from "./pages/TerapiasEndoscopicas";
+import BalaoIntragastrico from "./pages/BalaoIntragastrico";
 import GastroplastiaEndoscopica from "./pages/GastroplastiaEndoscopica";
 import TerapiaSacietogena from "./pages/TerapiaSacietogena";
 import MedicinaRegenerativa from "./pages/MedicinaRegenerativa";
@@ -45,7 +45,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/nutricao-celular" element={<NutricaoCelular />} />
-          <Route path="/terapias-endoscopicas" element={<TerapiasEndoscopicas />} />
+          <Route path="/balao-intragastrico" element={<BalaoIntragastrico />} />
+          <Route path="/terapias-endoscopicas" element={<BalaoIntragastrico />} /> {/* Redirect antigo */}
           <Route path="/gastroplastia-endoscopica" element={<GastroplastiaEndoscopica />} />
           <Route path="/terapia-sacietogena" element={<TerapiaSacietogena />} />
           <Route path="/medicina-regenerativa" element={<MedicinaRegenerativa />} />

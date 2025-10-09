@@ -26,11 +26,17 @@ export const pageSEO: Record<string, SEOData> = {
     keywords: "terapia sacietogênica, medicamentos obesidade, ozempic, wegovy, saxenda, mounjaro, tratamento fome, perda de peso medicamentos",
     canonical: "https://drabrunadurelli.com/terapia-sacietogena"
   },
+  balaoIntragastrico: {
+    title: "Balão Intragástrico | Emagrecimento sem Cirurgia - Dra. Bruna Durelli",
+    description: "Balão gástrico endoscópico para perda de peso sustentável. Procedimento minimamente invasivo com acompanhamento completo. Resultados de 10 a 25% de perda de peso.",
+    keywords: "balão intragástrico, balão gástrico, emagrecimento sem cirurgia, procedimento endoscópico, perda de peso, obesidade tratamento",
+    canonical: "https://drabrunadurelli.com/balao-intragastrico"
+  },
   terapiasEndoscopicas: {
-    title: "Terapias Endoscópicas para Obesidade | Balão Gástrico - Dra. Bruna Durelli",
-    description: "Procedimentos endoscópicos minimamente invasivos para tratamento da obesidade. Balão gástrico, gastroplastia endoscópica sem cirurgia.",
-    keywords: "terapias endoscópicas, balão gástrico, gastroplastia endoscópica, procedimentos obesidade, tratamento sem cirurgia",
-    canonical: "https://drabrunadurelli.com/terapias-endoscopicas"
+    title: "Balão Intragástrico | Emagrecimento sem Cirurgia - Dra. Bruna Durelli",
+    description: "Balão gástrico endoscópico para perda de peso sustentável. Procedimento minimamente invasivo com acompanhamento completo. Resultados de 10 a 25% de perda de peso.",
+    keywords: "balão intragástrico, balão gástrico, emagrecimento sem cirurgia, procedimento endoscópico, perda de peso, obesidade tratamento",
+    canonical: "https://drabrunadurelli.com/balao-intragastrico"
   },
   gastroplastiaEndoscopica: {
     title: "Gastroplastia Endoscópica | Redução de Estômago sem Cirurgia",
