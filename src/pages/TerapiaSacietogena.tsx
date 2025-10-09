@@ -7,9 +7,11 @@ import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
+import { TransformacaoReal } from "@/components/TransformacaoReal";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import patientImage from "@/assets/patient-happy.jpg";
 import terapiaImage from "@/assets/Design-sem-nome-5-1.png";
+import { Shield, Heart, Smile, TrendingDown } from "lucide-react";
 
 const TerapiaSacietogena = () => {
   const serviceSchema = {
@@ -151,6 +153,35 @@ const TerapiaSacietogena = () => {
               </a>
             </p>
           </TreatmentSection>
+
+      <TransformacaoReal
+        items={[
+          {
+            icon: Shield,
+            title: "Controle da Fome",
+            description: "Redução real do apetite sem sofrimento ou sensação de privação"
+          },
+          {
+            icon: TrendingDown,
+            title: "Perda de Peso Progressiva",
+            description: "Resultados consistentes e sustentáveis ao longo do tempo"
+          },
+          {
+            icon: Heart,
+            title: "Saúde Metabólica",
+            description: "Melhora da glicemia, insulina e marcadores inflamatórios"
+          },
+          {
+            icon: Smile,
+            title: "Relação Saudável com Comida",
+            description: "Fim da compulsão e da ansiedade alimentar"
+          }
+        ]}
+        testimonial={{
+          text: "Eu comia por ansiedade, não por fome. Tentei mil dietas e sempre desistia. A terapia sacietógena me deu o controle que eu nunca tive — pela primeira vez, consigo parar de comer quando estou satisfeita.",
+          author: "Paciente LevSer, 36 anos, -22kg em 12 meses"
+        }}
+      />
 
       <CTASection
         title="Quer retomar o controle sobre sua fome?"

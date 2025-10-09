@@ -7,8 +7,10 @@ import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
+import { TransformacaoReal } from "@/components/TransformacaoReal";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import patientImage from "@/assets/patient-wellness-1.jpg";
+import { Zap, Heart, Smile, TrendingUp } from "lucide-react";
 
 const NutricaoCelular = () => {
   const serviceSchema = {
@@ -101,6 +103,35 @@ const NutricaoCelular = () => {
           </a>
         </p>
       </TreatmentSection>
+
+      <TransformacaoReal
+        items={[
+          {
+            icon: Zap,
+            title: "Energia Limpa",
+            description: "Disposição real sem depender de cafeína ou estimulantes"
+          },
+          {
+            icon: TrendingUp,
+            title: "Metabolismo Ativo",
+            description: "Resposta acelerada ao tratamento de emagrecimento"
+          },
+          {
+            icon: Heart,
+            title: "Imunidade Fortalecida",
+            description: "Menos resfriados, menos infecções, mais resistência"
+          },
+          {
+            icon: Smile,
+            title: "Humor Equilibrado",
+            description: "Menos ansiedade, mais foco e clareza mental"
+          }
+        ]}
+        testimonial={{
+          text: "Eu estava seguindo tudo certinho, mas me sentia exausta o tempo todo. Os soros de nutrição celular mudaram isso: voltei a ter energia de verdade, não aquela falsa de café. Agora treino, trabalho e ainda sobra disposição.",
+          author: "Paciente LevSer, 41 anos, programa de emagrecimento"
+        }}
+      />
 
       <CTASection
         title="Pronta para dar um upgrade no seu tratamento?"

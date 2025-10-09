@@ -6,9 +6,10 @@ import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
+import { TransformacaoReal } from "@/components/TransformacaoReal";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Heart, Activity, Smile, Moon } from "lucide-react";
 import { Link } from "react-router-dom";
 import patientImage from "@/assets/patient-confident.jpg";
 
@@ -129,6 +130,35 @@ const TerapiasEndoscopicas = () => {
           <li>Acompanhamento médico regular para garantir sua segurança</li>
         </ul>
       </TreatmentSection>
+
+      <TransformacaoReal
+        items={[
+          {
+            icon: Heart,
+            title: "Saúde Metabólica",
+            description: "Redução ou suspensão de medicações para diabetes, pressão alta e colesterol"
+          },
+          {
+            icon: Activity,
+            title: "Energia e Disposição",
+            description: "Volta a fazer atividades do dia a dia sem cansaço excessivo"
+          },
+          {
+            icon: Smile,
+            title: "Autoestima",
+            description: "Recupera a confiança e o prazer de se olhar no espelho"
+          },
+          {
+            icon: Moon,
+            title: "Qualidade do Sono",
+            description: "Melhora do sono, redução de ronco e apneia"
+          }
+        ]}
+        testimonial={{
+          text: "Eu achava que nunca mais ia conseguir subir escadas sem cansar. Hoje subo correndo e levo as compras. Isso não tem preço.",
+          author: "Paciente LevSer, 52 anos, -28kg em 10 meses"
+        }}
+      />
 
       <CTASection
         title="Pronta para dar o próximo passo?"

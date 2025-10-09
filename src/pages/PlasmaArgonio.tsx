@@ -7,8 +7,10 @@ import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
+import { TransformacaoReal } from "@/components/TransformacaoReal";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import doctorImage from "@/assets/dra-bruna-elegant.jpg";
+import { Heart, Activity, Smile, RefreshCw } from "lucide-react";
 
 const PlasmaArgonio = () => {
   const serviceSchema = {
@@ -107,6 +109,35 @@ const PlasmaArgonio = () => {
           "Retorno da sensação de saciedade",
           "Auxílio no controle do peso de forma sustentável",
         ]}
+      />
+
+      <TransformacaoReal
+        items={[
+          {
+            icon: RefreshCw,
+            title: "Resgate de Resultados",
+            description: "Retoma o controle do peso sem precisar de nova cirurgia"
+          },
+          {
+            icon: Heart,
+            title: "Saciedade de Volta",
+            description: "Recupera a sensação de saciedade que você tinha perdido"
+          },
+          {
+            icon: Activity,
+            title: "Energia Renovada",
+            description: "Volta a ter disposição e qualidade de vida"
+          },
+          {
+            icon: Smile,
+            title: "Confiança Restaurada",
+            description: "Sai da frustração do reganho e retoma o controle"
+          }
+        ]}
+        testimonial={{
+          text: "Fiz bariátrica há 5 anos e o peso voltou. Eu achava que era falha minha, que eu não tinha disciplina. O plasma me mostrou que não — era meu estômago que tinha dilatado. Hoje voltei a ter controle sem nova cirurgia.",
+          author: "Paciente LevSer, 45 anos, tratamento pós-bariátrica"
+        }}
       />
 
       <CTASection

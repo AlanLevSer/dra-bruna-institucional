@@ -7,8 +7,10 @@ import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
+import { TransformacaoReal } from "@/components/TransformacaoReal";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import doctorImage from "@/assets/dra-bruna-elegant.jpg";
+import { Heart, Activity, Smile, TrendingDown } from "lucide-react";
 
 const GastroplastiaEndoscopica = () => {
   const serviceSchema = {
@@ -121,6 +123,35 @@ const GastroplastiaEndoscopica = () => {
           </table>
         </div>
       </TreatmentSection>
+
+      <TransformacaoReal
+        items={[
+          {
+            icon: TrendingDown,
+            title: "Perda de Peso Sustentável",
+            description: "Até 20% do peso corporal com acompanhamento integral"
+          },
+          {
+            icon: Heart,
+            title: "Controle de Doenças",
+            description: "Melhora significativa de diabetes tipo 2 e hipertensão"
+          },
+          {
+            icon: Activity,
+            title: "Mais Disposição",
+            description: "Retorno às atividades físicas sem limitações"
+          },
+          {
+            icon: Smile,
+            title: "Autoconfiança",
+            description: "Recupera a relação saudável com o corpo e a comida"
+          }
+        ]}
+        testimonial={{
+          text: "Eu tinha medo de cirurgia, mas queria resultados reais. A gastroplastia me deu isso: perdi 18kg sem cortes, sem internação longa. E o melhor: me sinto segura porque sei que tenho o suporte da equipe.",
+          author: "Paciente LevSer, 38 anos, -18kg em 8 meses"
+        }}
+      />
 
       <CTASection
         title="Por que escolher a LevSer?"
