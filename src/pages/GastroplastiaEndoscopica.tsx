@@ -1,8 +1,12 @@
 import { Navigation } from "@/components/Navigation";
 import { SubpageHero } from "@/components/SubpageHero";
+import { ProblemasSolucoesGastro } from "@/components/ProblemasSolucoesGastro";
 import { TreatmentSection } from "@/components/TreatmentSection";
+import { ComoFuncionaGastro } from "@/components/ComoFuncionaGastro";
+import { TimelineGastro } from "@/components/TimelineGastro";
 import { IndicationList } from "@/components/IndicationList";
 import { BenefitsList } from "@/components/BenefitsList";
+import { ComparadorGastroVsBariatrica } from "@/components/ComparadorGastroVsBariatrica";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
@@ -29,10 +33,12 @@ const GastroplastiaEndoscopica = () => {
         <Navigation />
       <SubpageHero
         title="Gastroplastia Endoscópica"
-        subtitle="Redução gástrica sem cirurgia"
-        description="Uma alternativa moderna e minimamente invasiva à cirurgia bariátrica. Resultados expressivos sem cortes, internações longas ou longos períodos de recuperação."
+        subtitle="Emagreça até 20% sem cirurgia invasiva"
+        description="Reduza seu estômago por endoscopia, sem cortes externos. Recuperação rápida, resultados duradouros, risco mínimo."
         image={doctorImage}
       />
+
+      <ProblemasSolucoesGastro />
 
       <TreatmentSection title="O que é a Gastroplastia Endoscópica?">
         <p className="mb-4">
@@ -46,6 +52,10 @@ const GastroplastiaEndoscopica = () => {
         </p>
       </TreatmentSection>
 
+      <ComoFuncionaGastro />
+
+      <TimelineGastro />
+
       <IndicationList
         title="Para quem é indicada?"
         items={[
@@ -55,21 +65,6 @@ const GastroplastiaEndoscopica = () => {
           "Quem busca menor risco e recuperação acelerada",
         ]}
       />
-
-      <TreatmentSection title="Como funciona o tratamento?" variant="muted">
-        <p className="mb-4">
-          O procedimento é realizado <strong>via ambulatorial, com sedação</strong> e acompanhamento da equipe médica especializada.
-        </p>
-        <p className="mb-4">
-          <strong>Não há cortes nem cicatrizes externas.</strong> A alta do paciente ocorre geralmente no mesmo dia ou no dia seguinte.
-        </p>
-        <p className="mb-4">
-          Durante o procedimento, são realizadas suturas internas no estômago, criando pregas que reduzem significativamente seu volume.
-        </p>
-        <p>
-          O acompanhamento interdisciplinar é fundamental para manter os resultados ao longo do tempo, incluindo nutrição, atividade física e suporte comportamental.
-        </p>
-      </TreatmentSection>
 
       <BenefitsList
         title="Benefícios esperados"
@@ -83,46 +78,7 @@ const GastroplastiaEndoscopica = () => {
         ]}
       />
 
-      <TreatmentSection title="Gastroplastia vs Cirurgia Bariátrica">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="border-b-2 border-border">
-                <th className="py-4 px-6 font-serif text-lg">Característica</th>
-                <th className="py-4 px-6 font-serif text-lg">Gastroplastia</th>
-                <th className="py-4 px-6 font-serif text-lg">Cirurgia Bariátrica</th>
-              </tr>
-            </thead>
-            <tbody className="text-muted-foreground">
-              <tr className="border-b border-border">
-                <td className="py-4 px-6">Invasividade</td>
-                <td className="py-4 px-6">Sem cortes externos</td>
-                <td className="py-4 px-6">Com cortes cirúrgicos</td>
-              </tr>
-              <tr className="border-b border-border">
-                <td className="py-4 px-6">Tempo de recuperação</td>
-                <td className="py-4 px-6">1-2 dias</td>
-                <td className="py-4 px-6">2-4 semanas</td>
-              </tr>
-              <tr className="border-b border-border">
-                <td className="py-4 px-6">Reversibilidade</td>
-                <td className="py-4 px-6">Reversível</td>
-                <td className="py-4 px-6">Irreversível</td>
-              </tr>
-              <tr className="border-b border-border">
-                <td className="py-4 px-6">Perda de peso esperada</td>
-                <td className="py-4 px-6">Até 20%</td>
-                <td className="py-4 px-6">50-80%</td>
-              </tr>
-              <tr className="border-b border-border">
-                <td className="py-4 px-6">Indicação IMC</td>
-                <td className="py-4 px-6">30-40</td>
-                <td className="py-4 px-6">35-40+</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </TreatmentSection>
+      <ComparadorGastroVsBariatrica />
 
       <TransformacaoReal
         items={[
@@ -154,8 +110,8 @@ const GastroplastiaEndoscopica = () => {
       />
 
       <CTASection
-        title="Por que escolher a LevSer?"
-        description="Na LevSer, realizamos a gastroplastia endoscópica com tecnologia de ponta e uma equipe altamente qualificada. Nosso acompanhamento contínuo e plano de reeducação alimentar garantem que o procedimento seja apenas o primeiro passo para uma vida mais saudável."
+        title="Por que fazer sua Gastroplastia na LevSer?"
+        description="Equipe especializada com + de 500 procedimentos realizados • Tecnologia de ponta com suturas absorvíveis • Acompanhamento integral: nutrição, psicologia e atividade física • Protocolo exclusivo de manutenção pós-procedimento • Taxa de complicação < 1% (uma das menores do Brasil)"
       />
 
       <Footer />
