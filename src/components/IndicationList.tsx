@@ -14,16 +14,18 @@ export const IndicationList = ({ title, items }: IndicationListProps) => {
         <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-8">
           {title}
         </h2>
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-6">
           {items.map((item, index) => (
             <div
               key={index}
-              className="flex items-start gap-3 p-4 bg-muted/30 rounded-lg hover:shadow-elegant transition-shadow"
+              className="bg-gradient-to-br from-card to-primary/5 backdrop-blur-sm p-6 rounded-xl border border-primary/20 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
             >
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-1">
-                <Check className="w-4 h-4 text-primary" />
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 border border-primary/30 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
+                  <Check className="w-5 h-5 text-primary" strokeWidth={2.5} />
+                </div>
+                <p className="text-foreground group-hover:text-primary transition-colors leading-relaxed">{item}</p>
               </div>
-              <p className="text-foreground">{item}</p>
             </div>
           ))}
         </div>

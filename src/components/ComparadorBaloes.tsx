@@ -1,4 +1,4 @@
-import { Check, Sparkles } from "lucide-react";
+import { Check, Sparkles, Droplet } from "lucide-react";
 import { Button } from "./ui/button";
 
 interface BalaoOption {
@@ -71,18 +71,29 @@ export const ComparadorBaloes = () => {
           {baloesOptions.map((balao, index) => (
             <div
               key={index}
-              className={`relative bg-gradient-to-br ${balao.color} backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover-lift transition-all duration-300 animate-fade-in opacity-0`}
-              style={{ 
-                animationDelay: `${index * 0.1}s`,
+              className={`relative bg-gradient-to-br ${balao.color} backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:shadow-[0_16px_48px_rgba(202,124,95,0.15)] hover:scale-105 transition-all duration-500 animate-fade-in opacity-0 group`}
+              style={{
+                animationDelay: `${index * 0.15}s`,
                 animationFillMode: "forwards"
               }}
             >
               {balao.destaque && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-primary text-primary-foreground rounded-full text-sm font-medium flex items-center gap-1 animate-pulse-soft">
-                  <Sparkles className="w-4 h-4" />
-                  Mais escolhido
-                </div>
+                <>
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-secondary to-primary rounded-2xl opacity-75 blur-sm animate-gradient-shift -z-10" />
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 bg-gradient-to-r from-primary to-secondary text-primary-foreground rounded-full text-sm font-bold flex items-center gap-2 shadow-lg backdrop-blur-sm">
+                    <span className="w-2 h-2 bg-primary-foreground rounded-full animate-pulse-soft" />
+                    Mais escolhido
+                  </div>
+                </>
               )}
+
+              {/* Ícone visual do balão */}
+              <div className="relative w-24 h-24 mx-auto mb-6">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-white/10 rounded-full blur-lg" />
+                <div className="relative w-full h-full bg-card/50 backdrop-blur-sm border-2 border-white/30 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                  <Droplet className="w-12 h-12 text-foreground" strokeWidth={1.5} />
+                </div>
+              </div>
 
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-serif font-bold text-foreground mb-2">

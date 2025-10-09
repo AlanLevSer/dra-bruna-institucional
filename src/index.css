@@ -231,6 +231,26 @@ All colors MUST be HSL.
     }
   }
 
+  /* Shimmer descendo (para timeline) */
+  @keyframes shimmer-down {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(400%); }
+  }
+
+  .animate-shimmer-down {
+    animation: shimmer-down 3s ease-in-out infinite;
+  }
+
+  /* Glow pulsante */
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
   /* Hover lift effect */
   .hover-lift {
     transition: transform 0.3s ease, box-shadow 0.3s ease;

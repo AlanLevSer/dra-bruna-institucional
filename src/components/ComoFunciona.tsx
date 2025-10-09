@@ -50,43 +50,47 @@ export const ComoFunciona = () => {
 
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-3 gap-6 relative">
-            {/* Setas conectoras (apenas desktop) */}
-            <div className="hidden md:block absolute top-1/2 left-1/3 w-1/6 -translate-y-1/2 -translate-x-1/2 z-0">
-              <ArrowRight className="w-full h-8 text-primary/30 animate-pulse" />
-            </div>
-            <div className="hidden md:block absolute top-1/2 left-2/3 w-1/6 -translate-y-1/2 -translate-x-1/2 z-0">
-              <ArrowRight className="w-full h-8 text-primary/30 animate-pulse" />
-            </div>
-
             {steps.map((step, index) => (
-              <div
-                key={index}
-                className="relative z-10 bg-card p-8 rounded-2xl shadow-elegant hover:shadow-hover transition-all duration-300 hover-lift animate-fade-in opacity-0 border border-primary/10"
-                style={{ 
-                  animationDelay: `${index * 0.2}s`,
-                  animationFillMode: "forwards"
-                }}
-              >
-                {/* Número grande no fundo */}
-                <div className="absolute top-4 right-4 text-7xl font-bold text-primary/5">
-                  {step.number}
+              <div key={index} className="relative z-10">
+                <div
+                  className="relative bg-gradient-to-br from-card to-card/50 backdrop-blur-sm p-8 rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:shadow-[0_16px_48px_rgba(202,124,95,0.12)] hover:-translate-y-2 transition-all duration-500 animate-fade-in opacity-0 border border-primary/20 group"
+                  style={{
+                    animationDelay: `${index * 0.2}s`,
+                    animationFillMode: "forwards"
+                  }}
+                >
+                  {/* Número grande no fundo com gradiente */}
+                  <div className="absolute top-4 right-4 text-7xl font-bold bg-gradient-to-br from-primary/10 to-secondary/10 bg-clip-text text-transparent">
+                    {step.number}
+                  </div>
+
+                  <div className="relative z-10">
+                    {/* Ícone com gradiente duplo e glow */}
+                    <div className="relative w-20 h-20 mb-6 group-hover:scale-110 transition-transform duration-500">
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-full blur-lg group-hover:blur-xl transition-all duration-500" />
+                      <div className="relative w-full h-full bg-card/80 backdrop-blur-sm border-2 border-primary/30 rounded-full flex items-center justify-center shadow-elegant">
+                        <step.icon className="w-10 h-10 text-primary" strokeWidth={1.5} />
+                      </div>
+                    </div>
+
+                    <h3 className="text-2xl font-serif font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                      {step.title}
+                    </h3>
+                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                      {step.description}
+                    </p>
+                    <p className="text-sm text-muted-foreground/80 italic">
+                      {step.detail}
+                    </p>
+                  </div>
                 </div>
 
-                {/* Ícone animado */}
-                <div className="relative w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 animate-pulse-soft">
-                  <step.icon className="w-8 h-8 text-primary" />
-                </div>
-
-                {/* Conteúdo */}
-                <h3 className="text-xl font-serif font-bold text-foreground mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-primary font-medium mb-3">
-                  {step.description}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {step.detail}
-                </p>
+                {/* Seta conectora premium */}
+                {index < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-1/2 -right-3 w-6 h-0.5 bg-gradient-to-r from-primary/50 to-primary/30 -translate-y-1/2 z-0">
+                    <div className="absolute right-0 w-2 h-2 bg-primary rounded-full animate-pulse-soft" />
+                  </div>
+                )}
               </div>
             ))}
           </div>

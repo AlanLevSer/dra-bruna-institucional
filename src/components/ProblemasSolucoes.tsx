@@ -1,30 +1,26 @@
-import { Scale, Scissors, UtensilsCrossed } from "lucide-react";
+import { TrendingDown, ShieldAlert, Apple } from "lucide-react";
 
 interface ProblemaItem {
-  emoji: string;
   problema: string;
   descricao: string;
-  icon: typeof Scale;
+  icon: typeof TrendingDown;
 }
 
 const problemas: ProblemaItem[] = [
   {
-    emoji: "😔",
     problema: "Perco peso mas sempre volta",
     descricao: "Você faz dieta, emagrece, mas em poucos meses o peso retorna — muitas vezes maior que antes",
-    icon: Scale
+    icon: TrendingDown
   },
   {
-    emoji: "😰",
     problema: "Tenho medo de cirurgia",
     descricao: "Cirurgia bariátrica te assusta pelos riscos, internação e mudanças irreversíveis",
-    icon: Scissors
+    icon: ShieldAlert
   },
   {
-    emoji: "🍽️",
     problema: "Não consigo controlar a fome",
     descricao: "A sensação de fome é constante e você não consegue se sentir satisfeita mesmo comendo",
-    icon: UtensilsCrossed
+    icon: Apple
   }
 ];
 
@@ -53,21 +49,35 @@ export const ProblemasSolucoes = () => {
           {problemas.map((item, index) => (
             <div
               key={index}
-              className="bg-card p-8 rounded-xl shadow-elegant hover:shadow-hover transition-all duration-300 hover-lift animate-fade-in opacity-0 border border-border/50"
+              className="relative bg-card/80 backdrop-blur-sm p-8 rounded-2xl shadow-elegant hover:shadow-hover transition-all duration-500 hover:-translate-y-2 animate-fade-in opacity-0 border border-primary/20 group overflow-hidden"
               style={{ 
                 animationDelay: `${index * 0.15}s`,
                 animationFillMode: "forwards"
               }}
             >
-              <div className="text-5xl mb-4 animate-pulse-soft">
-                {item.emoji}
+              {/* Glow effect ao hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+              
+              <div className="relative z-10">
+                {/* Ícone com gradiente e glow */}
+                <div className="relative w-20 h-20 mx-auto mb-6">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-full blur-lg group-hover:blur-xl transition-all duration-500" />
+                  <div className="relative w-full h-full bg-card/80 backdrop-blur-sm border-2 border-primary/30 rounded-full flex items-center justify-center shadow-elegant group-hover:scale-110 transition-transform duration-500">
+                    <item.icon className="w-10 h-10 text-primary" strokeWidth={1.5} />
+                  </div>
+                </div>
+
+                <h3 className="text-xl font-serif font-bold text-foreground mb-3">
+                  {item.problema}
+                </h3>
+                
+                {/* Linha divisória elegante */}
+                <div className="w-12 h-0.5 bg-gradient-to-r from-primary/50 to-transparent mx-auto mb-4" />
+                
+                <p className="text-muted-foreground leading-relaxed">
+                  {item.descricao}
+                </p>
               </div>
-              <h3 className="text-xl font-serif font-bold text-foreground mb-3">
-                {item.problema}
-              </h3>
-              <p className="text-muted-foreground">
-                {item.descricao}
-              </p>
             </div>
           ))}
         </div>
