@@ -12,6 +12,8 @@ import GastroplastiaEndoscopica from "./pages/GastroplastiaEndoscopica";
 import TerapiaSacietogena from "./pages/TerapiaSacietogena";
 import MedicinaRegenerativa from "./pages/MedicinaRegenerativa";
 import PlasmaArgonio from "./pages/PlasmaArgonio";
+import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
+import TermosUso from "./pages/TermosUso";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +53,8 @@ const App = () => (
           <Route path="/terapia-sacietogena" element={<TerapiaSacietogena />} />
           <Route path="/medicina-regenerativa" element={<MedicinaRegenerativa />} />
           <Route path="/plasma-argonio" element={<PlasmaArgonio />} />
+          <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
+          <Route path="/termos-uso" element={<TermosUso />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

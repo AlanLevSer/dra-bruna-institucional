@@ -67,11 +67,11 @@ export const Footer = () => {
           </div>
           
           <div className="flex justify-center gap-6 text-sm text-muted-foreground pt-2">
-            <a href="#" className="hover:text-primary transition-colors">
+            <a href="/politica-privacidade" className="hover:text-primary transition-colors">
               Política de Privacidade
             </a>
             <span>•</span>
-            <a href="#" className="hover:text-primary transition-colors">
+            <a href="/termos-uso" className="hover:text-primary transition-colors">
               Termos de Uso
             </a>
           </div>
