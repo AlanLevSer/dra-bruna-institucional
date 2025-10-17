@@ -78,7 +78,7 @@ export const RegeneracaoMetabolica = () => {
             <div className="flex items-start gap-3">
               <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
               <p className="text-muted-foreground">
-                <strong className="text-foreground">Repleção inteligente de nutrientes</strong> (IV/VO) para energia e foco
+                <strong className="text-foreground">Repleção inteligente de nutrientes</strong> (intravenosa ou via oral) para energia e foco
               </p>
             </div>
             <div className="flex items-start gap-3">

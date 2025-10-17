@@ -91,7 +91,7 @@ export const casosDeUsoRegenerativa: CasoDeUso[] = [
     icon: Stethoscope,
     titulo: "Pós-Bariátrica",
     problema: "Deficiências nutricionais severas, fadiga crônica, queda de cabelo, anemia",
-    solucao: "Repleção estratégica IV/VO para recuperar marcadores e qualidade de vida",
+    solucao: "Repleção estratégica intravenosa e via oral para recuperar marcadores e qualidade de vida",
     beneficios: [
       "Energia restaurada",
       "Recuperação capilar e unhas",
