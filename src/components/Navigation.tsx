@@ -118,7 +118,7 @@ export const Navigation = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-4 lg:gap-6 ml-4 lg:ml-6">
+          <div className="hidden lg:flex items-center gap-2 lg:gap-3 ml-2 lg:ml-3">
             {navItems.map((item) =>
               item.type === "dropdown" ? (
                 <div
@@ -137,7 +137,7 @@ export const Navigation = () => {
                   }}
                 >
                   <button 
-                    className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-1 py-2 whitespace-nowrap shrink-0"
+                    className="text-xs lg:text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-1 py-2 whitespace-nowrap shrink-0"
                     aria-label={`Menu ${item.label}`}
                     aria-expanded={openDropdown === item.label}
                   >
@@ -177,7 +177,7 @@ export const Navigation = () => {
                     e.preventDefault();
                     scrollToSection(item.href);
                   }}
-                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors whitespace-nowrap shrink-0"
+                  className="text-xs lg:text-sm font-medium text-foreground/80 hover:text-primary transition-colors whitespace-nowrap shrink-0"
                 >
                   {item.label}
                 </a>
@@ -185,7 +185,7 @@ export const Navigation = () => {
             )}
             <Button
               onClick={() => scrollToSection("#agendar")}
-              className="bg-gradient-premium hover:opacity-90 transition-opacity whitespace-nowrap shrink-0"
+              className="bg-gradient-premium hover:opacity-90 transition-opacity whitespace-nowrap shrink-0 text-xs lg:text-sm px-3 lg:px-4"
             >
               Agende sua Avaliação
             </Button>
