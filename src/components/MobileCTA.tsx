@@ -34,8 +34,9 @@ export const MobileCTA = () => {
         onClick={scrollToSection}
         size="lg"
         className="w-full bg-gradient-premium hover:opacity-90 transition-opacity shadow-hover group"
+        aria-label="Agendar Avaliação Premium"
       >
-        <Calendar className="mr-2" size={20} />
+        <Calendar className="mr-2" size={20} aria-hidden="true" />
         Avaliação Premium
       </Button>
     </div>

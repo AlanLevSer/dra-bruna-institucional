@@ -135,9 +135,13 @@ export const Navigation = () => {
                     }, 150);
                   }}
                 >
-                  <button className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-1 py-2">
+                  <button 
+                    className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-1 py-2"
+                    aria-label={`Menu ${item.label}`}
+                    aria-expanded={openDropdown === item.label}
+                  >
                     {item.label}
-                    <ChevronDown className={`w-4 h-4 transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-4 h-4 transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`} aria-hidden="true" />
                   </button>
                   {openDropdown === item.label && (
                     <div className="absolute top-full left-0 mt-0 w-64 bg-card border border-border rounded-lg shadow-hover z-50 py-2 animate-fade-in">
@@ -192,8 +196,9 @@ export const Navigation = () => {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
+            aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu de navegação"}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
           </button>
         </div>
 
@@ -216,12 +221,15 @@ export const Navigation = () => {
                         )
                       }
                       className="w-full flex items-center justify-between text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                      aria-label={`Menu ${item.label}`}
+                      aria-expanded={openDropdown === item.label}
                     >
                       {item.label}
                       <ChevronDown
                         className={`w-4 h-4 transition-transform ${
                           openDropdown === item.label ? "rotate-180" : ""
                         }`}
+                        aria-hidden="true"
                       />
                     </button>
                     {openDropdown === item.label && (
