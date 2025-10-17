@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { PerformanceMonitor } from "./components/dev/PerformanceMonitor";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import NutricaoCelular from "./pages/NutricaoCelular";
@@ -42,6 +43,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      {import.meta.env.DEV && <PerformanceMonitor />}
       <BrowserRouter>
         <ScrollManager />
         <Routes>
