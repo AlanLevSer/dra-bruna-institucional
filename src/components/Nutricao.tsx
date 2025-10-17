@@ -1,4 +1,4 @@
-import { Brain, Heart, Flame, ArrowRight } from "lucide-react";
+import { Brain, Heart, Flame, Pill, Sparkles, HeartPulse, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
@@ -16,6 +16,29 @@ const pillars = [{
   title: "Metabolismo Otimizado",
   description: "Estratégias para acelerar seu metabolismo e maximizar a queima de gordura."
 }];
+
+const therapies = [
+  {
+    icon: Pill,
+    title: "Terapia Sacietógena",
+    description: "Medicações modernas e seguras para controle de peso, prescritas com acompanhamento rigoroso.",
+    link: "/terapia-sacietogena",
+    badge: "Mais procurada"
+  },
+  {
+    icon: Sparkles,
+    title: "Nutrição Celular",
+    description: "Suplementação avançada para otimizar funções metabólicas e energia celular.",
+    link: "/nutricao-celular",
+  },
+  {
+    icon: HeartPulse,
+    title: "Medicina Regenerativa",
+    description: "Tratamentos que regeneram e revitalizam seu metabolismo de dentro para fora.",
+    link: "/medicina-regenerativa",
+  }
+];
+
 export const Nutricao = () => {
   const navigate = useNavigate();
   return <section id="nutricao" className="relative py-12 xl:py-16 bg-muted/30 overflow-hidden">
@@ -47,8 +70,49 @@ export const Nutricao = () => {
             </div>)}
         </div>
 
+        {/* Terapias Disponíveis */}
+        <div className="mb-12 animate-fade-in" style={{ animationDelay: "0.3s" }}>
+          <h3 className="text-2xl lg:text-3xl font-serif font-bold text-center text-foreground mb-8">
+            Terapias Disponíveis
+          </h3>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {therapies.map((therapy, index) => (
+              <div
+                key={index}
+                onClick={() => navigate(therapy.link)}
+                className="group relative bg-card p-6 rounded-xl border-2 border-primary/20 hover:border-primary/40 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer animate-fade-in"
+                style={{ animationDelay: `${(index + 3) * 0.1}s` }}
+              >
+                {therapy.badge && (
+                  <div className="absolute -top-3 right-4 bg-gradient-to-r from-primary to-secondary px-3 py-1 rounded-full text-xs font-semibold text-primary-foreground shadow-md">
+                    {therapy.badge}
+                  </div>
+                )}
+                
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <therapy.icon className="text-primary" size={24} />
+                </div>
+                
+                <h4 className="text-lg font-serif font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  {therapy.title}
+                </h4>
+                
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                  {therapy.description}
+                </p>
+                
+                <div className="flex items-center text-primary text-sm font-medium group-hover:translate-x-1 transition-transform">
+                  Saiba mais
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="relative rounded-2xl overflow-hidden shadow-hover animate-fade-in max-w-2xl mx-auto" style={{
-        animationDelay: "0.3s"
+        animationDelay: "0.6s"
       }}>
           <img src={nutricaoImage} alt="Nutrição e bem-estar - Paciente feliz e saudável" className="w-full h-auto object-cover" />
           
@@ -58,8 +122,8 @@ export const Nutricao = () => {
               <p className="text-2xl font-serif font-bold mb-4">
                 Transformação que respeita sua individualidade
               </p>
-              <Button onClick={() => navigate("/nutricao-celular")} className="bg-background text-foreground hover:bg-background/90 group">
-                Conheça a Nutrição Celular
+              <Button onClick={() => navigate("/quiz")} className="bg-background text-foreground hover:bg-background/90 group">
+                Descubra seu Programa Personalizado
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>

@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Syringe, Activity, Pill, Zap, ArrowRight } from "lucide-react";
+import { Syringe, Activity, Zap, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 
@@ -16,12 +16,6 @@ const procedures = [
     title: "Gastroplastia Endoscópica",
     description: "Técnica endoscópica minimamente invasiva para redução do estômago e perda de peso.",
     link: "/gastroplastia-endoscopica",
-  },
-  {
-    icon: Pill,
-    title: "Terapia Sacietógena",
-    description: "Medicações modernas e seguras para controle de peso, prescritas com acompanhamento rigoroso.",
-    link: "/terapia-sacietogena",
   },
   {
     icon: Zap,
@@ -53,7 +47,7 @@ export const Procedimentos = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {procedures.map((procedure, index) => (
             <Card
               key={index}
