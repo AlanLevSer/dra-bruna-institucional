@@ -18,7 +18,7 @@ const navItems = [
     ],
   },
   {
-    label: "Nutrição & Metabolismo & Medicina Regenerativa",
+    label: "Nutrição & Metabolismo &\nMedicina Regenerativa",
     href: "#nutricao",
     type: "dropdown",
     subItems: [
@@ -99,8 +99,8 @@ export const Navigation = () => {
         isScrolled || isMobileMenuOpen ? "bg-background/95 backdrop-blur-md shadow-elegant border-b border-border" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between lg:justify-start">
+      <div className="container mx-auto py-4">
+        <div className="flex items-center justify-between lg:justify-start px-4">
           <a
             href="#inicio"
             onClick={(e) => {
@@ -118,7 +118,7 @@ export const Navigation = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-2 lg:gap-3 ml-2 lg:ml-3">
+          <div className="hidden lg:flex items-center gap-2 lg:gap-3 ml-1 lg:ml-2">
             {navItems.map((item) =>
               item.type === "dropdown" ? (
                 <div
@@ -137,7 +137,7 @@ export const Navigation = () => {
                   }}
                 >
                   <button 
-                    className="text-xs lg:text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-1 py-2 whitespace-nowrap shrink-0"
+                    className="text-xs lg:text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-1 py-2 whitespace-pre-line text-center leading-tight max-w-[140px] shrink-0"
                     aria-label={`Menu ${item.label}`}
                     aria-expanded={openDropdown === item.label}
                   >
