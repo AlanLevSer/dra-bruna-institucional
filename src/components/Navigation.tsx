@@ -18,7 +18,7 @@ const navItems = [
     ],
   },
   {
-    label: "Nutrição & Metabolismo &\nMedicina Regenerativa",
+    label: "Emagrecimento & Longevidade",
     href: "#nutricao",
     type: "dropdown",
     subItems: [
@@ -137,7 +137,7 @@ export const Navigation = () => {
                   }}
                 >
                   <button 
-                    className="text-xs lg:text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-1 py-2 whitespace-pre-line text-center leading-tight max-w-[140px] shrink-0"
+                    className="text-xs lg:text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-1 py-2 whitespace-nowrap shrink-0"
                     aria-label={`Menu ${item.label}`}
                     aria-expanded={openDropdown === item.label}
                   >
