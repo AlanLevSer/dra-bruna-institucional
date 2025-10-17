@@ -11,7 +11,9 @@ import {
   Infinity,
   Syringe,
   Stethoscope,
-  Wind
+  Wind,
+  Pill,
+  Flame
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -144,6 +146,16 @@ const intervencoes = [
     icon: Syringe,
     nome: "Terapias Injetáveis",
     descricao: "Controle de apetite/metabolismo, aliadas ao plano, exigem seguimento"
+  },
+  {
+    icon: Pill,
+    nome: "Canetas Emagrecedoras",
+    descricao: "Mounjaro, Ozempic, Wegovy e Saxenda com acompanhamento médico especializado"
+  },
+  {
+    icon: Flame,
+    nome: "Plasma de Argônio",
+    descricao: "Redução endoscópica do estômago por ablação térmica, minimamente invasivo"
   }
 ];
 
@@ -382,7 +394,7 @@ export const ProgramaLevSer = () => {
                           <p className="text-sm font-semibold text-foreground mb-4">
                             Intervenções possíveis nesta fase:
                           </p>
-                          <div className="grid sm:grid-cols-3 gap-4 mb-4">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
                             {intervencoes.map((intervencao, idx) => {
                               const InterIcon = intervencao.icon;
                               return (
