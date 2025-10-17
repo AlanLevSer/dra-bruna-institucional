@@ -12,6 +12,7 @@ import { defaultSEO, generateStructuredData } from "@/lib/seo";
 // Lazy load components below the fold for better performance
 const ExperienciaConcierge = lazy(() => import("@/components/ExperienciaConcierge").then(m => ({ default: m.ExperienciaConcierge })));
 const JornadaTransformacao = lazy(() => import("@/components/JornadaTransformacao").then(m => ({ default: m.JornadaTransformacao })));
+const Comunidade = lazy(() => import("@/components/Comunidade").then(m => ({ default: m.Comunidade })));
 const Procedimentos = lazy(() => import("@/components/Procedimentos").then(m => ({ default: m.Procedimentos })));
 const Nutricao = lazy(() => import("@/components/Nutricao").then(m => ({ default: m.Nutricao })));
 const RegeneracaoMetabolica = lazy(() => import("@/components/RegeneracaoMetabolica").then(m => ({ default: m.RegeneracaoMetabolica })));
@@ -45,6 +46,7 @@ const Index = () => {
           <Suspense fallback={<div className="min-h-[40vh] flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div></div>}>
             <ExperienciaConcierge />
             <JornadaTransformacao />
+            <Comunidade />
             <Procedimentos />
           </Suspense>
           
