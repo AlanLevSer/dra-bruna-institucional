@@ -5,7 +5,7 @@ import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { PlanoTransformacao } from "@/components/PlanoTransformacao";
 import { OptimizedImage } from "@/components/OptimizedImage";
-import heroImage from "@/assets/dra-bruna-professional.jpg";
+import heroImage from "@/assets/dra-bruna-hero.avif";
 
 export const Hero = () => {
   // Preload LCP image programmatically
