@@ -17,7 +17,7 @@ const baloesOptions: BalaoOption[] = [
     duration: "6 meses",
     color: "from-green-500/20 to-green-600/20",
     ideal: "Ideal para iniciantes",
-    perda: "10-15% do peso",
+    perda: "de 10-25% do peso",
     vantagens: [
       "Adaptação mais rápida",
       "Procedimento mais curto",
