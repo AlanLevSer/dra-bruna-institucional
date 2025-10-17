@@ -9,7 +9,7 @@ import { CTASection } from "@/components/CTASection";
 import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
-import { Sparkles, Heart, Scale, Brain } from "lucide-react";
+import { Sparkles, Heart, Scale, Brain, Activity, Target, TrendingDown, HeartPulse } from "lucide-react";
 import medicationsImage from "@/assets/medications-sacietogena.png";
 
 const CanetasEmagrecedoras = () => {
@@ -120,45 +120,117 @@ const CanetasEmagrecedoras = () => {
 
       <TreatmentSection title="Como funciona o tratamento">
         <div className="space-y-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-card p-6 rounded-xl shadow-sm">
-              <h4 className="font-serif font-bold text-lg text-foreground mb-3">
-                🧬 Ação nos Hormônios da Saciedade
-              </h4>
-              <p className="text-muted-foreground">
-                As canetas emagrecedoras agem nos receptores GLP-1 (e GIP no caso do Mounjaro), que regulam 
-                o apetite, a velocidade de esvaziamento gástrico e a sensibilidade à insulina.
-              </p>
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Card 1 */}
+            <div className="relative group animate-fade-in" style={{ animationDelay: '0ms' }}>
+              {/* Número decorativo */}
+              <div className="absolute top-4 right-4 text-7xl font-bold bg-gradient-to-br from-primary/10 to-secondary/10 bg-clip-text text-transparent select-none pointer-events-none">
+                01
+              </div>
+
+              {/* Card premium */}
+              <div className="relative z-10 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm p-8 rounded-2xl border border-primary/20 shadow-elegant hover:shadow-hover hover:-translate-y-2 transition-all duration-500">
+                {/* Ícone com glow */}
+                <div className="relative w-16 h-16 mb-6">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-full blur-lg group-hover:blur-xl transition-all duration-500" />
+                  <div className="relative w-full h-full bg-card/80 backdrop-blur-sm border-2 border-primary/30 rounded-full flex items-center justify-center shadow-elegant group-hover:scale-110 transition-transform duration-500">
+                    <Activity className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                  </div>
+                </div>
+
+                {/* Conteúdo */}
+                <h3 className="text-lg md:text-xl font-serif font-semibold text-foreground mb-4 group-hover:text-primary transition-colors">
+                  Ação nos Hormônios da Saciedade
+                </h3>
+                <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+                  As canetas emagrecedoras agem nos receptores GLP-1 (e GIP no caso do Mounjaro), que regulam 
+                  o apetite, a velocidade de esvaziamento gástrico e a sensibilidade à insulina.
+                </p>
+              </div>
             </div>
 
-            <div className="bg-card p-6 rounded-xl shadow-sm">
-              <h4 className="font-serif font-bold text-lg text-foreground mb-3">
-                🎯 Redução da Fome e Compulsão
-              </h4>
-              <p className="text-muted-foreground">
-                Você sente menos fome entre as refeições, fica satisfeito com porções menores e 
-                reduz pensamentos obsessivos sobre comida.
-              </p>
+            {/* Card 2 */}
+            <div className="relative group animate-fade-in" style={{ animationDelay: '150ms' }}>
+              {/* Número decorativo */}
+              <div className="absolute top-4 right-4 text-7xl font-bold bg-gradient-to-br from-primary/10 to-secondary/10 bg-clip-text text-transparent select-none pointer-events-none">
+                02
+              </div>
+
+              {/* Card premium */}
+              <div className="relative z-10 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm p-8 rounded-2xl border border-primary/20 shadow-elegant hover:shadow-hover hover:-translate-y-2 transition-all duration-500">
+                {/* Ícone com glow */}
+                <div className="relative w-16 h-16 mb-6">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-full blur-lg group-hover:blur-xl transition-all duration-500" />
+                  <div className="relative w-full h-full bg-card/80 backdrop-blur-sm border-2 border-primary/30 rounded-full flex items-center justify-center shadow-elegant group-hover:scale-110 transition-transform duration-500">
+                    <Target className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                  </div>
+                </div>
+
+                {/* Conteúdo */}
+                <h3 className="text-lg md:text-xl font-serif font-semibold text-foreground mb-4 group-hover:text-primary transition-colors">
+                  Redução da Fome e Compulsão
+                </h3>
+                <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+                  Você sente menos fome entre as refeições, fica satisfeito com porções menores e 
+                  reduz pensamentos obsessivos sobre comida.
+                </p>
+              </div>
             </div>
 
-            <div className="bg-card p-6 rounded-xl shadow-sm">
-              <h4 className="font-serif font-bold text-lg text-foreground mb-3">
-                ⚖️ Perda de Peso Gradual e Sustentável
-              </h4>
-              <p className="text-muted-foreground">
-                Com doses crescentes e acompanhamento regular, a perda de peso ocorre de forma progressiva, 
-                preservando massa muscular e evitando o efeito rebote.
-              </p>
+            {/* Card 3 */}
+            <div className="relative group animate-fade-in" style={{ animationDelay: '300ms' }}>
+              {/* Número decorativo */}
+              <div className="absolute top-4 right-4 text-7xl font-bold bg-gradient-to-br from-primary/10 to-secondary/10 bg-clip-text text-transparent select-none pointer-events-none">
+                03
+              </div>
+
+              {/* Card premium */}
+              <div className="relative z-10 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm p-8 rounded-2xl border border-primary/20 shadow-elegant hover:shadow-hover hover:-translate-y-2 transition-all duration-500">
+                {/* Ícone com glow */}
+                <div className="relative w-16 h-16 mb-6">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-full blur-lg group-hover:blur-xl transition-all duration-500" />
+                  <div className="relative w-full h-full bg-card/80 backdrop-blur-sm border-2 border-primary/30 rounded-full flex items-center justify-center shadow-elegant group-hover:scale-110 transition-transform duration-500">
+                    <TrendingDown className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                  </div>
+                </div>
+
+                {/* Conteúdo */}
+                <h3 className="text-lg md:text-xl font-serif font-semibold text-foreground mb-4 group-hover:text-primary transition-colors">
+                  Perda de Peso Gradual e Sustentável
+                </h3>
+                <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+                  Com doses crescentes e acompanhamento regular, a perda de peso ocorre de forma progressiva, 
+                  preservando massa muscular e evitando o efeito rebote.
+                </p>
+              </div>
             </div>
 
-            <div className="bg-card p-6 rounded-xl shadow-sm">
-              <h4 className="font-serif font-bold text-lg text-foreground mb-3">
-                🔬 Melhora Metabólica
-              </h4>
-              <p className="text-muted-foreground">
-                Além do peso, observamos melhora em marcadores como glicemia, hemoglobina glicada, 
-                triglicerídeos e pressão arterial.
-              </p>
+            {/* Card 4 */}
+            <div className="relative group animate-fade-in" style={{ animationDelay: '450ms' }}>
+              {/* Número decorativo */}
+              <div className="absolute top-4 right-4 text-7xl font-bold bg-gradient-to-br from-primary/10 to-secondary/10 bg-clip-text text-transparent select-none pointer-events-none">
+                04
+              </div>
+
+              {/* Card premium */}
+              <div className="relative z-10 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm p-8 rounded-2xl border border-primary/20 shadow-elegant hover:shadow-hover hover:-translate-y-2 transition-all duration-500">
+                {/* Ícone com glow */}
+                <div className="relative w-16 h-16 mb-6">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-full blur-lg group-hover:blur-xl transition-all duration-500" />
+                  <div className="relative w-full h-full bg-card/80 backdrop-blur-sm border-2 border-primary/30 rounded-full flex items-center justify-center shadow-elegant group-hover:scale-110 transition-transform duration-500">
+                    <HeartPulse className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                  </div>
+                </div>
+
+                {/* Conteúdo */}
+                <h3 className="text-lg md:text-xl font-serif font-semibold text-foreground mb-4 group-hover:text-primary transition-colors">
+                  Melhora Metabólica
+                </h3>
+                <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+                  Além do peso, observamos melhora em marcadores como glicemia, hemoglobina glicada, 
+                  triglicerídeos e pressão arterial.
+                </p>
+              </div>
             </div>
           </div>
         </div>
