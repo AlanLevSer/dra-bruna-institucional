@@ -255,23 +255,23 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
   };
 
   return (
-    <section className="relative py-16 bg-muted/30 overflow-hidden">
+    <section className="relative py-20 xl:py-28 bg-muted/30 overflow-hidden">
       <GrafismoDecor variant="floating" position="top-right" size="lg" opacity={0.15} rotate={25} color="gray" />
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className="text-center mb-10">
-          <Badge variant="outline" className="mb-3">
+        <div className="text-center mb-12 xl:mb-16">
+          <Badge variant="outline" className="mb-3 text-xs px-3 py-1">
             <Calculator className="w-3 h-3 mr-1" />
             Reflexão Financeira
           </Badge>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-foreground mb-3">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-serif font-bold text-foreground mb-3">
             Vamos Refletir: Seu Investimento Está Funcionando?
           </h2>
-          <p className="text-base text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-sm lg:text-base text-muted-foreground max-w-3xl mx-auto">
             Não vou prometer economia. Vou te mostrar a diferença entre gastar disperso e investir integrado.
           </p>
-          <p className="text-sm text-muted-foreground max-w-3xl mx-auto mt-3">
+          <p className="text-xs lg:text-sm text-muted-foreground max-w-3xl mx-auto mt-3">
             Você investe em saúde — isso é admirável. Mas quando esse investimento está fragmentado 
             (nutricionista isolada, personal separado, suplementos sem prescrição integrada), os resultados 
             raramente duram. Vamos fazer uma reflexão honesta juntos(as)?
@@ -279,7 +279,7 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
         </div>
 
         {/* Layout: Formulário + Cartão */}
-        <div className="flex flex-col lg:flex-row gap-5 lg:gap-6 max-w-6xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 max-w-7xl mx-auto">
           {/* Coluna Esquerda: Formulário */}
           <div className="w-full lg:w-1/2">
             <Card className="border-primary/20 bg-card shadow-lg">

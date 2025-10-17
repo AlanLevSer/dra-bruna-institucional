@@ -43,11 +43,11 @@ const faqs = [
 
 export const FAQ = () => {
   return (
-    <section id="faq" className="relative py-10 xl:py-12 bg-card overflow-hidden">
+    <section id="faq" className="relative py-16 xl:py-20 bg-card overflow-hidden">
       <GrafismoDecor variant="background" position="top-left" size="lg" opacity={0.15} rotate={25} color="gray" />
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-6 animate-fade-in">
-          <h2 className="text-2xl md:text-3xl xl:text-4xl font-serif font-bold text-foreground mb-5">
+        <div className="text-center max-w-4xl mx-auto mb-12 animate-fade-in">
+          <h2 className="text-xl md:text-2xl xl:text-3xl font-serif font-bold text-foreground mb-5">
             Perguntas Frequentes
           </h2>
           
@@ -56,18 +56,18 @@ export const FAQ = () => {
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: "0.1s" }}>
-          <Accordion type="single" collapsible className="space-y-3">
+        <div className="max-w-4xl mx-auto animate-fade-in" style={{ animationDelay: "0.1s" }}>
+          <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-muted/30 rounded-lg px-5 border-none"
+                className="bg-muted/30 rounded-lg px-5 lg:px-6 border-none"
               >
-                <AccordionTrigger className="text-left text-sm md:text-base font-semibold text-foreground hover:text-primary">
+                <AccordionTrigger className="text-left text-sm md:text-base font-semibold text-foreground hover:text-primary py-4">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+                <AccordionContent className="text-xs md:text-sm text-muted-foreground leading-relaxed pb-4">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

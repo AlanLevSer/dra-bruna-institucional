@@ -7,9 +7,16 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "1.5rem",
+      padding: {
+        DEFAULT: '2rem',
+        sm: '2.5rem',
+        md: '3rem',
+        lg: '4rem',
+        xl: '5rem',
+        '2xl': '6rem',
+      },
       screens: {
-        "2xl": "1400px",
+        "2xl": "1600px",
       },
     },
     extend: {
@@ -17,6 +24,7 @@ export default {
         '18': '4.5rem',
         '22': '5.5rem',
         '30': '7.5rem',
+        '36': '9rem',
       },
       fontFamily: {
         serif: ['Crimson Text', 'Georgia', 'Times New Roman', 'serif'],

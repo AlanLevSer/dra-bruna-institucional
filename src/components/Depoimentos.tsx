@@ -25,15 +25,15 @@ const testimonials = [
 
 export const Depoimentos = () => {
   return (
-    <section id="depoimentos" className="relative py-8 xl:py-10 bg-muted/30 overflow-hidden">
+    <section id="depoimentos" className="relative py-16 xl:py-20 bg-muted/30 overflow-hidden">
       <GrafismoDecor variant="background" position="top-right" size="lg" opacity={0.18} rotate={-20} color="gray" />
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-6 xl:mb-8 animate-fade-in">
-          <div className="inline-block px-3.5 py-1.5 bg-primary/10 rounded-full mb-3">
-            <span className="text-xs font-medium text-primary">Histórias Reais</span>
+        <div className="text-center max-w-4xl mx-auto mb-12 xl:mb-16 animate-fade-in">
+          <div className="inline-block px-3 py-1 bg-primary/10 rounded-full mb-3">
+            <span className="text-[11px] font-medium text-primary">Histórias Reais</span>
           </div>
           
-          <h2 className="text-2xl md:text-3xl xl:text-4xl font-serif font-bold text-foreground mb-4">
+          <h2 className="text-xl md:text-2xl xl:text-3xl font-serif font-bold text-foreground mb-4">
             O que dizem nossos pacientes
           </h2>
           
@@ -43,17 +43,17 @@ export const Depoimentos = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-5 xl:gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 xl:gap-12 max-w-6xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <Card
               key={index}
               className="hover:shadow-hover hover:-translate-y-1 transition-all duration-300 border-border/50 animate-fade-in group"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <CardContent className="pt-4 px-4 pb-4">
+              <CardContent className="pt-6 px-6 pb-6">
                 <div className="flex gap-0.5 mb-3">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="fill-accent text-accent group-hover:scale-110 transition-transform" size={16} />
+                    <Star key={i} className="fill-accent text-accent group-hover:scale-110 transition-transform" size={14} />
                   ))}
                 </div>
                 
@@ -70,11 +70,11 @@ export const Depoimentos = () => {
           ))}
         </div>
 
-        <div className="text-center mt-10 animate-fade-in" style={{ animationDelay: "0.3s" }}>
+        <div className="text-center mt-12 animate-fade-in" style={{ animationDelay: "0.3s" }}>
           <div className="inline-flex items-center gap-2 bg-card px-5 py-3 rounded-full shadow-elegant">
-            <Star className="fill-accent text-accent" size={20} />
+            <Star className="fill-accent text-accent" size={18} />
             <div className="text-left">
-              <p className="text-xl font-serif font-bold text-foreground">4.9/5.0</p>
+              <p className="text-lg font-serif font-bold text-foreground">4.9/5.0</p>
               <p className="text-xs text-muted-foreground">Avaliação média dos pacientes</p>
             </div>
           </div>
