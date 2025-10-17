@@ -113,7 +113,7 @@ function generateRoadmap(data: QuizData) {
         ? [
             "Plano de manutenção individualizado com gatilhos mapeados",
             "Check-ins quinzenais nos primeiros 3 meses pós-alta",
-            "Protocolo de emergência para momentos de risco",
+            "Programa de emergência para momentos de risco",
             "Comunidade de suporte e accountability"
           ]
         : [

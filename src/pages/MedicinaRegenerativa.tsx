@@ -50,7 +50,7 @@ const MedicinaRegenerativa = () => {
     "description": "Abordagem avançada para otimização metabólica, energia celular e saúde integral além da perda de peso",
     "availableService": {
       "@type": "MedicalProcedure",
-      "name": "Protocolos Regenerativos Metabólicos"
+      "name": "Programas Regenerativos Metabólicos"
     },
     "provider": {
       "@type": "Physician",
@@ -71,7 +71,7 @@ const MedicinaRegenerativa = () => {
             subtitle="O Futuro da Saúde Metabólica"
             description="Transforme não apenas seu peso, mas a qualidade de cada célula do seu corpo. Mais energia, menos inflamação, resultados que você sente — e que ficam."
             image={patientConfident}
-            ctaText="Descobrir meu protocolo regenerativo"
+            ctaText="Descobrir meu programa regenerativo"
             onCtaClick={handleWhatsApp}
           />
 
@@ -137,7 +137,7 @@ const MedicinaRegenerativa = () => {
                 </div>
                 <h3 className="text-xl font-serif font-bold text-foreground mb-3">3. Preservação Muscular</h3>
                 <ul className="space-y-2 text-muted-foreground">
-                  <li>• Protocolos para manter massa magra durante perda de gordura</li>
+                  <li>• Programas para manter massa magra durante perda de gordura</li>
                   <li>• Recuperação tecidual (pele, cabelo, elasticidade)</li>
                   <li>• Suporte de composição corporal, não apenas peso</li>
                 </ul>
@@ -171,15 +171,15 @@ const MedicinaRegenerativa = () => {
 
           <ComparadorRegenerativa />
 
-          <TreatmentSection title="O que pode incluir nos protocolos?" variant="muted">
+          <TreatmentSection title="O que pode incluir nos programas?" variant="muted">
             <p className="mb-6">
-              Cada protocolo é <strong>individualizado conforme avaliação clínica e exames laboratoriais</strong>. 
+              Cada programa é <strong>individualizado conforme avaliação clínica e exames laboratoriais</strong>. 
               Não há "pacote pronto" — montamos estratégias personalizadas para seus objetivos e necessidades.
             </p>
             
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h3 className="text-lg font-serif font-bold text-foreground mb-3">Protocolos Nutricionais</h3>
+                <h3 className="text-lg font-serif font-bold text-foreground mb-3">Programas Nutricionais</h3>
                 <ul className="space-y-2 text-muted-foreground list-disc list-inside">
                   <li>IVs metabólicos (energia, foco, imunidade)</li>
                   <li>Repleção de vitaminas, minerais e antioxidantes</li>
@@ -193,7 +193,7 @@ const MedicinaRegenerativa = () => {
                 <ul className="space-y-2 text-muted-foreground list-disc list-inside">
                   <li>Otimização de sono, humor e estresse</li>
                   <li>Controle de apetite e compulsões</li>
-                  <li>Protocolos de preservação muscular</li>
+                  <li>Programas de preservação muscular</li>
                   <li>Estratégias de recuperação e performance</li>
                 </ul>
               </div>
@@ -201,7 +201,7 @@ const MedicinaRegenerativa = () => {
 
             <div className="mt-8 bg-primary/5 border-l-4 border-primary rounded-lg p-6">
               <p className="text-sm text-muted-foreground">
-                <strong className="text-foreground">Nota clínica:</strong> Todos os protocolos são baseados 
+                <strong className="text-foreground">Nota clínica:</strong> Todos os programas são baseados 
                 em evidências científicas, personalizados por exames e acompanhados continuamente pela equipe médica. 
                 Segurança e resultados sustentáveis são prioridades absolutas.
               </p>
@@ -221,9 +221,9 @@ const MedicinaRegenerativa = () => {
             
             <div className="space-y-4">
               <div className="bg-card rounded-lg p-5 border border-border/50">
-                <h3 className="font-serif font-bold text-foreground mb-2">Fase 2 — Reset & Ritmo</h3>
+              <h3 className="font-serif font-bold text-foreground mb-2">Fase 2 — Reset & Ritmo</h3>
                 <p className="text-sm text-muted-foreground">
-                  Introduzimos protocolos regenerativos para reduzir inflamação, otimizar saciedade e 
+                  Introduzimos programas regenerativos para reduzir inflamação, otimizar saciedade e 
                   estabilizar energia durante o reset inicial.
                 </p>
               </div>
@@ -239,7 +239,7 @@ const MedicinaRegenerativa = () => {
               <div className="bg-card rounded-lg p-5 border border-border/50">
                 <h3 className="font-serif font-bold text-foreground mb-2">Fase 4 — Manutenção & Estilo de Vida</h3>
                 <p className="text-sm text-muted-foreground">
-                  Ciclos leves de protocolos regenerativos (trimestrais/semestrais) para manter disposição, 
+                  Ciclos leves de programas regenerativos (trimestrais/semestrais) para manter disposição, 
                   estabilidade de peso e marcadores otimizados.
                 </p>
               </div>
@@ -255,7 +255,7 @@ const MedicinaRegenerativa = () => {
           </TreatmentSection>
 
           <CTASection
-            title="Pronto para descobrir seu protocolo regenerativo?"
+            title="Pronto para descobrir seu programa regenerativo?"
             description="Agende uma avaliação personalizada e descubra como a Medicina Regenerativa pode transformar sua saúde além da balança."
             buttonText="Agendar Avaliação"
             onButtonClick={handleWhatsApp}

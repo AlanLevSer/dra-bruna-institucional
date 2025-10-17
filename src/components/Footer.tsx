@@ -88,7 +88,7 @@ export const Footer = () => {
               </span>
               <span className="block">
                 <strong>Decisão compartilhada; segurança em primeiro lugar.</strong> 
-                Você participa ativamente da escolha do melhor protocolo para seu caso.
+                Você participa ativamente da escolha do melhor programa para seu caso.
               </span>
               <span className="block mt-2">
                 Procedimentos médicos possuem riscos e contraindicações que serão 

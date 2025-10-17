@@ -21,7 +21,7 @@ const dados: ItemComparacao[] = [
   {
     aspecto: "Preservação Muscular",
     semRegenerativa: "Perda de massa magra junto com gordura",
-    comRegenerativa: "Protocolos para manter força e músculo"
+    comRegenerativa: "Programas para manter força e músculo"
   },
   {
     aspecto: "Pele & Cabelo",
@@ -114,7 +114,7 @@ export const ComparadorRegenerativa = () => {
         <div className="mt-12 bg-accent/10 border-l-4 border-accent rounded-lg p-6 max-w-4xl mx-auto">
           <p className="text-sm text-muted-foreground">
             <strong className="text-foreground">Nota importante:</strong> Os resultados variam conforme 
-            histórico clínico, adesão ao protocolo e exames de acompanhamento. Todos os protocolos são 
+            histórico clínico, adesão ao programa e exames de acompanhamento. Todos os programas são 
             individualizados e acompanhados pela equipe médica.
           </p>
         </div>

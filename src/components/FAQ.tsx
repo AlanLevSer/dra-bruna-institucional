@@ -33,10 +33,10 @@ const faqs = [
   },
   {
     question: "Medicina regenerativa é segura?",
-    answer: "Sim. Nossos protocolos regenerativos são baseados em evidências científicas e sempre personalizados por exames laboratoriais completos. Todo acompanhamento é feito pela equipe médica, com foco em segurança e resultados sustentáveis.",
+    answer: "Sim. Nossos programas regenerativos são baseados em evidências científicas e sempre personalizados por exames laboratoriais completos. Todo acompanhamento é feito pela equipe médica, com foco em segurança e resultados sustentáveis.",
   },
   {
-    question: "Vou precisar de protocolos regenerativos para sempre?",
+    question: "Vou precisar de programas regenerativos para sempre?",
     answer: "Não. Usamos de forma estratégica por fases: mais intensivo no reset inicial, refinado na consolidação e pulsos de manutenção conforme sua evolução. O objetivo é que seu corpo recupere autonomia metabólica ao longo do programa.",
   },
 ];

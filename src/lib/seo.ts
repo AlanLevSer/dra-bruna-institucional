@@ -58,7 +58,7 @@ export const pageSEO: Record<string, SEOData> = {
   },
   medicinaRegenerativa: {
     title: "Medicina Regenerativa | Saúde Metabólica Avançada - Dra. Bruna Durelli",
-    description: "Abordagem avançada para saúde metabólica: mais energia, menos inflamação, preservação muscular. Protocolos individualizados com base em exames.",
+    description: "Abordagem avançada para saúde metabólica: mais energia, menos inflamação, preservação muscular. Programas individualizados com base em exames.",
     keywords: "medicina regenerativa, saúde metabólica, nutrição celular, otimização hormonal, preservação muscular, fadiga crônica, menopausa, pós-bariátrica, performance atlética",
     canonical: "https://drabrunadurelli.com/medicina-regenerativa"
   },

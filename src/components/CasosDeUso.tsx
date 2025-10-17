@@ -22,7 +22,7 @@ export const CasosDeUso = ({ casos }: CasosDeUsoProps) => {
           Casos de Uso Específicos
         </h2>
         <p className="text-lg text-muted-foreground mb-12 max-w-3xl mx-auto text-center">
-          Protocolos personalizados para diferentes perfis e necessidades
+          Programas personalizados para diferentes perfis e necessidades
         </p>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -79,7 +79,7 @@ export const casosDeUsoRegenerativa: CasoDeUso[] = [
     icon: Flame,
     titulo: "Menopausa & Climatério",
     problema: "Ganho de peso, fadiga, resistência metabólica, queda de massa magra",
-    solucao: "Protocolos regenerativos para modular inflamação, preservar músculo e otimizar energia",
+    solucao: "Programas regenerativos para modular inflamação, preservar músculo e otimizar energia",
     beneficios: [
       "Controle de peso facilitado",
       "Mais disposição e foco",
@@ -103,7 +103,7 @@ export const casosDeUsoRegenerativa: CasoDeUso[] = [
     icon: Trophy,
     titulo: "Atletas & Performance",
     problema: "Dificuldade de reduzir gordura sem perder performance ou massa magra",
-    solucao: "Protocolos de composição corporal + recuperação acelerada + energia limpa",
+    solucao: "Programas de composição corporal + recuperação acelerada + energia limpa",
     beneficios: [
       "Manutenção de força",
       "Recuperação mais rápida",

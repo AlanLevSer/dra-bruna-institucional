@@ -97,7 +97,7 @@ const BalaoIntragastrico = () => {
             <li className="flex items-start gap-3">
               <span className="text-primary text-xl">✓</span>
               <span className="text-muted-foreground">
-                <strong>Protocolo de manutenção pós-balão</strong> para o peso não voltar
+                <strong>Programa de manutenção pós-balão</strong> para o peso não voltar
               </span>
             </li>
             <li className="flex items-start gap-3">

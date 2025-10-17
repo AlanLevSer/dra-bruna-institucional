@@ -44,11 +44,11 @@ const pilares = [
     icon: Activity,
     title: "Saúde Metabólica & Regenerativa",
     subtitle: "Regule hormônios, inflamação e energia celular para um corpo que responde",
-    features: [
-      "Otimização de insulina, glicemia e marcadores inflamatórios",
-      "Nutrição celular para mitocôndrias 'eficientes'",
-      "Protocolos regenerativos para preservar massa magra e queimar gordura"
-    ]
+      features: [
+        "Otimização de insulina, glicemia e marcadores inflamatórios",
+        "Nutrição celular para mitocôndrias 'eficientes'",
+        "Programas regenerativos para preservar massa magra e queimar gordura"
+      ]
   },
   {
     icon: Dumbbell,
@@ -119,12 +119,12 @@ const fases = [
     titulo: "Manutenção & Estilo de Vida",
     duracao: "12+ meses",
     objetivo: "Não 'terminar', e sim sustentar",
-    entregas: [
-      "Calendário de checkpoints trimestrais",
-      "Ciclos leves de protocolos regenerativos (trimestrais/semestrais)",
-      "Plano de recaída",
-      "Ajustes finos contínuos"
-    ],
+      entregas: [
+        "Calendário de checkpoints trimestrais",
+        "Ciclos leves de programas regenerativos (trimestrais/semestrais)",
+        "Plano de recaída",
+        "Ajustes finos contínuos"
+      ],
     sinais: "Peso estável, bem-estar e confiança no longo prazo"
   }
 ];

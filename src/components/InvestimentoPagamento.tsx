@@ -11,7 +11,7 @@ const beneficios = [{
 }, {
   icon: ShieldCheck,
   title: "Sem Custos Ocultos",
-  description: "Todos os exames e protocolos inclusos. Sem surpresas no meio do caminho. Garantia de transparência total em cada etapa"
+  description: "Todos os exames e programas inclusos. Sem surpresas no meio do caminho. Garantia de transparência total em cada etapa"
 }, {
   icon: TrendingUp,
   title: "Resultados Sustentáveis",
@@ -149,7 +149,7 @@ export const InvestimentoPagamento = () => {
                   E os resultados? Quantos duram mais de 6 meses?
                 </p>
                 <p className="text-sm text-foreground text-center mt-4 leading-relaxed">
-                  Investir em saúde de verdade significa ter uma equipe, protocolo científico e acompanhamento constante.
+                  Investir em saúde de verdade significa ter uma equipe, programa científico e acompanhamento constante.
                 </p>
               </div>
             </CardContent>
@@ -218,7 +218,7 @@ export const InvestimentoPagamento = () => {
             <CardContent className="p-6">
               <p className="text-sm text-muted-foreground text-center leading-relaxed">
                 <strong>Valores Personalizados:</strong> Os valores são individualizados de acordo com seu caso clínico, 
-                exames necessários e protocolo escolhido. Na consulta de avaliação, você recebe um plano financeiro 
+                exames necessários e programa escolhido. Na consulta de avaliação, você recebe um plano financeiro 
                 completo e transparente.
               </p>
             </CardContent>

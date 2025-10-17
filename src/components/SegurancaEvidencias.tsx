@@ -12,7 +12,7 @@ const pilares = [{
   items: ["Médicos com título de especialista (SBEM, SBCBM)", "Nutricionistas, psicólogos e educadores físicos", "Anestesistas exclusivos para obesidade", "Enfermagem treinada em bariatria"]
 }, {
   icon: FileCheck,
-  title: "Protocolos Internacionais",
+  title: "Programas Internacionais",
   items: ["Baseados em guidelines da IFSO", "Estudos multicêntricos validados", "Atualização contínua com literatura científica", "Personalização conforme perfil metabólico"]
 }, {
   icon: Activity,
@@ -57,7 +57,7 @@ export const SegurancaEvidencias = () => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-4">
             Segurança & Evidências Científicas
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">Protocolos baseados em pesquisas, adaptados à sua realidade. Sua segurança é nossa prioridade absoluta. Trabalho com protocolos internacionais, equipe certificada e infraestrutura de ponta para garantir resultados sem comprometer seu bem-estar.</p>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">Programas baseados em pesquisas, adaptados à sua realidade. Sua segurança é nossa prioridade absoluta. Trabalho com programas internacionais, equipe certificada e infraestrutura de ponta para garantir resultados sem comprometer seu bem-estar.</p>
         </div>
 
         {/* 4 Pilares de Segurança */}
@@ -101,7 +101,7 @@ export const SegurancaEvidencias = () => {
                   </div>)}
               </div>
               <p className="text-xs text-muted-foreground text-center mt-6 italic">
-                *Resultados variam conforme perfil, adesão e protocolo.
+                *Resultados variam conforme perfil, adesão e programa.
               </p>
             </CardContent>
           </Card>
@@ -135,7 +135,7 @@ export const SegurancaEvidencias = () => {
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-start gap-2">
                       <span className="text-amber-600 dark:text-amber-500">•</span>
-                      <span>Resultados variam conforme avaliação clínica e adesão ao protocolo</span>
+                      <span>Resultados variam conforme avaliação clínica e adesão ao programa</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-amber-600 dark:text-amber-500">•</span>

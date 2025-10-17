@@ -111,7 +111,7 @@ const GastroplastiaEndoscopica = () => {
 
       <CTASection
         title="Por que fazer sua Gastroplastia na LevSer?"
-        description="Equipe especializada com + de 500 procedimentos realizados • Tecnologia de ponta com suturas absorvíveis • Acompanhamento integral: nutrição, psicologia e atividade física • Protocolo exclusivo de manutenção pós-procedimento • Taxa de complicação < 1% (uma das menores do Brasil)"
+        description="Equipe especializada com + de 500 procedimentos realizados • Tecnologia de ponta com suturas absorvíveis • Acompanhamento integral: nutrição, psicologia e atividade física • Programa exclusivo de manutenção pós-procedimento • Taxa de complicação < 1% (uma das menores do Brasil)"
       />
 
       <Footer />

@@ -71,7 +71,7 @@ export const CTAsFinais = ({ onResetQuiz }: CTAsFinaisProps) => {
         <div className="mt-12 p-6 rounded-lg bg-muted/30 border">
           <p className="text-center text-sm text-muted-foreground">
             📋 <strong>Próximos passos:</strong> Após a avaliação inicial, você receberá seu plano 
-            completo personalizado, com cronograma detalhado, protocolos específicos e acesso à 
+            completo personalizado, com cronograma detalhado, programas específicos e acesso à 
             Experiência Concierge.
           </p>
         </div>

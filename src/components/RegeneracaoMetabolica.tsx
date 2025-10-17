@@ -111,7 +111,7 @@ export const RegeneracaoMetabolica = () => {
         <div className="max-w-3xl mx-auto mb-8 animate-fade-in" style={{ animationDelay: "0.3s" }}>
           <div className="bg-accent/10 border-l-4 border-accent p-6 rounded-lg">
             <p className="text-sm text-muted-foreground">
-              <strong className="text-foreground">⚠️ Nota clínica:</strong> Protocolos individualizados, 
+              <strong className="text-foreground">⚠️ Nota clínica:</strong> Programas individualizados, 
               baseados em exames e evidência científica. Acompanhamento médico contínuo. Segurança em primeiro lugar.
             </p>
           </div>
@@ -123,12 +123,12 @@ export const RegeneracaoMetabolica = () => {
             size="lg"
             onClick={() => {
               const phone = "5511997023024";
-              const message = "Olá, Dra. Bruna! Quero descobrir meu protocolo regenerativo personalizado.";
+              const message = "Olá, Dra. Bruna! Quero descobrir meu programa regenerativo personalizado.";
               window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
             }}
             className="bg-gradient-premium hover:opacity-90 transition-opacity group"
           >
-            Descobrir meu protocolo regenerativo
+            Descobrir meu programa regenerativo
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Button>
           <Button
