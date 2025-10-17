@@ -107,7 +107,7 @@ export const Navigation = () => {
               e.preventDefault();
               scrollToSection("#inicio");
             }}
-            className="flex items-center shrink-0"
+            className="flex items-center shrink-0 lg:-ml-4"
           >
             <img 
               src={logoHeader}
