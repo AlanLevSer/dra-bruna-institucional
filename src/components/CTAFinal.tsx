@@ -18,7 +18,7 @@ export const CTAFinal = () => {
             a alcançar uma vida mais leve, saudável e plena na LevSer.
           </p>
           
-          <p className="text-sm opacity-80 italic">Decisão compartilhada, metodologia exclusivo, resultados sustentáveis</p>
+          <p className="text-sm opacity-80 italic">Decisão compartilhada, metodologia exclusiva, resultados sustentáveis</p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
             <Button size="lg" variant="secondary" className="shadow-elegant hover:shadow-hover transition-all" onClick={() => window.open('https://wa.me/5511997023024?text=Olá, Dra. Bruna! Gostaria de agendar uma consulta para conhecer o Programa LevSer.', '_blank')}>

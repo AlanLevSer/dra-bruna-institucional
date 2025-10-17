@@ -13,9 +13,11 @@ import {
   Stethoscope,
   Wind
 } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
+import { PlanoTransformacao } from "@/components/PlanoTransformacao";
 import programImage from "@/assets/patient-wellness-1.jpg";
 
 const benefits = [
@@ -147,6 +149,7 @@ const intervencoes = [
 
 export const ProgramaLevSer = () => {
   const navigate = useNavigate();
+  const [quizOpen, setQuizOpen] = useState(false);
 
   return (
     <section id="programa" className="relative py-10 xl:py-12 bg-muted/30 overflow-hidden">
@@ -295,7 +298,7 @@ export const ProgramaLevSer = () => {
             <Button
               size="lg"
               onClick={() => {
-                const phone = "5511999999999";
+                const phone = "5511997023024";
                 const message = "Olá! Quero conhecer meu plano personalizado pelos 4 pilares do Programa LevSer.";
                 window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
               }}
@@ -403,11 +406,7 @@ export const ProgramaLevSer = () => {
                           <Button
                             size="sm"
                             variant="outline"
-                            onClick={() => {
-                              const phone = "5511999999999";
-                              const message = "Olá! Quero descobrir meu melhor caminho de tratamento (60s).";
-                              window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
-                            }}
+                            onClick={() => setQuizOpen(true)}
                             className="w-full sm:w-auto"
                           >
                             Descobrir meu melhor caminho (60s)
@@ -425,7 +424,7 @@ export const ProgramaLevSer = () => {
             <Button
               size="lg"
               onClick={() => {
-                const phone = "5511999999999";
+                const phone = "5511997023024";
                 const message = "Olá! Quero seguir a jornada em 4 fases do Programa LevSer.";
                 window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
               }}
@@ -437,6 +436,8 @@ export const ProgramaLevSer = () => {
           </div>
         </div>
       </div>
+
+      <PlanoTransformacao open={quizOpen} onOpenChange={setQuizOpen} />
     </section>
   );
 };

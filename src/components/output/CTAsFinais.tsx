@@ -6,7 +6,7 @@ interface CTAsFinaisProps {
 }
 
 export const CTAsFinais = ({ onResetQuiz }: CTAsFinaisProps) => {
-  const whatsappNumber = "5511999999999";
+  const whatsappNumber = "5511997023024";
   const whatsappMessage = encodeURIComponent(
     "Olá! Acabei de receber meu Plano de Transformação Pessoal e gostaria de agendar uma avaliação."
   );
