@@ -58,3 +58,24 @@ export function observePerformance() {
     // Observer not supported
   }
 }
+
+// Custom event tracking
+export function trackEvent(eventName: string, params?: Record<string, any>) {
+  if (window.gtag) {
+    window.gtag('event', eventName, params);
+  }
+  
+  if (import.meta.env.DEV) {
+    console.log('📊 GA4 Event:', eventName, params);
+  }
+}
+
+// Helper: Bucket de valores para evitar PII
+export function getValueBucket(value: number): string {
+  if (value === 0) return '0';
+  if (value <= 500) return '1-500';
+  if (value <= 1000) return '501-1000';
+  if (value <= 2000) return '1001-2000';
+  if (value <= 3000) return '2001-3000';
+  return '3000+';
+}
