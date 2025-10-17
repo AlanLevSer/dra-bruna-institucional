@@ -100,25 +100,25 @@ export const Navigation = () => {
       }`}
     >
       <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between lg:justify-start lg:gap-8">
           <a
             href="#inicio"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("#inicio");
             }}
-            className="flex items-center"
+            className="flex items-center shrink-0"
           >
             <img 
               src={logoHeader}
               alt="Dra. Bruna Durelli - Especialista em Obesidade e Metabolismo"
-              className="h-12 md:h-16 lg:h-20 w-auto transition-opacity hover:opacity-90"
+              className="h-12 md:h-16 lg:h-20 w-auto transition-opacity hover:opacity-90 shrink-0"
               loading="eager"
             />
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8 ml-6 xl:ml-8">
             {navItems.map((item) =>
               item.type === "dropdown" ? (
                 <div
@@ -137,7 +137,7 @@ export const Navigation = () => {
                   }}
                 >
                   <button 
-                    className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-1 py-2"
+                    className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-1 py-2 whitespace-nowrap shrink-0"
                     aria-label={`Menu ${item.label}`}
                     aria-expanded={openDropdown === item.label}
                   >
@@ -177,7 +177,7 @@ export const Navigation = () => {
                     e.preventDefault();
                     scrollToSection(item.href);
                   }}
-                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors whitespace-nowrap shrink-0"
                 >
                   {item.label}
                 </a>
@@ -185,7 +185,7 @@ export const Navigation = () => {
             )}
             <Button
               onClick={() => scrollToSection("#agendar")}
-              className="bg-gradient-premium hover:opacity-90 transition-opacity"
+              className="bg-gradient-premium hover:opacity-90 transition-opacity whitespace-nowrap shrink-0"
             >
               Agende sua Avaliação
             </Button>
