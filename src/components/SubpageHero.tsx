@@ -16,7 +16,7 @@ export const SubpageHero = ({
   subtitle,
   description,
   image,
-  ctaText = "Agende sua Avaliação",
+  ctaText = "Agende sua Consulta",
   onCtaClick,
 }: SubpageHeroProps) => {
   return (

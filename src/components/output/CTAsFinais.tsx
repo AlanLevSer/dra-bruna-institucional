@@ -19,7 +19,7 @@ export const CTAsFinais = ({ onResetQuiz }: CTAsFinaisProps) => {
             Pronto para dar o primeiro passo?
           </h2>
           <p className="text-lg text-muted-foreground">
-            Agende sua avaliação inicial e comece sua transformação hoje mesmo
+            Agende sua consulta inicial e comece sua transformação hoje mesmo
           </p>
         </div>
         

@@ -12,7 +12,7 @@ interface CTASectionProps {
 export const CTASection = ({
   title,
   description,
-  buttonText = "Agende sua Avaliação",
+  buttonText = "Agende sua Consulta",
   onButtonClick,
 }: CTASectionProps) => {
   const scrollToSection = () => {

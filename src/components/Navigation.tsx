@@ -185,9 +185,9 @@ export const Navigation = () => {
             )}
             <Button
               onClick={() => scrollToSection("#agendar")}
-              className="bg-gradient-premium hover:opacity-90 transition-opacity whitespace-nowrap shrink-0 text-xs lg:text-sm px-2.5 lg:px-3 py-1.5"
+              className="bg-gradient-premium hover:opacity-90 transition-opacity shrink-0 text-xs lg:text-sm px-2.5 lg:px-3 py-1.5 whitespace-pre-line text-center leading-tight"
             >
-              Agende sua Avaliação
+              Agende sua{"\n"}Consulta
             </Button>
           </div>
 
@@ -266,7 +266,7 @@ export const Navigation = () => {
                 onClick={() => scrollToSection("#agendar")}
                 className="w-full bg-gradient-premium hover:opacity-90 transition-opacity"
               >
-                Agende sua Avaliação
+                Agende sua Consulta
               </Button>
             </div>
           </>
