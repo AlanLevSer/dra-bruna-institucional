@@ -81,21 +81,23 @@ export const Hero = () => {
             
             {/* CARD DESKTOP (Horizontal) */}
             <div className="absolute -bottom-6 -left-6 bg-card p-5 lg:p-6 rounded-xl shadow-elegant max-w-[420px] hidden lg:block animate-scale-in">
-              <p className="text-[11px] font-medium text-muted-foreground mb-2">
-                Vidas transformadas
-              </p>
-              
               <div className="flex items-start gap-4">
                 {/* Métrica 1: Pacientes */}
                 <div className="flex-1">
+                  <p className="text-[11px] font-medium text-muted-foreground mb-1">
+                    Vidas transformadas
+                  </p>
                   <AnimatedCounter end={3000} prefix="+" suffix=" pacientes" className="text-lg font-serif font-bold text-primary block" />
                 </div>
                 
                 {/* Divisor Vertical */}
-                <div className="w-px h-9 bg-border/50"></div>
+                <div className="w-px h-12 bg-border/50"></div>
                 
                 {/* Métrica 2: Kg Eliminados */}
                 <div className="flex-1">
+                  <p className="text-[11px] font-medium text-muted-foreground mb-1">
+                    Quilos eliminados
+                  </p>
                   <AnimatedCounter end={60000} prefix="+" suffix=" kg" className="text-lg font-serif font-bold text-primary block" />
                   <p className="text-[10px] text-muted-foreground mt-0.5 leading-tight">
                     E já se foram mais 15kg hoje! Você pode ser a próxima.
@@ -106,12 +108,11 @@ export const Hero = () => {
             
             {/* CARD MOBILE (Vertical) */}
             <div className="mt-5 mx-auto max-w-xs bg-card p-4 rounded-xl shadow-elegant block lg:hidden animate-scale-in">
-              <p className="text-[11px] font-medium text-muted-foreground mb-2 text-center">
-                Vidas transformadas
-              </p>
-              
               {/* Métrica 1: Pacientes */}
               <div className="text-center mb-2">
+                <p className="text-[11px] font-medium text-muted-foreground mb-1">
+                  Vidas transformadas
+                </p>
                 <AnimatedCounter end={3000} prefix="+" suffix=" pacientes" className="text-lg font-serif font-bold text-primary block" />
               </div>
               
@@ -120,6 +121,9 @@ export const Hero = () => {
               
               {/* Métrica 2: Kg Eliminados */}
               <div className="text-center">
+                <p className="text-[11px] font-medium text-muted-foreground mb-1">
+                  Quilos eliminados
+                </p>
                 <AnimatedCounter end={60000} prefix="+" suffix=" kg" className="text-lg font-serif font-bold text-primary block" />
                 <p className="text-[10px] text-muted-foreground mt-0.5 leading-tight">
                   E já se foram mais 15kg hoje! Você pode ser a próxima.
