@@ -40,14 +40,24 @@ const Index = () => {
           <Hero />
           <SobreDraBruna />
           <ProgramaLevSer />
-          <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div></div>}>
+          
+          {/* Critical content - load first */}
+          <Suspense fallback={<div className="min-h-[40vh] flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div></div>}>
             <ExperienciaConcierge />
             <JornadaTransformacao />
             <Procedimentos />
+          </Suspense>
+          
+          {/* Important content - load second */}
+          <Suspense fallback={<div className="min-h-[30vh] flex items-center justify-center"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary"></div></div>}>
             <Nutricao />
             <RegeneracaoMetabolica />
             <Diferenciais />
             <InvestimentoPagamento />
+          </Suspense>
+          
+          {/* Secondary content - load last */}
+          <Suspense fallback={<div className="min-h-[20vh] flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
             <ReconhecimentoMidia />
             <Depoimentos />
             <SegurancaEvidencias />

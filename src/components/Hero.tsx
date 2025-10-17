@@ -1,11 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { PlanoTransformacao } from "@/components/PlanoTransformacao";
 import heroImage from "@/assets/dra-bruna-professional.jpg";
+
 export const Hero = () => {
+  // Preload LCP image programmatically
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = heroImage;
+    link.fetchPriority = 'high';
+    document.head.appendChild(link);
+  }, []);
   const [quizOpen, setQuizOpen] = useState(false);
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
