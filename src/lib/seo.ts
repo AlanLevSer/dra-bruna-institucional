@@ -20,11 +20,11 @@ export const pageSEO: Record<string, SEOData> = {
     keywords: "dra bruna durelli, obesidade são paulo, levser, gastroplastia endoscópica, balão gástrico, medicina regenerativa, nutrologia são paulo, jardim paulista, tratamento obesidade",
     canonical: "https://drabrunadurelli.com/"
   },
-  terapiaSacietogena: {
-    title: "Terapia Sacietogênica | Medicamentos para Obesidade - Dra. Bruna Durelli",
-    description: "Tratamento com medicações sacietogênicas de última geração para controle da fome e perda de peso sustentável. Acompanhamento médico especializado.",
-    keywords: "terapia sacietogênica, medicamentos obesidade, ozempic, wegovy, saxenda, mounjaro, tratamento fome, perda de peso medicamentos",
-    canonical: "https://drabrunadurelli.com/terapia-sacietogena"
+  canetasEmagrecedoras: {
+    title: "Canetas Emagrecedoras SP | Mounjaro, Ozempic, Wegovy - Dra. Bruna Durelli",
+    description: "Tratamento com canetas emagrecedoras (Mounjaro, Ozempic, Wegovy, Saxenda) com prescrição e acompanhamento médico especializado. Controle de fome e emagrecimento sustentável em São Paulo.",
+    keywords: "canetas emagrecedoras, canetas emagrecedoras sp, mounjaro, ozempic, wegovy, saxenda, tirzepatida, semaglutida, liraglutida, medicamentos obesidade, tratamento fome, emagrecimento médico, endocrinologista obesidade são paulo",
+    canonical: "https://drabrunadurelli.com/canetas-emagrecedoras"
   },
   balaoIntragastrico: {
     title: "Balão Intragástrico | Emagrecimento sem Cirurgia - Dra. Bruna Durelli",

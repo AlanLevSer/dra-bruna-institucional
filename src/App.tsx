@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import { PerformanceMonitor } from "./components/dev/PerformanceMonitor";
 import Index from "./pages/Index";
@@ -10,7 +10,7 @@ import NotFound from "./pages/NotFound";
 import NutricaoCelular from "./pages/NutricaoCelular";
 import BalaoIntragastrico from "./pages/BalaoIntragastrico";
 import GastroplastiaEndoscopica from "./pages/GastroplastiaEndoscopica";
-import TerapiaSacietogena from "./pages/TerapiaSacietogena";
+import CanetasEmagrecedoras from "./pages/CanetasEmagrecedoras";
 import MedicinaRegenerativa from "./pages/MedicinaRegenerativa";
 import PlasmaArgonio from "./pages/PlasmaArgonio";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
@@ -52,7 +52,8 @@ const App = () => (
           <Route path="/balao-intragastrico" element={<BalaoIntragastrico />} />
           <Route path="/terapias-endoscopicas" element={<BalaoIntragastrico />} /> {/* Redirect antigo */}
           <Route path="/gastroplastia-endoscopica" element={<GastroplastiaEndoscopica />} />
-          <Route path="/terapia-sacietogena" element={<TerapiaSacietogena />} />
+          <Route path="/canetas-emagrecedoras" element={<CanetasEmagrecedoras />} />
+          <Route path="/terapia-sacietogena" element={<Navigate to="/canetas-emagrecedoras" replace />} />
           <Route path="/medicina-regenerativa" element={<MedicinaRegenerativa />} />
           <Route path="/plasma-argonio" element={<PlasmaArgonio />} />
           <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />

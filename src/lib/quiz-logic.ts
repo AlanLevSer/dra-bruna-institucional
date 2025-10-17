@@ -179,7 +179,7 @@ function generateMixEstrategias(data: QuizData) {
     if (data.invasividade === 'minima' && data.tempoRecuperacao === 'minimo') {
       intervencao = {
         tipo: 'injetaveis',
-        nome: 'Terapia Sacietogênica',
+        nome: 'Canetas Emagrecedoras',
         justificativa: "Para acelerar resultados com mínima invasividade e sem tempo de recuperação"
       };
     } else if (data.invasividade === 'moderada' || data.invasividade === 'nao_importa') {
@@ -200,8 +200,8 @@ function generateMixEstrategias(data: QuizData) {
   } else if (data.imc >= 27 && data.metaPeso >= 10) {
     intervencao = {
       tipo: 'injetaveis',
-      nome: 'Terapia Sacietogênica',
-      justificativa: "Terapia sacietogênica para controle de fome e estabilização do peso"
+      nome: 'Canetas Emagrecedoras',
+      justificativa: "Canetas emagrecedoras para controle de fome e estabilização do peso"
     };
   }
   

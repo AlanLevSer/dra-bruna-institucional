@@ -23,7 +23,7 @@ const navItems = [
     type: "dropdown",
     subItems: [
       { label: "Nutrição Celular", href: "/nutricao-celular" },
-      { label: "Terapia Sacietógena", href: "/terapia-sacietogena" },
+      { label: "Canetas Emagrecedoras", href: "/canetas-emagrecedoras" },
     ],
   },
   { label: "Diferenciais", href: "#diferenciais", type: "anchor" },

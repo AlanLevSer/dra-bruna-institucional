@@ -20,9 +20,9 @@ const pillars = [{
 const therapies = [
   {
     icon: Pill,
-    title: "Terapia Sacietógena",
+    title: "Canetas Emagrecedoras",
     description: "Medicações modernas e seguras para controle de peso, prescritas com acompanhamento rigoroso.",
-    link: "/terapia-sacietogena",
+    link: "/canetas-emagrecedoras",
     badge: "Mais procurada"
   },
   {
