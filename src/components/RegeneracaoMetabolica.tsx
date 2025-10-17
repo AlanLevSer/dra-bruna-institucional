@@ -1,6 +1,7 @@
 import { Sparkles, Battery, Shield, Zap, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
+import { useNavigate } from "react-router-dom";
 
 const beneficios = [
   {
@@ -26,6 +27,8 @@ const beneficios = [
 ];
 
 export const RegeneracaoMetabolica = () => {
+  const navigate = useNavigate();
+  
   return (
     <section id="regeneracao" className="relative py-12 xl:py-16 bg-card overflow-hidden">
       <GrafismoDecor variant="background" position="bottom-right" size="lg" opacity={0.15} rotate={-25} color="gray" />
@@ -134,7 +137,7 @@ export const RegeneracaoMetabolica = () => {
           <Button
             size="lg"
             variant="outline"
-            onClick={() => window.location.href = '/medicina-regenerativa'}
+            onClick={() => navigate('/medicina-regenerativa')}
             className="group"
           >
             Saiba mais sobre Medicina Regenerativa

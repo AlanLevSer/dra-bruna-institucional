@@ -52,6 +52,18 @@ const baloesOptions: BalaoOption[] = [
 ];
 
 export const ComparadorBaloes = () => {
+  const scrollToSection = () => {
+    const element = document.querySelector("#agendar");
+    if (element) {
+      const rootStyles = getComputedStyle(document.documentElement);
+      const headerVar = rootStyles.getPropertyValue('--header-height').trim();
+      const headerOffset = (parseInt(headerVar.replace('px','')) || 80) + 8;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="py-16 xl:py-20 bg-muted/30 relative overflow-hidden">
       <div className="container mx-auto px-4">
@@ -126,6 +138,7 @@ export const ComparadorBaloes = () => {
               <Button 
                 variant={balao.destaque ? "default" : "outline"} 
                 className="w-full group"
+                onClick={scrollToSection}
               >
                 Saiba mais
                 <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
@@ -138,7 +151,7 @@ export const ComparadorBaloes = () => {
           <p className="text-muted-foreground mb-4">
             Não sabe qual escolher? Nossa equipe te ajuda a decidir na consulta de avaliação
           </p>
-          <Button size="lg" className="group">
+          <Button size="lg" className="group" onClick={scrollToSection}>
             Agendar Avaliação
             <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
           </Button>
