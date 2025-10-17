@@ -1,5 +1,6 @@
 import { CheckCircle2 } from "lucide-react";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
+import { OptimizedImage } from "@/components/OptimizedImage";
 import draImage from "@/assets/dra-bruna-professional.jpg";
 export const SobreDraBruna = () => {
   return <section id="sobre" className="py-12 xl:py-16 bg-muted/30 relative overflow-hidden">
@@ -10,13 +11,12 @@ export const SobreDraBruna = () => {
           {/* Coluna 1: Foto Profissional */}
           <div className="relative animate-fade-in">
             <div className="relative rounded-2xl overflow-hidden shadow-elegant max-w-md mx-auto lg:mx-0">
-              <img 
+              <OptimizedImage 
                 src={draImage} 
                 alt="Dra. Bruna Durelli - Especialista em Obesidade" 
                 className="w-full h-auto object-cover"
-                width="400"
-                height="600"
-                loading="lazy"
+                width={400}
+                height={600}
               />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-primary p-6 rounded-xl shadow-elegant max-w-xs">

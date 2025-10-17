@@ -4,6 +4,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { PlanoTransformacao } from "@/components/PlanoTransformacao";
+import { OptimizedImage } from "@/components/OptimizedImage";
 import heroImage from "@/assets/dra-bruna-professional.jpg";
 
 export const Hero = () => {
@@ -68,14 +69,13 @@ export const Hero = () => {
           animationDelay: "0.2s"
         }}>
             <div className="relative rounded-2xl overflow-hidden shadow-hover max-w-xs xl:max-w-sm mx-auto lg:mx-0">
-              <img 
+              <OptimizedImage 
                 src={heroImage} 
                 alt="Dra. Bruna Durelli - Especialista em Obesidade" 
                 className="w-full h-auto object-cover" 
-                width="400" 
-                height="600"
-                fetchPriority="high"
-                loading="eager"
+                width={400} 
+                height={600}
+                priority={true}
               />
             </div>
             

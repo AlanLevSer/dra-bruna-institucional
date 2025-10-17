@@ -1,5 +1,6 @@
 import { Heart, Sparkles, TrendingUp, Star } from "lucide-react";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
+import { OptimizedImage } from "@/components/OptimizedImage";
 import transformationBeginning from "@/assets/transformation-beginning.jpg";
 import transformationSelfcare from "@/assets/transformation-selfcare.jpg";
 import transformationJoy from "@/assets/transformation-joy.jpg";
@@ -51,7 +52,13 @@ export const JornadaTransformacao = () => {
           }}>
                 <div className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border/50 hover:shadow-elegant transition-all duration-300">
                   <div className="relative h-48 xl:h-52 overflow-hidden">
-                    <img src={step.image} alt={step.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <OptimizedImage 
+                      src={step.image} 
+                      alt={step.title} 
+                      width={600} 
+                      height={400} 
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
                     
                     <div className="absolute bottom-6 left-6 right-6">
