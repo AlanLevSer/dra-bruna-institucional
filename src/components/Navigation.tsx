@@ -211,7 +211,7 @@ export const Navigation = () => {
               onClick={() => setIsMobileMenuOpen(false)}
               aria-hidden="true"
             />
-            <div id="mobile-menu" className="lg:hidden mt-4 p-4 pb-6 space-y-4 rounded-xl border border-border bg-card shadow-hover animate-fade-in relative z-50">
+            <div id="mobile-menu" className="lg:hidden mt-4 p-4 pb-6 space-y-4 rounded-xl border border-border bg-card shadow-hover animate-fade-in relative z-50 text-left">
               {navItems.map((item) =>
                 item.type === "dropdown" ? (
                   <div key={item.label} className="space-y-2">
@@ -221,13 +221,13 @@ export const Navigation = () => {
                           openDropdown === item.label ? null : item.label
                         )
                       }
-                      className="w-full flex items-center justify-start gap-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                      className="w-full flex items-center justify-start gap-2 text-left text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
                       aria-label={`Menu ${item.label}`}
                       aria-expanded={openDropdown === item.label}
                     >
                       {item.label}
                       <ChevronDown
-                        className={`w-4 h-4 transition-transform ${
+                        className={`w-4 h-4 shrink-0 transition-transform ${
                           openDropdown === item.label ? "rotate-180" : ""
                         }`}
                         aria-hidden="true"
@@ -256,7 +256,7 @@ export const Navigation = () => {
                       e.preventDefault();
                       scrollToSection(item.href);
                     }}
-                    className="block text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                    className="block text-left text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
                   >
                     {item.label}
                   </a>
