@@ -5,23 +5,23 @@ import draImage from "@/assets/dra-bruna-profile.jpg";
 const differentials = [
   {
     icon: Award,
-    title: "Excelência Médica",
-    description: "Formação especializada e atualização constante nas melhores práticas internacionais.",
+    title: "Excelência Médica Comprovada",
+    description: "Mais de 3.000 pacientes transformados + formação nas melhores instituições do país. Segurança e credibilidade são minhas prioridades.",
   },
   {
     icon: Users,
     title: "Atendimento Humanizado",
-    description: "Cada paciente é único. Tratamento personalizado sem julgamentos.",
+    description: "Vou respeitar seu ritmo, sempre. Cada pessoa é única, e aqui você não será julgada — só acolhida.",
   },
   {
     icon: Clock,
     title: "Disponibilidade Premium",
-    description: "Consultas sem pressa e canal direto para dúvidas durante o tratamento.",
+    description: "Consultas sem pressa. Posso ajudar? Canal direto comigo para dúvidas sempre que precisar.",
   },
   {
     icon: Shield,
     title: "Compromisso com Resultados",
-    description: "Acompanhamento próximo e ajustes contínuos até você alcançar seus objetivos.",
+    description: "Vou acompanhar você de perto, fazendo ajustes sempre que necessário. Sua jornada é minha prioridade.",
   },
 ];
 
@@ -38,12 +38,12 @@ export const Diferenciais = () => {
               </div>
               
               <h2 className="text-4xl lg:text-5xl font-serif font-bold text-foreground mb-6">
-                Diferenciais Premium
+                Por Que Você Pode Confiar em Mim
               </h2>
               
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Meu cuidado vai além do consultório. Comigo, você encontra 
-                expertise médica aliada ao acolhimento que você merece.
+                ciência de verdade + o acolhimento que você sempre mereceu. Vou te ajudar a emagrecer sem sofrimento.
               </p>
             </div>
 

@@ -1,6 +1,7 @@
 import { Users, Phone, Calendar, Award, ClipboardList, Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
+
 const pillars = [{
   icon: ClipboardList,
   title: "Coordenação 360°",
@@ -8,7 +9,7 @@ const pillars = [{
 }, {
   icon: Phone,
   title: "Canal Direto",
-  description: "Acesso facilitado à equipe médica para dúvidas e ajustes"
+  description: "Posso ajudar? Acesso direto a mim e à equipe para dúvidas e ajustes sempre que precisar"
 }, {
   icon: Calendar,
   title: "Atendimento Prioritário",
@@ -26,6 +27,7 @@ const pillars = [{
   title: "Programa Sob Medida",
   description: "16, 24 ou 48 semanas conforme seu perfil metabólico e necessidades"
 }];
+
 export const ExperienciaConcierge = () => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -41,7 +43,9 @@ export const ExperienciaConcierge = () => {
       });
     }
   };
-  return <section id="experiencia-concierge" className="relative py-12 xl:py-16 bg-card overflow-hidden">
+
+  return (
+    <section id="experiencia-concierge" className="relative py-12 xl:py-16 bg-card overflow-hidden">
       <GrafismoDecor variant="background" position="bottom-right" size="lg" opacity={0.12} rotate={-20} color="gray" />
       
       <div className="container mx-auto px-4 relative z-10">
@@ -51,20 +55,23 @@ export const ExperienciaConcierge = () => {
           </div>
           
           <h2 className="text-3xl md:text-4xl xl:text-5xl font-serif font-bold text-foreground mb-6">
-            Você no Centro do Cuidado
+            Você no Centro do Cuidado (Como Merece)
           </h2>
           
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-            Coordenação completa, tempo respeitado, resultados sustentáveis
+            Vou coordenar tudo para você — você cuida das decisões importantes, eu cuido do resto
           </p>
           
-          <p className="text-sm md:text-base text-muted-foreground/90 italic">Menos fricção, mais ciência. Você cuida das decisões estratégicas; eu juntamente com minha equipe cuidamos de toda a logística clínica.</p>
+          <p className="text-sm md:text-base text-muted-foreground/90 italic">Sua vida já é corrida. Por isso, eu e minha equipe cuidamos de agenda, exames, autorizações — toda a logística clínica. Você foca no que importa: sua transformação. Estamos ao seu lado sempre.</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-10">
-          {pillars.map((pillar, index) => <div key={index} className="bg-muted/30 p-6 rounded-xl border border-border/50 hover:border-primary/30 transition-all hover:shadow-sm animate-fade-in group" style={{
-          animationDelay: `${index * 0.1}s`
-        }}>
+          {pillars.map((pillar, index) => (
+            <div
+              key={index}
+              className="bg-muted/30 p-6 rounded-xl border border-border/50 hover:border-primary/30 transition-all hover:shadow-sm animate-fade-in group"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 p-3 bg-primary/10 rounded-lg group-hover:bg-primary/15 transition-colors">
                   <pillar.icon className="text-primary" size={24} />
@@ -79,16 +86,20 @@ export const ExperienciaConcierge = () => {
                   </p>
                 </div>
               </div>
-            </div>)}
+            </div>
+          ))}
         </div>
 
-        <div className="text-center animate-fade-in" style={{
-        animationDelay: "0.6s"
-      }}>
-          <Button size="lg" onClick={() => scrollToSection("#agendar")} className="bg-gradient-premium hover:opacity-90 transition-opacity shadow-elegant">
+        <div className="text-center animate-fade-in" style={{ animationDelay: "0.6s" }}>
+          <Button
+            size="lg"
+            onClick={() => scrollToSection("#agendar")}
+            className="bg-gradient-premium hover:opacity-90 transition-opacity shadow-elegant"
+          >
             Quero Experiência Concierge
           </Button>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };

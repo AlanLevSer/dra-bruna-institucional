@@ -46,11 +46,11 @@ export const Hero = () => {
               Olá, sou a Dra. Bruna Durelli
             </h1>
             
-            <p className="subtitle-elegant text-muted-foreground">Especialista em Obesidade, Nutrologia, Medicina Regenerativa e Endoscopia Digestiva. Com mais de 10 anos dedicados ao tratamento da obesidade, vou te ajudar a transformar sua relação com o peso através de um cuidado médico personalizado, humanizado e baseado em ciência.</p>
+            <p className="subtitle-elegant text-muted-foreground">Especialista em Obesidade, Nutrologia, Medicina Regenerativa e Endoscopia Digestiva. Há mais de 10 anos, dedico minha carreira a ajudar pessoas como você a transformarem sua relação com o peso. Vou estar ao seu lado em cada etapa, com um cuidado médico que respeita quem você é, sem julgamentos — só ciência e acolhimento.</p>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button size="lg" onClick={() => setQuizOpen(true)} className="bg-gradient-premium hover:opacity-90 transition-all shadow-elegant hover:shadow-hover group">
-                Descobrir Meu Plano de Transformação
+                Descubra seu caminho (sem compromisso)
                 <Sparkles className="ml-2 group-hover:scale-110 transition-transform" size={20} />
               </Button>
               
@@ -62,7 +62,7 @@ export const Hero = () => {
             
             <PlanoTransformacao open={quizOpen} onOpenChange={setQuizOpen} />
             
-            <p className="text-xs text-muted-foreground/80 italic pt-2">Decisão compartilhada, método exclusivo</p>
+            <p className="text-xs text-muted-foreground/80 italic pt-2">Estou ao seu lado. Vamos juntos.</p>
           </div>
 
           <div className="relative animate-fade-in" style={{
@@ -98,7 +98,7 @@ export const Hero = () => {
                 <div className="flex-1">
                   <AnimatedCounter end={60000} prefix="+" suffix=" kg" className="text-2xl font-serif font-bold text-primary block" />
                   <p className="text-xs text-muted-foreground mt-1 leading-tight">
-                    Eliminados de forma sustentável
+                    E já se foram mais 15kg hoje! Você pode ser a próxima.
                   </p>
                 </div>
               </div>
@@ -122,7 +122,7 @@ export const Hero = () => {
               <div className="text-center">
                 <AnimatedCounter end={60000} prefix="+" suffix=" kg" className="text-2xl font-serif font-bold text-primary block" />
                 <p className="text-xs text-muted-foreground mt-1 leading-tight">
-                  Eliminados de forma sustentável
+                  E já se foram mais 15kg hoje! Você pode ser a próxima.
                 </p>
               </div>
             </div>

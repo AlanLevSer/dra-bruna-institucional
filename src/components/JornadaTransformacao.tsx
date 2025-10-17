@@ -38,10 +38,10 @@ export const JornadaTransformacao = () => {
           </div>
           
           <h2 className="text-3xl md:text-4xl xl:text-5xl font-serif font-bold text-foreground mb-5">
-            Uma Jornada de Transformação Completa
+            Sua Jornada de Transformação (E Estou com Você)
           </h2>
           
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">Mais do que perder peso, meu programa transforma sua vida. Veja como cada etapa da sua jornada te reconecta com seu bem-estar, autoestima e qualidade de vida.</p>
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">Vou te ajudar a transformar sua vida, não só seu peso. Cada etapa é feita para você se reconectar com seu bem-estar, autoestima e qualidade de vida.</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 xl:gap-8 max-w-6xl mx-auto">
@@ -87,11 +87,11 @@ export const JornadaTransformacao = () => {
           <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-6 lg:p-10 border border-primary/10">
             <p className="text-base md:text-lg text-muted-foreground">
               <span className="font-serif font-bold text-foreground text-xl md:text-2xl xl:text-3xl block mb-3">
-                Transformação que vai além dos números
+                Cada passo importa — e conte comigo em todos eles
               </span>
-              Minha abordagem integrada combina medicina, nutrição, ciência do comportamento e exercícios 
-              para criar mudanças duradouras na sua vida. Não é apenas sobre perder peso — 
-              é sobre ganhar autoestima, confiança e bem-estar.
+              Vou combinar medicina, nutrição, comportamento e movimento para criar mudanças reais e duradouras na sua vida. 
+              Não é só perder peso — é ganhar autoestima, confiança e qualidade de vida. 
+              Emagrecer pode ser mais leve, sim. Vamos juntos?
             </p>
           </div>
         </div>

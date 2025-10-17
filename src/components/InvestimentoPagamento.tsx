@@ -51,9 +51,9 @@ export const InvestimentoPagamento = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-4">
-            Investimento em Sua Saúde
+            Investir em Você Vale a Pena (E Vou Provar)
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">Mais do que um tratamento, um ecossistema completo de transformação sustentável. Sei que o investimento em saúde é uma decisão importante. Por isso, criei opções acessíveis e transparentes, com foco em resultados que duram — não em promessas vazias.</p>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">Sei que investir em saúde é uma decisão importante. Por isso, criei opções transparentes e acessíveis, com foco em resultados que duram — não em promessas vazias. Você merece um programa completo, não só consultas isoladas.</p>
         </div>
 
         {/* 3 Cards de Valor */}
@@ -81,7 +81,7 @@ export const InvestimentoPagamento = () => {
               <div className="flex items-center gap-3 mb-6">
                 <Calculator className="h-6 w-6 text-primary" />
                 <h3 className="text-2xl font-serif font-bold text-foreground">
-                  Reflexão Financeira: Quanto Você Já Investiu?
+                  Vamos Refletir Juntas: Quanto Você Já Gastou?
                 </h3>
               </div>
               
@@ -146,7 +146,7 @@ export const InvestimentoPagamento = () => {
                   </span>
                 </div>
                 <p className="text-sm text-muted-foreground text-center italic">
-                  E os resultados? Quantos duram mais de 6 meses?
+                  E os resultados? Quantos duraram de verdade? Compreendemos sua jornada — e estamos aqui para mudar isso.
                 </p>
                 <p className="text-sm text-foreground text-center mt-4 leading-relaxed">
                   Investir em saúde de verdade significa ter uma equipe, programa científico e acompanhamento constante.

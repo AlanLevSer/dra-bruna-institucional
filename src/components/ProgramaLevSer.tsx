@@ -23,19 +23,19 @@ import { PlanoTransformacao } from "@/components/PlanoTransformacao";
 import programImage from "@/assets/patient-wellness-1.jpg";
 
 const benefits = [
-  "Transformação integral: corpo, mente e autoestima",
-  "Acompanhamento médico que respeita sua individualidade",
-  "Estratégias nutricionais que cabem na sua rotina",
-  "Suporte emocional para mudanças sustentáveis",
-  "Recuperação da sua confiança e qualidade de vida",
-  "Comunidade de apoio que celebra cada conquista",
+  "Vou te ajudar a transformar corpo, mente e autoestima",
+  "Acompanhamento que respeita seu ritmo e sua história",
+  "Nutrição leve, estratégica e que cabe na sua vida real",
+  "Apoio comportamental para mudanças que se sustentam",
+  "Você vai recuperar sua confiança e qualidade de vida",
+  "Comunidade acolhedora que celebra cada vitória sua",
 ];
 
 const pilares = [
   {
     icon: UtensilsCrossed,
     title: "Nutrição Inteligente",
-    subtitle: "Alimentação leve, estratégica e viável no dia a dia",
+    subtitle: "Alimentação que cabe na sua rotina, sem sofrimento",
     features: [
       "Plano por fases (não restritivo)",
       "Estratégias de saciedade e prazer",
@@ -45,7 +45,7 @@ const pilares = [
   {
     icon: Activity,
     title: "Saúde Metabólica & Regenerativa",
-    subtitle: "Regule hormônios, inflamação e energia celular para um corpo que responde",
+    subtitle: "Vou ajudar seu corpo a responder: hormônios, energia e metabolismo equilibrados",
       features: [
         "Otimização de insulina, glicemia e marcadores inflamatórios",
         "Nutrição celular para mitocôndrias 'eficientes'",
@@ -55,7 +55,7 @@ const pilares = [
   {
     icon: Dumbbell,
     title: "Corpo em Movimento",
-    subtitle: "Seu corpo forte, funcional e com mais disposição",
+    subtitle: "Seu corpo vai ficar forte, funcional e com disposição de verdade",
     features: [
       "Rotina progressiva (sem exageros)",
       "Força + mobilidade + condicionamento",
@@ -65,7 +65,7 @@ const pilares = [
   {
     icon: Brain,
     title: "Mente & Comportamento",
-    subtitle: "Constância sem culpa, com apoio emocional real",
+    subtitle: "Você vai conseguir manter a constância, sem culpa, com apoio real",
     features: [
       "Ferramentas de escolha consciente",
       "Organização alimentar & ambiente",
@@ -87,7 +87,7 @@ const fases = [
       "Perfil comportamental",
       "Plano inicial personalizado"
     ],
-    sinais: "Clareza de caminho e primeiros ajustes na rotina"
+    sinais: "Você está no caminho certo! Já dá para sentir os primeiros ajustes."
   },
   {
     numero: "02",
@@ -98,7 +98,7 @@ const fases = [
     entregas: [
       "Intervenções possíveis: balão 6/12m, gastroplastia endoscópica, terapias injetáveis (se indicado)"
     ],
-    sinais: "Queda de medidas, melhora de sono/energia e adesão alimentar",
+    sinais: "Continue assim! Medidas caindo, sono melhor, mais energia e confiança crescendo.",
     miniComparador: true
   },
     {
@@ -113,7 +113,7 @@ const fases = [
         "Ajustes regenerativos para preservar massa magra e melhorar sono/humor",
         "Alta supervisão clínica"
       ],
-      sinais: "Estabilidade de rotina, marcadores metabólicos melhores",
+      sinais: "Seu esforço está valendo a pena. Rotina estável, exames melhores, autonomia crescendo.",
       miniComparadorFase3: true
     },
   {
@@ -128,7 +128,7 @@ const fases = [
       "Plano de recaída",
       "Ajustes finos contínuos"
     ],
-    sinais: "Peso estável, bem-estar e confiança no longo prazo",
+    sinais: "Você conseguiu! Peso estável, bem-estar duradouro, confiança plena. Conte sempre comigo.",
     miniComparadorFase4: true
   }
 ];
@@ -221,10 +221,9 @@ export const ProgramaLevSer = () => {
             </h2>
 
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              <strong>Criei o Programa LevSer</strong> para oferecer muito mais que emagrecimento. 
-              É uma jornada de transformação integral que te reconecta com seu bem-estar, 
-              autoestima e qualidade de vida. Na LevSer, minha clínica, desenvolvemos 
-              resultados que vão além da balança.
+              <strong>Criei o Programa LevSer</strong> porque acredito que você merece mais do que dietas restritivas e promessas vazias. 
+              Este é um programa de transformação integral que vai te reconectar com seu bem-estar, 
+              autoestima e qualidade de vida. Vamos juntos, passo a passo, construir resultados que duram — não só números na balança.
             </p>
 
             <div className="space-y-4 pt-4">

@@ -10,15 +10,15 @@ export const CTAFinal = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
           <h2 className="text-4xl lg:text-5xl font-serif font-bold mb-6">
-            Pronto para iniciar sua jornada comigo?
+            Pronta para Começar? Estou Te Esperando
           </h2>
           
           <p className="text-xl opacity-90 leading-relaxed max-w-2xl mx-auto">
-            Agende sua consulta comigo e descubra como posso te ajudar 
-            a alcançar uma vida mais leve, saudável e plena na LevSer.
+            Agende sua consulta comigo e vamos juntas construir sua transformação. 
+            Você pode alcançar uma vida mais leve, saudável e plena. Eu te ajudo.
           </p>
           
-          <p className="text-sm opacity-80 italic">Decisão compartilhada, metodologia exclusiva, resultados sustentáveis</p>
+          <p className="text-sm opacity-80 italic">Vamos juntos, sem pressa. Cada passo importa, conte comigo.</p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
             <Button size="lg" variant="secondary" className="shadow-elegant hover:shadow-hover transition-all" onClick={() => window.open('https://wa.me/5511997023024?text=Olá, Dra. Bruna! Gostaria de agendar uma consulta para conhecer o Programa LevSer.', '_blank')}>

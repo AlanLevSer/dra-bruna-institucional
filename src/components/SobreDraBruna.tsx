@@ -42,9 +42,9 @@ export const SobreDraBruna = () => {
             </h2>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Há mais de 10 anos, dedico minha carreira ao tratamento da obesidade com uma abordagem que 
-              vai muito além da balança. Acredito que cada paciente merece um cuidado individualizado, 
-              respeitoso e baseado nas melhores evidências científicas.
+              Há mais de 10 anos, escolhi dedicar minha carreira a te ajudar a conquistar uma vida mais leve e saudável. 
+              Acredito que você merece um cuidado que respeita sua história, seus desafios e seu tempo — com ciência, sim, 
+              mas também com empatia de verdade. Estou aqui para te acompanhar, não para te julgar.
             </p>
 
             {/* Credenciais */}
@@ -97,10 +97,9 @@ export const SobreDraBruna = () => {
                 Sou sócia-fundadora da LevSer
               </p>
               <p className="text-sm leading-relaxed opacity-90">
-                Na LevSer, minha clínica especializada, executo todos os meus programas e tratamentos 
-                para perda de peso. Criamos um ambiente acolhedor e equipado para oferecer o melhor 
-                cuidado médico, com estrutura completa para procedimentos endoscópicos, consultas 
-                personalizadas e acompanhamento interdisciplinar.
+                A LevSer é minha clínica, e é onde vou te receber com todo carinho que você merece. 
+                Criamos um espaço acolhedor, equipado e humanizado para que você se sinta segura em cada consulta, 
+                cada procedimento, cada conversa. Aqui, você não é mais um número — você é minha prioridade.
               </p>
             </div>
           </div>
