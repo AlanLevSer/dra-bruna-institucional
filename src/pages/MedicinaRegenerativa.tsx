@@ -18,7 +18,7 @@ import { Battery, Shield, Zap, Sparkles } from "lucide-react";
 
 const MedicinaRegenerativa = () => {
   const handleWhatsApp = () => {
-    window.open("https://wa.me/5561999999999?text=Olá! Gostaria de saber mais sobre Medicina Regenerativa", "_blank");
+    window.open("https://wa.me/5511997023024?text=Olá! Gostaria de saber mais sobre Medicina Regenerativa", "_blank");
   };
 
   const indicacoes = [

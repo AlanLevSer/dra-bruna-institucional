@@ -13,6 +13,12 @@ import doctorImage from "@/assets/dra-bruna-elegant.jpg";
 import { Heart, Activity, Smile, RefreshCw } from "lucide-react";
 
 const PlasmaArgonio = () => {
+  const handleWhatsApp = () => {
+    const phoneNumber = "5511997023024";
+    const message = "Olá, Dra. Bruna! Gostaria de saber mais sobre Plasma de Argônio.";
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+  };
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "MedicalProcedure",
@@ -143,6 +149,7 @@ const PlasmaArgonio = () => {
       <CTASection
         title="Retome o controle do seu peso"
         description="Se você passou por cirurgia bariátrica e está enfrentando reganho de peso, ou teve expansão gástrica após balão, o Plasma de Argônio pode ser a solução ideal. Agende uma avaliação com nossa equipe."
+        onButtonClick={handleWhatsApp}
       />
 
       <Footer />

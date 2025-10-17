@@ -13,6 +13,12 @@ import patientImage from "@/assets/patient-wellness-1.jpg";
 import { Zap, Heart, Smile, TrendingUp } from "lucide-react";
 
 const NutricaoCelular = () => {
+  const handleWhatsApp = () => {
+    const phoneNumber = "5511997023024";
+    const message = "Olá, Dra. Bruna! Gostaria de saber mais sobre Nutrição Celular.";
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+  };
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "MedicalTherapy",
@@ -136,6 +142,7 @@ const NutricaoCelular = () => {
       <CTASection
         title="Pronta para dar um upgrade no seu tratamento?"
         description="Agende uma avaliação e descubra como a Nutrição Celular pode transformar seus resultados."
+        onButtonClick={handleWhatsApp}
       />
 
       <Footer />

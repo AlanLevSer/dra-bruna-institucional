@@ -17,6 +17,12 @@ import doctorImage from "@/assets/dra-bruna-elegant.jpg";
 import { Heart, Activity, Smile, TrendingDown } from "lucide-react";
 
 const GastroplastiaEndoscopica = () => {
+  const handleWhatsApp = () => {
+    const phoneNumber = "5511997023024";
+    const message = "Olá, Dra. Bruna! Gostaria de saber mais sobre Gastroplastia Endoscópica.";
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+  };
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "MedicalProcedure",
@@ -112,6 +118,7 @@ const GastroplastiaEndoscopica = () => {
       <CTASection
         title="Por que fazer sua Gastroplastia na LevSer?"
         description="Equipe especializada com + de 500 procedimentos realizados • Tecnologia de ponta com suturas absorvíveis • Acompanhamento integral: nutrição, psicologia e atividade física • Programa exclusivo de manutenção pós-procedimento • Taxa de complicação < 1% (uma das menores do Brasil)"
+        onButtonClick={handleWhatsApp}
       />
 
       <Footer />

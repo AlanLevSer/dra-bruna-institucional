@@ -13,6 +13,12 @@ import { Sparkles, Heart, Scale, Brain } from "lucide-react";
 import medicationsImage from "@/assets/medications-sacietogena.png";
 
 const CanetasEmagrecedoras = () => {
+  const handleWhatsApp = () => {
+    const phoneNumber = "5511997023024";
+    const message = "Olá, Dra. Bruna! Gostaria de saber mais sobre Canetas Emagrecedoras.";
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+  };
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "MedicalTherapy",
@@ -252,6 +258,7 @@ const CanetasEmagrecedoras = () => {
       <CTASection
         title="Pronta para retomar o controle?"
         description="Agende uma avaliação e descubra como as canetas emagrecedoras podem transformar sua relação com a comida."
+        onButtonClick={handleWhatsApp}
       />
 
       <Footer />

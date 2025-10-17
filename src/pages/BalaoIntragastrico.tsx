@@ -16,6 +16,12 @@ import { Heart, Activity, Smile, Moon } from "lucide-react";
 import patientImage from "@/assets/patient-confident.jpg";
 
 const BalaoIntragastrico = () => {
+  const handleWhatsApp = () => {
+    const phoneNumber = "5511997023024";
+    const message = "Olá, Dra. Bruna! Gostaria de saber mais sobre Balão Intragástrico.";
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+  };
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "MedicalProcedure",
@@ -141,10 +147,11 @@ const BalaoIntragastrico = () => {
           }}
         />
 
-        <CTASection
-          title="Pronta para dar o próximo passo?"
-          description="Converse com nossa equipe e descubra se o Balão Intragástrico é ideal para você."
-        />
+      <CTASection
+        title="Pronta para dar o próximo passo?"
+        description="Converse com nossa equipe e descubra se o Balão Intragástrico é ideal para você."
+        onButtonClick={handleWhatsApp}
+      />
 
         <Footer />
       </div>
