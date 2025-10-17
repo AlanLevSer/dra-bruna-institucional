@@ -18,12 +18,13 @@ const navItems = [
     ],
   },
   {
-    label: "Nutrição & Metabolismo",
+    label: "Nutrição & Metabolismo & Medicina Regenerativa",
     href: "#nutricao",
     type: "dropdown",
     subItems: [
       { label: "Nutrição Celular", href: "/nutricao-celular" },
       { label: "Canetas Emagrecedoras", href: "/canetas-emagrecedoras" },
+      { label: "Medicina Regenerativa", href: "/medicina-regenerativa" },
     ],
   },
   { label: "Diferenciais", href: "#diferenciais", type: "anchor" },
