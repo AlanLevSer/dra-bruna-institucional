@@ -42,7 +42,7 @@ const baloesOptions: BalaoOption[] = [
     duration: "12 meses",
     color: "from-purple-500/20 to-purple-600/20",
     ideal: "Máximo controle",
-    perda: "10 - 25 % do peso",
+    perda: "15 - 35% do peso",
     vantagens: [
       "Volume modulável",
       "Ajuste conforme necessidade",
