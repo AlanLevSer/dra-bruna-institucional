@@ -122,13 +122,14 @@ const fases = [
     titulo: "Manutenção & Estilo de Vida",
     duracao: "12+ meses",
     objetivo: "Não 'terminar', e sim sustentar",
-      entregas: [
-        "Calendário de checkpoints trimestrais",
-        "Ciclos leves de programas regenerativos (trimestrais/semestrais)",
-        "Plano de recaída",
-        "Ajustes finos contínuos"
-      ],
-    sinais: "Peso estável, bem-estar e confiança no longo prazo"
+    entregas: [
+      "Calendário de checkpoints trimestrais",
+      "Ciclos leves de programas regenerativos (trimestrais/semestrais)",
+      "Plano de recaída",
+      "Ajustes finos contínuos"
+    ],
+    sinais: "Peso estável, bem-estar e confiança no longo prazo",
+    miniComparadorFase4: true
   }
 ];
 
@@ -170,6 +171,24 @@ const intervencoesFase3 = [
     icon: Activity,
     nome: "Medicina Regenerativa",
     descricao: "Terapias para preservar massa magra, melhorar sono/humor e marcadores metabólicos"
+  }
+];
+
+const intervencoesFase4 = [
+  {
+    icon: Brain,
+    nome: "Ciência Comportamental",
+    descricao: "Estratégias para manter hábitos sustentáveis, prevenir recaídas e fortalecer autonomia"
+  },
+  {
+    icon: UtensilsCrossed,
+    nome: "Nutrição Celular",
+    descricao: "Otimização nutricional contínua para energia, metabolismo e longevidade"
+  },
+  {
+    icon: Activity,
+    nome: "Medicina Regenerativa",
+    descricao: "Terapias de manutenção para saúde metabólica, vitalidade e bem-estar duradouro"
   }
 ];
 
@@ -484,6 +503,41 @@ export const ProgramaLevSer = () => {
                             >
                               Saiba mais sobre Medicina Regenerativa
                             </Button>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Mini-Comparador Fase 4 */}
+                      {fase.miniComparadorFase4 && (
+                        <div className="mt-6 pt-6 border-t border-border/50">
+                          <p className="text-sm font-semibold text-foreground mb-4">
+                            Pilares fundamentais para manutenção e otimização contínua da saúde:
+                          </p>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+                            {intervencoesFase4.map((intervencao, idx) => {
+                              const InterIcon = intervencao.icon;
+                              return (
+                                <div 
+                                  key={idx}
+                                  className="bg-accent/10 p-4 rounded-lg border border-accent/20"
+                                >
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <InterIcon className="w-5 h-5 text-primary" />
+                                    <p className="text-sm font-bold text-foreground">
+                                      {intervencao.nome}
+                                    </p>
+                                  </div>
+                                  <p className="text-xs text-muted-foreground">
+                                    {intervencao.descricao}
+                                  </p>
+                                </div>
+                              );
+                            })}
+                          </div>
+                          <div className="bg-primary/5 p-4 rounded-lg border border-primary/10">
+                            <p className="text-sm text-muted-foreground">
+                              <span className="font-semibold text-foreground">Manutenção Inteligente:</span> Estes três pilares trabalham juntos para garantir que seus resultados sejam duradouros. Não é sobre perfeição, mas sobre consistência e ajustes contínuos.
+                            </p>
                           </div>
                         </div>
                       )}
