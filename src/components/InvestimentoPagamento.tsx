@@ -345,7 +345,7 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
                             placeholder={campo.placeholder}
                             value={valores[campo.id as keyof typeof valores]}
                             onChange={(e) => handleFieldChange(campo.id, e.target.value)}
-                            className="h-12 text-lg text-right font-mono"
+                            className="h-14 text-lg text-right font-mono touch-manipulation"
                             aria-label={campo.label}
                           />
                         </div>
@@ -391,7 +391,7 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
                             placeholder={extra.placeholder}
                             value={valores[extra.id as keyof typeof valores]}
                             onChange={(e) => handleFieldChange(extra.id, e.target.value)}
-                            className="h-12 text-lg text-right font-mono"
+                            className="h-14 text-lg text-right font-mono touch-manipulation"
                           />
                         </div>
                       </div>
@@ -449,7 +449,7 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
                 </CardContent>
               </Card>
             ) : (
-              <div className="animate-in fade-in slide-in-from-right duration-500">
+              <div className="animate-in fade-in slide-in-from-right duration-700 delay-150">
                 <Card className="border-primary/20 bg-card shadow-lg">
                   <CardContent className="p-6 md:p-8 space-y-6">
                     {/* A) Investimento Atual */}
@@ -510,8 +510,8 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
                       <h4 className="text-sm font-semibold text-foreground mb-3">
                         Investimento Disperso vs Programa Integrado:
                       </h4>
-                      <div className="border border-border/50 rounded-lg overflow-hidden">
-                        <table className="w-full text-xs">
+                      <div className="border border-border/50 rounded-lg overflow-hidden overflow-x-auto">
+                        <table className="w-full text-xs min-w-[300px]">
                           <thead className="bg-muted/50">
                             <tr>
                               <th className="text-left p-2 font-medium text-foreground">Critério</th>
@@ -595,7 +595,7 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
                       <Button 
                         size="lg" 
                         onClick={handleWhatsAppConsolidacao}
-                        className="w-full group h-14"
+                        className="w-full group h-14 touch-manipulation"
                       >
                         Consolidar Meu Investimento em Saúde
                         <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -605,7 +605,7 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
                         size="default" 
                         variant="outline"
                         onClick={handleWhatsAppDireto}
-                        className="w-full"
+                        className="w-full touch-manipulation"
                       >
                         <MessageCircle className="mr-2 h-4 w-4" />
                         Agendar Avaliação Sem Compromisso

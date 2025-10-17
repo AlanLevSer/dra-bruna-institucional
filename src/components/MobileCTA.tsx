@@ -29,7 +29,7 @@ export const MobileCTA = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden p-4 bg-gradient-to-t from-background via-background to-transparent animate-slide-in-left">
+    <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden p-4 pb-20 bg-gradient-to-t from-background via-background to-transparent animate-slide-in-left">
       <Button
         onClick={scrollToSection}
         size="lg"

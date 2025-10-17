@@ -3,6 +3,7 @@ import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { SobreDraBruna } from "@/components/SobreDraBruna";
 import { ProgramaLevSer } from "@/components/ProgramaLevSer";
+import { InvestimentoPagamento } from "@/components/InvestimentoPagamento";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { MobileCTA } from "@/components/MobileCTA";
 import { SEOHead } from "@/components/SEOHead";
@@ -17,7 +18,6 @@ const Procedimentos = lazy(() => import("@/components/Procedimentos").then(m => 
 const Nutricao = lazy(() => import("@/components/Nutricao").then(m => ({ default: m.Nutricao })));
 const RegeneracaoMetabolica = lazy(() => import("@/components/RegeneracaoMetabolica").then(m => ({ default: m.RegeneracaoMetabolica })));
 const Diferenciais = lazy(() => import("@/components/Diferenciais").then(m => ({ default: m.Diferenciais })));
-const InvestimentoPagamento = lazy(() => import("@/components/InvestimentoPagamento").then(m => ({ default: m.InvestimentoPagamento })));
 const ReconhecimentoMidia = lazy(() => import("@/components/ReconhecimentoMidia").then(m => ({ default: m.ReconhecimentoMidia })));
 const Depoimentos = lazy(() => import("@/components/Depoimentos").then(m => ({ default: m.Depoimentos })));
 const SegurancaEvidencias = lazy(() => import("@/components/SegurancaEvidencias").then(m => ({ default: m.SegurancaEvidencias })));
@@ -55,8 +55,10 @@ const Index = () => {
             <Nutricao />
             <RegeneracaoMetabolica />
             <Diferenciais />
-            <InvestimentoPagamento />
           </Suspense>
+          
+          {/* Critical conversion component - no lazy loading */}
+          <InvestimentoPagamento />
           
           {/* Secondary content - load last */}
           <Suspense fallback={<div className="min-h-[20vh] flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>

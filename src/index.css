@@ -169,22 +169,43 @@ All colors MUST be HSL.
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   
-  /* Custom scrollbar */
+  /* Custom scrollbar - Multi-browser support */
+  * {
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary)) hsl(var(--muted));
+  }
+
+  /* Webkit browsers (Chrome, Safari desktop, Edge) */
   ::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
   }
   
   ::-webkit-scrollbar-track {
     background: hsl(var(--muted));
+    border-radius: 5px;
   }
   
   ::-webkit-scrollbar-thumb {
     background: hsl(var(--primary));
     border-radius: 5px;
+    border: 2px solid hsl(var(--muted));
   }
   
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--primary) / 0.8);
+  }
+
+  /* Mobile: força visibilidade em Webkit mobile (Android Chrome) */
+  @media (max-width: 768px) {
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: hsl(var(--primary) / 0.9);
+    }
   }
 
   /* Scroll offset for fixed header */
