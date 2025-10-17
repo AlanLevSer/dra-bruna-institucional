@@ -29,7 +29,7 @@ const baloesOptions: BalaoOption[] = [
     duration: "12 meses",
     color: "from-blue-500/20 to-blue-600/20",
     ideal: "Resultado mais consolidado",
-    perda: "15-20% do peso",
+    perda: "15 - 30% do peso",
     vantagens: [
       "Mais tempo para criar hábitos",
       "Melhor custo-benefício",
