@@ -221,7 +221,7 @@ export const Navigation = () => {
                           openDropdown === item.label ? null : item.label
                         )
                       }
-                      className="w-full flex items-center justify-between text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                      className="w-full flex items-center justify-start gap-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
                       aria-label={`Menu ${item.label}`}
                       aria-expanded={openDropdown === item.label}
                     >
