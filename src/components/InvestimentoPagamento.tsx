@@ -255,23 +255,23 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
   };
 
   return (
-    <section className="relative py-20 bg-muted/30 overflow-hidden">
+    <section className="relative py-16 bg-muted/30 overflow-hidden">
       <GrafismoDecor variant="floating" position="top-right" size="lg" opacity={0.15} rotate={25} color="gray" />
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className="text-center mb-12">
-          <Badge variant="outline" className="mb-4">
+        <div className="text-center mb-10">
+          <Badge variant="outline" className="mb-3">
             <Calculator className="w-3 h-3 mr-1" />
             Reflexão Financeira
           </Badge>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-4">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-foreground mb-3">
             Vamos Refletir: Seu Investimento Está Funcionando?
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base text-muted-foreground max-w-3xl mx-auto">
             Não vou prometer economia. Vou te mostrar a diferença entre gastar disperso e investir integrado.
           </p>
-          <p className="text-base text-muted-foreground max-w-3xl mx-auto mt-4">
+          <p className="text-sm text-muted-foreground max-w-3xl mx-auto mt-3">
             Você investe em saúde — isso é admirável. Mas quando esse investimento está fragmentado 
             (nutricionista isolada, personal separado, suplementos sem prescrição integrada), os resultados 
             raramente duram. Vamos fazer uma reflexão honesta juntos(as)?
@@ -279,23 +279,23 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
         </div>
 
         {/* Layout: Formulário + Cartão */}
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 max-w-6xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-5 lg:gap-6 max-w-6xl mx-auto">
           {/* Coluna Esquerda: Formulário */}
           <div className="w-full lg:w-1/2">
             <Card className="border-primary/20 bg-card shadow-lg">
-              <CardContent className="p-6 md:p-8">
-                <h3 className="text-xl font-semibold text-foreground mb-4">
+              <CardContent className="p-5 md:p-6">
+                <h3 className="text-lg font-semibold text-foreground mb-3">
                   Nos últimos 12 meses, quanto você gastou mensalmente com:
                 </h3>
 
                 {/* Presets */}
                 {showPresets && (
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="flex flex-wrap gap-2 mb-5">
                     <Button 
                       variant="outline" 
                       size="sm"
                       onClick={() => applyPreset('conservador')}
-                      className="text-xs"
+                      className="text-[11px]"
                     >
                       Conservador (R$ 1.050/mês)
                     </Button>
@@ -303,7 +303,7 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
                       variant="outline" 
                       size="sm"
                       onClick={() => applyPreset('medio')}
-                      className="text-xs"
+                      className="text-[11px]"
                     >
                       Médio (R$ 2.100/mês)
                     </Button>
@@ -311,7 +311,7 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
                       variant="outline" 
                       size="sm"
                       onClick={() => applyPreset('realista')}
-                      className="text-xs"
+                      className="text-[11px]"
                     >
                       Realista (R$ 3.400/mês)
                     </Button>
@@ -320,16 +320,16 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
 
                 {/* Campos Principais */}
                 <TooltipProvider>
-                  <div className="space-y-4 mb-4">
+                  <div className="space-y-3 mb-3">
                     {campos.map((campo) => (
-                      <div key={campo.id} className="space-y-2">
+                      <div key={campo.id} className="space-y-1.5">
                         <div className="flex items-center gap-2">
-                          <label htmlFor={campo.id} className="text-sm font-medium text-foreground flex-1">
+                          <label htmlFor={campo.id} className="text-xs font-semibold text-foreground/90 flex-1">
                             {campo.label}
                           </label>
                           <Tooltip>
                             <TooltipTrigger asChild>
-                              <HelpCircle className="w-4 h-4 text-muted-foreground cursor-help" />
+                              <HelpCircle className="w-3.5 h-3.5 text-muted-foreground cursor-help" />
                             </TooltipTrigger>
                             <TooltipContent side="left" className="max-w-xs">
                               <p className="text-xs">{campo.tooltip}</p>
@@ -337,7 +337,7 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
                           </Tooltip>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-sm text-muted-foreground">R$</span>
+                          <span className="text-xs text-muted-foreground">R$</span>
                           <Input
                             id={campo.id}
                             type="number"
@@ -345,7 +345,7 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
                             placeholder={campo.placeholder}
                             value={valores[campo.id as keyof typeof valores]}
                             onChange={(e) => handleFieldChange(campo.id, e.target.value)}
-                            className="h-14 text-lg text-right font-mono touch-manipulation"
+                            className="h-12 text-base text-right font-mono touch-manipulation"
                             aria-label={campo.label}
                           />
                         </div>
