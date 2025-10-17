@@ -10,7 +10,14 @@ export const SobreDraBruna = () => {
           {/* Coluna 1: Foto Profissional */}
           <div className="relative animate-fade-in">
             <div className="relative rounded-2xl overflow-hidden shadow-elegant max-w-md mx-auto lg:mx-0">
-              <img src={draImage} alt="Dra. Bruna Durelli - Especialista em Obesidade" className="w-full h-auto object-cover" />
+              <img 
+                src={draImage} 
+                alt="Dra. Bruna Durelli - Especialista em Obesidade" 
+                className="w-full h-auto object-cover"
+                width="400"
+                height="600"
+                loading="lazy"
+              />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-primary p-6 rounded-xl shadow-elegant max-w-xs">
               <p className="text-sm font-medium text-primary-foreground mb-2">

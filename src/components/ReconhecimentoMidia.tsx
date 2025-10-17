@@ -79,6 +79,9 @@ export const ReconhecimentoMidia = () => {
                 src={media.logo}
                 alt={`Logo ${media.name}`}
                 className="w-full h-auto max-h-8 object-contain transition-all duration-300 opacity-100 group-hover:opacity-100 group-active:opacity-50 active:opacity-50"
+                width="120"
+                height="32"
+                loading="lazy"
               />
             </a>
           ))}

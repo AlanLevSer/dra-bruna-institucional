@@ -58,7 +58,15 @@ export const Hero = () => {
           animationDelay: "0.2s"
         }}>
             <div className="relative rounded-2xl overflow-hidden shadow-hover max-w-xs xl:max-w-sm mx-auto lg:mx-0">
-              <img src={heroImage} alt="Dra. Bruna Durelli - Especialista em Obesidade" className="w-full h-auto object-cover" />
+              <img 
+                src={heroImage} 
+                alt="Dra. Bruna Durelli - Especialista em Obesidade" 
+                className="w-full h-auto object-cover" 
+                width="400" 
+                height="600"
+                fetchPriority="high"
+                loading="eager"
+              />
             </div>
             
             {/* CARD DESKTOP (Horizontal) */}

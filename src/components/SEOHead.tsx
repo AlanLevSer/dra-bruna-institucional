@@ -25,7 +25,12 @@ export const SEOHead = ({ data }: SEOHeadProps) => {
 
     // Standard meta tags
     updateMetaTag('description', data.description);
-    updateMetaTag('keywords', data.keywords);
+    if (data.keywords) {
+      updateMetaTag('keywords', data.keywords);
+    }
+    
+    // Ensure indexing is allowed (remove any noindex)
+    updateMetaTag('robots', 'index, follow');
 
     // Open Graph
     updateMetaTag('og:title', data.title, true);
