@@ -100,7 +100,7 @@ export const Navigation = () => {
       }`}
     >
       <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between lg:justify-start lg:gap-8">
+        <div className="flex items-center justify-between lg:justify-start">
           <a
             href="#inicio"
             onClick={(e) => {
@@ -118,7 +118,7 @@ export const Navigation = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8 ml-6 xl:ml-8">
+          <div className="hidden lg:flex items-center gap-4 lg:gap-6 ml-4 lg:ml-6">
             {navItems.map((item) =>
               item.type === "dropdown" ? (
                 <div
