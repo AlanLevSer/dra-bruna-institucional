@@ -67,6 +67,30 @@ export const pageSEO: Record<string, SEOData> = {
     description: "Técnica endoscópica minimamente invasiva para tratamento de reganho de peso pós-cirurgia bariátrica e dilatação gástrica. Recuperação rápida e resultados consistentes.",
     keywords: "plasma de argônio, reganho de peso, pós-bariátrica, dilatação gástrica, endoscopia, anastomose dilatada, revisão bariátrica, APC",
     canonical: "https://drabrunadurelli.com/plasma-argonio"
+  },
+  sobre: {
+    title: "Sobre a Dra. Bruna Durelli - Especialista em Obesidade | LevSer",
+    description: "Conheça a trajetória da Dra. Bruna Durelli, especialista em obesidade com +10 anos de experiência. Formação no Einstein, Santa Casa, ABRAN. Sócia-fundadora da LevSer.",
+    keywords: "dra bruna durelli, especialista obesidade, endoscopia digestiva, nutrologia, medicina regenerativa, levser, são paulo",
+    canonical: "https://drabrunadurelli.com/sobre"
+  },
+  programaLevser: {
+    title: "Programa LevSer - Tratamento Completo de Obesidade | Dra. Bruna Durelli",
+    description: "Programa LevSer: tratamento integrado de obesidade com nutrição, medicina regenerativa, suporte psicológico e procedimentos endoscópicos. Abordagem personalizada e humanizada.",
+    keywords: "programa levser, tratamento obesidade, emagrecimento saudável, acompanhamento multidisciplinar, são paulo",
+    canonical: "https://drabrunadurelli.com/programa-levser"
+  },
+  tratamentos: {
+    title: "Tratamentos para Obesidade - Endoscopia, Farmacologia, Regenerativa | LevSer",
+    description: "Conheça todos os tratamentos disponíveis: balão gástrico, gastroplastia, canetas emagrecedoras, medicina regenerativa. Abordagem personalizada para cada caso.",
+    keywords: "tratamentos obesidade, balão gástrico, gastroplastia, canetas emagrecedoras, medicina regenerativa, são paulo",
+    canonical: "https://drabrunadurelli.com/tratamentos"
+  },
+  recursos: {
+    title: "Recursos Educativos - FAQ, Calculadoras, Guias | Dra. Bruna Durelli",
+    description: "Acesse nossos recursos educativos: FAQ completo, calculadoras de IMC e ROI, guias de emagrecimento, vídeos e artigos sobre tratamento de obesidade.",
+    keywords: "faq obesidade, calculadora imc, guia emagrecimento, recursos educativos, dra bruna durelli",
+    canonical: "https://drabrunadurelli.com/recursos"
   }
 };
 

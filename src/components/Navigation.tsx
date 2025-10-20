@@ -5,31 +5,44 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import logoHeader from "@/assets/logo-header.svg";
 
 const navItems = [
-  { label: "Início", href: "#inicio", type: "anchor" },
-  { label: "Programa LevSer", href: "#programa", type: "anchor" },
+  { label: "Início", href: "/", type: "link" },
   {
-    label: "Procedimentos Endoscópicos",
-    href: "#procedimentos",
+    label: "Sobre",
+    href: "/sobre",
+    type: "dropdown",
+    subItems: [
+      { label: "Dra. Bruna Durelli", href: "/sobre#sobre" },
+      { label: "Jornada de Transformação", href: "/sobre#jornada" },
+      { label: "Experiência Concierge", href: "/sobre#concierge" },
+      { label: "Ver tudo", href: "/sobre" },
+    ],
+  },
+  { label: "Programa LevSer", href: "/programa-levser", type: "link" },
+  {
+    label: "Tratamentos",
+    href: "/tratamentos",
     type: "dropdown",
     subItems: [
       { label: "Balão Intragástrico", href: "/balao-intragastrico" },
       { label: "Gastroplastia Endoscópica", href: "/gastroplastia-endoscopica" },
       { label: "Plasma de Argônio", href: "/plasma-argonio" },
-    ],
-  },
-  {
-    label: "Emagrecimento & Longevidade",
-    href: "#nutricao",
-    type: "dropdown",
-    subItems: [
-      { label: "Nutrição Celular", href: "/nutricao-celular" },
       { label: "Canetas Emagrecedoras", href: "/canetas-emagrecedoras" },
       { label: "Medicina Regenerativa", href: "/medicina-regenerativa" },
+      { label: "Nutrição Celular", href: "/nutricao-celular" },
+      { label: "Ver todos", href: "/tratamentos" },
     ],
   },
-  { label: "Diferenciais", href: "#diferenciais", type: "anchor" },
-  { label: "Depoimentos", href: "#depoimentos", type: "anchor" },
-  { label: "FAQ", href: "#faq", type: "anchor" },
+  { label: "Depoimentos", href: "/#depoimentos", type: "anchor" },
+  {
+    label: "Recursos",
+    href: "/recursos",
+    type: "dropdown",
+    subItems: [
+      { label: "FAQ Completo", href: "/recursos#faq" },
+      { label: "Calculadoras", href: "/recursos#calculadoras" },
+      { label: "Ver tudo", href: "/recursos" },
+    ],
+  },
 ];
 
 export const Navigation = () => {
@@ -68,27 +81,31 @@ export const Navigation = () => {
     };
   }, [isMobileMenuOpen]);
 
-  const scrollToSection = (href: string) => {
-    // Always close mobile menu and dropdowns before navigating
+  const handleNavClick = (href: string, type: string) => {
     setIsMobileMenuOpen(false);
     setOpenDropdown(null);
 
-    if (isHomePage) {
-      const element = document.querySelector(href);
-      if (element) {
-        const rootStyles = getComputedStyle(document.documentElement);
-        const headerVar = rootStyles.getPropertyValue('--header-height').trim();
-        const headerOffset = (parseInt(headerVar.replace('px','')) || 80) + 8;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    // Se é link para página
+    if (type === "link" || href.startsWith("/")) {
+      navigate(href);
+      return;
+    }
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
+    // Se é âncora (pode ser na homepage ou em outra página com âncora)
+    if (href.startsWith("/#")) {
+      if (!isHomePage) {
+        navigate(href); // Router vai lidar com navegação + scroll
+      } else {
+        const element = document.querySelector(href.replace("/", ""));
+        if (element) {
+          const rootStyles = getComputedStyle(document.documentElement);
+          const headerVar = rootStyles.getPropertyValue('--header-height').trim();
+          const headerOffset = (parseInt(headerVar.replace('px','')) || 80) + 8;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+        }
       }
-    } else {
-      navigate(`/${href}`);
     }
   };
 
@@ -101,12 +118,8 @@ export const Navigation = () => {
     >
       <div className="container mx-auto py-4">
         <div className="flex items-center justify-between lg:justify-start px-4 lg:px-0">
-          <a
-            href="#inicio"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("#inicio");
-            }}
+          <Link
+            to="/"
             className="flex items-center shrink-0 lg:-ml-4"
           >
             <img 
@@ -115,7 +128,7 @@ export const Navigation = () => {
               className="h-12 md:h-14 lg:h-16 w-auto transition-opacity hover:opacity-90 shrink-0"
               loading="eager"
             />
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1.5 lg:gap-2 ml-0">
@@ -150,32 +163,30 @@ export const Navigation = () => {
                         <Link
                           key={subItem.href}
                           to={subItem.href}
+                          onClick={() => setOpenDropdown(null)}
                           className="block px-4 py-3 text-sm text-foreground/80 hover:text-primary hover:bg-muted/30 transition-colors"
                         >
                           {subItem.label}
                         </Link>
                       ))}
-                      {item.href.startsWith("#") && (
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            scrollToSection(item.href);
-                          }}
-                          className="block w-full text-left px-4 py-3 text-sm text-foreground/80 hover:text-primary hover:bg-muted/30 transition-colors border-t border-border mt-2 pt-3"
-                        >
-                          Ver tudo
-                        </button>
-                      )}
                     </div>
                   )}
                 </div>
+              ) : item.type === "link" ? (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className="text-xs lg:text-sm font-medium text-foreground/80 hover:text-primary transition-colors whitespace-nowrap shrink-0 py-1.5"
+                >
+                  {item.label}
+                </Link>
               ) : (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={(e) => {
                     e.preventDefault();
-                    scrollToSection(item.href);
+                    handleNavClick(item.href, item.type);
                   }}
                   className="text-xs lg:text-sm font-medium text-foreground/80 hover:text-primary transition-colors whitespace-nowrap shrink-0 py-1.5"
                 >
@@ -184,7 +195,7 @@ export const Navigation = () => {
               )
             )}
             <Button
-              onClick={() => scrollToSection("#agendar")}
+              onClick={() => handleNavClick("/#agendar", "anchor")}
               className="bg-gradient-premium hover:opacity-90 transition-opacity shrink-0 text-xs lg:text-sm px-2.5 lg:px-3 py-1.5 whitespace-pre-line text-center leading-tight"
             >
               Agende sua{"\n"}Consulta
@@ -248,13 +259,22 @@ export const Navigation = () => {
                       </div>
                     )}
                   </div>
+                ) : item.type === "link" ? (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block text-left text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                  >
+                    {item.label}
+                  </Link>
                 ) : (
                   <a
                     key={item.href}
                     href={item.href}
                     onClick={(e) => {
                       e.preventDefault();
-                      scrollToSection(item.href);
+                      handleNavClick(item.href, item.type);
                     }}
                     className="block text-left text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
                   >
@@ -263,7 +283,7 @@ export const Navigation = () => {
                 )
               )}
               <Button
-                onClick={() => scrollToSection("#agendar")}
+                onClick={() => handleNavClick("/#agendar", "anchor")}
                 className="w-full bg-gradient-premium hover:opacity-90 transition-opacity"
               >
                 Agende sua Consulta

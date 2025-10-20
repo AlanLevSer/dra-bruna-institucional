@@ -1,12 +1,10 @@
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CONTACT } from "@/lib/constants";
 
 export const WhatsAppButton = () => {
   const handleWhatsAppClick = () => {
-    const phoneNumber = "5511997023024";
-    const message = "Olá, Dra. Bruna! Gostaria de agendar uma consulta.";
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
+    window.open(CONTACT.WHATSAPP_URL, "_blank");
   };
 
   return (

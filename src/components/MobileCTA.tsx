@@ -15,14 +15,20 @@ export const MobileCTA = () => {
   }, []);
 
   const scrollToSection = () => {
-    const element = document.querySelector("#agendar");
-    if (element) {
-      const rootStyles = getComputedStyle(document.documentElement);
-      const headerVar = rootStyles.getPropertyValue('--header-height').trim();
-      const headerOffset = (parseInt(headerVar.replace('px','')) || 80) + 8;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    // Se estiver na homepage, scroll para #agendar
+    if (window.location.pathname === "/") {
+      const element = document.querySelector("#agendar");
+      if (element) {
+        const rootStyles = getComputedStyle(document.documentElement);
+        const headerVar = rootStyles.getPropertyValue('--header-height').trim();
+        const headerOffset = (parseInt(headerVar.replace('px','')) || 80) + 8;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      }
+    } else {
+      // Se estiver em outra página, navega para homepage com âncora
+      window.location.href = "/#agendar";
     }
   };
 

@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, MapPin } from "lucide-react";
 import ctaImage from "@/assets/dra-bruna-elegant.jpg";
+import { CONTACT } from "@/lib/constants";
+
 export const CTAFinal = () => {
   return <section id="agendar" className="py-12 xl:py-16 bg-gradient-premium text-primary-foreground relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
@@ -21,12 +23,12 @@ export const CTAFinal = () => {
           <p className="text-sm opacity-80 italic">Vamos juntos, sem pressa. Cada passo importa, conte comigo.</p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-            <Button size="lg" variant="secondary" className="shadow-elegant hover:shadow-hover transition-all" onClick={() => window.open('https://wa.me/5511997023024?text=Olá, Dra. Bruna! Gostaria de agendar uma consulta para conhecer o Programa LevSer.', '_blank')}>
+            <Button size="lg" variant="secondary" className="shadow-elegant hover:shadow-hover transition-all" onClick={() => window.open(CONTACT.WHATSAPP_PROGRAMA_URL, '_blank')}>
               <Phone className="mr-2" size={20} />
-              (11) 99702-3024
+              {CONTACT.PHONE_DISPLAY}
             </Button>
             
-            <Button size="lg" className="bg-card text-foreground hover:bg-card/90 shadow-elegant hover:shadow-hover transition-all" onClick={() => window.open('https://wa.me/5511997023024?text=Olá, Dra. Bruna! Gostaria de agendar uma consulta para conhecer o Programa LevSer.', '_blank')}>
+            <Button size="lg" className="bg-card text-foreground hover:bg-card/90 shadow-elegant hover:shadow-hover transition-all" onClick={() => window.open(CONTACT.WHATSAPP_PROGRAMA_URL, '_blank')}>
               <MessageCircle className="mr-2" size={20} />
               WhatsApp
             </Button>
@@ -40,16 +42,16 @@ export const CTAFinal = () => {
                 <p className="font-medium">Localização</p>
                 <p className="text-sm opacity-80 text-center">
                   LevSer<br />
-                  Av. Brasil, 173 - Jardim Paulista<br />
-                  São Paulo - SP, 01431-000
+                  {CONTACT.ADDRESS.street} - {CONTACT.ADDRESS.neighborhood}<br />
+                  {CONTACT.ADDRESS.city} - {CONTACT.ADDRESS.state}, {CONTACT.ADDRESS.zip}
                 </p>
               </div>
 
               <div className="flex flex-col items-center gap-2">
                 <Phone className="mb-2" size={24} />
                 <p className="font-medium">Telefone</p>
-                <a href="https://wa.me/5511997023024" target="_blank" rel="noopener noreferrer" className="text-sm opacity-80 hover:opacity-100 transition-opacity">
-                  (11) 99702-3024
+                <a href={CONTACT.WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-sm opacity-80 hover:opacity-100 transition-opacity">
+                  {CONTACT.PHONE_DISPLAY}
                 </a>
               </div>
             </div>
