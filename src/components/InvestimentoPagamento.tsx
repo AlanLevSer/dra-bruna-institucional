@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { 
   Calculator, ArrowRight, MessageCircle, ChevronRight, ChevronDown,
   Zap, Moon, Activity, Brain, Heart, Shield, Check, X,
-  TrendingUp, Clock, HelpCircle
+  TrendingUp, Clock, HelpCircle, RotateCcw, ArrowLeft
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -114,6 +114,8 @@ export const InvestimentoPagamento = () => {
   
   const [showExtras, setShowExtras] = useState(false);
   const [showPresets, setShowPresets] = useState(true);
+  const [showResults, setShowResults] = useState(false);
+  const [camposPreenchidos, setCamposPreenchidos] = useState(false);
 
   // Track component view
   useEffect(() => {
@@ -145,6 +147,15 @@ export const InvestimentoPagamento = () => {
     
     return () => clearTimeout(timer);
   }, [totalMensal, numCategorias]);
+
+  // Verificar se todos os campos principais estão preenchidos
+  useEffect(() => {
+    const todosCamposPreenchidos = campos.every(campo => {
+      const valor = parseFloat(valores[campo.id as keyof typeof valores]);
+      return valor && valor > 0;
+    });
+    setCamposPreenchidos(todosCamposPreenchidos);
+  }, [valores]);
 
   // QLI dinâmico
   const qliData: QLIItem[] = useMemo(() => {
@@ -198,6 +209,11 @@ export const InvestimentoPagamento = () => {
   const handleFieldChange = (field: string, value: string) => {
     setValores({ ...valores, [field]: value });
     
+    // Se usuário já viu resultados e mudou valores, esconder novamente
+    if (showResults) {
+      setShowResults(false);
+    }
+    
     trackEvent('roi_calc_field_change', {
       field_name: field,
       value_bucket: getValueBucket(parseFloat(value) || 0)
@@ -214,7 +230,30 @@ export const InvestimentoPagamento = () => {
   const applyPreset = (presetName: keyof typeof presets) => {
     setValores({ ...valores, ...presets[presetName] });
     setShowPresets(false);
+    setShowResults(false);
     trackEvent('roi_calc_preset_applied', { preset_name: presetName });
+  };
+
+  const handleCalcularReflexao = () => {
+    setShowResults(true);
+    
+    // Analytics
+    trackEvent('roi_calc_calculate_clicked', {
+      monthly_total_bucket: getValueBucket(totalMensal),
+      yearly_total_bucket: getValueBucket(totalMensal * 12),
+      num_categories: numCategorias
+    });
+
+    // Scroll suave para resultados (especialmente mobile)
+    setTimeout(() => {
+      const resultsCard = document.querySelector('#results-card');
+      if (resultsCard && window.innerWidth < 1024) {
+        const headerOffset = 100;
+        const elementPosition = resultsCard.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      }
+    }, 150);
   };
 
   const handleWhatsAppConsolidacao = () => {
@@ -399,23 +438,82 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
                   </CollapsibleContent>
                 </Collapsible>
 
-                {/* Totais */}
+                {/* Botão Calcular Reflexão */}
                 <div className="pt-6 border-t border-border/50">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm text-muted-foreground">Investimento Total/Mês:</span>
-                    <span className="text-2xl font-mono font-bold text-primary">
-                      R$ {totalMensal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">Em 12 meses:</span>
-                    <span className="text-lg font-mono font-semibold text-foreground">
-                      R$ {(totalMensal * 12).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                    </span>
-                  </div>
-                  <p className="text-xs text-muted-foreground text-center mt-4 italic">
-                    "Preço é o que você paga; valor é o que você mantém." — Warren Buffett
-                  </p>
+                  {!showResults ? (
+                    <div className="space-y-4">
+                      {/* Preview discreto do total */}
+                      {totalMensal > 0 && (
+                        <div className="text-center py-3 bg-muted/20 rounded-lg">
+                          <p className="text-xs text-muted-foreground mb-1">Total informado:</p>
+                          <p className="text-xl font-mono font-semibold text-foreground">
+                            R$ {totalMensal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}/mês
+                          </p>
+                        </div>
+                      )}
+                      
+                      {/* Botão principal */}
+                      <div className="relative">
+                        <Button
+                          size="lg"
+                          onClick={handleCalcularReflexao}
+                          disabled={!camposPreenchidos}
+                          className="w-full h-14 text-base font-semibold group relative"
+                        >
+                          <Calculator className="mr-2 h-5 w-5" />
+                          Ver Minha Reflexão Personalizada
+                          <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                        
+                        {/* Badge "Pronto!" quando todos campos preenchidos */}
+                        {camposPreenchidos && (
+                          <Badge 
+                            variant="secondary" 
+                            className="absolute -top-2 -right-2 animate-pulse text-xs px-2 py-0.5 bg-green-500 text-white border-green-600"
+                          >
+                            Pronto!
+                          </Badge>
+                        )}
+                      </div>
+                      
+                      {/* Mensagem de ajuda */}
+                      {!camposPreenchidos && totalMensal > 0 && (
+                        <p className="text-xs text-muted-foreground text-center">
+                          Preencha todos os 4 campos principais para continuar
+                        </p>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="space-y-3">
+                      {/* Resumo após calcular */}
+                      <div className="text-center py-4 bg-primary/10 border border-primary/20 rounded-lg">
+                        <p className="text-xs text-muted-foreground mb-1">Investimento Total/Mês:</p>
+                        <p className="text-2xl font-mono font-bold text-primary">
+                          R$ {totalMensal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                        </p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Em 12 meses: <span className="font-semibold text-foreground">
+                            R$ {(totalMensal * 12).toLocaleString('pt-BR')}
+                          </span>
+                        </p>
+                      </div>
+                      
+                      {/* Botão Recalcular */}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setShowResults(false)}
+                        className="w-full"
+                      >
+                        <RotateCcw className="mr-2 h-4 w-4" />
+                        Ajustar valores e recalcular
+                      </Button>
+                      
+                      <p className="text-xs text-muted-foreground text-center italic">
+                        "Preço é o que você paga; valor é o que você mantém." — Warren Buffett
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Aria-live para acessibilidade */}
@@ -432,24 +530,74 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
 
           {/* Coluna Direita: Cartão de Resultados */}
           <div className="w-full lg:w-1/2 lg:sticky lg:top-24 lg:self-start">
-            {totalMensal === 0 ? (
-              <Card className="border-border/50 bg-card shadow-lg">
-                <CardContent className="p-8 text-center">
-                  <Calculator className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-muted-foreground mb-4">
-                    Preencha ao menos um campo para ver sua reflexão personalizada.
-                  </p>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    onClick={() => applyPreset('medio')}
-                  >
-                    Ver um exemplo (perfil médio)
-                  </Button>
+            {!showResults ? (
+              <Card className="border-border/50 bg-card shadow-lg" id="results-card">
+                <CardContent className="p-8 md:p-12 text-center space-y-6">
+                  <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Calculator className="w-10 h-10 text-primary/50" />
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-serif font-semibold text-foreground mb-3">
+                      Sua Reflexão Personalizada
+                    </h3>
+                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-md mx-auto">
+                      {totalMensal === 0 
+                        ? "Preencha os campos ao lado para descobrir como consolidar seus investimentos em saúde pode transformar seus resultados."
+                        : camposPreenchidos
+                          ? "Perfeito! Agora clique em 'Ver Minha Reflexão Personalizada' no formulário ao lado para ver sua análise completa."
+                          : "Continue preenchendo os campos obrigatórios para ver sua reflexão personalizada."
+                      }
+                    </p>
+                  </div>
+                  
+                  {/* Indicador visual quando pronto */}
+                  {camposPreenchidos && (
+                    <div className="animate-bounce">
+                      <ArrowLeft className="w-8 h-8 text-primary mx-auto" />
+                      <p className="text-sm text-primary font-semibold mt-2">
+                        Clique no botão ao lado →
+                      </p>
+                    </div>
+                  )}
+                  
+                  {/* Botão exemplo apenas quando vazio */}
+                  {totalMensal === 0 && (
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => applyPreset('medio')}
+                    >
+                      Ver um exemplo (perfil médio)
+                    </Button>
+                  )}
+                  
+                  {/* Prévia dos benefícios (teaser) */}
+                  {!camposPreenchidos && totalMensal > 0 && (
+                    <div className="mt-6 pt-6 border-t border-border/50">
+                      <p className="text-xs text-muted-foreground mb-3">
+                        Você descobrirá:
+                      </p>
+                      <div className="space-y-2 text-left max-w-xs mx-auto">
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                          <Check className="w-4 h-4 text-primary" />
+                          <span>Ganhos esperados em qualidade de vida</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                          <Check className="w-4 h-4 text-primary" />
+                          <span>Comparação: disperso vs integrado</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                          <Check className="w-4 h-4 text-primary" />
+                          <span>Por que seus resultados não duraram antes</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             ) : (
-              <div className="animate-in fade-in slide-in-from-right duration-700 delay-150">
+              <div id="results-card" className="animate-in fade-in slide-in-from-right duration-700">
                 <Card className="border-primary/20 bg-card shadow-lg">
                   <CardContent className="p-6 md:p-8 space-y-6">
                     {/* A) Investimento Atual */}
