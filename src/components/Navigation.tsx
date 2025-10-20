@@ -13,11 +13,24 @@ const navItems = [
     subItems: [
       { label: "Dra. Bruna Durelli", href: "/sobre#sobre" },
       { label: "Jornada de Transformação", href: "/sobre#jornada" },
-      { label: "Experiência Concierge", href: "/sobre#concierge" },
+      { label: "Experiência Concierge", href: "/sobre#experiencia-concierge" },
       { label: "Ver tudo", href: "/sobre" },
     ],
   },
-  { label: "Programa LevSer", href: "/programa-levser", type: "link" },
+  {
+    label: "Programa LevSer",
+    href: "/programa-levser",
+    type: "dropdown",
+    subItems: [
+      { label: "Visão Geral", href: "/programa-levser#programa" },
+      { label: "Diferenciais", href: "/programa-levser#diferenciais" },
+      { label: "Comunidade de Apoio", href: "/programa-levser#comunidade" },
+      { label: "Nutrição & Emagrecimento", href: "/programa-levser#nutricao" },
+      { label: "Regeneração Metabólica", href: "/programa-levser#regeneracao" },
+      { label: "Segurança & Evidências", href: "/programa-levser#seguranca" },
+      { label: "Ver tudo", href: "/programa-levser" },
+    ],
+  },
   {
     label: "Tratamentos",
     href: "/tratamentos",

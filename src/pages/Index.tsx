@@ -3,6 +3,7 @@ import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { SobreDraBrunaResumo } from "@/components/SobreDraBrunaResumo";
 import { ProgramaLevSer } from "@/components/ProgramaLevSer";
+import { Comunidade } from "@/components/Comunidade";
 import { InvestimentoPagamento } from "@/components/InvestimentoPagamento";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { MobileCTA } from "@/components/MobileCTA";
@@ -38,6 +39,7 @@ const Index = () => {
           <Hero />
           <SobreDraBrunaResumo />
           <ProgramaLevSer />
+          <Comunidade />
           
           {/* Seção Tratamentos */}
           <section id="tratamentos" className="py-16 xl:py-20 bg-muted/30">
@@ -49,13 +51,13 @@ const Index = () => {
                   <CardHeader><Activity className="w-12 h-12 text-primary mb-4" /><CardTitle>Terapias Endoscópicas</CardTitle></CardHeader>
                   <CardContent><p className="text-sm text-muted-foreground mb-4">Balão, Gastroplastia, Plasma de Argônio</p><Button variant="ghost" size="sm" className="p-0 h-auto">Ver procedimentos <ArrowRight className="ml-2 h-4 w-4" /></Button></CardContent>
                 </Card>
-                <Card className="cursor-pointer hover:shadow-hover transition-all" onClick={() => navigate("/tratamentos#farmacologicos")}>
-                  <CardHeader><Syringe className="w-12 h-12 text-primary mb-4" /><CardTitle>Terapias Farmacológicas</CardTitle></CardHeader>
-                  <CardContent><p className="text-sm text-muted-foreground mb-4">Canetas Emagrecedoras</p><Button variant="ghost" size="sm" className="p-0 h-auto">Saiba mais <ArrowRight className="ml-2 h-4 w-4" /></Button></CardContent>
+                <Card className="cursor-pointer hover:shadow-hover transition-all" onClick={() => navigate("/tratamentos#emagrecimento-longevidade")}>
+                  <CardHeader><Syringe className="w-12 h-12 text-primary mb-4" /><CardTitle>Canetas Emagrecedoras</CardTitle></CardHeader>
+                  <CardContent><p className="text-sm text-muted-foreground mb-4">Mounjaro, Ozempic, Wegovy, Saxenda</p><Button variant="ghost" size="sm" className="p-0 h-auto">Saiba mais <ArrowRight className="ml-2 h-4 w-4" /></Button></CardContent>
                 </Card>
-                <Card className="cursor-pointer hover:shadow-hover transition-all" onClick={() => navigate("/tratamentos#regenerativos")}>
-                  <CardHeader><Zap className="w-12 h-12 text-primary mb-4" /><CardTitle>Medicina Regenerativa</CardTitle></CardHeader>
-                  <CardContent><p className="text-sm text-muted-foreground mb-4">Nutrição Celular, Otimização Metabólica</p><Button variant="ghost" size="sm" className="p-0 h-auto">Explore <ArrowRight className="ml-2 h-4 w-4" /></Button></CardContent>
+                <Card className="cursor-pointer hover:shadow-hover transition-all" onClick={() => navigate("/tratamentos#emagrecimento-longevidade")}>
+                  <CardHeader><Zap className="w-12 h-12 text-primary mb-4" /><CardTitle>Medicina Regenerativa & Nutrição</CardTitle></CardHeader>
+                  <CardContent><p className="text-sm text-muted-foreground mb-4">Otimização Metabólica e Celular</p><Button variant="ghost" size="sm" className="p-0 h-auto">Explore <ArrowRight className="ml-2 h-4 w-4" /></Button></CardContent>
                 </Card>
               </div>
             </div>

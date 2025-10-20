@@ -34,7 +34,7 @@ export const Comunidade = () => {
   ];
 
   return (
-    <section className="relative py-16 md:py-24 bg-gradient-to-b from-background to-muted/30 overflow-hidden">
+    <section id="comunidade" className="relative py-16 md:py-24 bg-gradient-to-b from-background to-muted/30 overflow-hidden">
       <GrafismoDecor 
         variant="background" 
         position="top-left" 

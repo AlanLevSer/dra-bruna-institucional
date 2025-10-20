@@ -49,7 +49,7 @@ export const SegurancaEvidencias = () => {
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
   };
-  return <section className="relative py-20 bg-card overflow-hidden">
+  return <section id="seguranca" className="relative py-20 bg-card overflow-hidden">
       <GrafismoDecor variant="floating" position="bottom-left" size="lg" opacity={0.1} rotate={-20} color="gray" />
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
