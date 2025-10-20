@@ -9,7 +9,7 @@ const procedures = [
     icon: Syringe,
     title: "Balão Intragástrico",
     description: "Procedimento não cirúrgico que auxilia na redução do apetite e promove saciedade precoce.",
-    link: "/terapias-endoscopicas",
+    link: "/balao-intragastrico",
   },
   {
     icon: Activity,

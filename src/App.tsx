@@ -7,6 +7,10 @@ import { useEffect } from "react";
 import { PerformanceMonitor } from "./components/dev/PerformanceMonitor";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Sobre from "./pages/Sobre";
+import ProgramaLevSerPage from "./pages/ProgramaLevSerPage";
+import Tratamentos from "./pages/Tratamentos";
+import Recursos from "./pages/Recursos";
 import NutricaoCelular from "./pages/NutricaoCelular";
 import BalaoIntragastrico from "./pages/BalaoIntragastrico";
 import GastroplastiaEndoscopica from "./pages/GastroplastiaEndoscopica";
@@ -48,9 +52,13 @@ const App = () => (
         <ScrollManager />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/sobre" element={<Sobre />} />
+          <Route path="/programa-levser" element={<ProgramaLevSerPage />} />
+          <Route path="/tratamentos" element={<Tratamentos />} />
+          <Route path="/recursos" element={<Recursos />} />
           <Route path="/nutricao-celular" element={<NutricaoCelular />} />
           <Route path="/balao-intragastrico" element={<BalaoIntragastrico />} />
-          <Route path="/terapias-endoscopicas" element={<BalaoIntragastrico />} /> {/* Redirect antigo */}
+          <Route path="/terapias-endoscopicas" element={<Navigate to="/balao-intragastrico" replace />} />
           <Route path="/gastroplastia-endoscopica" element={<GastroplastiaEndoscopica />} />
           <Route path="/canetas-emagrecedoras" element={<CanetasEmagrecedoras />} />
           <Route path="/terapia-sacietogena" element={<Navigate to="/canetas-emagrecedoras" replace />} />
