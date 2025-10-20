@@ -8,7 +8,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { SEOHead } from "@/components/SEOHead";
 import { CONTACT } from "@/lib/constants";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
-import { Activity, Syringe, Zap, CheckCircle2 } from "lucide-react";
+import { Activity, Zap, CheckCircle2 } from "lucide-react";
 import heroImage from "@/assets/patient-wellness-1.jpg";
 
 const Tratamentos = () => {
@@ -37,7 +37,7 @@ const Tratamentos = () => {
             onCtaClick={handleCTA}
           />
           
-          {/* Terapias Endoscópicas */}
+          {/* Procedimentos Endoscópicos */}
           <section id="endoscopicos" className="py-16 xl:py-20 bg-background relative overflow-hidden">
             <GrafismoDecor variant="background" position="top-left" size="lg" opacity={0.1} rotate={15} color="gray" />
             <div className="container mx-auto px-4 relative z-10">
@@ -46,11 +46,11 @@ const Tratamentos = () => {
                   <Activity className="w-8 h-8 text-primary" />
                 </div>
                 <h2 className="text-3xl xl:text-4xl font-serif font-bold mb-4">
-                  Terapias Endoscópicas
+                  Procedimentos Endoscópicos
                 </h2>
                 <p className="text-muted-foreground">
-                  Procedimentos minimamente invasivos realizados por via endoscópica, sem cortes externos. 
-                  Recuperação rápida e excelentes resultados.
+                  Balão intragástrico, gastroplastia endoscópica e plasma de argônio. 
+                  Procedimentos minimamente invasivos com recuperação rápida e resultados excelentes.
                 </p>
               </div>
               
@@ -58,45 +58,24 @@ const Tratamentos = () => {
             </div>
           </section>
 
-          {/* Terapias Farmacológicas */}
-          <section id="farmacologicos" className="py-16 xl:py-20 bg-muted/30 relative overflow-hidden">
-            <GrafismoDecor variant="background" position="top-right" size="lg" opacity={0.1} rotate={-15} color="gray" />
-            <div className="container mx-auto px-4 relative z-10">
-              <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
-                  <Syringe className="w-8 h-8 text-primary" />
-                </div>
-                <h2 className="text-3xl xl:text-4xl font-serif font-bold mb-4">
-                  Terapias Farmacológicas
-                </h2>
-                <p className="text-muted-foreground">
-                  Medicações modernas e eficazes para controle da fome e emagrecimento sustentável, 
-                  sempre com prescrição e acompanhamento médico especializado.
-                </p>
-              </div>
-              
-              <TratamentosGrid category="farmacologico" />
-            </div>
-          </section>
-
-          {/* Medicina Regenerativa */}
-          <section id="regenerativos" className="py-16 xl:py-20 bg-background relative overflow-hidden">
-            <GrafismoDecor variant="background" position="bottom-left" size="lg" opacity={0.1} rotate={25} color="gray" />
+          {/* Emagrecimento & Longevidade */}
+          <section id="emagrecimento-longevidade" className="py-16 xl:py-20 bg-muted/30 relative overflow-hidden">
+            <GrafismoDecor variant="background" position="bottom-right" size="lg" opacity={0.1} rotate={-20} color="gray" />
             <div className="container mx-auto px-4 relative z-10">
               <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
                   <Zap className="w-8 h-8 text-primary" />
                 </div>
                 <h2 className="text-3xl xl:text-4xl font-serif font-bold mb-4">
-                  Medicina Regenerativa & Longevidade
+                  Emagrecimento & Longevidade
                 </h2>
                 <p className="text-muted-foreground">
-                  Abordagem avançada para otimização metabólica, hormonal e celular. 
-                  Mais energia, menos inflamação, resultados duradouros.
+                  Canetas emagrecedoras, medicina regenerativa e nutrição celular avançada. 
+                  Abordagem integrada para resultados sustentáveis e qualidade de vida superior.
                 </p>
               </div>
               
-              <TratamentosGrid category="regenerativo" />
+              <TratamentosGrid category="emagrecimento_longevidade" />
             </div>
           </section>
 

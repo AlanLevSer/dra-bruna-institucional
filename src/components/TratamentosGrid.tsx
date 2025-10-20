@@ -9,7 +9,7 @@ interface Tratamento {
   title: string;
   description: string;
   link: string;
-  category: "endoscopico" | "farmacologico" | "regenerativo";
+  category: "endoscopico" | "emagrecimento_longevidade";
 }
 
 const tratamentos: Tratamento[] = [
@@ -39,26 +39,26 @@ const tratamentos: Tratamento[] = [
     title: "Canetas Emagrecedoras",
     description: "Mounjaro, Ozempic, Wegovy e Saxenda. Controle avançado da fome com acompanhamento médico personalizado.",
     link: "/canetas-emagrecedoras",
-    category: "farmacologico"
+    category: "emagrecimento_longevidade"
   },
   {
     icon: Microscope,
     title: "Medicina Regenerativa",
     description: "Otimização metabólica, hormonal e celular. Mais energia, menos inflamação, preservação muscular.",
     link: "/medicina-regenerativa",
-    category: "regenerativo"
+    category: "emagrecimento_longevidade"
   },
   {
     icon: Apple,
     title: "Nutrição Celular",
     description: "Suplementação personalizada e terapia nutricional avançada para resultados superiores.",
     link: "/nutricao-celular",
-    category: "regenerativo"
+    category: "emagrecimento_longevidade"
   }
 ];
 
 interface TratamentosGridProps {
-  category?: "endoscopico" | "farmacologico" | "regenerativo";
+  category?: "endoscopico" | "emagrecimento_longevidade";
   showAll?: boolean;
 }
 
