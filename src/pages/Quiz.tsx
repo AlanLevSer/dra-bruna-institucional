@@ -11,7 +11,8 @@ import {
   step3Schema, 
   step4Schema, 
   step5Schema, 
-  step6Schema 
+  step6Schema,
+  step7Schema
 } from "@/lib/quiz-validation";
 import { toast } from "@/hooks/use-toast";
 import { QuizProgress } from "@/components/quiz/QuizProgress";
@@ -22,6 +23,7 @@ import { QuizStep3 } from "@/components/quiz/QuizStep3";
 import { QuizStep4 } from "@/components/quiz/QuizStep4";
 import { QuizStep5 } from "@/components/quiz/QuizStep5";
 import { QuizStep6 } from "@/components/quiz/QuizStep6";
+import { QuizStep7 } from "@/components/quiz/QuizStep7";
 import { GeneratingAnimation } from "@/components/quiz/GeneratingAnimation";
 import { DeclaracaoTransformacao } from "@/components/output/DeclaracaoTransformacao";
 import { IndiceQLI } from "@/components/output/IndiceQLI";
@@ -53,7 +55,11 @@ const Quiz = () => {
     tempoRecuperacao: 'moderado',
     tempoDisponivel: '3-5h/sem',
     dorPrincipal: 'energia',
-    expectativas: []
+    expectativas: [],
+    cirurgiaGastricaPrevia: false,
+    cirurgiaBariatricaPreviaTipo: 'nenhuma',
+    reganhoPosBariatrica: false,
+    falhaPreviaClinica: false
   });
 
   useEffect(() => {
@@ -114,6 +120,14 @@ const Quiz = () => {
         case 6:
           step6Schema.parse({ expectativas: quizData.expectativas });
           return true;
+        case 7:
+          step7Schema.parse({ 
+            cirurgiaGastricaPrevia: quizData.cirurgiaGastricaPrevia,
+            cirurgiaBariatricaPreviaTipo: quizData.cirurgiaBariatricaPreviaTipo,
+            reganhoPosBariatrica: quizData.reganhoPosBariatrica,
+            falhaPreviaClinica: quizData.falhaPreviaClinica
+          });
+          return true;
         default:
           return false;
       }
@@ -136,6 +150,7 @@ const Quiz = () => {
       case 4: return true;
       case 5: return true;
       case 6: return quizData.expectativas.length > 0;
+      case 7: return true;
       default: return false;
     }
   };
@@ -144,9 +159,9 @@ const Quiz = () => {
     if (validateCurrentStep()) {
       trackEvent('quiz_step_completed', {
         step: currentStep,
-        totalSteps: 6
+        totalSteps: 7
       });
-      setCurrentStep(Math.min(6, currentStep + 1));
+      setCurrentStep(Math.min(7, currentStep + 1));
     }
   };
 
@@ -188,7 +203,11 @@ const Quiz = () => {
       tempoRecuperacao: 'moderado',
       tempoDisponivel: '3-5h/sem',
       dorPrincipal: 'energia',
-      expectativas: []
+      expectativas: [],
+      cirurgiaGastricaPrevia: false,
+      cirurgiaBariatricaPreviaTipo: 'nenhuma',
+      reganhoPosBariatrica: false,
+      falhaPreviaClinica: false
     });
     
     trackEvent('quiz_reset');
@@ -241,7 +260,7 @@ const Quiz = () => {
                     Descubra Seu Caminho
                   </h1>
                   <p className="text-lg md:text-xl text-muted-foreground mb-2">
-                    Responda 6 perguntas e receba um plano personalizado
+                    Responda 7 perguntas e receba um plano personalizado
                   </p>
                   <p className="text-sm text-muted-foreground">
                     100% gratuito • Sem compromisso • Resultados imediatos
@@ -259,7 +278,7 @@ const Quiz = () => {
                   <GeneratingAnimation />
                 ) : !showOutput ? (
                   <div className="bg-card rounded-2xl shadow-lg border p-6 md:p-8">
-                    <QuizProgress currentStep={currentStep} totalSteps={6} />
+                    <QuizProgress currentStep={currentStep} totalSteps={7} />
                     
                     {currentStep === 1 && (
                       <QuizStep1
@@ -304,10 +323,19 @@ const Quiz = () => {
                         onChange={(val) => updateQuizData('expectativas', val)}
                       />
                     )}
+                    {currentStep === 7 && (
+                      <QuizStep7
+                        cirurgiaGastricaPrevia={quizData.cirurgiaGastricaPrevia}
+                        cirurgiaBariatricaPreviaTipo={quizData.cirurgiaBariatricaPreviaTipo}
+                        reganhoPosBariatrica={quizData.reganhoPosBariatrica}
+                        falhaPreviaClinica={quizData.falhaPreviaClinica}
+                        onChange={updateQuizData}
+                      />
+                    )}
                     
                     <QuizNavigation
                       currentStep={currentStep}
-                      totalSteps={6}
+                      totalSteps={7}
                       canProceed={canProceed()}
                       onBack={() => setCurrentStep(Math.max(1, currentStep - 1))}
                       onNext={handleNext}
@@ -317,7 +345,7 @@ const Quiz = () => {
                 ) : output ? (
                   <div className="space-y-6">
                     <div className="bg-card rounded-2xl shadow-lg border overflow-hidden">
-                      <DeclaracaoTransformacao headline={output.headline} />
+                      <DeclaracaoTransformacao headline={output.headline} alertaClinico={output.alertaClinico} />
                       <IndiceQLI qli={output.qli} />
                       <RoadmapFases roadmap={output.roadmap} />
                       <MixEstrategias mixEstrategias={output.mixEstrategias} />

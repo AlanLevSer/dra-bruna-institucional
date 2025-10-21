@@ -36,3 +36,10 @@ export const step6Schema = z.object({
     .min(1, "Selecione ao menos uma expectativa")
     .max(3, "Selecione no máximo 3 expectativas")
 });
+
+export const step7Schema = z.object({
+  cirurgiaGastricaPrevia: z.boolean(),
+  cirurgiaBariatricaPreviaTipo: z.enum(['nenhuma', 'bypass', 'sleeve', 'outras']),
+  reganhoPosBariatrica: z.boolean(),
+  falhaPreviaClinica: z.boolean()
+});

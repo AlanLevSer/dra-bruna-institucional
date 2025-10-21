@@ -7,6 +7,7 @@ export function generateTransformacaoOutput(data: QuizData): TransformacaoOutput
   const mixEstrategias = generateMixEstrategias(data);
   const kpis = generateKPIs(data);
   const lifestyleWins = generateLifestyleWins(data);
+  const alertaClinico = generateAlertaClinico(data);
   
   return {
     headline,
@@ -14,7 +15,8 @@ export function generateTransformacaoOutput(data: QuizData): TransformacaoOutput
     roadmap,
     mixEstrategias,
     kpis,
-    lifestyleWins
+    lifestyleWins,
+    alertaClinico
   };
 }
 
@@ -152,7 +154,6 @@ function generateMixEstrategias(data: QuizData) {
     }
   ];
   
-  // Adicionar pilar específico se histórico de efeito sanfona
   if (data.efeitoSanfona) {
     pilares.push({
       nome: "Prevenção de Recaída",
@@ -162,50 +163,104 @@ function generateMixEstrategias(data: QuizData) {
   }
   
   let intervencao: TransformacaoOutput['mixEstrategias']['intervencao'] = undefined;
+  const comorbidadesQtd = data.comorbidades.filter(c => c !== 'nenhuma').length;
+  const metaKg = (data.peso * data.metaPeso) / 100;
   
-  // Gastroplastia Endoscópica para casos mais robustos
+  // 0) PLASMA DE ARGÔNIO - Exclusivo para reganho pós-BYPASS
   if (
-    data.imc >= 35 && 
-    data.metaPeso >= 30 && 
+    data.cirurgiaBariatricaPreviaTipo === 'bypass' &&
+    data.reganhoPosBariatrica &&
+    (data.invasividade === 'minima' || data.invasividade === 'moderada')
+  ) {
+    intervencao = {
+      tipo: 'plasma_argonio',
+      nome: 'Plasma de Argônio (APC) pós-Bypass',
+      justificativa: "Procedimento endoscópico específico para tratamento de reganho após bypass gástrico. Necessária avaliação endoscópica prévia."
+    };
+  }
+  
+  // 1) GASTROPLASTIA ENDOSCÓPICA
+  else if (
+    data.imc >= 30 && data.imc <= 40 &&
     data.invasividade !== 'minima' &&
-    (data.comorbidades.filter(c => c !== 'nenhuma').length >= 2 || data.dorPrincipal === 'marcadores_alterados')
+    (metaKg >= 20 || comorbidadesQtd >= 2 || data.falhaPreviaClinica)
   ) {
     intervencao = {
       tipo: 'gastroplastia',
       nome: 'Gastroplastia Endoscópica',
-      justificativa: "Procedimento endoscópico robusto para perda sustentável de 20-30%, ideal para seu perfil metabólico e meta de transformação profunda"
+      justificativa: "Redução volumétrica do estômago sem cortes. Recuperação rápida e resultado mais robusto. A decisão é compartilhada na avaliação."
     };
-  } else if (data.imc >= 30 && data.metaPeso >= 20) {
-    if (data.invasividade === 'minima' && data.tempoRecuperacao === 'minimo') {
-      intervencao = {
-        tipo: 'injetaveis',
-        nome: 'Canetas Emagrecedoras',
-        justificativa: "Para acelerar resultados com mínima invasividade e sem tempo de recuperação"
-      };
-    } else if (data.invasividade === 'moderada' || data.invasividade === 'nao_importa') {
-      if (data.metaPeso >= 30 || data.comorbidades.filter(c => c !== 'nenhuma').length >= 2) {
-        intervencao = {
-          tipo: 'balao_12m',
-          nome: 'Balão Intragástrico Ajustável (12 meses)',
-          justificativa: "Balão ajustável de 12 meses para maior sustentabilidade e acompanhamento estruturado"
-        };
-      } else {
-        intervencao = {
-          tipo: 'balao_6m',
-          nome: 'Balão Intragástrico (6 meses)',
-          justificativa: "Balão de 6 meses para acelerar reset metabólico com segurança"
-        };
-      }
-    }
-  } else if (data.imc >= 27 && data.metaPeso >= 10) {
+  }
+  // IMC > 40 e recusa cirurgia bariátrica
+  else if (data.imc > 40 && data.invasividade !== 'minima') {
+    intervencao = {
+      tipo: 'gastroplastia',
+      nome: 'Gastroplastia Endoscópica',
+      justificativa: "Opção endoscópica robusta quando cirurgia bariátrica não é desejada. Sujeita à elegibilidade clínica."
+    };
+  }
+  
+  // 2) BALÃO 12 MESES (exclui se cirurgia gástrica prévia)
+  else if (
+    data.imc >= 30 &&
+    data.invasividade !== 'minima' &&
+    !data.cirurgiaGastricaPrevia &&
+    (metaKg >= 20 || comorbidadesQtd >= 2 || data.efeitoSanfona)
+  ) {
+    intervencao = {
+      tipo: 'balao_12m',
+      nome: 'Balão Intragástrico Ajustável (12 meses)',
+      justificativa: "Ajustável ao longo do ano para estabilidade e menor risco de reganho. Exclui-se quem já teve cirurgia gástrica."
+    };
+  }
+  
+  // 3) BALÃO 6 MESES (exclui se cirurgia gástrica prévia)
+  else if (
+    data.invasividade !== 'minima' &&
+    !data.cirurgiaGastricaPrevia &&
+    (
+      // Caso especial: IMC 27-30 com falha clínica prévia
+      (data.imc > 27 && data.imc < 30 && data.falhaPreviaClinica) ||
+      // Fallback padrão IMC >= 30
+      (data.imc >= 30) ||
+      // Tempo de recuperação curto
+      (data.tempoRecuperacao === 'minimo')
+    )
+  ) {
+    intervencao = {
+      tipo: 'balao_6m',
+      nome: 'Balão Intragástrico (6 meses)',
+      justificativa: "Start estruturado com foco em constância; ideal quando há falhas clínicas prévias ou tempo curto."
+    };
+  }
+  
+  // 4) CANETAS (priorizar se invasividade mínima)
+  else if (
+    (data.imc >= 30) || 
+    (data.imc >= 27 && comorbidadesQtd >= 1)
+  ) {
     intervencao = {
       tipo: 'injetaveis',
-      nome: 'Canetas Emagrecedoras',
-      justificativa: "Canetas emagrecedoras para controle de fome e estabilização do peso"
+      nome: 'Terapia Injetável (GLP-1/GIP)',
+      justificativa: "Controle de apetite e melhora metabólica com mínima invasividade. Protocolos individualizados por exames."
     };
   }
   
   return { pilares, intervencao };
+}
+
+function generateAlertaClinico(data: QuizData): string | undefined {
+  const alertas: string[] = [];
+  
+  if (data.cirurgiaGastricaPrevia && !data.reganhoPosBariatrica) {
+    alertas.push("Cirurgia gástrica prévia pode contraindicar alguns procedimentos (ex: balões)");
+  }
+  
+  if (alertas.length > 0) {
+    return `⚠️ Atenção: ${alertas.join(". ")}. Estas condições exigem avaliação médica. Seu plano será definido com segurança em consulta.`;
+  }
+  
+  return undefined;
 }
 
 function generateKPIs(data: QuizData) {

@@ -1,5 +1,5 @@
 import { TransformacaoOutput } from "@/types/quiz";
-import { Utensils, Dumbbell, Brain, Sparkles, Syringe, Scissors, Shield, Lightbulb } from "lucide-react";
+import { Utensils, Dumbbell, Brain, Sparkles, Syringe, Scissors, Shield, Lightbulb, Zap } from "lucide-react";
 
 interface MixEstrategiasProps {
   mixEstrategias: TransformacaoOutput['mixEstrategias'];
@@ -16,10 +16,10 @@ export const MixEstrategias = ({ mixEstrategias }: MixEstrategiasProps) => {
   
   const intervencaoIcons: Record<string, any> = {
     gastroplastia: Scissors,
-    balao_4m: Syringe,
     balao_6m: Syringe,
     balao_12m: Syringe,
-    injetaveis: Syringe
+    injetaveis: Syringe,
+    plasma_argonio: Zap
   };
   
   const enfaseColors = {

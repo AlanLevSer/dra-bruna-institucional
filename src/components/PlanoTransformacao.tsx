@@ -8,7 +8,8 @@ import {
   step3Schema, 
   step4Schema, 
   step5Schema, 
-  step6Schema 
+  step6Schema,
+  step7Schema
 } from "@/lib/quiz-validation";
 import { toast } from "@/hooks/use-toast";
 import { QuizProgress } from "./quiz/QuizProgress";
@@ -19,6 +20,7 @@ import { QuizStep3 } from "./quiz/QuizStep3";
 import { QuizStep4 } from "./quiz/QuizStep4";
 import { QuizStep5 } from "./quiz/QuizStep5";
 import { QuizStep6 } from "./quiz/QuizStep6";
+import { QuizStep7 } from "./quiz/QuizStep7";
 import { GeneratingAnimation } from "./quiz/GeneratingAnimation";
 import { DeclaracaoTransformacao } from "./output/DeclaracaoTransformacao";
 import { IndiceQLI } from "./output/IndiceQLI";
@@ -51,7 +53,11 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
     tempoRecuperacao: 'moderado',
     tempoDisponivel: '3-5h/sem',
     dorPrincipal: 'energia',
-    expectativas: []
+    expectativas: [],
+    cirurgiaGastricaPrevia: false,
+    cirurgiaBariatricaPreviaTipo: 'nenhuma',
+    reganhoPosBariatrica: false,
+    falhaPreviaClinica: false
   });
 
   const updateQuizData = (field: string, value: any) => {
@@ -104,6 +110,14 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
         case 6:
           step6Schema.parse({ expectativas: quizData.expectativas });
           return true;
+        case 7:
+          step7Schema.parse({ 
+            cirurgiaGastricaPrevia: quizData.cirurgiaGastricaPrevia,
+            cirurgiaBariatricaPreviaTipo: quizData.cirurgiaBariatricaPreviaTipo,
+            reganhoPosBariatrica: quizData.reganhoPosBariatrica,
+            falhaPreviaClinica: quizData.falhaPreviaClinica
+          });
+          return true;
         default:
           return false;
       }
@@ -126,13 +140,14 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
       case 4: return true;
       case 5: return true;
       case 6: return quizData.expectativas.length > 0;
+      case 7: return true;
       default: return false;
     }
   };
 
   const handleNext = () => {
     if (validateCurrentStep()) {
-      setCurrentStep(Math.min(6, currentStep + 1));
+      setCurrentStep(Math.min(7, currentStep + 1));
     }
   };
 
@@ -165,7 +180,11 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
       tempoRecuperacao: 'moderado',
       tempoDisponivel: '3-5h/sem',
       dorPrincipal: 'energia',
-      expectativas: []
+      expectativas: [],
+      cirurgiaGastricaPrevia: false,
+      cirurgiaBariatricaPreviaTipo: 'nenhuma',
+      reganhoPosBariatrica: false,
+      falhaPreviaClinica: false
     });
   };
 
@@ -178,7 +197,7 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
           <GeneratingAnimation />
         ) : !showOutput ? (
           <div ref={quizTopRef} className="p-8">
-            <QuizProgress currentStep={currentStep} totalSteps={6} />
+            <QuizProgress currentStep={currentStep} totalSteps={7} />
             
             {currentStep === 1 && (
               <QuizStep1
@@ -223,10 +242,19 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
                 onChange={(val) => updateQuizData('expectativas', val)}
               />
             )}
+            {currentStep === 7 && (
+              <QuizStep7
+                cirurgiaGastricaPrevia={quizData.cirurgiaGastricaPrevia}
+                cirurgiaBariatricaPreviaTipo={quizData.cirurgiaBariatricaPreviaTipo}
+                reganhoPosBariatrica={quizData.reganhoPosBariatrica}
+                falhaPreviaClinica={quizData.falhaPreviaClinica}
+                onChange={updateQuizData}
+              />
+            )}
             
             <QuizNavigation
               currentStep={currentStep}
-              totalSteps={6}
+              totalSteps={7}
               canProceed={canProceed()}
               onBack={() => setCurrentStep(Math.max(1, currentStep - 1))}
               onNext={handleNext}
@@ -235,7 +263,7 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
           </div>
         ) : output ? (
           <div>
-            <DeclaracaoTransformacao headline={output.headline} />
+            <DeclaracaoTransformacao headline={output.headline} alertaClinico={output.alertaClinico} />
             <IndiceQLI qli={output.qli} />
             <RoadmapFases roadmap={output.roadmap} />
             <MixEstrategias mixEstrategias={output.mixEstrategias} />

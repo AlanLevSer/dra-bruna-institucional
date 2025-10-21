@@ -31,10 +31,17 @@ export interface QuizData {
     'performance_trabalho' |
     'autonomia_movimentos'
   >;
+  
+  // Step 7: Histórico Cirúrgico
+  cirurgiaGastricaPrevia: boolean;
+  cirurgiaBariatricaPreviaTipo: 'nenhuma' | 'bypass' | 'sleeve' | 'outras';
+  reganhoPosBariatrica: boolean;
+  falhaPreviaClinica: boolean;
 }
 
 export interface TransformacaoOutput {
   headline: string;
+  alertaClinico?: string;
   qli: {
     energia: { baseline: number; meta: number };
     sono: { baseline: number; meta: number };
@@ -57,7 +64,7 @@ export interface TransformacaoOutput {
       descricao: string;
     }>;
     intervencao?: {
-      tipo: 'balao_4m' | 'balao_6m' | 'balao_12m' | 'gastroplastia' | 'injetaveis';
+      tipo: 'balao_6m' | 'balao_12m' | 'gastroplastia' | 'injetaveis' | 'plasma_argonio';
       nome: string;
       justificativa: string;
     };
