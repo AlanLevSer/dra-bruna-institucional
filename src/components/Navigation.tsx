@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Sparkles } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logoHeader from "@/assets/logo-header.svg";
 
@@ -10,6 +10,8 @@ interface SubMenuItem {
   isGroupHeader?: boolean;
   indent?: boolean;
   isDivider?: boolean;
+  badge?: string;
+  icon?: any;
 }
 
 interface NavItem {
@@ -68,6 +70,7 @@ const navItems: NavItem[] = [
     href: "/recursos",
     type: "dropdown",
     subItems: [
+      { label: "Descubra Seu Caminho", href: "/quiz", badge: "Novo", icon: Sparkles },
       { label: "FAQ Completo", href: "/recursos#faq" },
       { label: "Calculadoras", href: "/recursos#calculadoras" },
       { label: "Ver tudo", href: "/recursos" },
@@ -205,16 +208,23 @@ export const Navigation = () => {
                           );
                         }
                         
+                        const Icon = subItem.icon;
                         return (
                           <Link
                             key={subItem.href}
                             to={subItem.href}
                             onClick={() => setOpenDropdown(null)}
-                            className={`block px-4 py-3 text-sm text-foreground/80 hover:text-primary hover:bg-muted/30 transition-colors ${
+                            className={`flex items-center gap-2 px-4 py-3 text-sm text-foreground/80 hover:text-primary hover:bg-muted/30 transition-colors ${
                               subItem.indent ? 'pl-8' : ''
                             }`}
                           >
-                            {subItem.label}
+                            {Icon && <Icon className="w-4 h-4 text-primary shrink-0" />}
+                            <span className="flex-1">{subItem.label}</span>
+                            {subItem.badge && (
+                              <span className="text-[10px] bg-primary text-white px-1.5 py-0.5 rounded-full font-medium">
+                                {subItem.badge}
+                              </span>
+                            )}
                           </Link>
                         );
                       })}
@@ -313,16 +323,23 @@ export const Navigation = () => {
                             );
                           }
                           
+                          const Icon = subItem.icon;
                           return (
                             <Link
                               key={subItem.href}
                               to={subItem.href}
                               onClick={() => setIsMobileMenuOpen(false)}
-                              className={`block text-sm text-foreground/70 hover:text-primary transition-colors ${
+                              className={`flex items-center gap-2 text-sm text-foreground/70 hover:text-primary transition-colors ${
                                 subItem.indent ? 'pl-4' : ''
                               }`}
                             >
-                              {subItem.label}
+                              {Icon && <Icon className="w-4 h-4 text-primary shrink-0" />}
+                              <span className="flex-1">{subItem.label}</span>
+                              {subItem.badge && (
+                                <span className="text-[10px] bg-primary text-white px-1.5 py-0.5 rounded-full font-medium">
+                                  {subItem.badge}
+                                </span>
+                              )}
                             </Link>
                           );
                         })}

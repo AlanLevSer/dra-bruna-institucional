@@ -8,11 +8,14 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { SEOHead } from "@/components/SEOHead";
 import { CONTACT } from "@/lib/constants";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
-import { Calculator, BookOpen, HelpCircle } from "lucide-react";
+import { Calculator, BookOpen, HelpCircle, Sparkles } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/transformation-empowerment.jpg";
 
 const Recursos = () => {
+  const navigate = useNavigate();
+  
   const handleCTA = () => {
     window.open(CONTACT.WHATSAPP_URL, '_blank');
   };
@@ -54,7 +57,25 @@ const Recursos = () => {
           <section className="py-16 xl:py-20 bg-background relative overflow-hidden">
             <GrafismoDecor variant="background" position="top-right" size="lg" opacity={0.1} rotate={-20} color="gray" />
             <div className="container mx-auto px-4 relative z-10">
-              <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto mb-16">
+                <Card 
+                  className="cursor-pointer hover:shadow-hover transition-all border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-background" 
+                  onClick={() => navigate('/quiz')}
+                >
+                  <CardHeader>
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center mb-4">
+                      <Sparkles className="w-7 h-7 text-white" />
+                    </div>
+                    <CardTitle className="flex items-center gap-2">
+                      Descubra Seu Caminho
+                      <span className="text-xs bg-primary text-white px-2 py-0.5 rounded-full font-normal">Novo</span>
+                    </CardTitle>
+                    <CardDescription>
+                      Quiz personalizado gratuito para descobrir o tratamento ideal. 6 perguntas, resultados imediatos
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+
                 <Card className="cursor-pointer hover:shadow-hover transition-all" onClick={scrollToCalculadora}>
                   <CardHeader>
                     <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4">

@@ -19,6 +19,7 @@ import MedicinaRegenerativa from "./pages/MedicinaRegenerativa";
 import PlasmaArgonio from "./pages/PlasmaArgonio";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
 import TermosUso from "./pages/TermosUso";
+import Quiz from "./pages/Quiz";
 
 const queryClient = new QueryClient();
 
@@ -61,6 +62,8 @@ const App = () => (
           <Route path="/programa-levser" element={<ProgramaLevSerPage />} />
           <Route path="/tratamentos" element={<Tratamentos />} />
           <Route path="/recursos" element={<Recursos />} />
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/descubra-seu-caminho" element={<Quiz />} />
           <Route path="/nutricao-celular" element={<NutricaoCelular />} />
           <Route path="/balao-intragastrico" element={<BalaoIntragastrico />} />
           <Route path="/terapias-endoscopicas" element={<Navigate to="/balao-intragastrico" replace />} />
