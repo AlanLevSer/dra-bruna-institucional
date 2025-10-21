@@ -20,6 +20,7 @@ import PlasmaArgonio from "./pages/PlasmaArgonio";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
 import TermosUso from "./pages/TermosUso";
 import Quiz from "./pages/Quiz";
+import BalaoVendas from "./pages/BalaoVendas";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +67,7 @@ const App = () => (
           <Route path="/descubra-seu-caminho" element={<Quiz />} />
           <Route path="/nutricao-celular" element={<NutricaoCelular />} />
           <Route path="/balao-intragastrico" element={<BalaoIntragastrico />} />
+          <Route path="/balao-intragastrico-a" element={<BalaoVendas />} />
           <Route path="/terapias-endoscopicas" element={<Navigate to="/balao-intragastrico" replace />} />
           <Route path="/gastroplastia-endoscopica" element={<GastroplastiaEndoscopica />} />
           <Route path="/canetas-emagrecedoras" element={<CanetasEmagrecedoras />} />
