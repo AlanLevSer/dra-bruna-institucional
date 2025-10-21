@@ -116,6 +116,23 @@ const BalaoIntragastrico = () => {
           <p className="text-lg font-semibold text-primary mt-6">
             Resultado: você não está sozinha depois — está acompanhada em cada fase
           </p>
+          
+          <div className="mt-8 bg-primary/5 border-l-4 border-primary rounded-lg p-6">
+            <p className="text-sm text-muted-foreground mb-3">
+              <strong className="text-foreground">Por que o programa é fundamental?</strong>
+            </p>
+            <p className="text-sm text-muted-foreground">
+              A obesidade é uma <strong>doença multifatorial</strong>. O balão controla a fome física, 
+              mas você precisa de suporte para lidar com fome emocional, metabolismo, hábitos e comportamento. 
+              Por isso, nosso programa integra <strong>nutrição + metabolismo + movimento + mente</strong>, 
+              com um time interdisciplinar trabalhando junto com você para longevidade e qualidade de vida.
+            </p>
+            <p className="mt-3">
+              <a href="/programa-levser" className="text-primary hover:underline font-medium text-sm">
+                Conheça os 4 pilares do Programa LevSer →
+              </a>
+            </p>
+          </div>
         </TreatmentSection>
 
         <TransformacaoReal

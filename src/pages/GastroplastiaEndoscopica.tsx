@@ -115,6 +115,58 @@ const GastroplastiaEndoscopica = () => {
         }}
       />
 
+      <TreatmentSection title="Gastroplastia + Programa LevSer: Por que essa combinação funciona?">
+        <p className="mb-4">
+          É importante entender: <strong>a gastroplastia endoscópica é uma ferramenta poderosa, mas não é a solução sozinha</strong>.
+        </p>
+        <p className="mb-4">
+          A obesidade é uma <strong>doença multifatorial</strong> — envolve metabolismo, comportamento, hormônios, sono, estresse e hábitos alimentares. 
+          Por isso, na LevSer, o procedimento é <strong>sempre integrado ao Programa completo</strong>.
+        </p>
+        <p className="mb-6">
+          <strong>O que você recebe além do procedimento:</strong>
+        </p>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-card rounded-lg p-5 border border-border/50">
+            <h3 className="font-serif font-bold text-foreground mb-2">🍽️ Nutrição Inteligente</h3>
+            <p className="text-sm text-muted-foreground">
+              Reeducação alimentar personalizada para você aprender a se alimentar com o novo estômago
+            </p>
+          </div>
+
+          <div className="bg-card rounded-lg p-5 border border-border/50">
+            <h3 className="font-serif font-bold text-foreground mb-2">🧬 Saúde Metabólica & Regenerativa</h3>
+            <p className="text-sm text-muted-foreground">
+              Otimização hormonal, controle inflamatório e preservação muscular para longevidade
+            </p>
+          </div>
+
+          <div className="bg-card rounded-lg p-5 border border-border/50">
+            <h3 className="font-serif font-bold text-foreground mb-2">💪 Corpo em Movimento</h3>
+            <p className="text-sm text-muted-foreground">
+              Prescrição de atividade física adequada para potencializar resultados
+            </p>
+          </div>
+
+          <div className="bg-card rounded-lg p-5 border border-border/50">
+            <h3 className="font-serif font-bold text-foreground mb-2">🧠 Mente & Comportamento</h3>
+            <p className="text-sm text-muted-foreground">
+              Suporte psicológico para lidar com gatilhos emocionais e compulsões
+            </p>
+          </div>
+        </div>
+        <p className="mt-6 text-sm text-muted-foreground">
+          <strong className="text-foreground">Resultado:</strong> você não faz apenas o procedimento — 
+          você constrói uma <strong>nova relação com comida, corpo e saúde</strong>, com suporte de um time interdisciplinar em cada fase, 
+          promovendo não só emagrecimento mas qualidade de vida e longevidade.
+        </p>
+        <p className="mt-4">
+          <a href="/programa-levser" className="text-primary hover:underline font-medium">
+            Conheça o Programa LevSer completo →
+          </a>
+        </p>
+      </TreatmentSection>
+
       <CTASection
         title="Por que fazer sua Gastroplastia na LevSer?"
         description="Equipe especializada com + de 500 procedimentos realizados • Tecnologia de ponta com suturas absorvíveis • Acompanhamento integral: nutrição, psicologia e atividade física • Programa exclusivo de manutenção pós-procedimento • Taxa de complicação < 1% (uma das menores do Brasil)"

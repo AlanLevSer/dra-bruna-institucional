@@ -83,23 +83,62 @@ const PlasmaArgonio = () => {
 
       <TreatmentSection title="Como funciona no Programa LevSer?">
         <p className="mb-4">
-          Na LevSer, o tratamento com Plasma de Argônio é <strong>integrado ao nosso programa completo</strong> de reeducação alimentar, suporte nutricional e acompanhamento comportamental.
+          <strong>O Plasma de Argônio sozinho não garante resultados sustentáveis.</strong> A dilatação gástrica 
+          ou o reganho de peso aconteceram por múltiplos fatores — metabólicos, comportamentais, hormonais e alimentares.
         </p>
         <p className="mb-4">
-          O procedimento é realizado em <strong>ambiente ambulatorial com sedação</strong>, sem necessidade de internação prolongada. A alta ocorre no mesmo dia.
+          Por isso, na LevSer, o tratamento com Plasma de Argônio é <strong>integrado aos 4 pilares do nosso programa:</strong>
         </p>
+        
+        <div className="grid md:grid-cols-2 gap-6 mb-6">
+          <div className="bg-card rounded-lg p-5 border border-border/50">
+            <h3 className="font-serif font-bold text-foreground mb-2">🍽️ Nutrição Inteligente</h3>
+            <p className="text-sm text-muted-foreground">
+              Reeducação alimentar para evitar novo reganho após a redução gástrica
+            </p>
+          </div>
+
+          <div className="bg-card rounded-lg p-5 border border-border/50">
+            <h3 className="font-serif font-bold text-foreground mb-2">🧬 Saúde Metabólica & Regenerativa</h3>
+            <p className="text-sm text-muted-foreground">
+              Otimização hormonal e metabólica para estabilizar o peso e promover longevidade
+            </p>
+          </div>
+
+          <div className="bg-card rounded-lg p-5 border border-border/50">
+            <h3 className="font-serif font-bold text-foreground mb-2">💪 Corpo em Movimento</h3>
+            <p className="text-sm text-muted-foreground">
+              Atividade física orientada para recomposição corporal
+            </p>
+          </div>
+
+          <div className="bg-card rounded-lg p-5 border border-border/50">
+            <h3 className="font-serif font-bold text-foreground mb-2">🧠 Mente & Comportamento</h3>
+            <p className="text-sm text-muted-foreground">
+              Suporte para identificar e tratar gatilhos emocionais que levam ao reganho
+            </p>
+          </div>
+        </div>
+
         <p className="mb-4">
           <strong>Protocolo de tratamento:</strong>
         </p>
         <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-4">
           <li>Avaliação endoscópica inicial completa</li>
           <li>2 a 3 sessões de aplicação de plasma de argônio</li>
-          <li>Acompanhamento nutricional e médico entre as sessões</li>
+          <li><strong>Acompanhamento com time interdisciplinar</strong> (médico, nutricionista, psicólogo)</li>
           <li>Controle endoscópico para avaliação de resultados</li>
-          <li>Plano de manutenção de peso a longo prazo</li>
+          <li><strong>Programa de manutenção integrado</strong> para estabilidade de peso e longevidade</li>
         </ul>
         <p>
-          O diferencial da LevSer está no <strong>cuidado integral</strong>: não tratamos apenas a dilatação, mas trabalhamos os hábitos e comportamentos que podem levar ao reganho.
+          O diferencial da LevSer está no <strong>cuidado integral</strong>: não tratamos apenas a dilatação física, 
+          mas trabalhamos os <strong>hábitos, metabolismo e comportamentos</strong> que levaram ao reganho — 
+          porque obesidade é uma <strong>doença multifatorial</strong>.
+        </p>
+        <p className="mt-4">
+          <a href="/programa-levser" className="text-primary hover:underline font-medium">
+            Saiba mais sobre o Programa LevSer →
+          </a>
         </p>
       </TreatmentSection>
 

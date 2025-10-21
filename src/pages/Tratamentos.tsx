@@ -37,6 +37,91 @@ const Tratamentos = () => {
             onCtaClick={handleCTA}
           />
           
+          {/* Filosofia do Programa */}
+          <section className="py-16 xl:py-20 bg-gradient-to-b from-muted/50 to-background relative overflow-hidden">
+            <GrafismoDecor variant="background" position="center" size="xl" opacity={0.08} rotate={0} color="gray" />
+            <div className="container mx-auto px-4 relative z-10">
+              <div className="max-w-4xl mx-auto">
+                <div className="text-center mb-12">
+                  <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+                    Abordagem Integrativa
+                  </span>
+                  <h2 className="text-3xl xl:text-4xl font-serif font-bold mb-6">
+                    Nenhum tratamento funciona sozinho
+                  </h2>
+                  <p className="text-lg text-muted-foreground">
+                    A obesidade é uma <strong className="text-foreground">doença multifatorial</strong> — 
+                    envolve metabolismo, hormônios, comportamento, sono, estresse e hábitos alimentares. 
+                    <strong className="text-foreground"> E também impacta diretamente sua longevidade e qualidade de vida.</strong>
+                  </p>
+                </div>
+
+                <div className="bg-card/80 backdrop-blur-sm border border-primary/20 rounded-2xl p-8 shadow-elegant mb-8">
+                  <p className="text-lg text-foreground mb-6">
+                    Por isso, <strong>todos os tratamentos da LevSer são integrados ao Programa completo</strong>, 
+                    que se baseia em <strong>4 pilares fundamentais:</strong>
+                  </p>
+                  
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <span className="text-2xl">🍽️</span>
+                      </div>
+                      <div>
+                        <h3 className="font-serif font-bold text-foreground mb-1">Nutrição Inteligente</h3>
+                        <p className="text-sm text-muted-foreground">Reeducação alimentar personalizada e sustentável</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <span className="text-2xl">🧬</span>
+                      </div>
+                      <div>
+                        <h3 className="font-serif font-bold text-foreground mb-1">Saúde Metabólica & Regenerativa</h3>
+                        <p className="text-sm text-muted-foreground">Otimização hormonal, controle inflamatório e longevidade celular</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <span className="text-2xl">💪</span>
+                      </div>
+                      <div>
+                        <h3 className="font-serif font-bold text-foreground mb-1">Corpo em Movimento</h3>
+                        <p className="text-sm text-muted-foreground">Prescrição de atividade física orientada e individualizada</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <span className="text-2xl">🧠</span>
+                      </div>
+                      <div>
+                        <h3 className="font-serif font-bold text-foreground mb-1">Mente & Comportamento</h3>
+                        <p className="text-sm text-muted-foreground">Suporte psicológico para gatilhos emocionais e hábitos</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-primary/5 border-l-4 border-primary rounded-lg p-6">
+                  <p className="text-muted-foreground">
+                    <strong className="text-foreground">O diferencial da Dra. Bruna Durelli:</strong> você não recebe apenas 
+                    um procedimento ou medicação — você recebe um <strong>programa completo de transformação</strong>, 
+                    com time interdisciplinar (médico + nutricionista + psicólogo + educador físico) trabalhando de forma integrada 
+                    em cada fase da sua jornada, promovendo não só emagrecimento mas longevidade com qualidade.
+                  </p>
+                  <p className="mt-3">
+                    <a href="/programa-levser" className="text-primary hover:underline font-medium">
+                      Conheça o Programa LevSer completo →
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+          
           {/* Procedimentos Endoscópicos */}
           <section id="endoscopicos" className="py-16 xl:py-20 bg-background relative overflow-hidden">
             <GrafismoDecor variant="background" position="top-left" size="lg" opacity={0.1} rotate={15} color="gray" />

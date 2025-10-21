@@ -67,9 +67,9 @@ const MedicinaRegenerativa = () => {
         <Navigation />
         <main>
           <SubpageHero
-            title="Medicina Regenerativa"
-            subtitle="O Futuro da Saúde Metabólica"
-            description="Transforme não apenas seu peso, mas a qualidade de cada célula do seu corpo. Mais energia, menos inflamação, resultados que você sente — e que ficam."
+            title="Medicina Regenerativa & Longevidade"
+            subtitle="Saúde Metabólica para uma Vida Longa e com Qualidade"
+            description="Transforme não apenas seu peso, mas a qualidade de cada célula do seu corpo para viver mais e melhor. Mais energia, menos inflamação, longevidade com qualidade de vida."
             image={patientConfident}
             ctaText="Descobrir meu programa regenerativo"
             onCtaClick={handleWhatsApp}
@@ -79,15 +79,15 @@ const MedicinaRegenerativa = () => {
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div>
                 <p className="mb-4">
-                  Medicina Regenerativa é uma abordagem avançada que vai além do "comer menos e se mover mais". 
-                  Aqui, tratamos o metabolismo de forma sistêmica, focando na qualidade celular e energia real.
+                  Medicina Regenerativa & Longevidade é uma abordagem avançada que vai além do "comer menos e se mover mais". 
+                  Aqui, tratamos o metabolismo de forma sistêmica, focando na qualidade celular, energia real e longevidade saudável.
                 </p>
                 <p className="mb-4">
                   Não é "biohacking" nem promessa milagrosa. É <strong>medicina baseada em evidências</strong>, 
                   individualizada por exames laboratoriais completos e acompanhada pela equipe médica em cada etapa.
                 </p>
                 <p>
-                  O objetivo é restaurar a capacidade natural do seu corpo de regular peso, energia e saúde 
+                  O objetivo é restaurar a capacidade natural do seu corpo de regular peso, energia, saúde e longevidade 
                   — não criar dependência eterna de intervenções externas.
                 </p>
               </div>
@@ -103,7 +103,7 @@ const MedicinaRegenerativa = () => {
 
           <TreatmentSection title="Como funciona no organismo?">
             <p className="mb-8 text-lg">
-              Nossa abordagem regenerativa atua em 4 pilares fundamentais para transformação profunda e sustentável:
+              Nossa abordagem regenerativa atua em 4 pilares fundamentais para transformação profunda, sustentável e longevidade com qualidade:
             </p>
             
             <div className="grid md:grid-cols-2 gap-6">
@@ -162,6 +162,37 @@ const MedicinaRegenerativa = () => {
                 no dia a dia, recuperação mais rápida pós-exercício, menos compulsão alimentar, rotina mais estável, 
                 pele e cabelo com melhor aspecto, sono de qualidade.
               </p>
+            </div>
+          </TreatmentSection>
+
+          <TreatmentSection title="Longevidade com Qualidade de Vida" variant="muted">
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              <div>
+                <p className="mb-4">
+                  <strong>Longevidade não é apenas viver mais anos</strong> — é viver com energia, autonomia, 
+                  lucidez mental e qualidade nos relacionamentos.
+                </p>
+                <p className="mb-4">
+                  A medicina regenerativa trabalha para:
+                </p>
+                <ul className="space-y-3 text-muted-foreground list-disc list-inside">
+                  <li>Desacelerar o envelhecimento celular</li>
+                  <li>Preservar massa muscular, densidade óssea e função cognitiva</li>
+                  <li>Reduzir riscos de doenças crônicas (diabetes, cardiovasculares, neurodegenerativas)</li>
+                  <li>Manter autonomia e vitalidade com o passar dos anos</li>
+                </ul>
+              </div>
+              <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl p-8 border border-primary/20">
+                <h3 className="text-2xl font-serif font-bold text-foreground mb-4">Healthspan vs. Lifespan</h3>
+                <p className="text-muted-foreground mb-4">
+                  <strong className="text-foreground">Lifespan</strong> é quanto você vive. 
+                  <strong className="text-foreground"> Healthspan</strong> é quanto tempo você vive com saúde, 
+                  energia e autonomia.
+                </p>
+                <p className="text-primary font-medium">
+                  Nosso objetivo: expandir seu healthspan, não apenas o lifespan.
+                </p>
+              </div>
             </div>
           </TreatmentSection>
 

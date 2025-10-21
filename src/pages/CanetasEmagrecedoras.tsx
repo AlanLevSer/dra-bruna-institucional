@@ -266,10 +266,10 @@ const CanetasEmagrecedoras = () => {
         ]}
       />
 
-      <TreatmentSection title="Integração com Medicina Regenerativa" variant="muted">
+      <TreatmentSection title="Integração com Medicina Regenerativa & Longevidade" variant="muted">
         <div className="space-y-6">
           <p>
-            As <strong>canetas emagrecedoras</strong> potencializam (e são potencializadas por) nossa abordagem regenerativa.
+            As <strong>canetas emagrecedoras</strong> potencializam (e são potencializadas por) nossa abordagem regenerativa focada em longevidade.
           </p>
           
           <p>
@@ -278,21 +278,21 @@ const CanetasEmagrecedoras = () => {
           </p>
           
           <ul className="space-y-3 list-disc list-inside text-muted-foreground ml-4">
-            <li>Reduzir a inflamação crônica que sabota o emagrecimento</li>
-            <li>Melhorar a sensibilidade à insulina e função mitocondrial</li>
+            <li>Reduzir a inflamação crônica que sabota o emagrecimento e acelera o envelhecimento</li>
+            <li>Melhorar a sensibilidade à insulina e função mitocondrial para longevidade celular</li>
             <li>Preservar e regenerar massa muscular durante a perda de peso</li>
-            <li>Otimizar energia, sono e humor – pilares da sustentabilidade</li>
+            <li>Otimizar energia, sono e humor – pilares da sustentabilidade e qualidade de vida</li>
           </ul>
           
           <div className="bg-card p-8 rounded-xl shadow-hover border border-primary/30 mt-8">
             <p className="text-lg font-serif font-semibold text-foreground mb-4">
-              Resultado: transformação metabólica profunda, não apenas números na balança.
+              Resultado: transformação metabólica profunda, longevidade com qualidade, não apenas números na balança.
             </p>
             <a 
               href="/medicina-regenerativa" 
               className="inline-flex items-center text-primary hover:text-primary/80 font-medium transition-colors"
             >
-              Saiba mais sobre Medicina Regenerativa →
+              Saiba mais sobre Medicina Regenerativa & Longevidade →
             </a>
           </div>
         </div>

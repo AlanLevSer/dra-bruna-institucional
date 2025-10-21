@@ -83,9 +83,14 @@ export const ProblemasSolucoes = () => {
         </div>
 
         <div className="max-w-3xl mx-auto mt-12 bg-primary/5 border border-primary/20 rounded-2xl p-8 animate-fade-in" style={{ animationDelay: "0.5s" }}>
-          <p className="text-lg text-foreground text-center leading-relaxed">
+          <p className="text-lg text-foreground text-center leading-relaxed mb-4">
             O problema é que <strong>dietas sozinhas não resolvem a causa da fome descontrolada</strong>. 
-            Você precisa de <span className="text-primary font-semibold">suporte físico real + mudança de hábitos</span>.
+          </p>
+          <p className="text-lg text-foreground text-center leading-relaxed">
+            Você precisa de <span className="text-primary font-semibold">suporte físico real + mudança de hábitos + 
+            acompanhamento interdisciplinar</span>. Por isso, o Balão Intragástrico é integrado ao 
+            <strong> Programa LevSer completo</strong>, que trata a obesidade de forma multifatorial, 
+            promovendo não só emagrecimento mas longevidade e qualidade de vida.
           </p>
         </div>
       </div>

@@ -35,8 +35,8 @@ const NutricaoCelular = () => {
         <Navigation />
       <SubpageHero
         title="Nutrição Celular"
-        subtitle="Terapia Moderna"
-        description="Energia, equilíbrio e mais resultados no seu tratamento. Reposição de nutrientes diretamente na corrente sanguínea, com absorção 100% e efeito imediato."
+        subtitle="Terapia Moderna para Longevidade"
+        description="Energia, equilíbrio, longevidade celular e mais resultados no seu tratamento. Reposição de nutrientes diretamente na corrente sanguínea, com absorção 100% e efeito imediato."
         image={patientImage}
       />
 
@@ -88,24 +88,24 @@ const NutricaoCelular = () => {
         ]}
       />
 
-      <TreatmentSection title="Integração Regenerativa">
+      <TreatmentSection title="Integração Regenerativa & Longevidade">
         <p className="mb-4">
-          A Nutrição Celular faz parte da nossa abordagem de <strong>Medicina Regenerativa</strong>, 
+          A Nutrição Celular faz parte da nossa abordagem de <strong>Medicina Regenerativa & Longevidade</strong>, 
           que combina:
         </p>
         <ul className="list-disc list-inside space-y-3 text-muted-foreground">
-          <li><strong>IVs metabólicos</strong> para energia limpa e foco mental</li>
-          <li><strong>Repleção estratégica</strong> de vitaminas, minerais e antioxidantes</li>
-          <li><strong>Modulação inflamatória</strong> para reduzir resistência metabólica</li>
-          <li><strong>Suporte de sono e humor</strong> para constância na rotina</li>
+          <li><strong>IVs metabólicos</strong> para energia limpa, foco mental e vitalidade celular</li>
+          <li><strong>Repleção estratégica</strong> de vitaminas, minerais e antioxidantes para longevidade</li>
+          <li><strong>Modulação inflamatória</strong> para reduzir envelhecimento precoce e resistência metabólica</li>
+          <li><strong>Suporte de sono e humor</strong> para constância na rotina e qualidade de vida</li>
         </ul>
         <p className="mt-4">
-          Quando integrada ao Programa LevSer, acelera recuperação, preserva massa magra 
-          e melhora a qualidade de vida durante (e após) a perda de peso.
+          Quando integrada ao Programa LevSer, acelera recuperação, preserva massa magra, 
+          melhora a qualidade de vida e promove longevidade saudável durante (e após) a perda de peso.
         </p>
         <p className="mt-4">
           <a href="/medicina-regenerativa" className="text-primary hover:underline font-medium">
-            Saiba mais sobre nossa abordagem de Medicina Regenerativa →
+            Saiba mais sobre nossa abordagem de Medicina Regenerativa & Longevidade →
           </a>
         </p>
       </TreatmentSection>

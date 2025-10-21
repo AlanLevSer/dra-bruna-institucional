@@ -63,6 +63,15 @@ export const ProblemasSolucoesGastro = () => {
             </div>
           ))}
         </div>
+        
+        <div className="max-w-3xl mx-auto mt-12 bg-primary/5 border border-primary/20 rounded-2xl p-8">
+          <p className="text-lg text-foreground text-center leading-relaxed">
+            A Gastroplastia Endoscópica é uma <strong>ferramenta poderosa</strong>, mas precisa estar 
+            integrada a um <strong>programa completo</strong> que trabalhe nutrição, metabolismo, comportamento e movimento. 
+            Na LevSer, você não faz apenas o procedimento — você recebe <strong>acompanhamento interdisciplinar</strong> 
+            em todas as fases, promovendo longevidade e qualidade de vida sustentável.
+          </p>
+        </div>
       </div>
     </section>
   );
