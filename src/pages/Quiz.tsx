@@ -75,6 +75,16 @@ const Quiz = () => {
     setQuizData(newData);
   };
 
+  useEffect(() => {
+    // Scroll para o topo da página quando step mudar (exceto no step 1 inicial)
+    if (currentStep > 1) {
+      window.scrollTo({ 
+        top: 0, 
+        behavior: 'smooth' 
+      });
+    }
+  }, [currentStep]);
+
   const validateCurrentStep = () => {
     try {
       switch (currentStep) {

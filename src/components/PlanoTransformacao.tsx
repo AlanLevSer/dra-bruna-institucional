@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { QuizData } from "@/types/quiz";
 import { generateTransformacaoOutput } from "@/lib/quiz-logic";
@@ -34,6 +34,7 @@ interface PlanoTransformacaoProps {
 }
 
 export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoProps) => {
+  const quizTopRef = useRef<HTMLDivElement>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [showOutput, setShowOutput] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -63,6 +64,16 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
     }
     setQuizData(newData);
   };
+
+  useEffect(() => {
+    // Scroll para o topo do quiz quando step mudar (exceto no step 1 inicial)
+    if (currentStep > 1 && quizTopRef.current) {
+      quizTopRef.current.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    }
+  }, [currentStep]);
 
   const validateCurrentStep = () => {
     try {
@@ -166,7 +177,7 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
         {isGenerating ? (
           <GeneratingAnimation />
         ) : !showOutput ? (
-          <div className="p-8">
+          <div ref={quizTopRef} className="p-8">
             <QuizProgress currentStep={currentStep} totalSteps={6} />
             
             {currentStep === 1 && (
