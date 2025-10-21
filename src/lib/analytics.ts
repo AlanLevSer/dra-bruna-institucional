@@ -79,3 +79,26 @@ export function getValueBucket(value: number): string {
   if (value <= 3000) return '2001-3000';
   return '3000+';
 }
+
+// Perfil de Saúde events
+export function trackPerfilSaudeViewed(notaGlobal: number, conceito: string) {
+  trackEvent('perfil_saude_viewed', {
+    nota_global_bucket: getValueBucket(notaGlobal),
+    conceito,
+  });
+}
+
+export function trackPerfilSaudeExported(format: 'png' | 'pdf', notaGlobal: number) {
+  trackEvent('perfil_saude_exported', {
+    format,
+    nota_global_bucket: getValueBucket(notaGlobal),
+  });
+}
+
+export function trackPerfilSaudeCTAClicked(notaGlobal: number, conceito: string, problemasQtd: number) {
+  trackEvent('perfil_saude_cta_clicked', {
+    nota_global_bucket: getValueBucket(notaGlobal),
+    conceito,
+    problemas_qtd: problemasQtd,
+  });
+}

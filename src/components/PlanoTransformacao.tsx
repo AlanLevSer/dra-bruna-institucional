@@ -23,6 +23,7 @@ import { QuizStep6 } from "./quiz/QuizStep6";
 import { QuizStep7 } from "./quiz/QuizStep7";
 import { GeneratingAnimation } from "./quiz/GeneratingAnimation";
 import { DeclaracaoTransformacao } from "./output/DeclaracaoTransformacao";
+import { PerfilSaudeRadar } from "./output/PerfilSaudeRadar";
 import { IndiceQLI } from "./output/IndiceQLI";
 import { RoadmapFases } from "./output/RoadmapFases";
 import { MixEstrategias } from "./output/MixEstrategias";
@@ -264,6 +265,7 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
         ) : output ? (
           <div>
             <DeclaracaoTransformacao headline={output.headline} alertaClinico={output.alertaClinico} />
+            <PerfilSaudeRadar perfilSaude={output.perfilSaude} quizData={quizData} />
             <IndiceQLI qli={output.qli} />
             <RoadmapFases roadmap={output.roadmap} />
             <MixEstrategias mixEstrategias={output.mixEstrategias} />

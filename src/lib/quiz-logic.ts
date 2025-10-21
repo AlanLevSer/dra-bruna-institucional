@@ -2,6 +2,7 @@ import { QuizData, TransformacaoOutput } from "@/types/quiz";
 
 export function generateTransformacaoOutput(data: QuizData): TransformacaoOutput {
   const headline = generateHeadline(data);
+  const perfilSaude = generatePerfilSaude(data);
   const qli = generateQLI(data);
   const roadmap = generateRoadmap(data);
   const mixEstrategias = generateMixEstrategias(data);
@@ -11,12 +12,172 @@ export function generateTransformacaoOutput(data: QuizData): TransformacaoOutput
   
   return {
     headline,
+    perfilSaude,
     qli,
     roadmap,
     mixEstrategias,
     kpis,
     lifestyleWins,
     alertaClinico
+  };
+}
+
+function generatePerfilSaude(data: QuizData): TransformacaoOutput['perfilSaude'] {
+  const baselineQLI = {
+    energia: data.peso > 100 ? 3 : data.peso > 80 ? 4 : 5,
+    sono: data.comorbidades.includes('apneia') ? 2 : 4,
+    mobilidade: data.dorPrincipal === 'dores_articulares' || data.dorPrincipal === 'mobilidade' ? 3 : 5,
+    humor: data.gatilhos.length > 3 ? 3 : data.gatilhos.length > 1 ? 4 : 6,
+  };
+
+  const metaQLI = {
+    energia: Math.min(10, baselineQLI.energia + 3),
+    sono: Math.min(10, baselineQLI.sono + 4),
+    mobilidade: Math.min(10, baselineQLI.mobilidade + 4),
+    humor: Math.min(10, baselineQLI.humor + 3),
+  };
+
+  // Mapear comorbidades
+  const temDM2 = data.comorbidades.includes('dm2');
+  const temRI = data.comorbidades.includes('ri');
+  const temHAS = data.comorbidades.includes('has');
+  const temDislipidemia = data.comorbidades.includes('dislipidemia');
+  const temApneia = data.comorbidades.includes('apneia');
+  const temSOP = data.comorbidades.includes('sop');
+
+  // Inferir hábitos positivos
+  const habForca = data.expectativas?.includes('autonomia_movimentos') || false;
+  const habPlanejamento = data.tentativasAnteriores >= 3;
+  const habAgua = true; // Assumir positivo por padrão
+  const habPassos = !data.dorPrincipal || data.dorPrincipal !== 'mobilidade';
+
+  // Calcular notas dos 8 eixos
+  const calcularNota = (baseline: number, meta: number, comorbidade: boolean, habitoPositivo: boolean) => {
+    let nota = Math.round((baseline / 10) * 60 + Math.max(0, meta - baseline) * 10);
+    if (comorbidade) nota = Math.max(0, nota - 10);
+    if (habitoPositivo) nota = Math.min(100, nota + 5);
+    return Math.max(0, Math.min(100, nota));
+  };
+
+  // Eixo Fome & Compulsão (baseado em gatilhos)
+  const baselineFome = data.dorPrincipal === 'compulsao' ? 2 : data.gatilhos.length > 2 ? 3 : 5;
+  const metaFome = Math.min(10, baselineFome + 4);
+
+  // Eixo Alimentação (baseado em tentativas anteriores)
+  const baselineAlimentacao = data.tentativasAnteriores === 0 ? 3 : data.tentativasAnteriores < 3 ? 4 : 5;
+  const metaAlimentacao = Math.min(10, baselineAlimentacao + 3);
+
+  // Eixo Metabolismo (baseado em DM2/RI e IMC)
+  const baselineMetabolismo = (temDM2 || temRI) ? 2 : data.imc > 35 ? 3 : 4;
+  const metaMetabolismo = Math.min(10, baselineMetabolismo + 4);
+
+  // Eixo Cardiovascular (baseado em HAS/dislipidemia)
+  const baselineCardio = (temHAS && temDislipidemia) ? 2 : (temHAS || temDislipidemia) ? 3 : 5;
+  const metaCardio = Math.min(10, baselineCardio + 3);
+
+  const eixos = [
+    {
+      nome: 'Energia',
+      nota: calcularNota(baselineQLI.energia, metaQLI.energia, false, habAgua),
+      baseline: baselineQLI.energia,
+      meta: metaQLI.energia,
+    },
+    {
+      nome: 'Sono',
+      nota: calcularNota(baselineQLI.sono, metaQLI.sono, temApneia, false),
+      baseline: baselineQLI.sono,
+      meta: metaQLI.sono,
+    },
+    {
+      nome: 'Fome & Compulsão',
+      nota: calcularNota(baselineFome, metaFome, false, habPlanejamento),
+      baseline: baselineFome,
+      meta: metaFome,
+    },
+    {
+      nome: 'Mobilidade & Dor',
+      nota: calcularNota(baselineQLI.mobilidade, metaQLI.mobilidade, false, habPassos),
+      baseline: baselineQLI.mobilidade,
+      meta: metaQLI.mobilidade,
+    },
+    {
+      nome: 'Alimentação',
+      nota: calcularNota(baselineAlimentacao, metaAlimentacao, false, habPlanejamento),
+      baseline: baselineAlimentacao,
+      meta: metaAlimentacao,
+    },
+    {
+      nome: 'Metabolismo',
+      nota: calcularNota(baselineMetabolismo, metaMetabolismo, temRI || temDM2, false),
+      baseline: baselineMetabolismo,
+      meta: metaMetabolismo,
+    },
+    {
+      nome: 'Cardiovascular',
+      nota: calcularNota(baselineCardio, metaCardio, temDislipidemia, habForca),
+      baseline: baselineCardio,
+      meta: metaCardio,
+    },
+    {
+      nome: 'Bem-estar & Humor',
+      nota: calcularNota(baselineQLI.humor, metaQLI.humor, false, false),
+      baseline: baselineQLI.humor,
+      meta: metaQLI.humor,
+    },
+  ];
+
+  // Calcular nota global
+  const notaGlobal = Math.round(eixos.reduce((sum, e) => sum + e.nota, 0) / eixos.length);
+
+  // Determinar conceito e faixa
+  let conceito: 'A' | 'B' | 'C' | 'D' | 'E';
+  let faixa: 'verde' | 'ambar' | 'vermelho';
+
+  if (notaGlobal >= 90) conceito = 'A';
+  else if (notaGlobal >= 80) conceito = 'B';
+  else if (notaGlobal >= 70) conceito = 'C';
+  else if (notaGlobal >= 60) conceito = 'D';
+  else conceito = 'E';
+
+  if (notaGlobal >= 75) faixa = 'verde';
+  else if (notaGlobal >= 50) faixa = 'ambar';
+  else faixa = 'vermelho';
+
+  // Identificar problemas detectados (nota < 50)
+  const problemasDetectados = eixos
+    .filter(e => e.nota < 50)
+    .sort((a, b) => a.nota - b.nota)
+    .slice(0, 3)
+    .map(e => ({
+      eixo: e.nome,
+      nota: e.nota,
+      mensagem: `${e.nome} abaixo do ideal`,
+    }));
+
+  // Gerar ganhos prováveis (top 3 eixos mais baixos)
+  const ganhosMap: Record<string, string> = {
+    'Energia': 'Energia estável ao longo do dia sem quedas à tarde',
+    'Sono': 'Dormir 7h+ seguidas e acordar com mais disposição',
+    'Fome & Compulsão': 'Fome sob controle, especialmente à noite',
+    'Mobilidade & Dor': 'Menos dor ao caminhar, subir escadas e nas articulações',
+    'Alimentação': 'Refeições simples com boa saciedade e sem culpa',
+    'Metabolismo': 'Melhor sensibilidade à insulina e controle glicêmico',
+    'Cardiovascular': 'Triglicérides e pressão arterial melhor controlados',
+    'Bem-estar & Humor': 'Menos ansiedade em relação à comida e ao corpo',
+  };
+
+  const ganhosProv90dias = eixos
+    .sort((a, b) => a.nota - b.nota)
+    .slice(0, 3)
+    .map(e => ganhosMap[e.nome] || `Melhora significativa em ${e.nome}`);
+
+  return {
+    notaGlobal,
+    conceito,
+    faixa,
+    eixos,
+    problemasDetectados,
+    ganhosProv90dias,
   };
 }
 

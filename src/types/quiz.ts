@@ -42,6 +42,23 @@ export interface QuizData {
 export interface TransformacaoOutput {
   headline: string;
   alertaClinico?: string;
+  perfilSaude: {
+    notaGlobal: number;
+    conceito: 'A' | 'B' | 'C' | 'D' | 'E';
+    faixa: 'verde' | 'ambar' | 'vermelho';
+    eixos: Array<{
+      nome: string;
+      nota: number;
+      baseline: number;
+      meta: number;
+    }>;
+    problemasDetectados: Array<{
+      eixo: string;
+      nota: number;
+      mensagem: string;
+    }>;
+    ganhosProv90dias: string[];
+  };
   qli: {
     energia: { baseline: number; meta: number };
     sono: { baseline: number; meta: number };

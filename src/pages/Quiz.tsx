@@ -26,6 +26,7 @@ import { QuizStep6 } from "@/components/quiz/QuizStep6";
 import { QuizStep7 } from "@/components/quiz/QuizStep7";
 import { GeneratingAnimation } from "@/components/quiz/GeneratingAnimation";
 import { DeclaracaoTransformacao } from "@/components/output/DeclaracaoTransformacao";
+import { PerfilSaudeRadar } from "@/components/output/PerfilSaudeRadar";
 import { IndiceQLI } from "@/components/output/IndiceQLI";
 import { RoadmapFases } from "@/components/output/RoadmapFases";
 import { MixEstrategias } from "@/components/output/MixEstrategias";
@@ -346,6 +347,11 @@ const Quiz = () => {
                   <div className="space-y-6">
                     <div className="bg-card rounded-2xl shadow-lg border overflow-hidden">
                       <DeclaracaoTransformacao headline={output.headline} alertaClinico={output.alertaClinico} />
+                    </div>
+                    
+                    <PerfilSaudeRadar perfilSaude={output.perfilSaude} quizData={quizData} />
+                    
+                    <div className="bg-card rounded-2xl shadow-lg border overflow-hidden">
                       <IndiceQLI qli={output.qli} />
                       <RoadmapFases roadmap={output.roadmap} />
                       <MixEstrategias mixEstrategias={output.mixEstrategias} />
