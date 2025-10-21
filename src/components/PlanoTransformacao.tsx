@@ -37,7 +37,7 @@ interface PlanoTransformacaoProps {
 }
 
 export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoProps) => {
-  const quizTopRef = useRef<HTMLDivElement>(null);
+  const dialogContentRef = useRef<HTMLDivElement>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [showOutput, setShowOutput] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -47,13 +47,13 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
     imc: 0,
     metaPeso: 15,
     comorbidades: [],
-    tentativasAnteriores: 0,
+    tentativasAnteriores: null,
     efeitoSanfona: false,
     gatilhos: [],
-    invasividade: 'moderada',
-    tempoRecuperacao: 'moderado',
-    tempoDisponivel: '3-5h/sem',
-    dorPrincipal: 'energia',
+    invasividade: null,
+    tempoRecuperacao: null,
+    tempoDisponivel: null,
+    dorPrincipal: null,
     expectativas: [],
     cirurgiaGastricaPrevia: false,
     cirurgiaBariatricaPreviaTipo: 'nenhuma',
@@ -73,11 +73,11 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
   };
 
   useEffect(() => {
-    // Scroll para o topo do quiz quando step mudar (exceto no step 1 inicial)
-    if (currentStep > 1 && quizTopRef.current) {
-      quizTopRef.current.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start' 
+    // Scroll para o topo do dialog quando step mudar (exceto no step 1 inicial)
+    if (currentStep > 1 && dialogContentRef.current) {
+      dialogContentRef.current.scrollTo({ 
+        top: 0, 
+        behavior: 'smooth' 
       });
     }
   }, [currentStep]);
@@ -137,9 +137,11 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
     switch (currentStep) {
       case 1: return quizData.peso > 0 && quizData.altura > 0;
       case 2: return quizData.comorbidades.length > 0;
-      case 3: return true;
-      case 4: return true;
-      case 5: return true;
+      case 3: return quizData.tentativasAnteriores !== null;
+      case 4: return quizData.invasividade !== null && 
+                     quizData.tempoRecuperacao !== null && 
+                     quizData.tempoDisponivel !== null;
+      case 5: return quizData.dorPrincipal !== null;
       case 6: return quizData.expectativas.length > 0;
       case 7: return true;
       default: return false;
@@ -174,13 +176,13 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
       imc: 0,
       metaPeso: 15,
       comorbidades: [],
-      tentativasAnteriores: 0,
+      tentativasAnteriores: null,
       efeitoSanfona: false,
       gatilhos: [],
-      invasividade: 'moderada',
-      tempoRecuperacao: 'moderado',
-      tempoDisponivel: '3-5h/sem',
-      dorPrincipal: 'energia',
+      invasividade: null,
+      tempoRecuperacao: null,
+      tempoDisponivel: null,
+      dorPrincipal: null,
       expectativas: [],
       cirurgiaGastricaPrevia: false,
       cirurgiaBariatricaPreviaTipo: 'nenhuma',
@@ -193,11 +195,11 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
+      <DialogContent ref={dialogContentRef} className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
         {isGenerating ? (
           <GeneratingAnimation />
         ) : !showOutput ? (
-          <div ref={quizTopRef} className="p-8">
+          <div className="p-8">
             <QuizProgress currentStep={currentStep} totalSteps={7} />
             
             {currentStep === 1 && (

@@ -5,7 +5,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { History, TrendingUp } from "lucide-react";
 
 interface QuizStep3Props {
-  tentativasAnteriores: number;
+  tentativasAnteriores: number | null;
   efeitoSanfona: boolean;
   gatilhos: Array<'estresse' | 'ansiedade' | 'social' | 'emocional' | 'fome_noturna'>;
   onChange: (field: string, value: number | boolean | string[]) => void;
@@ -43,7 +43,7 @@ export const QuizStep3 = ({ tentativasAnteriores, efeitoSanfona, gatilhos, onCha
         <div className="space-y-3">
           <Label>Quantas vezes você já tentou emagrecer?</Label>
           <RadioGroup 
-            value={tentativasAnteriores.toString()} 
+            value={tentativasAnteriores !== null ? tentativasAnteriores.toString() : undefined} 
             onValueChange={(value) => onChange('tentativasAnteriores', parseInt(value))}
           >
             <div className="flex items-center space-x-2 p-3 rounded-lg border hover:border-primary/50 transition-colors">

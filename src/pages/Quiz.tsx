@@ -49,13 +49,13 @@ const Quiz = () => {
     imc: 0,
     metaPeso: 15,
     comorbidades: [],
-    tentativasAnteriores: 0,
+    tentativasAnteriores: null,
     efeitoSanfona: false,
     gatilhos: [],
-    invasividade: 'moderada',
-    tempoRecuperacao: 'moderado',
-    tempoDisponivel: '3-5h/sem',
-    dorPrincipal: 'energia',
+    invasividade: null,
+    tempoRecuperacao: null,
+    tempoDisponivel: null,
+    dorPrincipal: null,
     expectativas: [],
     cirurgiaGastricaPrevia: false,
     cirurgiaBariatricaPreviaTipo: 'nenhuma',
@@ -85,10 +85,13 @@ const Quiz = () => {
   useEffect(() => {
     // Scroll para o topo da página quando step mudar (exceto no step 1 inicial)
     if (currentStep > 1) {
-      window.scrollTo({ 
-        top: 0, 
-        behavior: 'smooth' 
-      });
+      setTimeout(() => {
+        window.scrollTo({ 
+          top: 0, 
+          left: 0,
+          behavior: 'smooth' 
+        });
+      }, 50);
     }
   }, [currentStep]);
 
@@ -147,9 +150,11 @@ const Quiz = () => {
     switch (currentStep) {
       case 1: return quizData.peso > 0 && quizData.altura > 0;
       case 2: return quizData.comorbidades.length > 0;
-      case 3: return true;
-      case 4: return true;
-      case 5: return true;
+      case 3: return quizData.tentativasAnteriores !== null;
+      case 4: return quizData.invasividade !== null && 
+                     quizData.tempoRecuperacao !== null && 
+                     quizData.tempoDisponivel !== null;
+      case 5: return quizData.dorPrincipal !== null;
       case 6: return quizData.expectativas.length > 0;
       case 7: return true;
       default: return false;
@@ -197,13 +202,13 @@ const Quiz = () => {
       imc: 0,
       metaPeso: 15,
       comorbidades: [],
-      tentativasAnteriores: 0,
+      tentativasAnteriores: null,
       efeitoSanfona: false,
       gatilhos: [],
-      invasividade: 'moderada',
-      tempoRecuperacao: 'moderado',
-      tempoDisponivel: '3-5h/sem',
-      dorPrincipal: 'energia',
+      invasividade: null,
+      tempoRecuperacao: null,
+      tempoDisponivel: null,
+      dorPrincipal: null,
       expectativas: [],
       cirurgiaGastricaPrevia: false,
       cirurgiaBariatricaPreviaTipo: 'nenhuma',

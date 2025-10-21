@@ -3,7 +3,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Zap, Cookie, Footprints, Heart, Activity, TrendingDown } from "lucide-react";
 
 interface QuizStep5Props {
-  dorPrincipal: 'energia' | 'compulsao' | 'dores_articulares' | 'autoestima' | 'marcadores_alterados' | 'mobilidade';
+  dorPrincipal: 'energia' | 'compulsao' | 'dores_articulares' | 'autoestima' | 'marcadores_alterados' | 'mobilidade' | null;
   onChange: (value: string) => void;
 }
 
@@ -59,7 +59,7 @@ export const QuizStep5 = ({ dorPrincipal, onChange }: QuizStep5Props) => {
         </p>
       </div>
       
-      <RadioGroup value={dorPrincipal} onValueChange={onChange}>
+      <RadioGroup value={dorPrincipal || undefined} onValueChange={onChange}>
         <div className="grid gap-3">
           {options.map((option) => {
             const Icon = option.icon;

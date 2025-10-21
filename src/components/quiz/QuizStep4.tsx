@@ -3,9 +3,9 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Settings, Clock, Calendar } from "lucide-react";
 
 interface QuizStep4Props {
-  invasividade: 'minima' | 'moderada' | 'nao_importa';
-  tempoRecuperacao: 'minimo' | 'moderado' | 'nao_importa';
-  tempoDisponivel: '1-3h/sem' | '3-5h/sem' | '5+h/sem';
+  invasividade: 'minima' | 'moderada' | 'nao_importa' | null;
+  tempoRecuperacao: 'minimo' | 'moderado' | 'nao_importa' | null;
+  tempoDisponivel: '1-3h/sem' | '3-5h/sem' | '5+h/sem' | null;
   onChange: (field: string, value: string) => void;
 }
 
@@ -25,7 +25,7 @@ export const QuizStep4 = ({ invasividade, tempoRecuperacao, tempoDisponivel, onC
       <div className="space-y-6">
         <div className="space-y-3">
           <Label className="text-base">Preferência de invasividade</Label>
-          <RadioGroup value={invasividade} onValueChange={(value) => onChange('invasividade', value)}>
+          <RadioGroup value={invasividade || undefined} onValueChange={(value) => onChange('invasividade', value)}>
             <div className="flex items-start space-x-3 p-4 rounded-lg border hover:border-primary/50 transition-colors">
               <RadioGroupItem value="minima" id="inv-min" className="mt-1" />
               <div className="flex-1">
@@ -52,7 +52,7 @@ export const QuizStep4 = ({ invasividade, tempoRecuperacao, tempoDisponivel, onC
         
         <div className="space-y-3">
           <Label className="text-base">Tempo disponível para recuperação</Label>
-          <RadioGroup value={tempoRecuperacao} onValueChange={(value) => onChange('tempoRecuperacao', value)}>
+          <RadioGroup value={tempoRecuperacao || undefined} onValueChange={(value) => onChange('tempoRecuperacao', value)}>
             <div className="flex items-start space-x-3 p-4 rounded-lg border hover:border-primary/50 transition-colors">
               <RadioGroupItem value="minimo" id="rec-min" className="mt-1" />
               <div className="flex-1">
@@ -79,7 +79,7 @@ export const QuizStep4 = ({ invasividade, tempoRecuperacao, tempoDisponivel, onC
         
         <div className="space-y-3">
           <Label className="text-base">Tempo disponível para acompanhamento</Label>
-          <RadioGroup value={tempoDisponivel} onValueChange={(value) => onChange('tempoDisponivel', value)}>
+          <RadioGroup value={tempoDisponivel || undefined} onValueChange={(value) => onChange('tempoDisponivel', value)}>
             <div className="flex items-start space-x-3 p-4 rounded-lg border hover:border-primary/50 transition-colors">
               <RadioGroupItem value="1-3h/sem" id="tempo-min" className="mt-1" />
               <div className="flex-1">

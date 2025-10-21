@@ -9,17 +9,17 @@ export interface QuizData {
   comorbidades: Array<'dm2' | 'ri' | 'has' | 'dislipidemia' | 'apneia' | 'sop' | 'nenhuma'>;
   
   // Step 3: Histórico
-  tentativasAnteriores: number;
+  tentativasAnteriores: number | null;
   efeitoSanfona: boolean;
   gatilhos: Array<'estresse' | 'ansiedade' | 'social' | 'emocional' | 'fome_noturna'>;
   
   // Step 4: Preferências
-  invasividade: 'minima' | 'moderada' | 'nao_importa';
-  tempoRecuperacao: 'minimo' | 'moderado' | 'nao_importa';
-  tempoDisponivel: '1-3h/sem' | '3-5h/sem' | '5+h/sem';
+  invasividade: 'minima' | 'moderada' | 'nao_importa' | null;
+  tempoRecuperacao: 'minimo' | 'moderado' | 'nao_importa' | null;
+  tempoDisponivel: '1-3h/sem' | '3-5h/sem' | '5+h/sem' | null;
   
   // Step 5: Dor Principal
-  dorPrincipal: 'energia' | 'compulsao' | 'dores_articulares' | 'autoestima' | 'marcadores_alterados' | 'mobilidade';
+  dorPrincipal: 'energia' | 'compulsao' | 'dores_articulares' | 'autoestima' | 'marcadores_alterados' | 'mobilidade' | null;
   
   // Step 6: Expectativas de Vida
   expectativas: Array<
