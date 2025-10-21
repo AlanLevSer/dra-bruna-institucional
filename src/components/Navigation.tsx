@@ -147,7 +147,7 @@ export const Navigation = () => {
       }`}
     >
       <div className="container mx-auto py-4">
-        <div className="flex items-center justify-between lg:justify-start px-4 lg:px-0">
+        <div className="flex items-center justify-between px-4 lg:px-6 gap-4">
           <Link
             to="/"
             className="flex items-center shrink-0 lg:-ml-4"
@@ -161,7 +161,7 @@ export const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1.5 lg:gap-2 ml-0">
+          <div className="hidden lg:flex items-center gap-4 lg:gap-6 flex-1 justify-center">
             {navItems.map((item) =>
               item.type === "dropdown" ? (
                 <div
@@ -180,7 +180,7 @@ export const Navigation = () => {
                   }}
                 >
                   <button 
-                    className="text-xs lg:text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-0.5 py-1.5 whitespace-nowrap shrink-0"
+                    className="text-sm lg:text-base font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-0.5 py-1.5 whitespace-nowrap shrink-0"
                     aria-label={`Menu ${item.label}`}
                     aria-expanded={openDropdown === item.label}
                   >
@@ -225,7 +225,7 @@ export const Navigation = () => {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className="text-xs lg:text-sm font-medium text-foreground/80 hover:text-primary transition-colors whitespace-nowrap shrink-0 py-1.5"
+                  className="text-sm lg:text-base font-medium text-foreground/80 hover:text-primary transition-colors whitespace-nowrap shrink-0 py-1.5"
                 >
                   {item.label}
                 </Link>
@@ -237,18 +237,20 @@ export const Navigation = () => {
                     e.preventDefault();
                     handleNavClick(item.href, item.type);
                   }}
-                  className="text-xs lg:text-sm font-medium text-foreground/80 hover:text-primary transition-colors whitespace-nowrap shrink-0 py-1.5"
+                  className="text-sm lg:text-base font-medium text-foreground/80 hover:text-primary transition-colors whitespace-nowrap shrink-0 py-1.5"
                 >
                   {item.label}
                 </a>
               )
             )}
-            <Button
-              onClick={() => handleNavClick("/#agendar", "anchor")}
-              className="bg-gradient-premium hover:opacity-90 transition-opacity shrink-0 text-xs lg:text-sm px-2.5 lg:px-3 py-1.5 whitespace-pre-line text-center leading-tight"
-            >
-              Agende sua{"\n"}Consulta
-            </Button>
+            <div className="hidden lg:block ml-auto">
+              <Button
+                onClick={() => handleNavClick("/#agendar", "anchor")}
+                className="bg-gradient-premium hover:opacity-90 transition-opacity shrink-0 text-sm px-4 py-2 whitespace-nowrap"
+              >
+                Agende sua Consulta
+              </Button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
