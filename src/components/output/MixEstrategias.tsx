@@ -1,5 +1,5 @@
 import { TransformacaoOutput } from "@/types/quiz";
-import { Utensils, Dumbbell, Brain, Sparkles, Syringe, Scissors, Shield } from "lucide-react";
+import { Utensils, Dumbbell, Brain, Sparkles, Syringe, Scissors, Shield, Lightbulb } from "lucide-react";
 
 interface MixEstrategiasProps {
   mixEstrategias: TransformacaoOutput['mixEstrategias'];
@@ -103,10 +103,13 @@ export const MixEstrategias = ({ mixEstrategias }: MixEstrategiasProps) => {
                   {mixEstrategias.intervencao.justificativa}
                 </p>
                 <div className="mt-4 p-4 rounded-lg bg-background/50 border">
-                  <p className="text-sm">
-                    💡 <strong>Por que sugerimos:</strong> Esta intervenção complementa os pilares estratégicos, 
-                    acelerando seus resultados de forma segura e sustentável.
-                  </p>
+                  <div className="flex items-start gap-2 text-sm">
+                    <Lightbulb className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
+                    <p>
+                      <strong>Por que sugerimos:</strong> Esta intervenção complementa os pilares estratégicos, 
+                      acelerando seus resultados de forma segura e sustentável.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

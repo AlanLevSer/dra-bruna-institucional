@@ -14,7 +14,7 @@ import { StructuredData } from "@/components/StructuredData";
 import { TransformacaoReal } from "@/components/TransformacaoReal";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import doctorImage from "@/assets/dra-bruna-elegant.jpg";
-import { Heart, Activity, Smile, TrendingDown } from "lucide-react";
+import { Heart, Activity, Smile, TrendingDown, Utensils, Dna, Dumbbell, Brain } from "lucide-react";
 
 const GastroplastiaEndoscopica = () => {
   const handleWhatsApp = () => {
@@ -128,29 +128,49 @@ const GastroplastiaEndoscopica = () => {
         </p>
         <div className="grid md:grid-cols-2 gap-6">
           <div className="bg-card rounded-lg p-5 border border-border/50">
-            <h3 className="font-serif font-bold text-foreground mb-2">🍽️ Nutrição Inteligente</h3>
-            <p className="text-sm text-muted-foreground">
+            <div className="flex items-start gap-3 mb-2">
+              <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                <Utensils className="w-5 h-5 text-emerald-600" />
+              </div>
+              <h3 className="font-serif font-bold text-foreground pt-1.5">Nutrição Inteligente</h3>
+            </div>
+            <p className="text-sm text-muted-foreground pl-[52px]">
               Reeducação alimentar personalizada para você aprender a se alimentar com o novo estômago
             </p>
           </div>
 
           <div className="bg-card rounded-lg p-5 border border-border/50">
-            <h3 className="font-serif font-bold text-foreground mb-2">🧬 Saúde Metabólica & Regenerativa</h3>
-            <p className="text-sm text-muted-foreground">
+            <div className="flex items-start gap-3 mb-2">
+              <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+                <Dna className="w-5 h-5 text-blue-600" />
+              </div>
+              <h3 className="font-serif font-bold text-foreground pt-1.5">Saúde Metabólica & Regenerativa</h3>
+            </div>
+            <p className="text-sm text-muted-foreground pl-[52px]">
               Otimização hormonal, controle inflamatório e preservação muscular para longevidade
             </p>
           </div>
 
           <div className="bg-card rounded-lg p-5 border border-border/50">
-            <h3 className="font-serif font-bold text-foreground mb-2">💪 Corpo em Movimento</h3>
-            <p className="text-sm text-muted-foreground">
+            <div className="flex items-start gap-3 mb-2">
+              <div className="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center flex-shrink-0">
+                <Dumbbell className="w-5 h-5 text-orange-600" />
+              </div>
+              <h3 className="font-serif font-bold text-foreground pt-1.5">Corpo em Movimento</h3>
+            </div>
+            <p className="text-sm text-muted-foreground pl-[52px]">
               Prescrição de atividade física adequada para potencializar resultados
             </p>
           </div>
 
           <div className="bg-card rounded-lg p-5 border border-border/50">
-            <h3 className="font-serif font-bold text-foreground mb-2">🧠 Mente & Comportamento</h3>
-            <p className="text-sm text-muted-foreground">
+            <div className="flex items-start gap-3 mb-2">
+              <div className="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center flex-shrink-0">
+                <Brain className="w-5 h-5 text-purple-600" />
+              </div>
+              <h3 className="font-serif font-bold text-foreground pt-1.5">Mente & Comportamento</h3>
+            </div>
+            <p className="text-sm text-muted-foreground pl-[52px]">
               Suporte psicológico para lidar com gatilhos emocionais e compulsões
             </p>
           </div>

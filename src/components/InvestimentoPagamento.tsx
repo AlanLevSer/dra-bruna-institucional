@@ -267,12 +267,12 @@ export const InvestimentoPagamento = () => {
     const phoneNumber = "5511997023024";
     const message = `Olá, Dra. Bruna! Fiz a Reflexão Financeira no site.
 
-📊 Situação atual:
+Situação atual:
 • Invisto mensalmente: R$ ${totalMensal.toLocaleString('pt-BR')}
 • Em ${numCategorias} áreas diferentes sem integração
 • Total em 12 meses: R$ ${(totalMensal * 12).toLocaleString('pt-BR')}
 
-🎯 Quero:
+Quero:
 • Consolidar meu investimento em um programa integrado
 • Resultados que durem (não só perder peso rápido)
 • Ganhos reais em qualidade de vida

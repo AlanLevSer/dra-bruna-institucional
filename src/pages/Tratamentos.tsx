@@ -8,7 +8,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { SEOHead } from "@/components/SEOHead";
 import { CONTACT } from "@/lib/constants";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
-import { Activity, Zap, CheckCircle2 } from "lucide-react";
+import { Activity, Zap, CheckCircle2, Utensils, Dna, Dumbbell, Brain } from "lucide-react";
 import heroImage from "@/assets/patient-wellness-1.jpg";
 
 const Tratamentos = () => {
@@ -64,8 +64,8 @@ const Tratamentos = () => {
                   
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <span className="text-2xl">🍽️</span>
+                      <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                        <Utensils className="w-6 h-6 text-emerald-600" />
                       </div>
                       <div>
                         <h3 className="font-serif font-bold text-foreground mb-1">Nutrição Inteligente</h3>
@@ -74,8 +74,8 @@ const Tratamentos = () => {
                     </div>
 
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <span className="text-2xl">🧬</span>
+                      <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+                        <Dna className="w-6 h-6 text-blue-600" />
                       </div>
                       <div>
                         <h3 className="font-serif font-bold text-foreground mb-1">Saúde Metabólica & Regenerativa</h3>
@@ -84,8 +84,8 @@ const Tratamentos = () => {
                     </div>
 
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <span className="text-2xl">💪</span>
+                      <div className="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center flex-shrink-0">
+                        <Dumbbell className="w-6 h-6 text-orange-600" />
                       </div>
                       <div>
                         <h3 className="font-serif font-bold text-foreground mb-1">Corpo em Movimento</h3>
@@ -94,8 +94,8 @@ const Tratamentos = () => {
                     </div>
 
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <span className="text-2xl">🧠</span>
+                      <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center flex-shrink-0">
+                        <Brain className="w-6 h-6 text-purple-600" />
                       </div>
                       <div>
                         <h3 className="font-serif font-bold text-foreground mb-1">Mente & Comportamento</h3>
