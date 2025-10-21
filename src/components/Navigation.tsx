@@ -4,7 +4,22 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logoHeader from "@/assets/logo-header.svg";
 
-const navItems = [
+interface SubMenuItem {
+  label: string;
+  href: string;
+  isGroupHeader?: boolean;
+  indent?: boolean;
+  isDivider?: boolean;
+}
+
+interface NavItem {
+  label: string;
+  href: string;
+  type: "link" | "dropdown" | "anchor";
+  subItems?: SubMenuItem[];
+}
+
+const navItems: NavItem[] = [
   { label: "Início", href: "/", type: "link" },
   {
     label: "Sobre",
@@ -25,8 +40,6 @@ const navItems = [
       { label: "Visão Geral", href: "/programa-levser#programa" },
       { label: "Diferenciais", href: "/programa-levser#diferenciais" },
       { label: "Comunidade de Apoio", href: "/programa-levser#comunidade" },
-      { label: "Nutrição & Emagrecimento", href: "/programa-levser#nutricao" },
-      { label: "Regeneração Metabólica", href: "/programa-levser#regeneracao" },
       { label: "Segurança & Evidências", href: "/programa-levser#seguranca" },
       { label: "Ver tudo", href: "/programa-levser" },
     ],
@@ -36,13 +49,17 @@ const navItems = [
     href: "/tratamentos",
     type: "dropdown",
     subItems: [
-      { label: "Balão Intragástrico", href: "/balao-intragastrico" },
-      { label: "Gastroplastia Endoscópica", href: "/gastroplastia-endoscopica" },
-      { label: "Plasma de Argônio", href: "/plasma-argonio" },
-      { label: "Canetas Emagrecedoras", href: "/canetas-emagrecedoras" },
-      { label: "Medicina Regenerativa", href: "/medicina-regenerativa" },
-      { label: "Nutrição Celular", href: "/nutricao-celular" },
-      { label: "Ver todos", href: "/tratamentos" },
+      { label: "Procedimentos Endoscópicos", href: "/tratamentos#endoscopicos", isGroupHeader: true },
+      { label: "Balão Intragástrico", href: "/balao-intragastrico", indent: true },
+      { label: "Gastroplastia Endoscópica", href: "/gastroplastia-endoscopica", indent: true },
+      { label: "Plasma de Argônio", href: "/plasma-argonio", indent: true },
+      { label: "divider", href: "#", isDivider: true },
+      { label: "Emagrecimento & Longevidade", href: "/tratamentos#emagrecimento-longevidade", isGroupHeader: true },
+      { label: "Canetas Emagrecedoras", href: "/canetas-emagrecedoras", indent: true },
+      { label: "Medicina Regenerativa", href: "/medicina-regenerativa", indent: true },
+      { label: "Nutrição Celular", href: "/nutricao-celular", indent: true },
+      { label: "divider", href: "#", isDivider: true },
+      { label: "Ver todos os tratamentos", href: "/tratamentos" },
     ],
   },
   { label: "Depoimentos", href: "/#depoimentos", type: "anchor" },
@@ -172,16 +189,35 @@ export const Navigation = () => {
                   </button>
                   {openDropdown === item.label && (
                     <div className="absolute top-full left-0 mt-0 w-64 bg-card border border-border rounded-lg shadow-hover z-50 py-2 animate-fade-in">
-                      {item.subItems?.map((subItem) => (
-                        <Link
-                          key={subItem.href}
-                          to={subItem.href}
-                          onClick={() => setOpenDropdown(null)}
-                          className="block px-4 py-3 text-sm text-foreground/80 hover:text-primary hover:bg-muted/30 transition-colors"
-                        >
-                          {subItem.label}
-                        </Link>
-                      ))}
+                      {item.subItems?.map((subItem, index) => {
+                        if (subItem.isDivider) {
+                          return <div key={`divider-${index}`} className="my-2 border-t border-border" />;
+                        }
+                        
+                        if (subItem.isGroupHeader) {
+                          return (
+                            <div
+                              key={subItem.href}
+                              className="px-4 py-2 text-xs font-semibold text-foreground/60 uppercase tracking-wider"
+                            >
+                              {subItem.label}
+                            </div>
+                          );
+                        }
+                        
+                        return (
+                          <Link
+                            key={subItem.href}
+                            to={subItem.href}
+                            onClick={() => setOpenDropdown(null)}
+                            className={`block px-4 py-3 text-sm text-foreground/80 hover:text-primary hover:bg-muted/30 transition-colors ${
+                              subItem.indent ? 'pl-8' : ''
+                            }`}
+                          >
+                            {subItem.label}
+                          </Link>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
@@ -259,16 +295,35 @@ export const Navigation = () => {
                     </button>
                     {openDropdown === item.label && (
                       <div className="pl-4 space-y-2">
-                        {item.subItems?.map((subItem) => (
-                          <Link
-                            key={subItem.href}
-                            to={subItem.href}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className="block text-sm text-foreground/70 hover:text-primary transition-colors"
-                          >
-                            {subItem.label}
-                          </Link>
-                        ))}
+                        {item.subItems?.map((subItem, index) => {
+                          if (subItem.isDivider) {
+                            return <div key={`divider-${index}`} className="my-2 border-t border-border" />;
+                          }
+                          
+                          if (subItem.isGroupHeader) {
+                            return (
+                              <div
+                                key={subItem.href}
+                                className="py-1 text-xs font-semibold text-foreground/60 uppercase tracking-wider"
+                              >
+                                {subItem.label}
+                              </div>
+                            );
+                          }
+                          
+                          return (
+                            <Link
+                              key={subItem.href}
+                              to={subItem.href}
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className={`block text-sm text-foreground/70 hover:text-primary transition-colors ${
+                                subItem.indent ? 'pl-4' : ''
+                              }`}
+                            >
+                              {subItem.label}
+                            </Link>
+                          );
+                        })}
                       </div>
                     )}
                   </div>
