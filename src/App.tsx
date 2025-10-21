@@ -48,7 +48,12 @@ const App = () => (
       <Toaster />
       <Sonner />
       {import.meta.env.DEV && <PerformanceMonitor />}
-      <BrowserRouter>
+      <BrowserRouter
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true
+        }}
+      >
         <ScrollManager />
         <Routes>
           <Route path="/" element={<Index />} />

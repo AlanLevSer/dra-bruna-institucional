@@ -35,7 +35,13 @@ export const CTASection = ({
         </p>
         <Button
           size="default"
-          onClick={onButtonClick || scrollToSection}
+          onClick={() => {
+            if (onButtonClick) {
+              onButtonClick();
+            } else {
+              scrollToSection();
+            }
+          }}
           className="bg-card text-foreground hover:bg-card/90 transition-colors group text-sm px-5 py-2.5"
         >
           {buttonText}

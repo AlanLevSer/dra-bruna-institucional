@@ -8,7 +8,8 @@ import { ReconhecimentoMidia } from "@/components/ReconhecimentoMidia";
 import { CTASection } from "@/components/CTASection";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { SEOHead } from "@/components/SEOHead";
-import { pageSEO } from "@/lib/seo";
+import { StructuredData } from "@/components/StructuredData";
+import { pageSEO, generateStructuredData } from "@/lib/seo";
 import { CONTACT } from "@/lib/constants";
 import heroImage from "@/assets/dra-bruna-hero.avif";
 
@@ -25,6 +26,10 @@ const Sobre = () => {
         keywords: "dra bruna durelli, especialista obesidade, endoscopia digestiva, nutrologia, medicina regenerativa, levser, são paulo",
         canonical: "https://drabrunadurelli.com/sobre"
       }} />
+      <StructuredData data={[
+        generateStructuredData.organization,
+        generateStructuredData.physician
+      ]} />
       
       <div className="min-h-screen">
         <Navigation />

@@ -11,12 +11,25 @@ import { InvestimentoPagamento } from "@/components/InvestimentoPagamento";
 import { CTASection } from "@/components/CTASection";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { SEOHead } from "@/components/SEOHead";
+import { StructuredData } from "@/components/StructuredData";
+import { generateStructuredData } from "@/lib/seo";
 import { CONTACT } from "@/lib/constants";
 import heroImage from "@/assets/transformation-success.jpg";
 
 const ProgramaLevSerPage = () => {
   const handleCTA = () => {
     window.open(CONTACT.WHATSAPP_PROGRAMA_URL, '_blank');
+  };
+
+  const programSchema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Programa LevSer",
+    "description": "Programa completo de tratamento da obesidade com acompanhamento interdisciplinar",
+    "provider": {
+      "@type": "Physician",
+      "name": "Dra. Bruna Durelli"
+    }
   };
 
   return (
@@ -27,6 +40,10 @@ const ProgramaLevSerPage = () => {
         keywords: "programa levser, tratamento obesidade, emagrecimento saudável, acompanhamento multidisciplinar, são paulo",
         canonical: "https://drabrunadurelli.com/programa-levser"
       }} />
+      <StructuredData data={[
+        generateStructuredData.organization,
+        programSchema
+      ]} />
       
       <div className="min-h-screen">
         <Navigation />

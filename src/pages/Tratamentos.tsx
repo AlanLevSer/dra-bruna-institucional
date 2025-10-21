@@ -6,6 +6,8 @@ import { ComparadorBaloes } from "@/components/ComparadorBaloes";
 import { CTASection } from "@/components/CTASection";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { SEOHead } from "@/components/SEOHead";
+import { StructuredData } from "@/components/StructuredData";
+import { generateStructuredData } from "@/lib/seo";
 import { CONTACT } from "@/lib/constants";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { Activity, Zap, CheckCircle2, Utensils, Dna, Dumbbell, Brain } from "lucide-react";
@@ -24,6 +26,7 @@ const Tratamentos = () => {
         keywords: "tratamentos obesidade, balão gástrico, gastroplastia, canetas emagrecedoras, medicina regenerativa, são paulo",
         canonical: "https://drabrunadurelli.com/tratamentos"
       }} />
+      <StructuredData data={[generateStructuredData.organization]} />
       
       <div className="min-h-screen">
         <Navigation />
