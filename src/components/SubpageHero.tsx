@@ -19,6 +19,12 @@ export const SubpageHero = ({
   ctaText = "Agende sua Consulta",
   onCtaClick,
 }: SubpageHeroProps) => {
+  const defaultCtaAction = () => {
+    const phoneNumber = "5511997023024";
+    const message = "Olá, Dra. Bruna! Gostaria de agendar uma consulta.";
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+  };
+
   return (
     <section className="relative pt-32 pb-20 overflow-hidden">
       <GrafismoDecor variant="hero" position="top-right" size="xl" opacity={0.25} rotate={-20} color="gray" />
@@ -37,7 +43,7 @@ export const SubpageHero = ({
             </p>
             <Button
               size="lg"
-              onClick={onCtaClick}
+              onClick={onCtaClick || defaultCtaAction}
               className="bg-gradient-premium hover:opacity-90 transition-opacity group"
             >
               {ctaText}

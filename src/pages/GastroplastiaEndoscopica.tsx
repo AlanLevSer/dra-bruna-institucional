@@ -42,6 +42,7 @@ const GastroplastiaEndoscopica = () => {
         subtitle="Emagreça até 20% sem cirurgia invasiva"
         description="Reduza seu estômago por endoscopia, sem cortes externos. Recuperação rápida, resultados duradouros, risco mínimo."
         image={doctorImage}
+        onCtaClick={handleWhatsApp}
       />
 
       <ProblemasSolucoesGastro />

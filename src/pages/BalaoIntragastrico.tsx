@@ -42,6 +42,7 @@ const BalaoIntragastrico = () => {
           subtitle="Controle da fome + Programa completo = Resultado que você pode manter"
           description="Procedimento endoscópico minimamente invasivo que te ajuda a emagrecer controlando a fome de verdade — sem cortes, sem internação."
           image={patientImage}
+          onCtaClick={handleWhatsApp}
         />
 
         <ProblemasSolucoes />

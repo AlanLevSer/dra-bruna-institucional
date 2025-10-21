@@ -44,6 +44,7 @@ const CanetasEmagrecedoras = () => {
         subtitle="Mounjaro, Ozempic, Wegovy e Saxenda com Acompanhamento Médico"
         description="Tratamento médico com canetas emagrecedoras (medicações injetáveis) que atuam nos hormônios da saciedade e do apetite. As canetas emagrecedoras, como Mounjaro (tirzepatida), Ozempic (semaglutida), Wegovy (semaglutida) e Saxenda (liraglutida), são medicações injetáveis aprovadas pela ANVISA para tratamento de obesidade. Na LevSer, utilizamos essas terapias modernas dentro de um programa médico completo, com prescrição individualizada e acompanhamento rigoroso."
         image="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80"
+        onCtaClick={handleWhatsApp}
       />
 
       <TreatmentSection title="O que são Canetas Emagrecedoras?">

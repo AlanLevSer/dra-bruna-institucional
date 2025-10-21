@@ -38,6 +38,7 @@ const PlasmaArgonio = () => {
         subtitle="Tratamento avançado de reganho de peso"
         description="Técnica endoscópica minimamente invasiva para redução de dilatação gástrica e tratamento de reganho de peso pós-bariátrica, com resultados consistentes e recuperação rápida."
         image={doctorImage}
+        onCtaClick={handleWhatsApp}
       />
 
       <TreatmentSection title="O que é o Plasma de Argônio?">

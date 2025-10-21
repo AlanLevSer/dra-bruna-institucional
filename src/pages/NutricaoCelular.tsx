@@ -38,6 +38,7 @@ const NutricaoCelular = () => {
         subtitle="Terapia Moderna para Longevidade"
         description="Energia, equilíbrio, longevidade celular e mais resultados no seu tratamento. Reposição de nutrientes diretamente na corrente sanguínea, com absorção 100% e efeito imediato."
         image={patientImage}
+        onCtaClick={handleWhatsApp}
       />
 
       <TreatmentSection title="O que é Nutrição Celular?">
