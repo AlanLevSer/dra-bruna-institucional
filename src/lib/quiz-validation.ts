@@ -43,3 +43,10 @@ export const step7Schema = z.object({
   reganhoPosBariatrica: z.boolean(),
   falhaPreviaClinica: z.boolean()
 });
+
+export const step8Schema = z.object({
+  nivelAtividade: z.enum(['sedentaria', 'baixa', 'moderada', 'alta']),
+  forcaResistencia: z.enum(['nao_faco', '1x_sem', '2x_sem', '3+_sem']),
+  passosDia: z.enum(['<4k', '4-6k', '6-8k', '8k+', 'nao_sei']),
+  limitacaoDor: z.enum(['sem_dor', 'dor_leve', 'dor_moderada', 'dor_importante'])
+});

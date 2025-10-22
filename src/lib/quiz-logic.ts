@@ -204,11 +204,28 @@ function generateHeadline(data: QuizData): string {
 function generateQLI(data: QuizData) {
   const hasComorbidades = data.comorbidades.filter(c => c !== 'nenhuma').length > 1;
   
+  // Calcular baselines de mobilidade personalizado por atividade física
+  const calcularBaselineMobilidade = () => {
+    // Priorizar dor
+    if (data.dorPrincipal === 'dores_articulares' || data.dorPrincipal === 'mobilidade') return 3;
+    if (data.limitacaoDor === 'dor_importante') return 3;
+    if (data.limitacaoDor === 'dor_moderada') return 4;
+    
+    // Considerar nível de atividade
+    switch (data.nivelAtividade) {
+      case 'sedentaria': return 3;
+      case 'baixa': return 4;
+      case 'moderada': return 6;
+      case 'alta': return 7;
+      default: return 5;
+    }
+  };
+  
   const baselineMap: Record<string, number> = {
     energia: data.dorPrincipal === 'energia' ? 3 : 5,
     sono: data.comorbidades.includes('apneia') ? 3 : 5,
     humor: data.gatilhos.includes('ansiedade') || data.gatilhos.includes('estresse') ? 4 : 5,
-    mobilidade: data.dorPrincipal === 'dores_articulares' || data.dorPrincipal === 'mobilidade' ? 3 : 6,
+    mobilidade: calcularBaselineMobilidade(),
     autoconfianca: data.dorPrincipal === 'autoestima' ? 3 : 5,
     metabolico: hasComorbidades ? 3 : 6
   };
@@ -228,6 +245,39 @@ function generateQLI(data: QuizData) {
 function generateRoadmap(data: QuizData) {
   const hasIntervencao = data.imc >= 30 && data.metaPeso >= 20;
   
+  // Personalizar meta de passos por nível atual
+  const metaPassosTexto = () => {
+    if (!data.passosDia || data.passosDia === 'nao_sei') {
+      return "Estabelecer baseline de passos diários";
+    }
+    switch (data.passosDia) {
+      case '<4k': return "Meta inicial: 6k passos/dia";
+      case '4-6k': return "Meta inicial: 8k passos/dia";
+      case '6-8k': return "Meta inicial: 10k passos/dia";
+      case '8k+': return "Meta inicial: manter e qualificar passos";
+      default: return "Estabelecer baseline de passos diários";
+    }
+  };
+  
+  // Personalizar estratégia de movimento por nível atual
+  const estrategiaMovimento = () => {
+    if (!data.nivelAtividade) {
+      return "Início de atividade física adaptada";
+    }
+    switch (data.nivelAtividade) {
+      case 'sedentaria':
+        return "Caminhada progressiva (10-20 min/dia, +2k passos/semana)";
+      case 'baixa':
+        return "Força 2x/sem (15-20 min) + caminhada diária";
+      case 'moderada':
+        return "Periodização leve com progressão de carga";
+      case 'alta':
+        return "Otimização de treino com foco em composição corporal";
+      default:
+        return "Início de atividade física adaptada";
+    }
+  };
+  
   return [
     {
       fase: 1,
@@ -238,7 +288,7 @@ function generateRoadmap(data: QuizData) {
         "Exames metabólicos completos",
         "Avaliação de composição corporal",
         "Definição de metas QLI personalizadas",
-        "Plano inicial de 90 dias"
+        metaPassosTexto()
       ]
     },
     {
@@ -248,7 +298,7 @@ function generateRoadmap(data: QuizData) {
       objetivo: "Reduzir fome, inflamação e ganhar constância",
       entregas: [
         "Protocolo nutricional individualizado",
-        "Início de atividade física adaptada",
+        estrategiaMovimento(),
         hasIntervencao ? "Intervenção para acelerar resultados" : "Estratégias comportamentais",
         "Checkpoints quinzenais"
       ]
@@ -324,8 +374,71 @@ function generateMixEstrategias(data: QuizData) {
   }
   
   let intervencao: TransformacaoOutput['mixEstrategias']['intervencao'] = undefined;
+  let alternativas: TransformacaoOutput['mixEstrategias']['alternativas'] = [];
+  let microcopy: string | undefined = undefined;
   const comorbidadesQtd = data.comorbidades.filter(c => c !== 'nenhuma').length;
   const metaKg = (data.peso * data.metaPeso) / 100;
+  
+  // GUARD GLOBAL: RECUPERAÇÃO MÍNIMA
+  if (data.tempoRecuperacao === 'minimo') {
+    microcopy = 'Você sinalizou recuperação mínima. Priorizamos opções sem afastamento. Outras alternativas ficam listadas abaixo com o tempo estimado.';
+    
+    // 1) Canetas (GLP-1/GIP) - Zero downtime
+    if (data.imc >= 30 || (data.imc >= 27 && comorbidadesQtd >= 1)) {
+      intervencao = {
+        tipo: 'injetaveis',
+        nome: 'Terapia Injetável (GLP-1/GIP)',
+        justificativa: 'Controle de apetite e melhora metabólica com zero downtime. Protocolos individualizados por exames.',
+        badgeRecuperacao: '0 dias'
+      };
+    } else {
+      // 2) Protocolo Clínico Intensivo (sempre disponível)
+      intervencao = {
+        tipo: 'protocolo_clinico_intensivo',
+        nome: 'Protocolo Clínico Estruturado',
+        justificativa: 'Nutrição celular + regenerativa + comportamento. Sem afastamento.',
+        badgeRecuperacao: '0 dias'
+      };
+    }
+    
+    // 3) Alternativas com 1-3 dias (apenas informar, não priorizar)
+    if (data.invasividade !== 'minima' && !data.cirurgiaGastricaPrevia) {
+      // Balão 6m
+      alternativas.push({
+        tipo: 'balao_6m',
+        nome: 'Balão Intragástrico (6 meses)',
+        justificativa: 'Start estruturado com foco em constância.',
+        badgeRecuperacao: '1-3 dias',
+        nota: 'Requer 1-3 dias de adaptação'
+      });
+      
+      // Balão 12m (se critérios)
+      if (data.imc >= 30 && (metaKg >= 20 || comorbidadesQtd >= 2 || data.efeitoSanfona)) {
+        alternativas.push({
+          tipo: 'balao_12m',
+          nome: 'Balão Intragástrico Ajustável (12 meses)',
+          justificativa: 'Ajustável ao longo do ano para estabilidade.',
+          badgeRecuperacao: '1-3 dias',
+          nota: 'Requer 1-3 dias de adaptação'
+        });
+      }
+      
+      // Gastroplastia (se critérios)
+      if (data.imc >= 30 && data.imc <= 40 && (metaKg >= 20 || comorbidadesQtd >= 2 || data.falhaPreviaClinica)) {
+        alternativas.push({
+          tipo: 'gastroplastia',
+          nome: 'Gastroplastia Endoscópica',
+          justificativa: 'Redução volumétrica sem cortes. Resultado robusto.',
+          badgeRecuperacao: '1-3 dias',
+          nota: 'Requer 1-3 dias de repouso'
+        });
+      }
+    }
+    
+    return { pilares, intervencao, alternativas, microcopy };
+  }
+  
+  // CONTINUAR LÓGICA PADRÃO se tempoRecuperacao != 'minimo'
   
   // 0) PLASMA DE ARGÔNIO - Exclusivo para reganho pós-BYPASS
   if (
@@ -383,15 +496,13 @@ function generateMixEstrategias(data: QuizData) {
       // Caso especial: IMC 27-30 com falha clínica prévia
       (data.imc > 27 && data.imc < 30 && data.falhaPreviaClinica) ||
       // Fallback padrão IMC >= 30
-      (data.imc >= 30) ||
-      // Tempo de recuperação curto
-      (data.tempoRecuperacao === 'minimo')
+      (data.imc >= 30)
     )
   ) {
     intervencao = {
       tipo: 'balao_6m',
       nome: 'Balão Intragástrico (6 meses)',
-      justificativa: "Start estruturado com foco em constância; ideal quando há falhas clínicas prévias ou tempo curto."
+      justificativa: "Start estruturado com foco em constância; ideal quando há falhas clínicas prévias."
     };
   }
   
@@ -407,7 +518,7 @@ function generateMixEstrategias(data: QuizData) {
     };
   }
   
-  return { pilares, intervencao };
+  return { pilares, intervencao, alternativas, microcopy };
 }
 
 function generateAlertaClinico(data: QuizData): string | undefined {
@@ -476,11 +587,48 @@ function generateLifestyleWins(data: QuizData) {
     }
   ];
   
-  if (data.tempoDisponivel !== '1-3h/sem') {
+  // Força personalizada por nível atual
+  if (data.forcaResistencia === 'nao_faco') {
+    wins.push({
+      titulo: "Treino de força",
+      frequencia: "2x/semana (início)",
+      icon: "Dumbbell"
+    });
+  } else if (data.forcaResistencia === '1x_sem') {
+    wins.push({
+      titulo: "Treino de força",
+      frequencia: "3x/semana (progressão)",
+      icon: "Dumbbell"
+    });
+  } else if (data.tempoDisponivel !== '1-3h/sem') {
     wins.push({
       titulo: "Treino de força",
       frequencia: "3x/semana",
       icon: "Dumbbell"
+    });
+  }
+  
+  // Passos personalizados por nível atual
+  if (data.passosDia && data.passosDia !== 'nao_sei') {
+    const metaPassos = 
+      data.passosDia === '<4k' ? "6k passos/dia" :
+      data.passosDia === '4-6k' ? "8k passos/dia" :
+      data.passosDia === '6-8k' ? "10k passos/dia" :
+      "manter 8k+ passos";
+    
+    wins.push({
+      titulo: `Atingir ${metaPassos}`,
+      frequencia: "25/30 dias",
+      icon: "Footprints"
+    });
+  }
+  
+  // Avaliação se dor importante
+  if (data.limitacaoDor === 'dor_moderada' || data.limitacaoDor === 'dor_importante') {
+    wins.push({
+      titulo: "Avaliação com treino terapêutico",
+      frequencia: "1ª consulta agendada",
+      icon: "Stethoscope"
     });
   }
   

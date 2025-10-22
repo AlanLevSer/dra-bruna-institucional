@@ -37,6 +37,12 @@ export interface QuizData {
   cirurgiaBariatricaPreviaTipo: 'nenhuma' | 'bypass' | 'sleeve' | 'outras';
   reganhoPosBariatrica: boolean;
   falhaPreviaClinica: boolean;
+  
+  // Step 8: Atividade Física Atual
+  nivelAtividade: 'sedentaria' | 'baixa' | 'moderada' | 'alta' | null;
+  forcaResistencia: 'nao_faco' | '1x_sem' | '2x_sem' | '3+_sem' | null;
+  passosDia: '<4k' | '4-6k' | '6-8k' | '8k+' | 'nao_sei' | null;
+  limitacaoDor: 'sem_dor' | 'dor_leve' | 'dor_moderada' | 'dor_importante' | null;
 }
 
 export interface TransformacaoOutput {
@@ -81,10 +87,19 @@ export interface TransformacaoOutput {
       descricao: string;
     }>;
     intervencao?: {
-      tipo: 'balao_6m' | 'balao_12m' | 'gastroplastia' | 'injetaveis' | 'plasma_argonio';
+      tipo: 'balao_6m' | 'balao_12m' | 'gastroplastia' | 'injetaveis' | 'plasma_argonio' | 'protocolo_clinico_intensivo';
       nome: string;
       justificativa: string;
+      badgeRecuperacao?: '0 dias' | '1-3 dias' | 'até 1 semana';
     };
+    alternativas?: Array<{
+      tipo: string;
+      nome: string;
+      justificativa: string;
+      badgeRecuperacao: string;
+      nota: string;
+    }>;
+    microcopy?: string;
   };
   kpis: Array<{
     metrica: string;

@@ -76,8 +76,21 @@ export const MixEstrategias = ({ mixEstrategias }: MixEstrategiasProps) => {
           })}
         </div>
         
+        {mixEstrategias.microcopy && (
+          <div className="bg-primary/5 border-l-4 border-primary p-4 mb-6 rounded-r-lg">
+            <p className="text-sm text-muted-foreground">{mixEstrategias.microcopy}</p>
+          </div>
+        )}
+        
         {mixEstrategias.intervencao && (
-          <div className="p-6 md:p-8 rounded-lg border-2 border-primary bg-gradient-to-br from-primary/5 to-primary/10 shadow-lg">
+          <div className="relative p-6 md:p-8 rounded-lg border-2 border-primary bg-gradient-to-br from-primary/5 to-primary/10 shadow-lg">
+            {mixEstrategias.intervencao.badgeRecuperacao && (
+              <div className="absolute top-4 right-4">
+                <span className="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">
+                  {mixEstrategias.intervencao.badgeRecuperacao}
+                </span>
+              </div>
+            )}
             <div className="flex flex-col md:flex-row items-start gap-6">
               <div className="p-4 rounded-lg bg-primary/20">
                 {(() => {
@@ -112,6 +125,28 @@ export const MixEstrategias = ({ mixEstrategias }: MixEstrategiasProps) => {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        )}
+        
+        {mixEstrategias.alternativas && mixEstrategias.alternativas.length > 0 && (
+          <div className="mt-8">
+            <h4 className="text-lg font-semibold mb-4 text-muted-foreground">
+              Outras Opções (com tempo de adaptação)
+            </h4>
+            <div className="space-y-4">
+              {mixEstrategias.alternativas.map((alt, idx) => (
+                <div key={idx} className="border border-border/50 rounded-lg p-4 bg-muted/20">
+                  <div className="flex items-start justify-between mb-2">
+                    <h5 className="font-semibold text-sm">{alt.nome}</h5>
+                    <span className="px-2 py-1 bg-amber-100 text-amber-700 text-xs rounded">
+                      {alt.badgeRecuperacao}
+                    </span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mb-2">{alt.justificativa}</p>
+                  <p className="text-xs text-muted-foreground italic">{alt.nota}</p>
+                </div>
+              ))}
             </div>
           </div>
         )}

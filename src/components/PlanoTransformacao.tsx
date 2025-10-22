@@ -9,7 +9,8 @@ import {
   step4Schema, 
   step5Schema, 
   step6Schema,
-  step7Schema
+  step7Schema,
+  step8Schema
 } from "@/lib/quiz-validation";
 import { toast } from "@/hooks/use-toast";
 import { QuizProgress } from "./quiz/QuizProgress";
@@ -21,6 +22,7 @@ import { QuizStep4 } from "./quiz/QuizStep4";
 import { QuizStep5 } from "./quiz/QuizStep5";
 import { QuizStep6 } from "./quiz/QuizStep6";
 import { QuizStep7 } from "./quiz/QuizStep7";
+import { QuizStep8 } from "./quiz/QuizStep8";
 import { GeneratingAnimation } from "./quiz/GeneratingAnimation";
 import { DeclaracaoTransformacao } from "./output/DeclaracaoTransformacao";
 import { PerfilSaudeRadar } from "./output/PerfilSaudeRadar";
@@ -58,7 +60,11 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
     cirurgiaGastricaPrevia: false,
     cirurgiaBariatricaPreviaTipo: 'nenhuma',
     reganhoPosBariatrica: false,
-    falhaPreviaClinica: false
+    falhaPreviaClinica: false,
+    nivelAtividade: null,
+    forcaResistencia: null,
+    passosDia: null,
+    limitacaoDor: null
   });
 
   const updateQuizData = (field: string, value: any) => {
@@ -119,6 +125,14 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
             falhaPreviaClinica: quizData.falhaPreviaClinica
           });
           return true;
+        case 8:
+          step8Schema.parse({
+            nivelAtividade: quizData.nivelAtividade,
+            forcaResistencia: quizData.forcaResistencia,
+            passosDia: quizData.passosDia,
+            limitacaoDor: quizData.limitacaoDor
+          });
+          return true;
         default:
           return false;
       }
@@ -144,13 +158,14 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
       case 5: return quizData.dorPrincipal !== null;
       case 6: return quizData.expectativas.length > 0;
       case 7: return true;
+      case 8: return quizData.nivelAtividade !== null && quizData.forcaResistencia !== null && quizData.passosDia !== null && quizData.limitacaoDor !== null;
       default: return false;
     }
   };
 
   const handleNext = () => {
     if (validateCurrentStep()) {
-      setCurrentStep(Math.min(7, currentStep + 1));
+      setCurrentStep(Math.min(8, currentStep + 1));
     }
   };
 
@@ -187,7 +202,11 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
       cirurgiaGastricaPrevia: false,
       cirurgiaBariatricaPreviaTipo: 'nenhuma',
       reganhoPosBariatrica: false,
-      falhaPreviaClinica: false
+      falhaPreviaClinica: false,
+      nivelAtividade: null,
+      forcaResistencia: null,
+      passosDia: null,
+      limitacaoDor: null
     });
   };
 
@@ -200,7 +219,7 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
           <GeneratingAnimation />
         ) : !showOutput ? (
           <div className="p-8">
-            <QuizProgress currentStep={currentStep} totalSteps={7} />
+            <QuizProgress currentStep={currentStep} totalSteps={8} />
             
             {currentStep === 1 && (
               <QuizStep1
@@ -254,10 +273,19 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
                 onChange={updateQuizData}
               />
             )}
+            {currentStep === 8 && (
+              <QuizStep8
+                nivelAtividade={quizData.nivelAtividade}
+                forcaResistencia={quizData.forcaResistencia}
+                passosDia={quizData.passosDia}
+                limitacaoDor={quizData.limitacaoDor}
+                onChange={updateQuizData}
+              />
+            )}
             
             <QuizNavigation
               currentStep={currentStep}
-              totalSteps={7}
+              totalSteps={8}
               canProceed={canProceed()}
               onBack={() => setCurrentStep(Math.max(1, currentStep - 1))}
               onNext={handleNext}

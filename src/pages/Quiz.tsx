@@ -12,7 +12,8 @@ import {
   step4Schema, 
   step5Schema, 
   step6Schema,
-  step7Schema
+  step7Schema,
+  step8Schema
 } from "@/lib/quiz-validation";
 import { toast } from "@/hooks/use-toast";
 import { QuizProgress } from "@/components/quiz/QuizProgress";
@@ -24,6 +25,7 @@ import { QuizStep4 } from "@/components/quiz/QuizStep4";
 import { QuizStep5 } from "@/components/quiz/QuizStep5";
 import { QuizStep6 } from "@/components/quiz/QuizStep6";
 import { QuizStep7 } from "@/components/quiz/QuizStep7";
+import { QuizStep8 } from "@/components/quiz/QuizStep8";
 import { GeneratingAnimation } from "@/components/quiz/GeneratingAnimation";
 import { DeclaracaoTransformacao } from "@/components/output/DeclaracaoTransformacao";
 import { PerfilSaudeRadar } from "@/components/output/PerfilSaudeRadar";
@@ -60,7 +62,11 @@ const Quiz = () => {
     cirurgiaGastricaPrevia: false,
     cirurgiaBariatricaPreviaTipo: 'nenhuma',
     reganhoPosBariatrica: false,
-    falhaPreviaClinica: false
+    falhaPreviaClinica: false,
+    nivelAtividade: null,
+    forcaResistencia: null,
+    passosDia: null,
+    limitacaoDor: null
   });
 
   useEffect(() => {
@@ -132,6 +138,14 @@ const Quiz = () => {
             falhaPreviaClinica: quizData.falhaPreviaClinica
           });
           return true;
+        case 8:
+          step8Schema.parse({
+            nivelAtividade: quizData.nivelAtividade,
+            forcaResistencia: quizData.forcaResistencia,
+            passosDia: quizData.passosDia,
+            limitacaoDor: quizData.limitacaoDor
+          });
+          return true;
         default:
           return false;
       }
@@ -157,6 +171,7 @@ const Quiz = () => {
       case 5: return quizData.dorPrincipal !== null;
       case 6: return quizData.expectativas.length > 0;
       case 7: return true;
+      case 8: return quizData.nivelAtividade !== null && quizData.forcaResistencia !== null && quizData.passosDia !== null && quizData.limitacaoDor !== null;
       default: return false;
     }
   };
@@ -167,7 +182,7 @@ const Quiz = () => {
         step: currentStep,
         totalSteps: 7
       });
-      setCurrentStep(Math.min(7, currentStep + 1));
+      setCurrentStep(Math.min(8, currentStep + 1));
     }
   };
 
@@ -213,7 +228,11 @@ const Quiz = () => {
       cirurgiaGastricaPrevia: false,
       cirurgiaBariatricaPreviaTipo: 'nenhuma',
       reganhoPosBariatrica: false,
-      falhaPreviaClinica: false
+      falhaPreviaClinica: false,
+      nivelAtividade: null,
+      forcaResistencia: null,
+      passosDia: null,
+      limitacaoDor: null
     });
     
     trackEvent('quiz_reset');
@@ -284,7 +303,7 @@ const Quiz = () => {
                   <GeneratingAnimation />
                 ) : !showOutput ? (
                   <div className="bg-card rounded-2xl shadow-lg border p-6 md:p-8">
-                    <QuizProgress currentStep={currentStep} totalSteps={7} />
+                    <QuizProgress currentStep={currentStep} totalSteps={8} />
                     
                     {currentStep === 1 && (
                       <QuizStep1
@@ -338,10 +357,19 @@ const Quiz = () => {
                         onChange={updateQuizData}
                       />
                     )}
+                    {currentStep === 8 && (
+                      <QuizStep8
+                        nivelAtividade={quizData.nivelAtividade}
+                        forcaResistencia={quizData.forcaResistencia}
+                        passosDia={quizData.passosDia}
+                        limitacaoDor={quizData.limitacaoDor}
+                        onChange={updateQuizData}
+                      />
+                    )}
                     
                     <QuizNavigation
                       currentStep={currentStep}
-                      totalSteps={7}
+                      totalSteps={8}
                       canProceed={canProceed()}
                       onBack={() => setCurrentStep(Math.max(1, currentStep - 1))}
                       onNext={handleNext}
