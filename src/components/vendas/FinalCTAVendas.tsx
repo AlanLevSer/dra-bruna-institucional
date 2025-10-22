@@ -8,29 +8,21 @@ export const FinalCTAVendas = () => {
       icon: Phone,
       title: "Telefone",
       value: CONTACT.PHONE_DISPLAY,
-      color: "text-blue-600",
-      bg: "bg-blue-50",
     },
     {
       icon: MapPin,
       title: "Endereço",
       value: CONTACT.ADDRESS.street + " - " + CONTACT.ADDRESS.neighborhood,
-      color: "text-red-600",
-      bg: "bg-red-50",
     },
     {
       icon: Clock,
       title: "Horário",
       value: "Seg a Sex: 8h às 18h",
-      color: "text-green-600",
-      bg: "bg-green-50",
     },
     {
       icon: Mail,
       title: "Email",
       value: "contato@brunadurelli.com.br",
-      color: "text-purple-600",
-      bg: "bg-purple-50",
     },
   ];
 
@@ -39,53 +31,26 @@ export const FinalCTAVendas = () => {
   };
 
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-br from-primary/5 to-wellness-soft/30">
+    <section className="py-16 md:py-20 bg-gradient-premium text-white">
       <div className="container mx-auto px-4">
-        {/* Badge de Urgência */}
-        <div className="text-center mb-8">
-          <div className="inline-block bg-destructive text-white px-6 py-3 rounded-full font-bold animate-pulse shadow-lg">
-            🔥 ÚLTIMAS 3 VAGAS DISPONÍVEIS ESTE MÊS
-          </div>
-        </div>
-
-        <div className="max-w-4xl mx-auto">
-          {/* Oferta Especial */}
-          <div className="bg-white rounded-2xl p-8 md:p-12 text-center shadow-xl mb-8">
-            <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
-              Oferta Exclusiva
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Consulta de Avaliação Completa
+        <div className="max-w-4xl mx-auto text-center">
+          {/* CTA Principal */}
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">
+              Pronta para Dar o Próximo Passo?
             </h2>
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <span className="text-5xl font-bold text-primary">R$ 97</span>
-              <div>
-                <span className="text-2xl text-muted-foreground line-through block">
-                  R$ 700
-                </span>
-                <span className="text-sm text-destructive font-medium">
-                  Economia de R$ 603
-                </span>
-              </div>
-            </div>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Inclui avaliação médica completa, plano personalizado, orientação 
-              nutricional inicial e sem compromisso de contratação.
+            <p className="text-lg md:text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+              Agende uma consulta de avaliação e descubra se o Balão Intragástrico 
+              é o tratamento ideal para você.
             </p>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button variant="hero" size="xl" onClick={handleWhatsApp}>
-                🎯 AGENDAR MINHA CONSULTA
-              </Button>
-              <Button variant="whatsapp" size="xl" onClick={handleWhatsApp}>
-                💬 Falar Agora no WhatsApp
-              </Button>
-            </div>
-
-            <p className="text-sm text-muted-foreground">
-              ⏰ Oferta válida por tempo limitado
-            </p>
+            <Button
+              size="lg"
+              onClick={handleWhatsApp}
+              className="bg-card text-foreground hover:bg-card/90 shadow-elegant text-base md:text-lg px-8 py-6 h-auto"
+            >
+              Agendar Avaliação
+            </Button>
           </div>
 
           {/* Cards de Contato */}
@@ -93,26 +58,23 @@ export const FinalCTAVendas = () => {
             {contactInfo.map((info, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl p-6 flex items-start gap-4 shadow-md hover-lift"
+                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 flex items-start gap-4 text-left"
               >
-                <div className={`w-12 h-12 rounded-full ${info.bg} flex items-center justify-center flex-shrink-0`}>
-                  <info.icon className={`w-6 h-6 ${info.color}`} />
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                  <info.icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="font-bold mb-1">{info.title}</p>
-                  <p className="text-sm text-muted-foreground">{info.value}</p>
+                  <p className="text-xs font-medium mb-1 opacity-90">{info.title}</p>
+                  <p className="text-sm font-semibold">{info.value}</p>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Mensagem Final */}
-          <div className="text-center">
-            <p className="text-xl font-medium text-foreground mb-2">
-              Sua transformação começa com uma decisão.
-            </p>
-            <p className="text-lg text-muted-foreground">
-              Dê o primeiro passo hoje! 💪
+          <div className="text-center opacity-90">
+            <p className="text-base">
+              Estamos aqui para te acompanhar em cada etapa.
             </p>
           </div>
         </div>

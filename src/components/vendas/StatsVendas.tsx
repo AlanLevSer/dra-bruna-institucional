@@ -1,6 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/lib/constants";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
+import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { Users, Heart, Scale, Calendar } from "lucide-react";
 
 export const StatsVendas = () => {
@@ -10,14 +9,12 @@ export const StatsVendas = () => {
       value: 500,
       suffix: "+",
       label: "Vidas Transformadas",
-      color: "text-primary",
     },
     {
       icon: Heart,
       value: 98,
       suffix: "%",
       label: "Taxa de Satisfação",
-      color: "text-primary",
     },
     {
       icon: Scale,
@@ -25,62 +22,41 @@ export const StatsVendas = () => {
       prefix: "até ",
       suffix: "kg",
       label: "Perda de Peso Média",
-      color: "text-primary",
     },
     {
       icon: Calendar,
       value: 12,
       suffix: " meses",
       label: "Acompanhamento",
-      color: "text-primary",
     },
   ];
 
-  const handleWhatsApp = () => {
-    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
-  };
-
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-br from-background to-wellness-cream">
+    <section className="relative py-16 md:py-20 bg-muted/30 overflow-hidden">
+      <GrafismoDecor variant="background" position="bottom-right" size="lg" opacity={0.15} />
+      
       <div className="container mx-auto px-4">
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-6 text-center hover-lift shadow-lg"
+              className="bg-card rounded-xl p-6 text-center shadow-elegant hover:shadow-hover hover:-translate-y-1 transition-all"
             >
-              <stat.icon className={`w-10 h-10 ${stat.color} mx-auto mb-4`} />
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <stat.icon className="w-6 h-6 text-primary" />
+              </div>
               <AnimatedCounter
                 end={stat.value}
                 prefix={stat.prefix}
                 suffix={stat.suffix}
-                className="text-4xl font-bold text-foreground mb-2"
+                className="text-2xl xl:text-3xl font-bold text-foreground mb-2"
               />
-              <p className="text-sm text-muted-foreground font-medium">
+              <p className="text-xs text-muted-foreground font-medium">
                 {stat.label}
               </p>
             </div>
           ))}
-        </div>
-
-        {/* Badge de Garantia */}
-        <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 mb-8 text-center">
-          <p className="text-lg font-semibold text-foreground">
-            ✅ <span className="text-primary">Equipe Médica Especializada</span> • Acompanhamento Completo • Resultados Garantidos
-          </p>
-        </div>
-
-        {/* CTA Central */}
-        <div className="text-center">
-          <Button
-            variant="hero"
-            size="xl"
-            onClick={handleWhatsApp}
-            className="group"
-          >
-            ⚡ SIM! QUERO MINHA TRANSFORMAÇÃO AGORA
-          </Button>
         </div>
       </div>
     </section>

@@ -49,10 +49,10 @@ export const PlansComparison = () => {
   };
 
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-br from-wellness-cream to-background">
+    <section className="py-16 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">
             Escolha o Plano Ideal Para Sua Transformação
           </h2>
           <p className="text-lg text-muted-foreground">
@@ -64,46 +64,50 @@ export const PlansComparison = () => {
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`relative bg-white rounded-2xl p-8 shadow-lg hover-lift ${
+              className={`relative bg-card rounded-2xl p-8 shadow-elegant hover:shadow-hover transition-all border ${
                 plan.recommended
-                  ? "border-4 border-primary scale-105 md:scale-110"
-                  : "border border-border"
+                  ? "scale-105 border-primary/50"
+                  : "border-border/50"
               }`}
             >
               {plan.recommended && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-6 py-1 rounded-full text-sm font-bold animate-pulse">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary/10 text-primary px-4 py-1 rounded-full text-xs font-medium">
                   MAIS ESCOLHIDO
                 </div>
               )}
 
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                <p className="text-muted-foreground">{plan.duration}</p>
+                <h3 className="text-xl font-serif font-bold mb-2">{plan.name}</h3>
+                <p className="text-sm text-muted-foreground">{plan.duration}</p>
+              </div>
+
+              <div className="text-center mb-6">
+                <p className="text-sm font-medium text-primary">Investimento sob consulta</p>
               </div>
 
               <ul className="space-y-3 mb-8">
                 {plan.features.map((feature, idx) => (
                   <li key={idx} className="flex items-start gap-2">
-                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">{feature}</span>
+                    <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-xs text-muted-foreground">{feature}</span>
                   </li>
                 ))}
               </ul>
 
               <Button
-                variant={plan.recommended ? "hero" : "outline"}
+                variant={plan.recommended ? "default" : "outline"}
                 size="lg"
                 onClick={handleWhatsApp}
-                className="w-full"
+                className={plan.recommended ? "w-full bg-gradient-premium hover:opacity-90" : "w-full"}
               >
-                Escolher Este Programa
+                {plan.recommended ? "Agendar Avaliação" : "Saber Mais"}
               </Button>
             </div>
           ))}
         </div>
 
         <p className="text-center text-sm text-muted-foreground mt-8">
-          💬 Fale conosco para conhecer os valores e condições de parcelamento em até 12x
+          Fale conosco para conhecer os valores e condições de parcelamento em até 12x
         </p>
       </div>
     </section>

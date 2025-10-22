@@ -56,10 +56,10 @@ export const FAQVendas = () => {
   };
 
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-br from-wellness-cream to-background">
+    <section className="py-16 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">
             Perguntas Frequentes
           </h2>
           <p className="text-lg text-muted-foreground">
@@ -73,12 +73,12 @@ export const FAQVendas = () => {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-white rounded-xl px-6 shadow-md border-none"
+                className="bg-muted/30 rounded-lg px-6 shadow-sm border-none"
               >
-                <AccordionTrigger className="text-left font-bold hover:no-underline">
+                <AccordionTrigger className="text-left text-sm md:text-base font-semibold hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
+                <AccordionContent className="text-xs md:text-sm text-muted-foreground leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -87,8 +87,8 @@ export const FAQVendas = () => {
         </div>
 
         <div className="text-center">
-          <Button variant="soft" size="xl" onClick={handleWhatsApp}>
-            Ainda tem dúvidas? Fale com Nossa Especialista
+          <Button variant="outline" size="lg" onClick={handleWhatsApp}>
+            Ainda tem dúvidas? Fale com Especialista
           </Button>
         </div>
       </div>

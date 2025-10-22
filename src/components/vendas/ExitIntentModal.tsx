@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
-import { X } from "lucide-react";
 
 export const ExitIntentModal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,18 +15,10 @@ export const ExitIntentModal = () => {
       }
     };
 
-    const timer = setTimeout(() => {
-      if (!hasShown) {
-        setIsOpen(true);
-        setHasShown(true);
-      }
-    }, 30000); // 30 segundos
-
     document.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
       document.removeEventListener("mouseleave", handleMouseLeave);
-      clearTimeout(timer);
     };
   }, [hasShown]);
 
@@ -43,61 +34,53 @@ export const ExitIntentModal = () => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden">
-        <div className="relative bg-gradient-to-br from-primary to-primary/80 text-white p-8 md:p-12">
+        <div className="relative bg-card backdrop-blur-sm p-8 md:p-12 border border-border/50">
           {/* Badge */}
-          <div className="inline-block bg-white text-primary px-4 py-2 rounded-full text-sm font-bold mb-4 animate-bounce">
-            🎁 OFERTA EXCLUSIVA
+          <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-medium mb-4">
+            Oferta Exclusiva
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Antes de ir... Uma oportunidade única!
+          <h2 className="text-2xl md:text-3xl font-serif font-bold mb-4">
+            Antes de ir...
           </h2>
           
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 mb-6">
-            <div className="flex items-center gap-4 mb-4">
-              <span className="text-4xl font-bold">R$ 97</span>
-              <div>
-                <span className="text-xl line-through opacity-70 block">R$ 700</span>
-                <span className="text-sm font-medium">Desconto de 86%</span>
-              </div>
-            </div>
-            <p className="text-lg opacity-90 mb-4">
+          <div className="bg-muted/30 rounded-xl p-6 mb-6">
+            <p className="text-lg text-foreground mb-4">
               Consulta de Avaliação Completa com a Dra. Bruna Durelli
             </p>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
-                <span className="font-bold">✓</span>
+                <span className="text-primary font-bold">✓</span>
                 <span>Avaliação médica completa e detalhada</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-bold">✓</span>
+                <span className="text-primary font-bold">✓</span>
                 <span>Plano de tratamento personalizado</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-bold">✓</span>
+                <span className="text-primary font-bold">✓</span>
                 <span>Orientação nutricional inicial</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-bold">✓</span>
+                <span className="text-primary font-bold">✓</span>
                 <span>Sem compromisso de contratação</span>
               </li>
             </ul>
           </div>
 
           <Button
-            variant="hero"
-            size="xl"
+            size="lg"
             onClick={handleWhatsApp}
-            className="w-full bg-white text-primary hover:bg-white/90 shadow-xl"
+            className="w-full bg-gradient-premium hover:opacity-90 text-white shadow-elegant"
           >
-            🚀 SIM! QUERO MINHA CONSULTA COM DESCONTO
+            Agendar Agora
           </Button>
 
           <button
             onClick={handleClose}
-            className="mt-4 text-sm underline opacity-70 hover:opacity-100 transition-opacity mx-auto block"
+            className="mt-4 text-sm text-muted-foreground hover:text-foreground transition-colors mx-auto block"
           >
-            Não, obrigado
+            Não, obrigada
           </button>
         </div>
       </DialogContent>

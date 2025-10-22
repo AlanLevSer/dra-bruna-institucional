@@ -89,14 +89,14 @@ export const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center mb-4">
+          <DialogTitle className="text-xl font-serif font-bold text-center mb-4">
             Descubra Seu Perfil Metabólico
           </DialogTitle>
         </DialogHeader>
 
         {/* Progress Bar */}
         <div className="mb-6">
-          <Progress value={progress} className="h-2" />
+          <Progress value={progress} className="h-1 bg-primary/20" />
           <p className="text-sm text-muted-foreground text-center mt-2">
             Pergunta {step} de {questions.length}
           </p>
@@ -104,7 +104,7 @@ export const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
 
         {/* Question */}
         <div className="space-y-6">
-          <h3 className="text-lg font-semibold text-center">
+          <h3 className="text-base font-semibold text-center">
             {currentQuestion.question}
           </h3>
 
@@ -118,7 +118,7 @@ export const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
                   <RadioGroupItem value={option.value} id={option.value} />
                   <Label
                     htmlFor={option.value}
-                    className="flex-1 cursor-pointer text-base"
+                    className="flex-1 cursor-pointer text-sm"
                   >
                     {option.label}
                   </Label>
@@ -131,17 +131,17 @@ export const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
         {/* Navigation */}
         <div className="flex gap-3 mt-6">
           {step > 1 && (
-            <Button variant="outline" onClick={handleBack} className="flex-1">
+            <Button variant="ghost" onClick={handleBack} className="flex-1">
               Voltar
             </Button>
           )}
           <Button
-            variant="hero"
+            variant="default"
             onClick={handleNext}
             disabled={!isAnswered}
-            className="flex-1"
+            className="flex-1 bg-gradient-premium hover:opacity-90"
           >
-            {step === questions.length ? "Ver Meu Resultado" : "Próxima"}
+            {step === questions.length ? "Ver Resultado" : "Próxima"}
           </Button>
         </div>
       </DialogContent>

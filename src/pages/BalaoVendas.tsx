@@ -4,17 +4,16 @@ import { StatsVendas } from "@/components/vendas/StatsVendas";
 import { TargetAudienceVendas } from "@/components/vendas/TargetAudienceVendas";
 import { MethodVendas } from "@/components/vendas/MethodVendas";
 import { PlansComparison } from "@/components/vendas/PlansComparison";
-import { TestimonialsVendas } from "@/components/vendas/TestimonialsVendas";
+import { ComparadorBaloes } from "@/components/ComparadorBaloes";
 import { ResultsVendas } from "@/components/vendas/ResultsVendas";
+import { TestimonialsVendas } from "@/components/vendas/TestimonialsVendas";
 import { CredentialsVendas } from "@/components/vendas/CredentialsVendas";
 import { DifferentialsVendas } from "@/components/vendas/DifferentialsVendas";
 import { MediaRecognitionVendas } from "@/components/vendas/MediaRecognitionVendas";
-import { ComparadorBaloes } from "@/components/ComparadorBaloes";
 import { FAQVendas } from "@/components/vendas/FAQVendas";
 import { FinalCTAVendas } from "@/components/vendas/FinalCTAVendas";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { ExitIntentModal } from "@/components/vendas/ExitIntentModal";
 
 const BalaoVendas = () => {
   const seoData = {
@@ -32,17 +31,16 @@ const BalaoVendas = () => {
       <TargetAudienceVendas />
       <MethodVendas />
       <PlansComparison />
-      <TestimonialsVendas />
+      <ComparadorBaloes />
       <ResultsVendas />
+      <TestimonialsVendas />
       <CredentialsVendas />
       <DifferentialsVendas />
       <MediaRecognitionVendas />
-      <ComparadorBaloes />
       <FAQVendas />
       <FinalCTAVendas />
       <Footer />
       <WhatsAppButton />
-      <ExitIntentModal />
     </>
   );
 };
