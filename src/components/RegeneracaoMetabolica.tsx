@@ -2,6 +2,7 @@ import { Sparkles, Battery, Shield, Zap, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { useNavigate } from "react-router-dom";
+import { CONTACT } from "@/lib/constants";
 
 const beneficios = [
   {
@@ -125,9 +126,8 @@ export const RegeneracaoMetabolica = () => {
           <Button
             size="lg"
             onClick={() => {
-              const phone = "5511997023024";
               const message = "Olá, Dra. Bruna! Quero descobrir meu programa regenerativo personalizado.";
-              window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+              window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, '_blank');
             }}
             className="bg-gradient-premium hover:opacity-90 transition-opacity group"
           >

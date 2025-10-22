@@ -14,12 +14,12 @@ import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import { Heart, Activity, Smile, Moon } from "lucide-react";
 import patientImage from "@/assets/patient-confident.jpg";
+import { CONTACT } from "@/lib/constants";
 
 const BalaoIntragastrico = () => {
   const handleWhatsApp = () => {
-    const phoneNumber = "5511997023024";
     const message = "Olá, Dra. Bruna! Gostaria de saber mais sobre Balão Intragástrico.";
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   const serviceSchema = {

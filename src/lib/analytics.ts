@@ -102,3 +102,35 @@ export function trackPerfilSaudeCTAClicked(notaGlobal: number, conceito: string,
     problemas_qtd: problemasQtd,
   });
 }
+
+// Tracking de micro-CTA
+export function trackMicroCTAClick(message: string, position: string) {
+  trackEvent('quiz_micro_cta_clicked', { 
+    message,
+    position,
+    timestamp: new Date().toISOString()
+  });
+}
+
+// Tracking de seção vista (usar Intersection Observer)
+export function trackOutputSectionViewed(section: string, timeSpent: number) {
+  trackEvent('quiz_output_section_viewed', { 
+    section,
+    time_spent_seconds: timeSpent
+  });
+}
+
+// Tracking de scroll depth
+export function trackOutputScrollDepth(depth: number) {
+  trackEvent('quiz_output_scroll_depth', { 
+    depth_percentage: depth
+  });
+}
+
+// Tracking de CTA final
+export function trackFinalCTAClick(ctaType: 'presencial' | 'teleconsulta' | 'duvidas') {
+  trackEvent('quiz_final_cta_clicked', { 
+    cta_type: ctaType,
+    timestamp: new Date().toISOString()
+  });
+}

@@ -13,6 +13,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { cn } from "@/lib/utils";
 import { trackEvent, getValueBucket } from "@/lib/analytics";
+import { CONTACT } from "@/lib/constants";
 
 interface QLIItem {
   name: string;
@@ -264,7 +265,6 @@ export const InvestimentoPagamento = () => {
       cta_text: 'consolidar_investimento'
     });
 
-    const phoneNumber = "5511997023024";
     const message = `Olá, Dra. Bruna! Fiz a Reflexão Financeira no site.
 
 Situação atual:
@@ -279,7 +279,7 @@ Quero:
 
 Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer pode me ajudar.`;
 
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   const handleWhatsAppDireto = () => {
@@ -288,9 +288,8 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
       cta_text: 'agendar_avaliacao'
     });
 
-    const phoneNumber = "5511997023024";
     const message = "Olá! Gostaria de agendar uma avaliação sem compromisso para conhecer o Programa LevSer.";
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   return (

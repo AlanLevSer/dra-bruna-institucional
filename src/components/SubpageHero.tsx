@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
+import { CONTACT } from "@/lib/constants";
 
 interface SubpageHeroProps {
   title: string;
@@ -20,9 +21,8 @@ export const SubpageHero = ({
   onCtaClick,
 }: SubpageHeroProps) => {
   const defaultCtaAction = () => {
-    const phoneNumber = "5511997023024";
     const message = "Olá, Dra. Bruna! Gostaria de agendar uma consulta.";
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   return (

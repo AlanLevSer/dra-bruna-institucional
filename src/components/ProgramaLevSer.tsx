@@ -21,6 +21,7 @@ import { useNavigate } from "react-router-dom";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { PlanoTransformacao } from "@/components/PlanoTransformacao";
 import programImage from "@/assets/patient-wellness-1.jpg";
+import { CONTACT } from "@/lib/constants";
 
 const benefits = [
   "Vou te ajudar a transformar corpo, mente e autoestima",
@@ -342,9 +343,8 @@ export const ProgramaLevSer = () => {
             <Button
               size="lg"
               onClick={() => {
-                const phone = "5511997023024";
                 const message = "Olá! Quero conhecer meu plano personalizado pelos 4 pilares do Programa LevSer.";
-                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+                window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, '_blank');
               }}
               className="bg-gradient-premium hover:opacity-90 transition-opacity group"
             >

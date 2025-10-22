@@ -11,12 +11,12 @@ import { TransformacaoReal } from "@/components/TransformacaoReal";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import doctorImage from "@/assets/dra-bruna-elegant.jpg";
 import { Heart, Activity, Smile, RefreshCw, Utensils, Dna, Dumbbell, Brain } from "lucide-react";
+import { CONTACT } from "@/lib/constants";
 
 const PlasmaArgonio = () => {
   const handleWhatsApp = () => {
-    const phoneNumber = "5511997023024";
     const message = "Olá, Dra. Bruna! Gostaria de saber mais sobre Plasma de Argônio.";
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   const serviceSchema = {

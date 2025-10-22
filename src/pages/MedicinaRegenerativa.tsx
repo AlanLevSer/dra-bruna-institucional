@@ -15,10 +15,11 @@ import { pageSEO } from "@/lib/seo";
 import patientConfident from "@/assets/patient-confident.jpg";
 import transformationHealth from "@/assets/transformation-health.jpg";
 import { Battery, Shield, Zap, Sparkles } from "lucide-react";
+import { CONTACT } from "@/lib/constants";
 
 const MedicinaRegenerativa = () => {
   const handleWhatsApp = () => {
-    window.open("https://wa.me/5511997023024?text=Olá! Gostaria de saber mais sobre Medicina Regenerativa", "_blank");
+    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent("Olá! Gostaria de saber mais sobre Medicina Regenerativa")}`, "_blank");
   };
 
   const indicacoes = [

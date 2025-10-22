@@ -11,12 +11,12 @@ import { TransformacaoReal } from "@/components/TransformacaoReal";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import patientImage from "@/assets/patient-wellness-1.jpg";
 import { Zap, Heart, Smile, TrendingUp } from "lucide-react";
+import { CONTACT } from "@/lib/constants";
 
 const NutricaoCelular = () => {
   const handleWhatsApp = () => {
-    const phoneNumber = "5511997023024";
     const message = "Olá, Dra. Bruna! Gostaria de saber mais sobre Nutrição Celular.";
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   const serviceSchema = {

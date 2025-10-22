@@ -2,6 +2,7 @@ import { Building2, Award, FileCheck, Activity, AlertTriangle, CheckCircle, Arro
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
+import { CONTACT } from "@/lib/constants";
 const pilares = [{
   icon: Building2,
   title: "Centro Credenciado",
@@ -44,10 +45,8 @@ const resultados = [{
 const compliance = ["Avaliação Pré-Tratamento: Exames laboratoriais completos, avaliação cardiovascular, endoscopia digestiva (quando necessário)", "Consentimento Informado: Explicação detalhada de riscos, benefícios e alternativas", "Decisão Compartilhada: Você participa ativamente da escolha do melhor protocolo", "Riscos Transparentes: Todo procedimento possui riscos, que serão discutidos individualmente"];
 export const SegurancaEvidencias = () => {
   const handleWhatsAppClick = () => {
-    const phoneNumber = "5511997023024";
     const message = "Olá! Gostaria de agendar uma avaliação completa.";
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
+    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
   };
   return <section id="seguranca" className="relative py-20 bg-card overflow-hidden">
       <GrafismoDecor variant="floating" position="bottom-left" size="lg" opacity={0.1} rotate={-20} color="gray" />

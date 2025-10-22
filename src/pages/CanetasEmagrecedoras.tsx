@@ -11,12 +11,12 @@ import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import { Sparkles, Heart, Scale, Brain, Activity, Target, TrendingDown, HeartPulse } from "lucide-react";
 import medicationsImage from "@/assets/medications-sacietogena.png";
+import { CONTACT } from "@/lib/constants";
 
 const CanetasEmagrecedoras = () => {
   const handleWhatsApp = () => {
-    const phoneNumber = "5511997023024";
     const message = "Olá, Dra. Bruna! Gostaria de saber mais sobre Canetas Emagrecedoras.";
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   const serviceSchema = {

@@ -399,7 +399,14 @@ const Quiz = () => {
                       <MixEstrategias mixEstrategias={output.mixEstrategias} />
                       <KPIsClinicas kpis={output.kpis} />
                       <LifestyleWins lifestyleWins={output.lifestyleWins} />
-                      <CTAsFinais onResetQuiz={resetQuiz} />
+                      <CTAsFinais 
+                        onResetQuiz={resetQuiz}
+                        notaGlobal={output.perfilSaude.notaGlobal}
+                        conceito={output.perfilSaude.conceito}
+                        tratamentoRecomendado={output.mixEstrategias.intervencao?.nome || 'Protocolo Clínico'}
+                        metaKg={output.planoEnergetico.metaKg}
+                        semanasPlano={output.planoEnergetico.semanasPlano}
+                      />
                     </div>
                     
                     {/* Back to Site Button */}
