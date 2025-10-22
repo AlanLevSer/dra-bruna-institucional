@@ -28,6 +28,7 @@ import { QuizStep7 } from "@/components/quiz/QuizStep7";
 import { QuizStep8 } from "@/components/quiz/QuizStep8";
 import { GeneratingAnimation } from "@/components/quiz/GeneratingAnimation";
 import { DeclaracaoTransformacao } from "@/components/output/DeclaracaoTransformacao";
+import { PlanoEnergeticoComponent } from "@/components/output/PlanoEnergetico";
 import { PerfilSaudeRadar } from "@/components/output/PerfilSaudeRadar";
 import { IndiceQLI } from "@/components/output/IndiceQLI";
 import { RoadmapFases } from "@/components/output/RoadmapFases";
@@ -50,6 +51,8 @@ const Quiz = () => {
     altura: 0,
     imc: 0,
     metaPeso: 15,
+    idade: 0,
+    sexo: null,
     comorbidades: [],
     tentativasAnteriores: null,
     efeitoSanfona: false,
@@ -105,7 +108,7 @@ const Quiz = () => {
     try {
       switch (currentStep) {
         case 1:
-          step1Schema.parse({ peso: quizData.peso, altura: quizData.altura, metaPeso: quizData.metaPeso });
+          step1Schema.parse({ peso: quizData.peso, altura: quizData.altura, metaPeso: quizData.metaPeso, idade: quizData.idade, sexo: quizData.sexo });
           return true;
         case 2:
           step2Schema.parse({ comorbidades: quizData.comorbidades });
@@ -162,7 +165,7 @@ const Quiz = () => {
 
   const canProceed = () => {
     switch (currentStep) {
-      case 1: return quizData.peso > 0 && quizData.altura > 0;
+      case 1: return quizData.peso > 0 && quizData.altura > 0 && quizData.idade > 0 && quizData.sexo !== null;
       case 2: return quizData.comorbidades.length > 0;
       case 3: return quizData.tentativasAnteriores !== null;
       case 4: return quizData.invasividade !== null && 
@@ -216,6 +219,8 @@ const Quiz = () => {
       altura: 0,
       imc: 0,
       metaPeso: 15,
+      idade: 0,
+      sexo: null,
       comorbidades: [],
       tentativasAnteriores: null,
       efeitoSanfona: false,
@@ -311,6 +316,8 @@ const Quiz = () => {
                         altura={quizData.altura}
                         metaPeso={quizData.metaPeso}
                         imc={quizData.imc}
+                        idade={quizData.idade}
+                        sexo={quizData.sexo}
                         onChange={updateQuizData}
                       />
                     )}
@@ -381,6 +388,8 @@ const Quiz = () => {
                     <div className="bg-card rounded-2xl shadow-lg border overflow-hidden">
                       <DeclaracaoTransformacao headline={output.headline} alertaClinico={output.alertaClinico} />
                     </div>
+                    
+                    <PlanoEnergeticoComponent planoEnergetico={output.planoEnergetico} />
                     
                     <PerfilSaudeRadar perfilSaude={output.perfilSaude} quizData={quizData} />
                     

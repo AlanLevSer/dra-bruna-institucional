@@ -1,7 +1,8 @@
-import { QuizData, TransformacaoOutput } from "@/types/quiz";
+import { QuizData, TransformacaoOutput, PlanoEnergetico } from "@/types/quiz";
 
 export function generateTransformacaoOutput(data: QuizData): TransformacaoOutput {
   const headline = generateHeadline(data);
+  const planoEnergetico = generatePlanoEnergetico(data);
   const perfilSaude = generatePerfilSaude(data);
   const qli = generateQLI(data);
   const roadmap = generateRoadmap(data);
@@ -12,6 +13,7 @@ export function generateTransformacaoOutput(data: QuizData): TransformacaoOutput
   
   return {
     headline,
+    planoEnergetico,
     perfilSaude,
     qli,
     roadmap,
@@ -19,6 +21,134 @@ export function generateTransformacaoOutput(data: QuizData): TransformacaoOutput
     kpis,
     lifestyleWins,
     alertaClinico
+  };
+}
+
+function generatePlanoEnergetico(data: QuizData): PlanoEnergetico {
+  // 1) Meta em kg
+  const metaKg = Math.round((data.peso * data.metaPeso) / 100);
+  
+  // 2) Energia necessária (1kg gordura ≈ 7700 kcal)
+  const deficitTotal = metaKg * 7700;
+  
+  // 3) Horizonte de tempo (baseado na meta e no IMC - mais conservador para metas maiores)
+  const semanasPlano = Math.max(
+    12, // mínimo 12 semanas
+    Math.round(metaKg / 0.75 * 1.0) // ~0.75kg/semana em média (conservador)
+  );
+  
+  // 4) Déficit diário inicial
+  const deficitDiarioCalculado = Math.round((deficitTotal / semanasPlano) / 7);
+  
+  // 5) BMR (Mifflin-St Jeor)
+  const bmr = data.sexo === 'masculino'
+    ? 10 * data.peso + 6.25 * data.altura - 5 * data.idade + 5
+    : 10 * data.peso + 6.25 * data.altura - 5 * data.idade - 161;
+  
+  // 6) Fator de atividade (baseado no nível coletado)
+  const fatorAtividade = 
+    data.nivelAtividade === 'sedentaria' ? 1.2 :
+    data.nivelAtividade === 'baixa' ? 1.375 :
+    data.nivelAtividade === 'moderada' ? 1.55 :
+    data.nivelAtividade === 'alta' ? 1.725 :
+    1.375; // default leve
+  
+  // 7) TDEE
+  const tdee = Math.round(bmr * fatorAtividade);
+  
+  // 8) Guard-rails de segurança
+  const deficitMinimo = 300;
+  const deficitMaximo = 1000;
+  const deficitDiario = Math.max(deficitMinimo, Math.min(deficitMaximo, deficitDiarioCalculado));
+  
+  // 9) Kcal mínimas absolutas
+  const kcalMinimo = data.sexo === 'masculino' ? 1600 : 1300;
+  
+  // 10) Calorias alvo por fase (com adaptação metabólica)
+  const TDEE_F1 = tdee;
+  const TDEE_F2 = Math.round(tdee * 0.95); // -5% após 8 semanas
+  const TDEE_F3 = Math.round(tdee * 0.90); // -10% após 12 semanas
+  
+  const kcalF1 = Math.max(kcalMinimo, TDEE_F1 - deficitDiario);
+  const kcalF2 = Math.max(kcalMinimo, TDEE_F2 - Math.round(deficitDiario * 0.9));
+  const kcalF3 = Math.max(kcalMinimo, TDEE_F3 - Math.round(deficitDiario * 0.8));
+  
+  // 11) Fases
+  const fases = [
+    {
+      fase: 1,
+      semanas: "1-8",
+      kcalAlvo: kcalF1,
+      tdeeAjustado: TDEE_F1
+    },
+    {
+      fase: 2,
+      semanas: "9-12",
+      kcalAlvo: kcalF2,
+      tdeeAjustado: TDEE_F2
+    },
+    {
+      fase: 3,
+      semanas: "13+",
+      kcalAlvo: kcalF3,
+      tdeeAjustado: TDEE_F3
+    }
+  ];
+  
+  // 12) Proteína meta (1.8g/kg de peso meta para preservação de massa magra)
+  const pesoMeta = data.peso - metaKg;
+  const proteinaMeta = Math.round(1.8 * pesoMeta);
+  
+  // 13) Aviso de segurança se déficit ajustado for diferente do calculado
+  let avisoSeguranca: string | undefined;
+  if (deficitDiarioCalculado > deficitMaximo) {
+    avisoSeguranca = "Para atingir essa meta nesse prazo, o déficit diário ultrapassa o limite seguro. Ajustaremos prazo e estratégias na sua avaliação para garantir resultados sustentáveis.";
+  } else if (deficitDiarioCalculado < deficitMinimo) {
+    avisoSeguranca = "Seu déficit calculado é muito baixo. Vamos otimizar a estratégia na avaliação para acelerar resultados de forma segura.";
+  }
+  
+  // 14) Facilitadores (baseados no perfil)
+  const facilitadores: string[] = [];
+  
+  // GLP-1/GIP se elegível
+  if (data.imc >= 30 || (data.imc >= 27 && data.comorbidades.filter(c => c !== 'nenhuma').length >= 1)) {
+    facilitadores.push("Saciedade assistida (GLP-1/GIP) quando indicado - reduz fome em 20-40%");
+  }
+  
+  // Nutrição celular sempre
+  facilitadores.push("Nutrição celular & regenerativa para energia estável");
+  
+  // Endoscopia se indicado
+  if ((data.invasividade !== 'minima' && data.imc >= 30) || data.falhaPreviaClinica) {
+    facilitadores.push("Endoscopia metabólica (balão/gastroplastia) quando elegível");
+  }
+  
+  // Planejamento sempre
+  facilitadores.push(`Planejamento de refeições com meta proteica (${proteinaMeta}g/dia)`);
+  
+  // Refeed se longo prazo
+  if (semanasPlano >= 12) {
+    facilitadores.push("Fases com refeed estratégico a cada 4-6 semanas");
+  }
+  
+  // Treino se não faz força
+  if (data.forcaResistencia === 'nao_faco' || data.forcaResistencia === '1x_sem') {
+    facilitadores.push("Treino de força 2-3x/sem para preservar massa magra");
+  }
+  
+  // Acompanhamento sempre
+  facilitadores.push("Acompanhamento 360° com ajuste fino contínuo");
+  
+  return {
+    metaKg,
+    deficitDiario,
+    semanasPlano,
+    tdee,
+    bmr,
+    fases,
+    proteinaMeta,
+    avisoSeguranca,
+    facilitadores
   };
 }
 

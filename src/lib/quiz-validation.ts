@@ -7,7 +7,11 @@ export const step1Schema = z.object({
   altura: z.number()
     .min(120, "Altura mínima: 1,20m")
     .max(250, "Altura máxima: 2,50m"),
-  metaPeso: z.number().min(5).max(50)
+  metaPeso: z.number().min(5).max(50),
+  idade: z.number()
+    .min(18, "Idade mínima: 18 anos")
+    .max(80, "Idade máxima: 80 anos"),
+  sexo: z.enum(['feminino', 'masculino'])
 });
 
 export const step2Schema = z.object({

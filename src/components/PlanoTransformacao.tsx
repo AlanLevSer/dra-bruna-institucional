@@ -25,6 +25,7 @@ import { QuizStep7 } from "./quiz/QuizStep7";
 import { QuizStep8 } from "./quiz/QuizStep8";
 import { GeneratingAnimation } from "./quiz/GeneratingAnimation";
 import { DeclaracaoTransformacao } from "./output/DeclaracaoTransformacao";
+import { PlanoEnergeticoComponent } from "./output/PlanoEnergetico";
 import { PerfilSaudeRadar } from "./output/PerfilSaudeRadar";
 import { IndiceQLI } from "./output/IndiceQLI";
 import { RoadmapFases } from "./output/RoadmapFases";
@@ -48,6 +49,8 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
     altura: 0,
     imc: 0,
     metaPeso: 15,
+    idade: 0,
+    sexo: null,
     comorbidades: [],
     tentativasAnteriores: null,
     efeitoSanfona: false,
@@ -92,7 +95,7 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
     try {
       switch (currentStep) {
         case 1:
-          step1Schema.parse({ peso: quizData.peso, altura: quizData.altura, metaPeso: quizData.metaPeso });
+          step1Schema.parse({ peso: quizData.peso, altura: quizData.altura, metaPeso: quizData.metaPeso, idade: quizData.idade, sexo: quizData.sexo });
           return true;
         case 2:
           step2Schema.parse({ comorbidades: quizData.comorbidades });
@@ -149,7 +152,7 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
 
   const canProceed = () => {
     switch (currentStep) {
-      case 1: return quizData.peso > 0 && quizData.altura > 0;
+      case 1: return quizData.peso > 0 && quizData.altura > 0 && quizData.idade > 0 && quizData.sexo !== null;
       case 2: return quizData.comorbidades.length > 0;
       case 3: return quizData.tentativasAnteriores !== null;
       case 4: return quizData.invasividade !== null && 
@@ -190,6 +193,8 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
       altura: 0,
       imc: 0,
       metaPeso: 15,
+      idade: 0,
+      sexo: null,
       comorbidades: [],
       tentativasAnteriores: null,
       efeitoSanfona: false,
@@ -227,6 +232,8 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
                 altura={quizData.altura}
                 metaPeso={quizData.metaPeso}
                 imc={quizData.imc}
+                idade={quizData.idade}
+                sexo={quizData.sexo}
                 onChange={updateQuizData}
               />
             )}
@@ -295,6 +302,7 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
         ) : output ? (
           <div>
             <DeclaracaoTransformacao headline={output.headline} alertaClinico={output.alertaClinico} />
+            <PlanoEnergeticoComponent planoEnergetico={output.planoEnergetico} />
             <PerfilSaudeRadar perfilSaude={output.perfilSaude} quizData={quizData} />
             <IndiceQLI qli={output.qli} />
             <RoadmapFases roadmap={output.roadmap} />

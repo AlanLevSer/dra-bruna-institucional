@@ -1,17 +1,20 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { Scale } from "lucide-react";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Scale, Calendar, Users } from "lucide-react";
 
 interface QuizStep1Props {
   peso: number;
   altura: number;
   metaPeso: number;
   imc: number;
-  onChange: (field: string, value: number) => void;
+  idade: number;
+  sexo: 'feminino' | 'masculino' | null;
+  onChange: (field: string, value: any) => void;
 }
 
-export const QuizStep1 = ({ peso, altura, metaPeso, imc, onChange }: QuizStep1Props) => {
+export const QuizStep1 = ({ peso, altura, metaPeso, imc, idade, sexo, onChange }: QuizStep1Props) => {
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       <div className="text-center space-y-2">
@@ -49,6 +52,41 @@ export const QuizStep1 = ({ peso, altura, metaPeso, imc, onChange }: QuizStep1Pr
             onChange={(e) => onChange('altura', parseFloat(e.target.value) || 0)}
             placeholder="Ex: 165"
           />
+        </div>
+        
+        <div className="space-y-2">
+          <Label htmlFor="idade" className="flex items-center gap-2">
+            <Calendar className="w-4 h-4" />
+            Idade
+          </Label>
+          <Input
+            id="idade"
+            type="number"
+            min="18"
+            max="80"
+            value={idade || ''}
+            onChange={(e) => onChange('idade', parseFloat(e.target.value) || 0)}
+            placeholder="Ex: 38"
+          />
+        </div>
+        
+        <div className="space-y-3">
+          <Label className="flex items-center gap-2">
+            <Users className="w-4 h-4" />
+            Sexo biológico
+          </Label>
+          <RadioGroup value={sexo || ''} onValueChange={(val) => onChange('sexo', val)}>
+            <div className="flex gap-4">
+              <div className="flex items-center space-x-2 border rounded-lg p-3 flex-1 cursor-pointer hover:bg-primary/5">
+                <RadioGroupItem value="feminino" id="feminino" />
+                <Label htmlFor="feminino" className="cursor-pointer flex-1">Feminino</Label>
+              </div>
+              <div className="flex items-center space-x-2 border rounded-lg p-3 flex-1 cursor-pointer hover:bg-primary/5">
+                <RadioGroupItem value="masculino" id="masculino" />
+                <Label htmlFor="masculino" className="cursor-pointer flex-1">Masculino</Label>
+              </div>
+            </div>
+          </RadioGroup>
         </div>
       </div>
       

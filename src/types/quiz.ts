@@ -1,9 +1,11 @@
 export interface QuizData {
-  // Step 1: IMC + Meta
+  // Step 1: IMC + Meta + Perfil
   peso: number;
   altura: number;
   imc: number;
   metaPeso: number; // % de perda: 5-10, 10-20, 20-30, 30+
+  idade: number;
+  sexo: 'feminino' | 'masculino' | null;
   
   // Step 2: Comorbidades
   comorbidades: Array<'dm2' | 'ri' | 'has' | 'dislipidemia' | 'apneia' | 'sop' | 'nenhuma'>;
@@ -45,9 +47,27 @@ export interface QuizData {
   limitacaoDor: 'sem_dor' | 'dor_leve' | 'dor_moderada' | 'dor_importante' | null;
 }
 
+export interface PlanoEnergetico {
+  metaKg: number;
+  deficitDiario: number;
+  semanasPlano: number;
+  tdee: number;
+  bmr: number;
+  fases: Array<{
+    fase: number;
+    semanas: string;
+    kcalAlvo: number;
+    tdeeAjustado: number;
+  }>;
+  proteinaMeta: number;
+  avisoSeguranca?: string;
+  facilitadores: string[];
+}
+
 export interface TransformacaoOutput {
   headline: string;
   alertaClinico?: string;
+  planoEnergetico: PlanoEnergetico;
   perfilSaude: {
     notaGlobal: number;
     conceito: 'A' | 'B' | 'C' | 'D' | 'E';
