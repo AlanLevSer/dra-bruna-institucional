@@ -7,11 +7,11 @@ import { Progress } from "@/components/ui/progress";
 import { CONTACT } from "@/lib/constants";
 
 interface QuizModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }
 
-export const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
+const QuizModal = ({ open, onOpenChange }: QuizModalProps) => {
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState({
     age: "",
@@ -69,7 +69,7 @@ export const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
       // Finalizar quiz
       const profile = `Idade: ${answers.age}, Meta: ${answers.weight}, Desafio: ${answers.challenge}`;
       window.open(CONTACT.WHATSAPP_QUIZ_RESULT(profile), "_blank");
-      onClose();
+      onOpenChange(false);
       // Reset
       setStep(1);
       setAnswers({ age: "", weight: "", challenge: "" });
@@ -86,7 +86,7 @@ export const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
   const isAnswered = currentAnswer !== "";
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle className="text-xl font-serif font-bold text-center mb-4">
@@ -148,3 +148,5 @@ export const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
     </Dialog>
   );
 };
+
+export default QuizModal;

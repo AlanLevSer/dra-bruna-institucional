@@ -7,6 +7,11 @@ export const CONTACT = {
   WHATSAPP_QUIZ_RESULT: (perfil: string) => 
     `https://wa.me/5511997023024?text=Olá! Fiz o quiz e meu perfil é: ${perfil}. Gostaria de saber mais sobre o tratamento ideal para mim.`,
   PHONE_DISPLAY: "(11) 99702-3024",
+  EMAIL: "contato@brunadurelli.com.br",
+  HORARIO: {
+    weekdays: "Seg a Sex: 8h às 18h",
+    saturday: "Sáb: 8h às 12h",
+  },
   ADDRESS: {
     street: "Av. Brasil, 173",
     neighborhood: "Jardim Paulista",
