@@ -71,7 +71,7 @@ const TestimonialsSection = () => {
     {
       src: transformation5,
       alt: "Transformação paciente - Antes e depois",
-      description: "Eliminei 25kg com muita dedicação - Nova vida"
+      description: "Eliminei 35kg com muita dedicação - Nova vida"
     },
     {
       src: transformation6,

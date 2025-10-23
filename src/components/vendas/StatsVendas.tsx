@@ -6,7 +6,7 @@ export const StatsVendas = () => {
   const stats = [
     {
       icon: Users,
-      value: 500,
+      value: 3000,
       suffix: "+",
       label: "Vidas Transformadas",
     },
@@ -18,7 +18,7 @@ export const StatsVendas = () => {
     },
     {
       icon: Scale,
-      value: 25,
+      value: 35,
       prefix: "até ",
       suffix: "kg",
       label: "Perda de Peso Média",

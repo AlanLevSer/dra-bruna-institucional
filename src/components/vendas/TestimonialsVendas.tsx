@@ -70,7 +70,7 @@ export const TestimonialsVendas = () => {
             </div>
           </div>
           <p className="text-2xl font-bold text-primary mb-1">4.9/5.0</p>
-          <p className="text-sm text-muted-foreground">Baseado em 500+ avaliações</p>
+          <p className="text-sm text-muted-foreground">Baseado em 3000+ avaliações</p>
         </div>
       </div>
     </section>

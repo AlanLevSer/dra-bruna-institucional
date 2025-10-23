@@ -28,7 +28,7 @@ export const HeroVendas = () => {
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              Perca de 10 a 25kg em 6 meses com o programa completo da LevSer
+              Perca de 10 a 35kg em 6 meses com o programa completo da LevSer
             </p>
 
             <p className="text-base text-muted-foreground">
@@ -63,7 +63,7 @@ export const HeroVendas = () => {
                 ))}
               </div>
               <p className="text-sm font-medium text-muted-foreground">
-                <span className="text-primary font-bold">500+ vidas</span> transformadas
+                <span className="text-primary font-bold">3000+ vidas</span> transformadas
               </p>
             </div>
           </div>

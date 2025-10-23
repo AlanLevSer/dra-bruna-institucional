@@ -27,7 +27,7 @@ export const FAQVendas = () => {
     {
       question: "Quanto peso vou perder?",
       answer:
-        "A perda média é de 10 a 25kg em 6 meses, dependendo do seu perfil, comprometimento e resposta individual. O acompanhamento multidisciplinar potencializa os resultados.",
+        "A perda média é de 10 a 35kg em 6 meses, dependendo do seu perfil, comprometimento e resposta individual. O acompanhamento multidisciplinar potencializa os resultados.",
     },
     {
       question: "O peso volta depois de retirar o balão?",
