@@ -27,7 +27,7 @@ const CredentialsSection = () => {
                 <span className="text-green-700 text-sm font-medium">Pós-graduada</span>
               </div>
               <div className="bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
-                <span className="text-blue-700 text-sm font-medium">15+ Anos</span>
+                <span className="text-blue-700 text-sm font-medium">+10 Anos</span>
               </div>
             </div>
           </div>
@@ -41,10 +41,10 @@ const CredentialsSection = () => {
                 <div>
                   <h3 className="text-xl font-semibold text-foreground mb-2">Formação Acadêmica</h3>
                   <ul className="text-muted-foreground space-y-1">
-                    <li>• Medicina pela Universidade Federal</li>
-                    <li>• Especialização em Endocrinologia</li>
-                    <li>• Mestrado em Metabolismo e Obesidade</li>
-                    <li>• Pós-graduação em Nutrologia</li>
+                    <li>• Especialista em Obesidade</li>
+                    <li>• Nutrologia e Medicina Regenerativa</li>
+                    <li>• Endoscopia Digestiva</li>
+                    <li>• Formação Premium: Einstein, Santa Casa, ABRAN</li>
                   </ul>
                 </div>
               </div>
@@ -56,10 +56,10 @@ const CredentialsSection = () => {
                 <div>
                   <h3 className="text-xl font-semibold text-foreground mb-2">Certificações</h3>
                   <ul className="text-muted-foreground space-y-1">
-                    <li>• Certificação internacional em Balão Intragástrico</li>
-                    <li>• Especialista em Medicina do Estilo de Vida</li>
-                    <li>• Membro da Sociedade Brasileira de Endocrinologia</li>
-                    <li>• Certificação em Terapia Cognitivo-Comportamental</li>
+                    <li>• Membro titular SOBED (Sociedade Brasileira de Endoscopia Digestiva)</li>
+                    <li>• Membro titular ABESO (Associação Brasileira para Estudo da Obesidade)</li>
+                    <li>• Formação em procedimentos minimamente invasivos com segurança e precisão</li>
+                    <li>• Abordagem integrativa para saúde celular e metabólica</li>
                   </ul>
                 </div>
               </div>
@@ -93,8 +93,10 @@ const CredentialsSection = () => {
               </div>
               <div className="mt-6 p-6 bg-wellness-soft/20 rounded-xl">
                 <p className="text-lg font-medium text-wellness-warm">
-                  "Mais de 10 anos dedicados ao tratamento humanizado da obesidade, 
-                  sempre com base científica e foco na qualidade de vida do paciente."
+                  "Há mais de 10 anos, escolhi dedicar minha carreira a te ajudar a conquistar 
+                  uma vida mais leve e saudável. Acredito que você merece um cuidado que 
+                  respeita sua história, seus desafios e seu tempo — com ciência, sim, mas 
+                  também com empatia de verdade. Estou aqui para te acompanhar, não para te julgar."
                 </p>
               </div>
             </div>
