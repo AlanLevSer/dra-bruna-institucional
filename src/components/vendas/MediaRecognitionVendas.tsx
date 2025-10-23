@@ -1,4 +1,3 @@
-import { ExternalLink } from "lucide-react";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import terraLogo from "@/assets/media/terra-logo.png";
 import crescerLogo from "@/assets/media/crescer-logo.png";
@@ -9,39 +8,12 @@ import anaMariaLogo from "@/assets/media/ana-maria-logo.jpeg";
 
 export const MediaRecognitionVendas = () => {
   const mediaLogos = [
-    { src: terraLogo, alt: "Terra" },
-    { src: crescerLogo, alt: "Crescer" },
-    { src: jovemPanLogo, alt: "Jovem Pan" },
-    { src: boaFormaLogo, alt: "Boa Forma" },
-    { src: bandnewsLogo, alt: "BandNews" },
-    { src: anaMariaLogo, alt: "Ana Maria Braga" },
-  ];
-
-  const appearances = [
-    {
-      title: "Entrevista sobre obesidade no Terra",
-      description: "Como tratar a obesidade de forma saudável",
-    },
-    {
-      title: "Participação no programa da Ana Maria Braga",
-      description: "Dicas de emagrecimento sustentável",
-    },
-    {
-      title: "Matéria na Jovem Pan sobre emagrecimento",
-      description: "O papel do balão intragástrico no tratamento da obesidade",
-    },
-    {
-      title: "Artigo na revista Crescer",
-      description: "Obesidade infantil e saúde familiar",
-    },
-    {
-      title: "Entrevista na BandNews sobre balão intragástrico",
-      description: "Tratamentos modernos para perda de peso",
-    },
-    {
-      title: "Coluna na Boa Forma",
-      description: "Métodos eficazes de emagrecimento",
-    },
+    { src: terraLogo, alt: "Terra", url: "https://www.terra.com.br/vida-e-estilo/saude/7-sinais-de-que-a-obesidade-esta-afetando-a-sua-saude,21f8581eeb5cc9e3ac0e7c68691fe551smecd7g5.html#google_vignette" },
+    { src: crescerLogo, alt: "Crescer", url: "https://revistacrescer.globo.com/criancas/saude/noticia/2025/06/um-terco-das-criancas-estara-acima-do-peso-ate-2050-como-prevenir-a-obesidade-infantil.ghtml" },
+    { src: jovemPanLogo, alt: "Jovem Pan", url: "https://jovempan.com.br/edicase/8-mitos-e-verdades-sobre-obesidade-e-sobrepeso.html" },
+    { src: boaFormaLogo, alt: "Boa Forma", url: "https://boaforma.abril.com.br/alimentacao/habitos-alimentares-parecem-saudaveis-nao-sao/#google_vignette" },
+    { src: bandnewsLogo, alt: "BandNews", url: "https://open.spotify.com/episode/1YYkeDdwVcU1sBFW3GbnJm?si=MUWuUl_rQcq1LGpxSujEXQ&nd=1&dlsi=db62467fbc874a60" },
+    { src: anaMariaLogo, alt: "Ana Maria Braga", url: "https://revistaanamaria.com.br/bem-estar-e-saude/o-impacto-velado-da-semaglutida/" },
   ];
 
   return (
@@ -59,42 +31,22 @@ export const MediaRecognitionVendas = () => {
         {/* Grid de Logos */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-12">
           {mediaLogos.map((logo, index) => (
-            <div
+            <a
               key={index}
+              href={logo.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-white rounded-xl p-4 flex items-center justify-center hover-lift shadow-md"
             >
               <OptimizedImage
                 src={logo.src}
                 alt={logo.alt}
-                width={120}
-                height={60}
+                width={80}
+                height={40}
                 className="max-w-full h-auto opacity-70 hover:opacity-100 transition-opacity"
               />
-            </div>
+            </a>
           ))}
-        </div>
-
-        {/* Lista de Participações */}
-        <div className="bg-gradient-to-br from-primary/5 to-wellness-soft/30 rounded-2xl p-8">
-          <h3 className="text-2xl font-bold text-center mb-8">
-            Participações e Entrevistas
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-            {appearances.map((appearance, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl p-4 flex items-start gap-3 hover-lift shadow-sm"
-              >
-                <ExternalLink className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-bold text-sm mb-1">{appearance.title}</h4>
-                  <p className="text-xs text-muted-foreground">
-                    {appearance.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Quote */}
