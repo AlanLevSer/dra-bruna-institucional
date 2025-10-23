@@ -21,7 +21,6 @@ import transformation10 from "@/assets/transformations/before-after-10.avif";
 interface Transformation {
   image: string;
   name: string;
-  weightLoss: string;
   testimonial: string;
 }
 
@@ -29,68 +28,58 @@ const transformations: Transformation[] = [
   {
     image: transformation01,
     name: "M.S., 34 anos",
-    weightLoss: "Perdeu 28kg em 6 meses",
     testimonial: "Mudei completamente meu estilo de vida e recuperei minha autoestima!"
   },
   {
     image: transformation02,
     name: "A.L., 41 anos",
-    weightLoss: "Perdeu 32kg e recuperou autoestima",
     testimonial: "Nunca imaginei que seria possível! Hoje me sinto uma nova pessoa."
   },
   {
     image: transformation03,
     name: "C.R., 29 anos",
-    weightLoss: "Perdeu 25kg e mudou seu estilo de vida",
     testimonial: "O acompanhamento profissional fez toda a diferença na minha jornada."
   },
   {
     image: transformation04,
     name: "F.P., 38 anos",
-    weightLoss: "Perdeu 30kg com acompanhamento completo",
     testimonial: "Resultados que vão muito além da balança. Ganhei saúde e qualidade de vida!"
   },
   {
     image: transformation05,
     name: "L.M., 45 anos",
-    weightLoss: "Perdeu 35kg e reconquistou sua saúde",
     testimonial: "Minha vida mudou completamente. Obrigada Dra. Bruna e equipe!"
   },
   {
     image: transformation06,
     name: "P.S., 27 anos",
-    weightLoss: "Perdeu 22kg em 5 meses",
     testimonial: "Superou minhas expectativas! Me sinto mais confiante e saudável."
   },
   {
     image: transformation07,
     name: "R.O., 36 anos",
-    weightLoss: "Perdeu 26kg com o programa LevSer",
     testimonial: "O programa LevSer transformou não só meu corpo, mas minha mente também."
   },
   {
     image: transformation08,
     name: "T.A., 42 anos",
-    weightLoss: "Perdeu 31kg e ganhou qualidade de vida",
     testimonial: "Resultado incrível! Voltei a ter energia e disposição para viver."
   },
   {
     image: transformation09,
     name: "J.B., 33 anos",
-    weightLoss: "Perdeu 24kg e voltou a se sentir bem",
     testimonial: "Cada quilo perdido foi uma conquista. Vale muito a pena!"
   },
   {
     image: transformation10,
     name: "N.F., 39 anos",
-    weightLoss: "Perdeu 29kg com resultados duradouros",
     testimonial: "Aprendi a me alimentar melhor e hoje tenho uma relação saudável com a comida."
   }
 ];
 
 export const TransformacoesReaisVendas = () => {
   const plugin = React.useRef(
-    Autoplay({ delay: 4000, stopOnInteraction: true, stopOnMouseEnter: true })
+    Autoplay({ delay: 3500, stopOnInteraction: false, stopOnMouseEnter: true })
   );
 
   const handleWhatsApp = () => {
@@ -126,6 +115,7 @@ export const TransformacoesReaisVendas = () => {
             opts={{
               align: "start",
               loop: true,
+              slidesToScroll: 1,
             }}
             plugins={[plugin.current]}
             className="w-full"
@@ -148,12 +138,7 @@ export const TransformacoesReaisVendas = () => {
                       
                       {/* Content Overlay */}
                       <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                        <div className="mb-3">
-                          <p className="text-lg font-bold mb-1">{transformation.name}</p>
-                          <p className="text-sm font-semibold text-primary-foreground bg-primary/90 inline-block px-3 py-1 rounded-full">
-                            {transformation.weightLoss}
-                          </p>
-                        </div>
+                        <p className="text-lg font-bold mb-3">{transformation.name}</p>
                         <p className="text-sm leading-relaxed opacity-90">
                           "{transformation.testimonial}"
                         </p>
