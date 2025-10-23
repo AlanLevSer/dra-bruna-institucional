@@ -1,0 +1,14 @@
+name: Cleanup Old Previews
+
+on:
+  schedule:
+    - cron: '0 2 * * 0'  # Every Sunday at 2am
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    name: Clean old preview deployments
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cleanup info
+        run: echo "Vercel automatically cleans up old previews after 30 days"
