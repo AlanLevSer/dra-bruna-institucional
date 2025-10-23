@@ -9,18 +9,20 @@ export const CredentialsVendas = () => {
       icon: GraduationCap,
       title: "Formação Acadêmica",
       items: [
-        "Medicina pela USP",
-        "Residência em Endoscopia Digestiva",
-        "Pós-graduação em Nutrologia",
+        "Especialista em Obesidade",
+        "Nutrologia e Medicina Regenerativa",
+        "Endoscopia Digestiva",
+        "Formação Premium: Einstein, Santa Casa, ABRAN",
       ],
     },
     {
       icon: Award,
       title: "Certificações",
       items: [
-        "SOBED - Sociedade Brasileira de Endoscopia",
-        "SBEM - Sociedade Brasileira de Endocrinologia",
-        "Certificação Internacional em Balão Intragástrico",
+        "Membro titular SOBED (Sociedade Brasileira de Endoscopia Digestiva)",
+        "Membro titular ABESO (Associação Brasileira para Estudo da Obesidade)",
+        "Formação em procedimentos minimamente invasivos com segurança e precisão",
+        "Abordagem integrativa para saúde celular e metabólica",
       ],
     },
     {
@@ -98,7 +100,10 @@ export const CredentialsVendas = () => {
         {/* Quote */}
         <div className="bg-primary/5 border-l-4 border-primary rounded-lg p-8 text-center max-w-3xl mx-auto">
           <blockquote className="text-lg md:text-xl italic text-foreground mb-4">
-            "Minha missão é transformar vidas através de um tratamento completo e humanizado"
+            "Há mais de 10 anos, escolhi dedicar minha carreira a te ajudar a conquistar 
+            uma vida mais leve e saudável. Acredito que você merece um cuidado que 
+            respeita sua história, seus desafios e seu tempo — com ciência, sim, mas 
+            também com empatia de verdade. Estou aqui para te acompanhar, não para te julgar."
           </blockquote>
           <p className="text-sm font-medium text-primary">— Dra. Bruna Durelli</p>
         </div>
