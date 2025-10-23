@@ -1,6 +1,7 @@
 import { SEOHead } from "@/components/SEOHead";
 import { HeroVendas } from "@/components/vendas/HeroVendas";
 import { StatsVendas } from "@/components/vendas/StatsVendas";
+import { TransformacoesReaisVendas } from "@/components/vendas/TransformacoesReaisVendas";
 import { TargetAudienceVendas } from "@/components/vendas/TargetAudienceVendas";
 import { ProgramaLevSerVendas } from "@/components/vendas/ProgramaLevSerVendas";
 import { PilaresMetodoVendas } from "@/components/vendas/PilaresMetodoVendas";
@@ -30,6 +31,7 @@ const BalaoVendas = () => {
       <SEOHead data={seoData} />
       <HeroVendas />
       <StatsVendas />
+      <TransformacoesReaisVendas />
       <TargetAudienceVendas />
       <ProgramaLevSerVendas />
       <PilaresMetodoVendas />
