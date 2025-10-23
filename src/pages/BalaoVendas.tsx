@@ -2,7 +2,9 @@ import { SEOHead } from "@/components/SEOHead";
 import { HeroVendas } from "@/components/vendas/HeroVendas";
 import { StatsVendas } from "@/components/vendas/StatsVendas";
 import { TargetAudienceVendas } from "@/components/vendas/TargetAudienceVendas";
-import { MethodVendas } from "@/components/vendas/MethodVendas";
+import { ProgramaLevSerVendas } from "@/components/vendas/ProgramaLevSerVendas";
+import { PilaresMetodoVendas } from "@/components/vendas/PilaresMetodoVendas";
+import { JornadaFasesVendas } from "@/components/vendas/JornadaFasesVendas";
 import { PlansComparison } from "@/components/vendas/PlansComparison";
 import { ComparadorBaloes } from "@/components/ComparadorBaloes";
 import { ResultsVendas } from "@/components/vendas/ResultsVendas";
@@ -29,7 +31,9 @@ const BalaoVendas = () => {
       <HeroVendas />
       <StatsVendas />
       <TargetAudienceVendas />
-      <MethodVendas />
+      <ProgramaLevSerVendas />
+      <PilaresMetodoVendas />
+      <JornadaFasesVendas />
       <PlansComparison />
       <ComparadorBaloes />
       <ResultsVendas />
