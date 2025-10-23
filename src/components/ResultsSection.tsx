@@ -17,7 +17,7 @@ const ResultsSection = () => {
     {
       icon: Shield,
       result: "Zero efeito sanfona",
-      method: "com nosso método",
+      method: "com nosso programa",
       description: "Abordagem interdisciplinar previne o reganho de peso"
     },
     {

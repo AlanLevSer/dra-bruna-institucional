@@ -105,7 +105,7 @@ const FinalCTASection = () => {
                 Sua Nova Vida Começa Hoje
               </h3>
               <p className="text-lg opacity-90 max-w-3xl mx-auto">
-                Milhares de pessoas já transformaram suas vidas com nosso método. 
+                Milhares de pessoas já transformaram suas vidas com nosso programa. 
                 Você merece viver com saúde, energia e autoestima. 
                 Não deixe para amanhã a decisão que pode mudar tudo.
               </p>

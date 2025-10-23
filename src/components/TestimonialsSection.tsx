@@ -42,7 +42,7 @@ const TestimonialsSection = () => {
       age: 38,
       city: "Belo Horizonte",
       result: "-15kg em 20 semanas",
-      quote: "Depois de anos tentando dietas milagrosas, encontrei na Dra. Bruna um método que realmente funciona e é sustentável.",
+      quote: "Depois de anos tentando dietas milagrosas, encontrei na Dra. Bruna um programa que realmente funciona e é sustentável.",
       rating: 5
     }
   ];
@@ -104,7 +104,7 @@ const TestimonialsSection = () => {
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Conheça algumas das centenas de pessoas que já transformaram suas vidas 
-            com nosso método interdisciplinar.
+            com nosso programa interdisciplinar.
           </p>
         </div>
 
@@ -149,7 +149,7 @@ const TestimonialsSection = () => {
               Transformações Reais dos Nossos Pacientes
             </h3>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Veja as incríveis transformações de quem confiou no nosso método interdisciplinar
+              Veja as incríveis transformações de quem confiou no nosso programa interdisciplinar
             </p>
           </div>
           

@@ -39,10 +39,10 @@ const MethodSection = () => {
         {/* Method Introduction */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            O Método <span className="text-wellness-warm">LevSer</span>
+            O Programa <span className="text-wellness-warm">LevSer</span>
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Muito além do balão intragástrico: um método baseado em 4 pilares fundamentais 
+            Muito além do balão intragástrico: um programa baseado em 4 pilares fundamentais 
             para uma transformação completa e duradoura.
           </p>
         </div>

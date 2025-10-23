@@ -44,7 +44,7 @@ const StatsSection = () => {
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Nossa abordagem interdisciplinar já transformou centenas de vidas. 
-            Veja os resultados que comprovam a eficácia do nosso método.
+            Veja os resultados que comprovam a eficácia do nosso programa.
           </p>
         </div>
 

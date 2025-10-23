@@ -66,7 +66,7 @@ const transformations: Transformation[] = [
     image: transformation07,
     name: "R.O., 36 anos",
     weightLoss: "Perdeu 26kg com o programa LevSer",
-    testimonial: "O método LevSer transformou não só meu corpo, mas minha mente também."
+    testimonial: "O programa LevSer transformou não só meu corpo, mas minha mente também."
   },
   {
     image: transformation08,
@@ -115,7 +115,7 @@ export const TransformacoesReaisVendas = () => {
           </h2>
           
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Mais de <span className="text-primary font-bold">3000 vidas transformadas</span> com o Método LevSer. 
+            Mais de <span className="text-primary font-bold">3000 vidas transformadas</span> com o Programa LevSer. 
             Veja as histórias reais de quem conquistou uma nova vida com o balão intragástrico.
           </p>
         </div>
@@ -179,7 +179,7 @@ export const TransformacoesReaisVendas = () => {
               Sua transformação começa agora!
             </h3>
             <p className="text-lg text-muted-foreground mb-6">
-              Junte-se a mais de 3000 pessoas que transformaram suas vidas com o Método LevSer.
+              Junte-se a mais de 3000 pessoas que transformaram suas vidas com o Programa LevSer.
             </p>
             <Button
               size="lg"

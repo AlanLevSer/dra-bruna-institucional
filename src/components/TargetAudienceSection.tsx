@@ -32,7 +32,7 @@ const TargetAudienceSection = () => {
             Para quem é o programa?
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Nosso método é especialmente desenvolvido para pessoas que enfrentam 
+            Nosso programa é especialmente desenvolvido para pessoas que enfrentam 
             desafios específicos na jornada de emagrecimento sustentável.
           </p>
         </div>

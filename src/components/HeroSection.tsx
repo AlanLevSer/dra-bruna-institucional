@@ -40,7 +40,7 @@ const HeroSection = () => {
             </div>
             
             <p className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Método científico validado que já transformou{" "}
+              Programa científico validado que já transformou{" "}
               <strong className="text-wellness-warm">mais de 3.000 vidas</strong>. 
               Primeira consulta por <strong className="text-green-600">apenas R$ 97</strong> (valor normal R$ 700).
             </p>
