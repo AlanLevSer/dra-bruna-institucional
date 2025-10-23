@@ -13,7 +13,7 @@ const benefits = [
 
 export const ProgramaLevSerVendas = () => {
   return (
-    <section className="relative py-16 md:py-20 bg-muted/30 overflow-hidden">
+    <section id="programa-levser" className="relative py-16 md:py-20 bg-muted/30 overflow-hidden">
       <GrafismoDecor variant="background" position="top-left" size="lg" opacity={0.18} rotate={15} color="gray" />
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 xl:gap-12 items-center max-w-7xl mx-auto">

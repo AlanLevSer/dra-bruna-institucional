@@ -47,6 +47,12 @@ export const HeroVendas = () => {
               <Button
                 variant="outline"
                 size="lg"
+                onClick={() => {
+                  const programSection = document.querySelector('#programa-levser');
+                  if (programSection) {
+                    programSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
               >
                 Conhecer o Programa
               </Button>
