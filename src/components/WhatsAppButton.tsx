@@ -1,9 +1,16 @@
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 
 export const WhatsAppButton = () => {
   const handleWhatsAppClick = () => {
+    try {
+      trackEvent('cta_whatsapp_click', {
+        location: 'floating_button',
+        path: window.location.pathname,
+      });
+    } catch {}
     window.open(CONTACT.WHATSAPP_URL, "_blank");
   };
 

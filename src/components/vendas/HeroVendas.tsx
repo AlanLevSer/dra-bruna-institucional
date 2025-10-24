@@ -1,11 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import heroImage from "@/assets/dra-bruna-hero.avif";
 
 export const HeroVendas = () => {
   const handleWhatsApp = () => {
+    try {
+      trackEvent('cta_whatsapp_click', {
+        location: 'hero_vendas',
+        path: window.location.pathname,
+      });
+    } catch {}
     window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
   };
 
@@ -100,3 +107,4 @@ export const HeroVendas = () => {
     </section>
   );
 };
+

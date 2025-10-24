@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 import { Check } from "lucide-react";
 
 export const PlansComparison = () => {
@@ -45,6 +46,12 @@ export const PlansComparison = () => {
   ];
 
   const handleWhatsApp = () => {
+    try {
+      trackEvent('cta_whatsapp_click', {
+        location: 'plans_comparison',
+        path: window.location.pathname,
+      });
+    } catch {}
     window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
   };
 

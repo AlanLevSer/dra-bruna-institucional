@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 import { Phone, MapPin, Clock, Mail } from "lucide-react";
 
 export const FinalCTAVendas = () => {
@@ -17,16 +18,22 @@ export const FinalCTAVendas = () => {
     {
       icon: Clock,
       title: "Horário",
-      value: "Seg a Sex: 8h às 18h",
+      value: CONTACT.HORARIO.weekdays,
     },
     {
       icon: Mail,
       title: "Email",
-      value: "contato@brunadurelli.com.br",
+      value: CONTACT.EMAIL,
     },
   ];
 
   const handleWhatsApp = () => {
+    try {
+      trackEvent('cta_whatsapp_click', {
+        location: 'final_cta_vendas',
+        path: window.location.pathname,
+      });
+    } catch {}
     window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
   };
 
@@ -40,7 +47,7 @@ export const FinalCTAVendas = () => {
               Pronta para Dar o Próximo Passo?
             </h2>
             <p className="text-lg md:text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Agende uma consulta de avaliação e descubra se o Balão Intragástrico 
+              Agende uma consulta de avaliação e descubra se o Balão Intragástrico
               é o tratamento ideal para você.
             </p>
 
@@ -82,3 +89,4 @@ export const FinalCTAVendas = () => {
     </section>
   );
 };
+

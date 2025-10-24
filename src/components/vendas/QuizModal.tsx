@@ -5,6 +5,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { CONTACT } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 
 interface QuizModalProps {
   isOpen: boolean;
@@ -67,6 +68,12 @@ export const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
       setStep(step + 1);
     } else {
       // Finalizar quiz
+      try {
+        trackEvent('cta_whatsapp_click', {
+          location: 'vendas_quiz_modal',
+          path: window.location.pathname,
+        });
+      } catch {}
       const profile = `Idade: ${answers.age}, Meta: ${answers.weight}, Desafio: ${answers.challenge}`;
       window.open(CONTACT.WHATSAPP_QUIZ_RESULT(profile), "_blank");
       onClose();

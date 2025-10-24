@@ -13,7 +13,6 @@ import {
   Wind
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { trackEvent } from "@/lib/analytics";
 import { useNavigate } from "react-router-dom";
 import { PlanoTransformacao } from "@/components/PlanoTransformacao";
 
@@ -323,7 +322,6 @@ export const JornadaFasesVendas = () => {
             <Button
               size="lg"
               onClick={() => {
-                try { trackEvent('cta_whatsapp_click', { location: 'jornada_fases_vendas', path: window.location.pathname }); } catch {}
                 const phone = "5511997023024";
                 const message = "OlÃ¡! Quero seguir a jornada em 4 fases do Programa LevSer.";
                 window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');

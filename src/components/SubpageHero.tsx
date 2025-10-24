@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { CONTACT } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 
 interface SubpageHeroProps {
   title: string;
@@ -43,7 +44,15 @@ export const SubpageHero = ({
             </p>
             <Button
               size="lg"
-              onClick={onCtaClick || defaultCtaAction}
+              onClick={() => {
+                try {
+                  trackEvent('cta_subpage_hero_click', {
+                    title,
+                    path: window.location.pathname,
+                  });
+                } catch {}
+                (onCtaClick || defaultCtaAction)();
+              }}
               className="bg-gradient-premium hover:opacity-90 transition-opacity group"
             >
               {ctaText}
@@ -63,3 +72,4 @@ export const SubpageHero = ({
     </section>
   );
 };
+

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 import {
   Accordion,
   AccordionContent,
@@ -52,6 +53,12 @@ export const FAQVendas = () => {
   ];
 
   const handleWhatsApp = () => {
+    try {
+      trackEvent('cta_whatsapp_click', {
+        location: 'faq_vendas',
+        path: window.location.pathname,
+      });
+    } catch {}
     window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
   };
 

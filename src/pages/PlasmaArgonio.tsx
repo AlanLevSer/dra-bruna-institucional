@@ -7,10 +7,8 @@ import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
-import { TransformacaoReal } from "@/components/TransformacaoReal";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import doctorImage from "@/assets/dra-bruna-elegant.jpg";
-import { Heart, Activity, Smile, RefreshCw, Utensils, Dna, Dumbbell, Brain } from "lucide-react";
 import { CONTACT } from "@/lib/constants";
 
 const PlasmaArgonio = () => {
@@ -23,199 +21,65 @@ const PlasmaArgonio = () => {
     "@context": "https://schema.org",
     "@type": "MedicalProcedure",
     "name": "Plasma de Argônio",
-    "description": "Técnica endoscópica para tratamento de reganho de peso e dilatação gástrica"
+    "description": "Técnica endoscópica para tratar reganho de peso pós-bariátrica e dilatação gástrica.",
   };
 
   return (
     <>
       <SEOHead data={pageSEO.plasmaArgonio} />
       <StructuredData data={[generateStructuredData.organization, serviceSchema]} />
-      
+
       <div className="min-h-screen">
         <Navigation />
-      <SubpageHero
-        title="Plasma de Argônio"
-        subtitle="Tratamento avançado de reganho de peso"
-        description="Técnica endoscópica minimamente invasiva para redução de dilatação gástrica e tratamento de reganho de peso pós-bariátrica, com resultados consistentes e recuperação rápida."
-        image={doctorImage}
-        onCtaClick={handleWhatsApp}
-      />
+        <SubpageHero
+          title="Plasma de Argônio"
+          subtitle="Tratamento endoscópico de reganho de peso"
+          description="Técnica minimamente invasiva para reduzir dilatações e recuperar a sensação de saciedade, com recuperação rápida."
+          image={doctorImage}
+          onCtaClick={handleWhatsApp}
+        />
 
-      <TreatmentSection title="O que é o Plasma de Argônio?">
-        <p className="mb-4">
-          O Plasma de Argônio (APC - Argon Plasma Coagulation) é uma <strong>técnica endoscópica avançada</strong> que utiliza plasma de argônio para realizar cauterização térmica controlada da mucosa gástrica.
-        </p>
-        <p className="mb-4">
-          O procedimento promove uma <strong>cicatrização controlada que reduz a capacidade gástrica</strong>, diminuindo o tamanho da comunicação entre o estômago e o intestino (anastomose) ou reduzindo áreas de dilatação.
-        </p>
-        <p>
-          É uma solução moderna e segura para pacientes que apresentaram reganho de peso após cirurgia bariátrica ou que tiveram expansão gástrica após balão intragástrico.
-        </p>
-      </TreatmentSection>
+        <TreatmentSection title="O que é o Plasma de Argônio?">
+          <p className="mb-4">
+            O Plasma de Argônio (APC) utiliza energia controlada para promover cicatrização da mucosa e reduzir
+            dilatações gástricas, ajudando a restabelecer a saciedade e o controle do peso.
+          </p>
+          <p>
+            É uma alternativa menos invasiva do que revisões cirúrgicas, indicada após avaliação endoscópica e clínica.
+          </p>
+        </TreatmentSection>
 
-      <IndicationList
-        title="Para quem é indicado?"
-        items={[
-          "Reganho de peso após cirurgia bariátrica",
-          "Dilatação da anastomose gastrojejunal (comunicação estômago-intestino)",
-          "Expansão gástrica após retirada de balão intragástrico",
-          "Pacientes que buscam alternativa menos invasiva à revisão cirúrgica",
-          "Quem deseja retomar os resultados da cirurgia bariátrica sem novos cortes",
-        ]}
-      />
+        <IndicationList
+          title="Para quem é indicado?"
+          items={[
+            'Reganho de peso após cirurgia bariátrica',
+            'Dilatação da anastomose gastrojejunal',
+            'Expansão gástrica após retirada do balão',
+            'Quem busca alternativa menos invasiva à revisão cirúrgica',
+          ]}
+        />
 
-      <TreatmentSection title="O que o Plasma de Argônio resolve?" variant="muted">
-        <p className="mb-4">
-          A técnica atua diretamente nas áreas dilatadas do estômago, promovendo uma <strong>retração tecidual controlada</strong> através da cauterização superficial.
-        </p>
-        <p className="mb-4">
-          <strong>Principais efeitos:</strong>
-        </p>
-        <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-4">
-          <li>Redução do tamanho da anastomose (abertura entre estômago e intestino)</li>
-          <li>Diminuição da capacidade gástrica</li>
-          <li>Retorno da sensação de saciedade precoce</li>
-          <li>Controle do reganho de peso de forma progressiva</li>
-        </ul>
-        <p>
-          Os resultados geralmente são observados em <strong>2 a 3 sessões</strong>, realizadas com intervalo de 4 a 6 semanas entre cada aplicação.
-        </p>
-      </TreatmentSection>
+        <BenefitsList
+          title="Benefícios do tratamento"
+          benefits={[
+            'Procedimento minimamente invasivo',
+            'Alta no mesmo dia e retorno rápido às atividades',
+            'Resultados progressivos conforme protocolo',
+            'Auxílio no controle do peso de forma sustentável',
+          ]}
+        />
 
-      <TreatmentSection title="Como funciona no Programa LevSer?">
-        <p className="mb-4">
-          <strong>O Plasma de Argônio sozinho não garante resultados sustentáveis.</strong> A dilatação gástrica 
-          ou o reganho de peso aconteceram por múltiplos fatores — metabólicos, comportamentais, hormonais e alimentares.
-        </p>
-        <p className="mb-4">
-          Por isso, na LevSer, o tratamento com Plasma de Argônio é <strong>integrado aos 4 pilares do nosso programa:</strong>
-        </p>
-        
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
-          <div className="bg-card rounded-lg p-5 border border-border/50">
-            <div className="flex items-start gap-3 mb-2">
-              <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
-                <Utensils className="w-5 h-5 text-emerald-600" />
-              </div>
-              <h3 className="font-serif font-bold text-foreground pt-1.5">Nutrição Inteligente</h3>
-            </div>
-            <p className="text-sm text-muted-foreground pl-[52px]">
-              Reeducação alimentar para evitar novo reganho após a redução gástrica
-            </p>
-          </div>
+        <CTASection
+          title="Quer avaliar seu caso?"
+          description="Fale com nossa equipe e entenda se o Plasma de Argônio faz sentido para você."
+          onButtonClick={handleWhatsApp}
+        />
 
-          <div className="bg-card rounded-lg p-5 border border-border/50">
-            <div className="flex items-start gap-3 mb-2">
-              <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0">
-                <Dna className="w-5 h-5 text-blue-600" />
-              </div>
-              <h3 className="font-serif font-bold text-foreground pt-1.5">Saúde Metabólica & Regenerativa</h3>
-            </div>
-            <p className="text-sm text-muted-foreground pl-[52px]">
-              Otimização hormonal e metabólica para estabilizar o peso e promover longevidade
-            </p>
-          </div>
-
-          <div className="bg-card rounded-lg p-5 border border-border/50">
-            <div className="flex items-start gap-3 mb-2">
-              <div className="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center flex-shrink-0">
-                <Dumbbell className="w-5 h-5 text-orange-600" />
-              </div>
-              <h3 className="font-serif font-bold text-foreground pt-1.5">Corpo em Movimento</h3>
-            </div>
-            <p className="text-sm text-muted-foreground pl-[52px]">
-              Atividade física orientada para recomposição corporal
-            </p>
-          </div>
-
-          <div className="bg-card rounded-lg p-5 border border-border/50">
-            <div className="flex items-start gap-3 mb-2">
-              <div className="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center flex-shrink-0">
-                <Brain className="w-5 h-5 text-purple-600" />
-              </div>
-              <h3 className="font-serif font-bold text-foreground pt-1.5">Mente & Comportamento</h3>
-            </div>
-            <p className="text-sm text-muted-foreground pl-[52px]">
-              Suporte para identificar e tratar gatilhos emocionais que levam ao reganho
-            </p>
-          </div>
-        </div>
-
-        <p className="mb-4">
-          <strong>Protocolo de tratamento:</strong>
-        </p>
-        <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-4">
-          <li>Avaliação endoscópica inicial completa</li>
-          <li>2 a 3 sessões de aplicação de plasma de argônio</li>
-          <li><strong>Acompanhamento com time interdisciplinar</strong> (médico, nutricionista, psicólogo)</li>
-          <li>Controle endoscópico para avaliação de resultados</li>
-          <li><strong>Programa de manutenção integrado</strong> para estabilidade de peso e longevidade</li>
-        </ul>
-        <p>
-          O diferencial da LevSer está no <strong>cuidado integral</strong>: não tratamos apenas a dilatação física, 
-          mas trabalhamos os <strong>hábitos, metabolismo e comportamentos</strong> que levaram ao reganho — 
-          porque obesidade é uma <strong>doença multifatorial</strong>.
-        </p>
-        <p className="mt-4">
-          <a href="/programa-levser" className="text-primary hover:underline font-medium">
-            Saiba mais sobre o Programa LevSer →
-          </a>
-        </p>
-      </TreatmentSection>
-
-      <BenefitsList
-        title="Benefícios do tratamento"
-        benefits={[
-          "Procedimento minimamente invasivo, sem cortes externos",
-          "Recuperação rápida com alta no mesmo dia",
-          "Retorno às atividades habituais em 1-2 dias",
-          "Pode ser repetido conforme necessidade clínica",
-          "Resultados progressivos em 2-3 sessões",
-          "Menor risco comparado à revisão cirúrgica",
-          "Retorno da sensação de saciedade",
-          "Auxílio no controle do peso de forma sustentável",
-        ]}
-      />
-
-      <TransformacaoReal
-        items={[
-          {
-            icon: RefreshCw,
-            title: "Resgate de Resultados",
-            description: "Retoma o controle do peso sem precisar de nova cirurgia"
-          },
-          {
-            icon: Heart,
-            title: "Saciedade de Volta",
-            description: "Recupera a sensação de saciedade que você tinha perdido"
-          },
-          {
-            icon: Activity,
-            title: "Energia Renovada",
-            description: "Volta a ter disposição e qualidade de vida"
-          },
-          {
-            icon: Smile,
-            title: "Confiança Restaurada",
-            description: "Sai da frustração do reganho e retoma o controle"
-          }
-        ]}
-        testimonial={{
-          text: "Fiz bariátrica há 5 anos e o peso voltou. Eu achava que era falha minha, que eu não tinha disciplina. O plasma me mostrou que não — era meu estômago que tinha dilatado. Hoje voltei a ter controle sem nova cirurgia.",
-          author: "Paciente LevSer, 45 anos, tratamento pós-bariátrica"
-        }}
-      />
-
-      <CTASection
-        title="Retome o controle do seu peso"
-        description="Se você passou por cirurgia bariátrica e está enfrentando reganho de peso, ou teve expansão gástrica após balão, o Plasma de Argônio pode ser a solução ideal. Agende uma avaliação com nossa equipe."
-        onButtonClick={handleWhatsApp}
-      />
-
-      <Footer />
+        <Footer />
       </div>
     </>
   );
 };
 
 export default PlasmaArgonio;
+
