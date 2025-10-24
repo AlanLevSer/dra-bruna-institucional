@@ -9,8 +9,8 @@ import { visualizer } from 'rollup-plugin-visualizer';
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
-    host: "::",
-    port: 8080,
+    host: true,
+    port: 5173,
   },
   plugins: [
     react(),
@@ -104,19 +104,16 @@ export default defineConfig(({ mode }) => ({
       filename: 'dist/stats.html'
     })
   ].filter(Boolean),
+  // Use esbuild to drop console/debugger in build without terser
+  esbuild: {
+    drop: ['console', 'debugger']
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
   build: {
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
     rollupOptions: {
       output: {
         manualChunks: {

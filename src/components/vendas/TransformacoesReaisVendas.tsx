@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { CheckCircle2, MessageCircle } from "lucide-react";
 import { CONTACT } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 import Autoplay from "embla-carousel-autoplay";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 
@@ -83,6 +84,12 @@ export const TransformacoesReaisVendas = () => {
   );
 
   const handleWhatsApp = () => {
+    try {
+      trackEvent('cta_whatsapp_click', {
+        location: 'transformacoes_reais_vendas',
+        path: window.location.pathname,
+      });
+    } catch {}
     window.open(CONTACT.WHATSAPP_URL, "_blank");
   };
 

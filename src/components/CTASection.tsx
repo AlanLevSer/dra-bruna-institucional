@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
+import { trackEvent } from "@/lib/analytics";
 
 interface CTASectionProps {
   title: string;
@@ -36,6 +37,12 @@ export const CTASection = ({
         <Button
           size="default"
           onClick={() => {
+            try {
+              trackEvent('cta_section_click', {
+                title,
+                path: window.location.pathname,
+              });
+            } catch {}
             if (onButtonClick) {
               onButtonClick();
             } else {
