@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown, Sparkles } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logoHeader from "@/assets/logo-header.svg";
+import logoHeader from "@/assets/logo-header.avif";
 
 interface SubMenuItem {
   label: string;

@@ -8,7 +8,7 @@ import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
-import doctorImage from "@/assets/dra-bruna-elegant.jpg";
+import doctorImage from "@/assets/dra-bruna-elegant.avif";
 import { CONTACT } from "@/lib/constants";
 
 const PlasmaArgonio = () => {
@@ -82,4 +82,3 @@ const PlasmaArgonio = () => {
 };
 
 export default PlasmaArgonio;
-

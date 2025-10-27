@@ -1,7 +1,7 @@
 import { CheckCircle2 } from "lucide-react";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { OptimizedImage } from "@/components/OptimizedImage";
-import draImage from "@/assets/dra-bruna-professional.jpg";
+import draImage from "@/assets/dra-bruna-professional.avif";
 export const SobreDraBruna = () => {
   return <section id="sobre" className="py-20 xl:py-28 bg-muted/30 relative overflow-hidden">
       <GrafismoDecor variant="background" position="top-right" size="lg" opacity={0.15} rotate={-20} color="gray" />

@@ -8,7 +8,7 @@ import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
-import patientImage from "@/assets/patient-wellness-1.jpg";
+import patientImage from "@/assets/patient-wellness-1.avif";
 import { CONTACT } from "@/lib/constants";
 
 const NutricaoCelular = () => {
@@ -83,4 +83,3 @@ const NutricaoCelular = () => {
 };
 
 export default NutricaoCelular;
-

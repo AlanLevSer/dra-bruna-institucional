@@ -1,6 +1,6 @@
 import { GraduationCap, Award, Globe } from "lucide-react";
 import { OptimizedImage } from "@/components/OptimizedImage";
-import draBrunaImg from "@/assets/dra-bruna-professional.jpg";
+import draBrunaImg from "@/assets/dra-bruna-professional.avif";
 
 const CredentialsSection = () => {
   return (

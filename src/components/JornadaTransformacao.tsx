@@ -1,10 +1,10 @@
 import { Heart, Sparkles, TrendingUp, Star } from "lucide-react";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { OptimizedImage } from "@/components/OptimizedImage";
-import transformationBeginning from "@/assets/transformation-beginning.jpg";
-import transformationSelfcare from "@/assets/transformation-selfcare.jpg";
-import transformationJoy from "@/assets/transformation-joy.jpg";
-import transformationConfidence from "@/assets/transformation-confidence.jpg";
+import transformationBeginning from "@/assets/transformation-beginning.avif";
+import transformationSelfcare from "@/assets/transformation-selfcare.avif";
+import transformationJoy from "@/assets/transformation-joy.avif";
+import transformationConfidence from "@/assets/transformation-confidence.avif";
 const journeySteps = [{
   icon: Heart,
   title: "Autoaceitação",

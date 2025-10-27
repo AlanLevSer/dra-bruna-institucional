@@ -11,7 +11,7 @@ import { generateStructuredData } from "@/lib/seo";
 import { CONTACT } from "@/lib/constants";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { Activity, Zap, CheckCircle2, Utensils, Dna, Dumbbell, Brain } from "lucide-react";
-import heroImage from "@/assets/patient-wellness-1.jpg";
+import heroImage from "@/assets/patient-wellness-1.avif";
 
 const Tratamentos = () => {
   const handleCTA = () => {

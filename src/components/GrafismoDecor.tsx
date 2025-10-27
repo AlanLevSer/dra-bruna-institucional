@@ -1,4 +1,4 @@
-import grafismoImage from "@/assets/levser-grafismo.png";
+import grafismoImage from "@/assets/levser-grafismo.avif";
 
 interface GrafismoDecorProps {
   variant?: "hero" | "background" | "accent" | "floating";

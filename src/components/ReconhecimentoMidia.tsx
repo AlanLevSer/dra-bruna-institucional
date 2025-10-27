@@ -1,10 +1,10 @@
 import { GrafismoDecor } from "./GrafismoDecor";
-import terraLogo from "@/assets/media/terra-logo.png";
-import crescerLogo from "@/assets/media/crescer-logo.png";
-import jovemPanLogo from "@/assets/media/jovem-pan-logo.png";
-import boaFormaLogo from "@/assets/media/boa-forma-logo.webp";
-import bandnewsLogo from "@/assets/media/bandnews-logo.webp";
-import anaMariaLogo from "@/assets/media/ana-maria-logo.jpeg";
+import terraLogo from "@/assets/media/terra-logo.avif";
+import crescerLogo from "@/assets/media/crescer-logo.avif";
+import jovemPanLogo from "@/assets/media/jovem-pan-logo.avif";
+import boaFormaLogo from "@/assets/media/boa-forma-logo.avif";
+import bandnewsLogo from "@/assets/media/bandnews-logo.avif";
+import anaMariaLogo from "@/assets/media/ana-maria-logo.avif";
 
 const mediaAppearances = [
   {

@@ -1,4 +1,4 @@
-import logoFooter from "@/assets/logo-header.svg";
+import logoFooter from "@/assets/logo-header.avif";
 import { Instagram, Linkedin, Globe } from "lucide-react";
 
 export const Footer = () => {

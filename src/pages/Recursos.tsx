@@ -11,7 +11,7 @@ import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { Calculator, BookOpen, HelpCircle, Sparkles } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
-import heroImage from "@/assets/transformation-empowerment.jpg";
+import heroImage from "@/assets/transformation-empowerment.avif";
 
 const Recursos = () => {
   const navigate = useNavigate();

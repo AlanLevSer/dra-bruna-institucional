@@ -14,7 +14,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
 import { generateStructuredData } from "@/lib/seo";
 import { CONTACT } from "@/lib/constants";
-import heroImage from "@/assets/transformation-success.jpg";
+import heroImage from "@/assets/transformation-success.avif";
 
 const ProgramaLevSerPage = () => {
   const handleCTA = () => {

@@ -8,7 +8,7 @@ import { CTASection } from "@/components/CTASection";
 import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
-import patientImage from "@/assets/patient-confident.jpg";
+import patientImage from "@/assets/patient-confident.avif";
 import { CONTACT } from "@/lib/constants";
 
 const MedicinaRegenerativa = () => {
@@ -89,4 +89,3 @@ const MedicinaRegenerativa = () => {
 };
 
 export default MedicinaRegenerativa;
-

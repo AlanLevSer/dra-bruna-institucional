@@ -2,7 +2,7 @@ import { Brain, Heart, Flame, Pill, Sparkles, HeartPulse, ArrowRight } from "luc
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
-import nutricaoImage from "@/assets/patient-happy.jpg";
+import nutricaoImage from "@/assets/patient-happy.avif";
 const pillars = [{
   icon: Brain,
   title: "Nutrição Comportamental",

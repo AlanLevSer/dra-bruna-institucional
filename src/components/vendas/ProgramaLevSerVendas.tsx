@@ -1,6 +1,6 @@
 import { CheckCircle2 } from "lucide-react";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
-import programImage from "@/assets/patient-wellness-1.jpg";
+import programImage from "@/assets/patient-wellness-1.avif";
 
 const benefits = [
   "Vou te ajudar a transformar corpo, mente e autoestima",

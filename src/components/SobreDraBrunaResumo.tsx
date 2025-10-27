@@ -3,7 +3,7 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { useNavigate } from "react-router-dom";
-import draImage from "@/assets/dra-bruna-professional.jpg";
+import draImage from "@/assets/dra-bruna-professional.avif";
 
 export const SobreDraBrunaResumo = () => {
   const navigate = useNavigate();

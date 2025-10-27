@@ -9,15 +9,15 @@ import {
 import { OptimizedImage } from "@/components/OptimizedImage";
 
 // Import transformation images
-import transformation1 from "@/assets/transformation-beginning.jpg";
-import transformation2 from "@/assets/transformation-confidence.jpg";
-import transformation3 from "@/assets/transformation-empowerment.jpg";
-import transformation4 from "@/assets/transformation-health.jpg";
-import transformation5 from "@/assets/transformation-joy.jpg";
-import transformation6 from "@/assets/transformation-lifestyle.jpg";
-import transformation7 from "@/assets/transformation-selfcare.jpg";
-import transformation8 from "@/assets/transformation-success.jpg";
-import transformation9 from "@/assets/transformation-wellness.jpg";
+import transformation1 from "@/assets/transformation-beginning.avif";
+import transformation2 from "@/assets/transformation-confidence.avif";
+import transformation3 from "@/assets/transformation-empowerment.avif";
+import transformation4 from "@/assets/transformation-health.avif";
+import transformation5 from "@/assets/transformation-joy.avif";
+import transformation6 from "@/assets/transformation-lifestyle.avif";
+import transformation7 from "@/assets/transformation-selfcare.avif";
+import transformation8 from "@/assets/transformation-success.avif";
+import transformation9 from "@/assets/transformation-wellness.avif";
 
 const TestimonialsSection = () => {
   const testimonials = [

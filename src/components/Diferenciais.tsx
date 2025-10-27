@@ -1,6 +1,6 @@
 import { Award, Users, Clock, Shield } from "lucide-react";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
-import draImage from "@/assets/dra-bruna-profile.jpg";
+import draImage from "@/assets/dra-bruna-profile.avif";
 
 const differentials = [
   {

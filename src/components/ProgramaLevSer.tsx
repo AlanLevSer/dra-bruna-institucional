@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { PlanoTransformacao } from "@/components/PlanoTransformacao";
-import programImage from "@/assets/patient-wellness-1.jpg";
+import programImage from "@/assets/patient-wellness-1.avif";
 import { CONTACT } from "@/lib/constants";
 
 const benefits = [

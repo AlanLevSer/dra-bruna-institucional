@@ -1,7 +1,7 @@
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { GraduationCap, Award, Globe } from "lucide-react";
 import { OptimizedImage } from "@/components/OptimizedImage";
-import draBrunaImage from "@/assets/dra-bruna-professional.jpg";
+import draBrunaImage from "@/assets/dra-bruna-professional.avif";
 
 export const CredentialsVendas = () => {
   const credentials = [

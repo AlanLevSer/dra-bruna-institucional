@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, MapPin } from "lucide-react";
-import ctaImage from "@/assets/dra-bruna-elegant.jpg";
+import ctaImage from "@/assets/dra-bruna-elegant.avif";
 import { CONTACT } from "@/lib/constants";
 
 export const CTAFinal = () => {

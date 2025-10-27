@@ -8,7 +8,7 @@ import { CTASection } from "@/components/CTASection";
 import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
-import medicationsImage from "@/assets/medications-sacietogena.png";
+import medicationsImage from "@/assets/medications-sacietogena.avif";
 import { CONTACT } from "@/lib/constants";
 
 const CanetasEmagrecedoras = () => {
@@ -111,4 +111,3 @@ const CanetasEmagrecedoras = () => {
 };
 
 export default CanetasEmagrecedoras;
-
