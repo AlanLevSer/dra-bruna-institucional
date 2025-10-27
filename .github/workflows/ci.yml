@@ -10,33 +10,33 @@ jobs:
   quality-checks:
     name: Quality Checks
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Run linter
         run: npm run lint
         continue-on-error: true
-      
+
       - name: Type check
         run: npm run type-check
         continue-on-error: true
-      
+
       - name: Build project
         run: npm run build
         env:
           CI: true
-      
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -48,25 +48,25 @@ jobs:
     name: Bundle Size Analysis
     runs-on: ubuntu-latest
     needs: quality-checks
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Build with stats
         run: npm run build
         env:
           NODE_ENV: production
-      
+
       - name: Analyze bundle
         uses: actions/github-script@v7
         with:
@@ -74,15 +74,15 @@ jobs:
             const fs = require('fs');
             const path = require('path');
             const distPath = path.join(process.cwd(), 'dist');
-            
+
             function getDirectorySize(dirPath) {
               let size = 0;
               const files = fs.readdirSync(dirPath);
-              
+
               for (const file of files) {
                 const filePath = path.join(dirPath, file);
                 const stats = fs.statSync(filePath);
-                
+
                 if (stats.isDirectory()) {
                   size += getDirectorySize(filePath);
                 } else {
@@ -91,19 +91,18 @@ jobs:
               }
               return size;
             }
-            
+
             const totalSize = getDirectorySize(distPath);
             const sizeMB = (totalSize / (1024 * 1024)).toFixed(2);
-            
+
             console.log(`📦 Total bundle size: ${sizeMB} MB`);
-            
-            // Alert if bundle is too large
-            if (totalSize > 5 * 1024 * 1024) { // 5MB
+
+            if (totalSize > 5 * 1024 * 1024) {
               core.warning(`⚠️ Bundle size (${sizeMB} MB) exceeds 5MB threshold!`);
             } else {
               core.info(`✅ Bundle size is within acceptable limits`);
             }
-      
+
       - name: Comment PR with bundle size
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
@@ -112,15 +111,15 @@ jobs:
             const fs = require('fs');
             const path = require('path');
             const distPath = path.join(process.cwd(), 'dist');
-            
+
             function getDirectorySize(dirPath) {
               let size = 0;
               const files = fs.readdirSync(dirPath);
-              
+
               for (const file of files) {
                 const filePath = path.join(dirPath, file);
                 const stats = fs.statSync(filePath);
-                
+
                 if (stats.isDirectory()) {
                   size += getDirectorySize(filePath);
                 } else {
@@ -129,10 +128,10 @@ jobs:
               }
               return size;
             }
-            
+
             const totalSize = getDirectorySize(distPath);
             const sizeMB = (totalSize / (1024 * 1024)).toFixed(2);
-            
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -144,44 +143,43 @@ jobs:
     name: Lighthouse Performance
     runs-on: ubuntu-latest
     needs: quality-checks
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Build project
         run: npm run build
-      
-          - name: Run Lighthouse CI
-      uses: treosh/lighthouse-ci-action@v11
-      with:
-        startServerCommand: npm run preview -- --host 0.0.0.0 --port 8080
-        startServerReadyPattern: "ready in"
-        urls: |
-          http://localhost:8080
-          http://localhost:8080/balao-intragastrico-a
-          http://localhost:8080/sobre
-          http://localhost:8080/tratamentos
-        uploadArtifacts: true
-        temporaryPublicStorage: true
-        runs: 3
 
-          
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          startServerCommand: npm run preview -- --host 0.0.0.0 --port 8080
+          startServerReadyPattern: "ready in"
+          urls: |
+            http://localhost:8080
+            http://localhost:8080/balao-intragastrico-a
+            http://localhost:8080/sobre
+            http://localhost:8080/tratamentos
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          runs: 3
+
   deploy-ready:
     name: ✅ Ready for Deploy
     runs-on: ubuntu-latest
     needs: [quality-checks, bundle-analysis, lighthouse-ci]
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-    
+
     steps:
       - name: All checks passed
         run: |
