@@ -10,7 +10,7 @@ export const WhatsAppButton = () => {
         location: 'floating_button',
         path: window.location.pathname,
       });
-    } catch {}
+    } catch (e) { void e; }
     window.open(CONTACT.WHATSAPP_URL, "_blank");
   };
 

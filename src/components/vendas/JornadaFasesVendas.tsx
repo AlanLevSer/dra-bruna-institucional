@@ -8,7 +8,7 @@ import {
   MapPin,
   Zap,
   Target,
-  Infinity,
+  Infinity as InfinityIcon,
   Syringe,
   Wind,
 } from "lucide-react";
@@ -61,7 +61,7 @@ const fases = [
   },
   {
     numero: "04",
-    icon: Infinity,
+    icon: InfinityIcon,
     titulo: "Manutenção & Estilo de Vida",
     duracao: "12+ meses",
     objetivo: "Não �Sterminar⬝, e sim sustentar.",

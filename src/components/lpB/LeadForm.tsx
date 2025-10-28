@@ -61,7 +61,7 @@ export default function LeadForm({ initialPersona }: Props) {
               )}
               <input className="rounded-xl border px-3 py-2" placeholder="Cidade/UF" value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} required />
               {!isOneStep && (
-                <select className="rounded-xl border px-3 py-2" value={form.perfil} onChange={(e) => setForm({ ...form, perfil: e.target.value as any })}>
+                <select className="rounded-xl border px-3 py-2" value={form.perfil} onChange={(e) => setForm({ ...form, perfil: e.target.value as typeof form.perfil })}>
                   <option value="rh">Executiva com rotina intensa</option>
                   <option value="empreendedora">Empreendedora/Influencer</option>
                   <option value="saude">Profissional de saúde/pré-diabetes</option>
@@ -83,4 +83,3 @@ export default function LeadForm({ initialPersona }: Props) {
     </section>
   );
 }
-

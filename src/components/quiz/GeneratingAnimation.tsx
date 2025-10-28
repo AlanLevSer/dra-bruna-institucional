@@ -16,7 +16,7 @@ export const GeneratingAnimation = () => {
     }, 1500);
     
     return () => clearInterval(interval);
-  }, []);
+  }, [messages.length]);
   
   const CurrentIcon = messages[messageIndex].icon;
   

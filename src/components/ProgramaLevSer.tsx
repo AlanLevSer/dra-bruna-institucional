@@ -8,7 +8,7 @@ import {
   MapPin,
   Zap,
   Target,
-  Infinity,
+  Infinity as InfinityIcon,
   Syringe,
   Stethoscope,
   Wind,
@@ -119,7 +119,7 @@ const fases = [
     },
   {
     numero: "04",
-    icon: Infinity,
+    icon: InfinityIcon,
     titulo: "Manutenção & Estilo de Vida",
     duracao: "12+ meses",
     objetivo: "Não 'terminar', e sim sustentar",

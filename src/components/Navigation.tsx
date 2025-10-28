@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type ElementType } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown, Sparkles } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ interface SubMenuItem {
   indent?: boolean;
   isDivider?: boolean;
   badge?: string;
-  icon?: any;
+  icon?: ElementType;
 }
 
 interface NavItem {

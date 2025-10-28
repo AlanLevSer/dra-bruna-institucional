@@ -50,7 +50,7 @@ export const SubpageHero = ({
                     title,
                     path: window.location.pathname,
                   });
-                } catch {}
+                } catch (e) { void e; }
                 (onCtaClick || defaultCtaAction)();
               }}
               className="bg-gradient-premium hover:opacity-90 transition-opacity group"
@@ -72,4 +72,3 @@ export const SubpageHero = ({
     </section>
   );
 };
-

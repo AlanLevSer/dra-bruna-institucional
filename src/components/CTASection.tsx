@@ -42,7 +42,7 @@ export const CTASection = ({
                 title,
                 path: window.location.pathname,
               });
-            } catch {}
+            } catch (e) { void e; }
             if (onButtonClick) {
               onButtonClick();
             } else {
