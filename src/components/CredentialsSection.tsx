@@ -83,12 +83,13 @@ const CredentialsSection = () => {
             <div className="text-center">
               <div className="relative inline-block">
                 <OptimizedImage 
-                  src={draBrunaImg} 
-                  alt="Dra. Bruna Durelli - Especialista em Obesidade"
-                  width={320}
-                  height={320}
-                  className="w-80 h-80 object-cover rounded-2xl shadow-lg mx-auto"
-                />
+                   src={draBrunaImg} 
+                   alt="Dra. Bruna Durelli - Especialista em Obesidade"
+                   width={320}
+                   height={320}
+                   sizes="(max-width: 768px) 70vw, 320px"
+                   className="w-80 h-80 object-cover rounded-2xl shadow-lg mx-auto"
+                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-wellness-warm/10 to-transparent rounded-2xl"></div>
               </div>
               <div className="mt-6 p-6 bg-wellness-soft/20 rounded-xl">

@@ -8,54 +8,54 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export const FAQVendas = () => {
-  const faqs = [
-    {
-      question: "O bal√£o intrag√°strico d√≥i?",
-      answer:
-        "O procedimento √© realizado sob seda√ß√£o e n√£o causa dor. Nos primeiros dias ap√≥s a coloca√ß√£o, √© normal sentir desconforto, n√°useas leves e adapta√ß√£o. Nossa equipe fornece medica√ß√£o e suporte completo nesta fase.",
-    },
-    {
-      question: "Quanto tempo dura o procedimento?",
-      answer:
-        "A coloca√ß√£o do bal√£o leva de 20 a 30 minutos. √â feita por endoscopia, sem cortes ou cirurgia. Voc√™ recebe alta no mesmo dia ap√≥s algumas horas de observa√ß√£o.",
-    },
-    {
-      question: "Preciso ficar internada?",
-      answer:
-        "N√£o. O procedimento √© ambulatorial. Voc√™ vai para casa no mesmo dia, mas recomendamos repouso nas primeiras 24-48 horas.",
-    },
-    {
-      question: "Quanto peso vou perder?",
-      answer:
-        "A perda m√©dia √© de 10 a 35kg em 6 meses, dependendo do seu perfil, comprometimento e resposta individual. O acompanhamento multidisciplinar potencializa os resultados.",
-    },
-    {
-      question: "O peso volta depois de retirar o bal√£o?",
-      answer:
-        "N√£o, se voc√™ seguir o programa completo. O bal√£o √© uma ferramenta, mas a transforma√ß√£o real vem da reeduca√ß√£o alimentar e mudan√ßa de h√°bitos que trabalhamos durante e ap√≥s o tratamento. Por isso oferecemos 6-12 meses de manuten√ß√£o.",
-    },
-    {
-      question: "Quais s√£o os efeitos colaterais?",
-      answer:
-        "Nos primeiros 3-7 dias: n√°useas, desconforto g√°strico e adapta√ß√£o. Esses sintomas s√£o tempor√°rios e manejados com medica√ß√£o. Complica√ß√µes graves s√£o raras (<1%) e incluem migra√ß√£o ou desinfla√ß√£o do bal√£o.",
-    },
-    {
-      question: "Quanto custa o tratamento completo?",
-      answer:
-        "O investimento varia conforme o plano escolhido (Essencial, Completo ou Premium). Inclui bal√£o, consultas, exames e acompanhamento multidisciplinar. Entre em contato para conhecer as condi√ß√µes especiais e parcelamento.",
-    },
-    {
-      question: "Como √© o acompanhamento ap√≥s o procedimento?",
-      answer:
-        "Voc√™ ter√° consultas regulares com m√©dico, nutricionista e psic√≥logo (frequ√™ncia varia por plano). Suporte via WhatsApp, app de acompanhamento, exames peri√≥dicos e ajustes no plano alimentar conforme sua evolu√ß√£o.",
-    },
-  ];
+const faqs = [
+  {
+    question: "O bal„o intrag·strico dÛi?",
+    answer:
+      "O procedimento È realizado sob sedaÁ„o e n„o causa dor. Nos primeiros dias apÛs a colocaÁ„o, È normal sentir desconforto e n·useas leves. Nossa equipe fornece medicaÁ„o e suporte completo nessa fase.",
+  },
+  {
+    question: "Quanto tempo dura o procedimento?",
+    answer:
+      "A colocaÁ„o do bal„o leva de 20 a 30 minutos. … feita por endoscopia, sem cortes ou cirurgia, e vocÍ recebe alta no mesmo dia apÛs algumas horas de observaÁ„o.",
+  },
+  {
+    question: "Preciso ficar internada?",
+    answer:
+      "N„o. O procedimento È ambulatorial. VocÍ vai para casa no mesmo dia, mas recomendamos repouso nas primeiras 24ñ48 horas.",
+  },
+  {
+    question: "Quanto peso vou perder?",
+    answer:
+      "A perda mÈdia varia de 10 a 35 kg em 6 meses, dependendo do seu perfil, comprometimento e resposta individual. O acompanhamento multidisciplinar potencializa os resultados.",
+  },
+  {
+    question: "O peso volta depois de retirar o bal„o?",
+    answer:
+      "N„o, se vocÍ seguir o programa completo. O bal„o È uma ferramenta; a transformaÁ„o real vem da reeducaÁ„o alimentar e da mudanÁa de h·bitos que trabalhamos durante e apÛs o tratamento. Por isso oferecemos 6ñ12 meses de manutenÁ„o.",
+  },
+  {
+    question: "Quais s„o os efeitos colaterais?",
+    answer:
+      "Nos primeiros 3ñ7 dias podem ocorrer n·useas, desconforto g·strico e adaptaÁ„o. Os sintomas s„o tempor·rios e manejados com medicaÁ„o. ComplicaÁıes graves s„o raras (<1%) e incluem migraÁ„o ou desinsuflaÁ„o do bal„o.",
+  },
+  {
+    question: "Quanto custa o tratamento completo?",
+    answer:
+      "O investimento varia conforme o plano escolhido (Essencial, Completo ou Premium). Inclui bal„o, consultas, exames e acompanhamento multidisciplinar. Entre em contato para conhecer as condiÁıes especiais e o parcelamento.",
+  },
+  {
+    question: "Como È o acompanhamento apÛs o procedimento?",
+    answer:
+      "VocÍ ter· consultas regulares com mÈdico, nutricionista e psicÛlogo (a frequÍncia varia por plano), suporte via WhatsApp, app de acompanhamento, exames periÛdicos e ajustes no plano alimentar conforme sua evoluÁ„o.",
+  },
+];
 
+export const FAQVendas = () => {
   const handleWhatsApp = () => {
     try {
-      trackEvent('cta_whatsapp_click', {
-        location: 'faq_vendas',
+      trackEvent("cta_whatsapp_click", {
+        location: "faq_vendas",
         path: window.location.pathname,
       });
     } catch {}
@@ -67,10 +67,10 @@ export const FAQVendas = () => {
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">
-            Perguntas Frequentes
+            Perguntas frequentes
           </h2>
           <p className="text-lg text-muted-foreground">
-            Tire suas d√∫vidas sobre o bal√£o intrag√°strico
+            Tire suas d˙vidas sobre o bal„o intrag·strico.
           </p>
         </div>
 
@@ -78,7 +78,7 @@ export const FAQVendas = () => {
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem
-                key={index}
+                key={faq.question}
                 value={`item-${index}`}
                 className="bg-muted/30 rounded-lg px-6 shadow-sm border-none"
               >
@@ -95,7 +95,7 @@ export const FAQVendas = () => {
 
         <div className="text-center">
           <Button variant="outline" size="lg" onClick={handleWhatsApp}>
-            Ainda tem d√∫vidas? Fale com Especialista
+            Ainda tem d˙vidas? Fale com uma especialista
           </Button>
         </div>
       </div>

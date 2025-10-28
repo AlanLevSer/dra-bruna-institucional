@@ -1,10 +1,6 @@
+import { lazy, Suspense } from "react";
 import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
 import { SubpageHero } from "@/components/SubpageHero";
-import { FAQ } from "@/components/FAQ";
-import { InvestimentoPagamento } from "@/components/InvestimentoPagamento";
-import { CTASection } from "@/components/CTASection";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { SEOHead } from "@/components/SEOHead";
 import { CONTACT } from "@/lib/constants";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
@@ -12,6 +8,12 @@ import { Calculator, BookOpen, HelpCircle, Sparkles } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/transformation-empowerment.avif";
+
+const FAQ = lazy(() => import("@/components/FAQ").then(m => ({ default: m.FAQ })));
+const InvestimentoPagamento = lazy(() => import("@/components/InvestimentoPagamento").then(m => ({ default: m.InvestimentoPagamento })));
+const CTASection = lazy(() => import("@/components/CTASection").then(m => ({ default: m.CTASection })));
+const Footer = lazy(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
+const WhatsAppButton = lazy(() => import("@/components/WhatsAppButton").then(m => ({ default: m.WhatsAppButton })));
 
 const Recursos = () => {
   const navigate = useNavigate();
@@ -137,23 +139,33 @@ const Recursos = () => {
                 </p>
               </div>
               
-              <InvestimentoPagamento />
+              <Suspense fallback={<div className="min-h-[20vh]" />}>
+                <InvestimentoPagamento />
+              </Suspense>
             </div>
           </section>
 
           {/* FAQ Completo */}
-          <FAQ />
+          <Suspense fallback={<div className="min-h-[20vh]" />}>
+            <FAQ />
+          </Suspense>
           
-          <CTASection
-            title="Ainda Tem Dúvidas?"
-            description="Entre em contato e tire todas as suas dúvidas sobre tratamentos, consultas e o Programa LevSer."
-            buttonText="Tirar Dúvidas pelo WhatsApp"
-            onButtonClick={handleCTA}
-          />
+          <Suspense fallback={<div className="min-h-[10vh]" />}>
+            <CTASection
+              title="Ainda Tem Dúvidas?"
+              description="Entre em contato e tire todas as suas dúvidas sobre tratamentos, consultas e o Programa LevSer."
+              buttonText="Tirar Dúvidas pelo WhatsApp"
+              onButtonClick={handleCTA}
+            />
+          </Suspense>
           
-          <Footer />
+          <Suspense fallback={<div className="min-h-[10vh]" />}>
+            <Footer />
+          </Suspense>
         </main>
-        <WhatsAppButton />
+        <Suspense fallback={null}>
+          <WhatsAppButton />
+        </Suspense>
       </div>
     </>
   );

@@ -14,14 +14,14 @@ export const StatsVendas = () => {
       icon: Heart,
       value: 98,
       suffix: "%",
-      label: "Taxa de SatisfaÃ§Ã£o",
+      label: "Taxa de Satisfação",
     },
     {
       icon: Scale,
       value: 35,
-      prefix: "atÃ© ",
-      suffix: "kg",
-      label: "Perda de Peso MÃ©dia",
+      prefix: "até ",
+      suffix: " kg",
+      label: "Perda de Peso Média",
     },
     {
       icon: Calendar,
@@ -62,3 +62,4 @@ export const StatsVendas = () => {
     </section>
   );
 };
+

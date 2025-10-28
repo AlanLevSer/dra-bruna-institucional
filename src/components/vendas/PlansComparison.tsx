@@ -3,52 +3,52 @@ import { CONTACT } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 import { Check } from "lucide-react";
 
-export const PlansComparison = () => {
-  const plans = [
-    {
-      name: "Plano Essencial",
-      duration: "6 meses",
-      recommended: false,
-      features: [
-        "Balão intragástrico (6 meses)",
-        "Consultas mensais com médico",
-        "Nutricionista 2x/mês",
-        "Suporte via WhatsApp",
-        "Material educativo",
-      ],
-    },
-    {
-      name: "Plano Completo",
-      duration: "12 meses",
-      recommended: true,
-      features: [
-        "Tudo do Plano Essencial",
-        "Consultas quinzenais",
-        "Psicólogo 2x/mês",
-        "Exames laboratoriais inclusos",
-        "6 meses de manutenção pós-balão",
-        "App de acompanhamento",
-      ],
-    },
-    {
-      name: "Plano Premium",
-      duration: "18 meses",
-      recommended: false,
-      features: [
-        "Tudo do Plano Completo",
-        "Consultas semanais",
-        "Nutrição celular (soros)",
-        "Personal trainer online",
-        "12 meses de manutenção",
-        "Acesso vitalício ao app",
-      ],
-    },
-  ];
+const plans = [
+  {
+    name: "Plano Essencial",
+    duration: "6 meses",
+    recommended: false,
+    features: [
+      "Balão intragástrico (6 meses)",
+      "Consultas mensais com o médico",
+      "Nutricionista 2x/mês",
+      "Suporte via WhatsApp",
+      "Material educativo exclusivo",
+    ],
+  },
+  {
+    name: "Plano Completo",
+    duration: "12 meses",
+    recommended: true,
+    features: [
+      "Tudo do Plano Essencial",
+      "Consultas quinzenais",
+      "Psicólogo 2x/mês",
+      "Exames laboratoriais inclusos",
+      "6 meses de manutenção pós-balão",
+      "App de acompanhamento",
+    ],
+  },
+  {
+    name: "Plano Premium",
+    duration: "18 meses",
+    recommended: false,
+    features: [
+      "Tudo do Plano Completo",
+      "Consultas semanais",
+      "Nutrição celular (soros)",
+      "Personal trainer online",
+      "12 meses de manutenção",
+      "Acesso vitalício ao app",
+    ],
+  },
+];
 
+export const PlansComparison = () => {
   const handleWhatsApp = () => {
     try {
-      trackEvent('cta_whatsapp_click', {
-        location: 'plans_comparison',
+      trackEvent("cta_whatsapp_click", {
+        location: "plans_comparison",
         path: window.location.pathname,
       });
     } catch {}
@@ -60,21 +60,19 @@ export const PlansComparison = () => {
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">
-            Escolha o Plano Ideal Para Sua Transformação
+            Escolha o plano ideal para sua transformação
           </h2>
           <p className="text-lg text-muted-foreground">
-            Investimento sob consulta. Entre em contato para conhecer as condições especiais e parcelamento.
+            Investimento sob consulta. Entre em contato para conhecer condições especiais e opções de parcelamento.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {plans.map((plan, index) => (
+          {plans.map((plan) => (
             <div
-              key={index}
+              key={plan.name}
               className={`relative bg-card rounded-2xl p-8 shadow-elegant hover:shadow-hover transition-all border ${
-                plan.recommended
-                  ? "scale-105 border-primary/50"
-                  : "border-border/50"
+                plan.recommended ? "scale-105 border-primary/50" : "border-border/50"
               }`}
             >
               {plan.recommended && (
@@ -93,8 +91,8 @@ export const PlansComparison = () => {
               </div>
 
               <ul className="space-y-3 mb-8">
-                {plan.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-xs text-muted-foreground">{feature}</span>
                   </li>
@@ -107,14 +105,14 @@ export const PlansComparison = () => {
                 onClick={handleWhatsApp}
                 className={plan.recommended ? "w-full bg-gradient-premium hover:opacity-90" : "w-full"}
               >
-                {plan.recommended ? "Agendar Avaliação" : "Saber Mais"}
+                {plan.recommended ? "Agendar avaliação" : "Quero saber mais"}
               </Button>
             </div>
           ))}
         </div>
 
         <p className="text-center text-sm text-muted-foreground mt-8">
-          Fale conosco para conhecer os valores e condições de parcelamento em até 12x
+          Fale conosco para conhecer os valores e as condições de parcelamento em até 12x.
         </p>
       </div>
     </section>

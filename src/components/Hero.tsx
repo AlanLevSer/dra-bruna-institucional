@@ -76,6 +76,7 @@ export const Hero = () => {
                 width={280} 
                 height={420}
                 priority={true}
+                sizes="(max-width: 1024px) 70vw, 280px"
               />
             </div>
             

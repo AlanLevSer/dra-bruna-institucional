@@ -40,7 +40,7 @@ export default defineConfig(({ mode }) => ({
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,jpg,jpeg,svg,webp}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,jpg,jpeg,svg,webp,avif}'],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5MB limit
         runtimeCaching: [
           {
@@ -72,7 +72,7 @@ export default defineConfig(({ mode }) => ({
             }
           },
           {
-            urlPattern: /\.(?:png|jpg|jpeg|svg|webp|gif)$/,
+            urlPattern: /\.(?:png|jpg|jpeg|svg|webp|gif|avif)$/,
             handler: 'CacheFirst',
             options: {
               cacheName: 'images-cache',

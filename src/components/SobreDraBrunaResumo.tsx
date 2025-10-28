@@ -23,6 +23,7 @@ export const SobreDraBrunaResumo = () => {
                 className="w-full h-auto object-cover"
                 width={280}
                 height={420}
+                sizes="(max-width: 1024px) 70vw, 280px"
               />
             </div>
             <div className="absolute -bottom-5 -right-5 bg-primary p-4 lg:p-5 rounded-xl shadow-elegant max-w-[260px]">

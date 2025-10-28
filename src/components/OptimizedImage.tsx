@@ -1,6 +1,6 @@
 import { ImgHTMLAttributes } from 'react';
 
-interface OptimizedImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'srcSet'> {
+interface OptimizedImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> {
   src: string;
   alt: string;
   width: number;
@@ -19,11 +19,6 @@ export const OptimizedImage = ({
   className,
   ...props
 }: OptimizedImageProps) => {
-  // Extract filename and extension
-  const lastDot = src.lastIndexOf('.');
-  const basePath = src.substring(0, lastDot);
-  const ext = src.substring(lastDot);
-
   return (
     <img
       src={src}
@@ -34,6 +29,7 @@ export const OptimizedImage = ({
       fetchPriority={priority ? 'high' : 'auto'}
       decoding={priority ? 'sync' : 'async'}
       className={className}
+      sizes={sizes ?? "100vw"}
       {...props}
     />
   );

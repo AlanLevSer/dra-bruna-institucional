@@ -2,6 +2,7 @@ import { Brain, Heart, Flame, Pill, Sparkles, HeartPulse, ArrowRight } from "luc
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
+import { OptimizedImage } from "@/components/OptimizedImage";
 import nutricaoImage from "@/assets/patient-happy.avif";
 const pillars = [{
   icon: Brain,
@@ -114,7 +115,14 @@ export const Nutricao = () => {
         <div className="relative rounded-2xl overflow-hidden shadow-hover animate-fade-in max-w-2xl mx-auto" style={{
         animationDelay: "0.6s"
       }}>
-          <img src={nutricaoImage} alt="NutriÃ§Ã£o e bem-estar - Paciente feliz e saudÃ¡vel" className="w-full h-auto object-cover" />
+          <OptimizedImage
+            src={nutricaoImage}
+            alt="Nutrição e bem-estar - Paciente feliz e saudável"
+            className="w-full h-auto object-cover"
+            width={960}
+            height={640}
+            sizes="(max-width: 1280px) 90vw, 640px"
+          />
           
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent flex items-end">
             <div className="p-8 text-background">
@@ -132,3 +140,8 @@ export const Nutricao = () => {
       </div>
     </section>;
 };
+
+
+
+
+

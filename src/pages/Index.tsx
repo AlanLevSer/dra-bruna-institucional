@@ -4,7 +4,6 @@ import { Hero } from "@/components/Hero";
 import { SobreDraBrunaResumo } from "@/components/SobreDraBrunaResumo";
 import { ProgramaLevSer } from "@/components/ProgramaLevSer";
 import { Comunidade } from "@/components/Comunidade";
-import { InvestimentoPagamento } from "@/components/InvestimentoPagamento";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { MobileCTA } from "@/components/MobileCTA";
 import { SEOHead } from "@/components/SEOHead";
@@ -21,6 +20,7 @@ const ReconhecimentoMidia = lazy(() => import("@/components/ReconhecimentoMidia"
 const Depoimentos = lazy(() => import("@/components/Depoimentos").then(m => ({ default: m.Depoimentos })));
 const CTAFinal = lazy(() => import("@/components/CTAFinal").then(m => ({ default: m.CTAFinal })));
 const Footer = lazy(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
+const LazyInvestimento = lazy(() => import("@/components/InvestimentoPagamento").then(m => ({ default: m.InvestimentoPagamento })));
 
 const Index = () => {
   const navigate = useNavigate();
@@ -67,8 +67,10 @@ const Index = () => {
             <Depoimentos />
             <ReconhecimentoMidia />
           </Suspense>
-          
-          <InvestimentoPagamento />
+
+          <Suspense fallback={<div className="min-h-[20vh]"></div>}>
+            <LazyInvestimento />
+          </Suspense>
           
           <section id="faq" className="py-16 bg-card"><div className="container mx-auto px-4"><h2 className="text-4xl font-serif font-bold text-center mb-8">Perguntas Frequentes</h2><FAQResumo /><div className="text-center mt-8"><Button variant="outline" onClick={() => navigate("/recursos#faq")}>Ver todas as perguntas <ArrowRight className="ml-2 h-4 w-4" /></Button></div></div></section>
           
@@ -82,4 +84,7 @@ const Index = () => {
 };
 
 export default Index;
+
+
+
 

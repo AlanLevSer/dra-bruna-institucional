@@ -20,11 +20,11 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 const BalaoVendas = () => {
   const seoData = {
-    title: "BalÃ£o IntragÃ¡strico - Perca atÃ© 35 kg em 6 meses | Dra. Bruna Durelli",
+    title: "Balão Intragástrico - Perca até 35 kg em até 12 meses | Dra. Bruna Durelli",
     description:
-      "Tratamento completo com balÃ£o intragÃ¡strico, acompanhamento multidisciplinar e resultados duradouros. Consulta de avaliaÃ§Ã£o com desconto. Agende agora!",
+      "Tratamento completo com balão intragástrico, acompanhamento interdisciplinar e resultados duradouros. Consulta de avaliação com desconto. Agende agora!",
     keywords:
-      "balÃ£o intragÃ¡strico, emagrecimento, perda de peso, obesidade, Dra. Bruna Durelli, LevSer, SÃ£o Paulo",
+      "balão intragástrico, emagrecimento, perda de peso, obesidade, Dra. Bruna Durelli, LevSer, São Paulo",
     canonical: "https://drabrunadurelli.com/balao-intragastrico-a",
   } as const;
 
@@ -54,4 +54,5 @@ const BalaoVendas = () => {
 };
 
 export default BalaoVendas;
+
 

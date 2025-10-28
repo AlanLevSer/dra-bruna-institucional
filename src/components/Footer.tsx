@@ -9,11 +9,13 @@ export const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4">
           <img 
-            src={logoFooter}
-            alt="Dra. Bruna Durelli - Especialista em Obesidade e Metabolismo"
-            className="h-12 md:h-14 lg:h-16 w-auto mx-auto opacity-90 hover:opacity-100 transition-opacity"
-            loading="lazy"
-          />
+              src={logoFooter}
+              alt="Dra. Bruna Durelli - Especialista em Obesidade e Metabolismo"
+              className="h-12 md:h-14 lg:h-16 w-auto mx-auto opacity-90 hover:opacity-100 transition-opacity"
+              loading="lazy"
+              width={200}
+              height={50}
+            />
           
           <div className="space-y-1">
             <p className="text-sm font-semibold text-foreground">

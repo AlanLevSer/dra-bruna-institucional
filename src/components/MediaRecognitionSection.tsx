@@ -12,37 +12,43 @@ const MediaRecognitionSection = () => {
       name: "Terra", 
       logo: terraLogo,
       url: "https://www.terra.com.br/vida-e-estilo/saude/7-sinais-de-que-a-obesidade-esta-afetando-a-sua-saude,21f8581eeb5cc9e3ac0e7c68691fe551smecd7g5.html",
-      width: "120"
+      width: 120,
+      height: 40
     },
     { 
       name: "Crescer", 
       logo: crescerLogo,
       url: "https://revistacrescer.globo.com/criancas/saude/noticia/2025/06/um-terco-das-criancas-estara-acima-do-peso-ate-2050-como-prevenir-a-obesidade-infantil.ghtml",
-      width: "100"
+      width: 110,
+      height: 40
     },
     { 
       name: "Jovem Pan News", 
       logo: jovemPanLogo,
       url: "https://jovempan.com.br/edicase/8-mitos-e-verdades-sobre-obesidade-e-sobrepeso.html",
-      width: "120"
+      width: 120,
+      height: 40
     },
     { 
       name: "Boa Forma", 
       logo: boaFormaLogo,
       url: "https://boaforma.abril.com.br/alimentacao/habitos-alimentares-parecem-saudaveis-nao-sao/#google_vignette",
-      width: "110"
+      width: 110,
+      height: 40
     },
     { 
       name: "BandNews FM", 
       logo: bandNewsLogo,
       url: "https://open.spotify.com/episode/1YYkeDdwVcU1sBFW3GbnJm?si=MUWuUl_rQcq1LGpxSujEXQ&nd=1&dlsi=db62467fbc874a60",
-      width: "100"
+      width: 110,
+      height: 40
     },
     { 
       name: "Ana Maria", 
       logo: anaMariaLogo,
       url: "https://revistaanamaria.com.br/bem-estar-e-saude/o-impacto-velado-da-semaglutida/",
-      width: "90"
+      width: 100,
+      height: 36
     }
   ];
 
@@ -110,6 +116,8 @@ const MediaRecognitionSection = () => {
                     src={logo.logo} 
                     alt={`Logo ${logo.name}`}
                     loading="lazy"
+                    width={logo.width}
+                    height={logo.height}
                     className="max-w-full max-h-12 object-contain filter group-hover:brightness-110 transition-all duration-300"
                   />
                 </a>

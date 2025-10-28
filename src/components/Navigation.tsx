@@ -156,11 +156,13 @@ export const Navigation = () => {
             className="flex items-center shrink-0 lg:-ml-4"
           >
             <img 
-              src={logoHeader}
-              alt="Dra. Bruna Durelli - Especialista em Obesidade e Metabolismo"
-              className="h-12 md:h-14 lg:h-16 w-auto transition-opacity hover:opacity-90 shrink-0"
-              loading="eager"
-            />
+                src={logoHeader}
+                alt="Dra. Bruna Durelli - Especialista em Obesidade e Metabolismo"
+                className="h-12 md:h-14 lg:h-16 w-auto transition-opacity hover:opacity-90 shrink-0"
+                loading="eager"
+                width={200}
+                height={50}
+              />
           </Link>
 
           {/* Desktop Navigation */}

@@ -52,14 +52,12 @@ export const GrafismoDecor = ({
       style={{
         opacity,
         transform: `rotate(${rotate}deg)`,
+        backgroundImage: `url(${grafismoImage})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "contain",
+        backgroundPosition: "center",
       }}
-    >
-      <img
-        src={grafismoImage}
-        alt=""
-        className="w-full h-full object-contain"
-        aria-hidden="true"
-      />
-    </div>
+      aria-hidden="true"
+    />
   );
 };
