@@ -535,7 +535,7 @@ function generateMixEstrategias(data: QuizData) {
     if (data.invasividade !== 'minima' && !data.cirurgiaGastricaPrevia) {
       // Balão 6m
       alternativas.push({
-        tipo: 'balao_6m',
+        tipo: 'balão_6m',
         nome: 'Balão Intragástrico (6 meses)',
         justificativa: 'Start estruturado com foco em constância.',
         badgeRecuperacao: '1-3 dias',
@@ -545,7 +545,7 @@ function generateMixEstrategias(data: QuizData) {
       // Balão 12m (se critérios)
       if (data.imc >= 30 && (metaKg >= 20 || comorbidadesQtd >= 2 || data.efeitoSanfona)) {
         alternativas.push({
-          tipo: 'balao_12m',
+          tipo: 'balão_12m',
           nome: 'Balão Intragástrico Ajustável (12 meses)',
           justificativa: 'Ajustável ao longo do ano para estabilidade.',
           badgeRecuperacao: '1-3 dias',
@@ -612,7 +612,7 @@ function generateMixEstrategias(data: QuizData) {
     (metaKg >= 20 || comorbidadesQtd >= 2 || data.efeitoSanfona)
   ) {
     intervencao = {
-      tipo: 'balao_12m',
+      tipo: 'balão_12m',
       nome: 'Balão Intragástrico Ajustável (12 meses)',
       justificativa: "Ajustável ao longo do ano para estabilidade e menor risco de reganho. Exclui-se quem já teve cirurgia gástrica."
     };
@@ -630,7 +630,7 @@ function generateMixEstrategias(data: QuizData) {
     )
   ) {
     intervencao = {
-      tipo: 'balao_6m',
+      tipo: 'balão_6m',
       nome: 'Balão Intragástrico (6 meses)',
       justificativa: "Start estruturado com foco em constância; ideal quando há falhas clínicas prévias."
     };

@@ -1,4 +1,4 @@
-﻿import { Navigation } from "@/components/Navigation";
+�import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SubpageHero } from "@/components/SubpageHero";
 import { SobreDraBruna } from "@/components/SobreDraBruna";
@@ -22,8 +22,8 @@ const Sobre = () => {
     <>
       <SEOHead data={{
         title: "Sobre a Dra. Bruna Durelli - Especialista em Obesidade | LevSer",
-        description: "ConheÃ§a a trajetÃ³ria da Dra. Bruna Durelli, especialista em obesidade com +10 anos de experiÃªncia. FormaÃ§Ã£o no Einstein, Santa Casa, ABRAN. SÃ³cia-fundadora da LevSer.",
-        keywords: "dra bruna durelli, especialista obesidade, endoscopia digestiva, nutrologia, medicina regenerativa, levser, sÃ£o paulo",
+        description: "Conheça a trajetória da Dra. Bruna Durelli, especialista em obesidade com +10 anos de experiência. Formação no Einstein, Santa Casa, ABRAN. Sócia-fundadora da LevSer.",
+        keywords: "dra bruna durelli, especialista obesidade, endoscopia digestiva, nutrologia, medicina regenerativa, levser, são paulo",
         canonical: "https://www.brunadurelli.com.br/sobre"
       }} />
       <StructuredData data={[
@@ -35,9 +35,9 @@ const Sobre = () => {
         <Navigation />
         <main>
           <SubpageHero
-            title="ConheÃ§a a Dra. Bruna Durelli"
-            subtitle="TrajetÃ³ria e FormaÃ§Ã£o"
-            description="Mais de 10 anos dedicados a ajudar vocÃª a conquistar uma vida mais leve, saudÃ¡vel e plena. ConheÃ§a minha histÃ³ria, formaÃ§Ã£o e filosofia de atendimento."
+            title="Conheça a Dra. Bruna Durelli"
+            subtitle="Trajetória e Formação"
+            description="Mais de 10 anos dedicados a ajudar você a conquistar uma vida mais leve, saudável e plena. Conheça minha história, formação e filosofia de atendimento."
             image={heroImage}
             ctaText="Agendar Consulta"
             onCtaClick={handleCTA}
@@ -49,8 +49,8 @@ const Sobre = () => {
           <ReconhecimentoMidia />
           
           <CTASection
-            title="Vamos Conversar Sobre Sua TransformaÃ§Ã£o?"
-            description="Agende sua consulta e conheÃ§a como posso te ajudar a alcanÃ§ar seus objetivos de saÃºde e bem-estar."
+            title="Vamos Conversar Sobre Sua Transformação?"
+            description="Agende sua consulta e conheça como posso te ajudar a alcançar seus objetivos de saúde e bem-estar."
             buttonText="Agendar Consulta"
             onButtonClick={handleCTA}
           />

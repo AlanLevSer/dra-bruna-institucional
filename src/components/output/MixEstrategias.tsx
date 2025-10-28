@@ -16,8 +16,8 @@ export const MixEstrategias = ({ mixEstrategias }: MixEstrategiasProps) => {
   
   const intervencaoIcons: Record<string, any> = {
     gastroplastia: Scissors,
-    balao_6m: Syringe,
-    balao_12m: Syringe,
+    balão_6m: Syringe,
+    balão_12m: Syringe,
     injetaveis: Syringe,
     plasma_argonio: Zap
   };

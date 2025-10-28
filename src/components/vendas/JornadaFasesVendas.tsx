@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+�import { useState } from "react";
 import {
   CheckCircle2,
   ArrowRight,
@@ -20,58 +20,58 @@ const fases = [
   {
     numero: "01",
     icon: MapPin,
-    titulo: "Mapeamento & DireÃ§Ã£o",
-    duracao: "2â€“4 semanas",
-    objetivo: "Entender sua biologia, hÃ¡bitos e metas.",
+    titulo: "Mapeamento & Direção",
+    duracao: "2�4 semanas",
+    objetivo: "Entender sua biologia, hábitos e metas.",
     entregas: [
       "Exames completos",
-      "AvaliaÃ§Ã£o corporal",
+      "Avaliação corporal",
       "Perfil comportamental",
       "Plano inicial personalizado",
     ],
-    sinais: "VocÃª estÃ¡ no caminho certo! JÃ¡ dÃ¡ para sentir os primeiros ajustes.",
+    sinais: "Você está no caminho certo! Já dá para sentir os primeiros ajustes.",
   },
   {
     numero: "02",
     icon: Zap,
     titulo: "Reset & Ritmo",
-    duracao: "8â€“12 semanas",
+    duracao: "8�12 semanas",
     objetivo:
-      "Destravar o peso com estratÃ©gia e constÃ¢ncia. Introduzimos medidas metabÃ³licas e regenerativas para reduzir inflamaÃ§Ã£o, otimizar saciedade e aumentar gasto energÃ©tico.",
+      "Destravar o peso com estratégia e constância. Introduzimos medidas metabólicas e regenerativas para reduzir inflamação, otimizar saciedade e aumentar gasto energético.",
     entregas: [
-      "IntervenÃ§Ãµes possÃ­veis: balÃ£o 6/12m, terapias injetÃ¡veis (quando indicadas)",
+      "Intervenções possíveis: balão 6/12m, terapias injetáveis (quando indicadas)",
     ],
-    sinais: "Continue assim! Medidas caindo, sono melhor, mais energia e confianÃ§a crescendo.",
+    sinais: "Continue assim! Medidas caindo, sono melhor, mais energia e confiança crescendo.",
     miniComparador: true,
   },
   {
     numero: "03",
     icon: Target,
-    titulo: "ConsolidaÃ§Ã£o & Autonomia",
-    duracao: "12â€“16 semanas",
-    objetivo: "Manter a perda e ganhar independÃªncia.",
+    titulo: "Consolidação & Autonomia",
+    duracao: "12�16 semanas",
+    objetivo: "Manter a perda e ganhar independência.",
     entregas: [
-      "ProgressÃ£o de treino",
-      "ReeducaÃ§Ã£o alimentar avanÃ§ada",
+      "Progressão de treino",
+      "Reeducação alimentar avançada",
       "Ajustes regenerativos para preservar massa magra e melhorar sono/humor",
-      "Alta supervisÃ£o clÃ­nica",
+      "Alta supervisão clínica",
     ],
-    sinais: "Seu esforÃ§o estÃ¡ valendo a pena. Rotina estÃ¡vel, exames melhores, autonomia crescendo.",
+    sinais: "Seu esforço está valendo a pena. Rotina estável, exames melhores, autonomia crescendo.",
     miniComparadorFase3: true,
   },
   {
     numero: "04",
     icon: Infinity,
-    titulo: "ManutenÃ§Ã£o & Estilo de Vida",
+    titulo: "Manutenção & Estilo de Vida",
     duracao: "12+ meses",
-    objetivo: "NÃ£o â€œterminarâ€, e sim sustentar.",
+    objetivo: "Não �Sterminar⬝, e sim sustentar.",
     entregas: [
-      "CalendÃ¡rio de checkpoints trimestrais",
+      "Calendário de checkpoints trimestrais",
       "Ciclos leves de programas regenerativos (trimestrais/semestrais)",
-      "Plano de recaÃ­da",
-      "Ajustes finos contÃ­nuos",
+      "Plano de recaída",
+      "Ajustes finos contínuos",
     ],
-    sinais: "VocÃª conseguiu! Peso estÃ¡vel, bem-estar duradouro, confianÃ§a plena. Conte sempre comigo.",
+    sinais: "Você conseguiu! Peso estável, bem-estar duradouro, confiança plena. Conte sempre comigo.",
     miniComparadorFase4: true,
   },
 ];
@@ -79,44 +79,44 @@ const fases = [
 const intervencoes = [
   {
     icon: Wind,
-    nome: "BalÃ£o 6/12m",
-    descricao: "Saciedade imediata, recuperaÃ§Ã£o rÃ¡pida, opÃ§Ã£o reversÃ­vel (12m pode ser ajustÃ¡vel).",
+    nome: "Balão 6/12m",
+    descricao: "Saciedade imediata, recuperação rápida, opção reversível (12m pode ser ajustável).",
   },
   {
     icon: Syringe,
-    nome: "Terapias injetÃ¡veis",
-    descricao: "Controle de apetite/metabolismo aliado ao plano, com acompanhamento contÃ­nuo.",
+    nome: "Terapias injetáveis",
+    descricao: "Controle de apetite/metabolismo aliado ao plano, com acompanhamento contínuo.",
   },
 ];
 
 const intervencoesFase3 = [
   {
     icon: UtensilsCrossed,
-    nome: "NutriÃ§Ã£o Celular",
-    descricao: "SuplementaÃ§Ã£o avanÃ§ada para otimizar metabolismo, energia e recuperaÃ§Ã£o muscular.",
+    nome: "Nutrição Celular",
+    descricao: "Suplementação avançada para otimizar metabolismo, energia e recuperação muscular.",
   },
   {
     icon: Activity,
     nome: "Medicina Regenerativa",
-    descricao: "Terapias para preservar massa magra, melhorar sono/humor e marcadores metabÃ³licos.",
+    descricao: "Terapias para preservar massa magra, melhorar sono/humor e marcadores metabólicos.",
   },
 ];
 
 const intervencoesFase4 = [
   {
     icon: Brain,
-    nome: "CiÃªncia Comportamental",
-    descricao: "EstratÃ©gias para manter hÃ¡bitos sustentÃ¡veis, prevenir recaÃ­das e fortalecer autonomia.",
+    nome: "Ciência Comportamental",
+    descricao: "Estratégias para manter hábitos sustentáveis, prevenir recaídas e fortalecer autonomia.",
   },
   {
     icon: UtensilsCrossed,
-    nome: "NutriÃ§Ã£o Celular",
-    descricao: "OtimizaÃ§Ã£o nutricional contÃ­nua para energia, metabolismo e longevidade.",
+    nome: "Nutrição Celular",
+    descricao: "Otimização nutricional contínua para energia, metabolismo e longevidade.",
   },
   {
     icon: Activity,
     nome: "Medicina Regenerativa",
-    descricao: "Terapias de manutenÃ§Ã£o para saÃºde metabÃ³lica, vitalidade e bem-estar duradouro.",
+    descricao: "Terapias de manutenção para saúde metabólica, vitalidade e bem-estar duradouro.",
   },
 ];
 
@@ -132,7 +132,7 @@ export const JornadaFasesVendas = () => {
             Sua jornada em 4 fases
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Resultados que ficam â€” rotina possÃ­vel, nÃ£o perfeita. Vamos juntas construir consistÃªncia, confianÃ§a e saÃºde duradoura.
+            Resultados que ficam � rotina possível, não perfeita. Vamos juntas construir consistência, confiança e saúde duradoura.
           </p>
         </div>
 
@@ -166,7 +166,7 @@ export const JornadaFasesVendas = () => {
                   </div>
 
                   <div className="space-y-3">
-                    <p className="text-sm font-semibold text-foreground">EntregÃ¡veis:</p>
+                    <p className="text-sm font-semibold text-foreground">Entregáveis:</p>
                     <ul className="grid md:grid-cols-2 gap-2">
                       {fase.entregas.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -184,7 +184,7 @@ export const JornadaFasesVendas = () => {
                   {fase.miniComparador && (
                     <div className="mt-6 pt-6 border-t border-border/50">
                       <p className="text-sm font-semibold text-foreground mb-4">
-                        IntervenÃ§Ãµes possÃ­veis nesta fase:
+                        Intervenções possíveis nesta fase:
                       </p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {intervencoes.map((intervencao, idx) => {
@@ -239,7 +239,7 @@ export const JornadaFasesVendas = () => {
                           onClick={() => navigate("/nutricao-celular")}
                           className="w-full sm:w-auto"
                         >
-                          Saiba mais sobre NutriÃ§Ã£o Celular
+                          Saiba mais sobre Nutrição Celular
                         </Button>
                         <Button
                           size="sm"
@@ -256,7 +256,7 @@ export const JornadaFasesVendas = () => {
                   {fase.miniComparadorFase4 && (
                     <div className="mt-6 pt-6 border-t border-border/50">
                       <p className="text-sm font-semibold text-foreground mb-4">
-                        Pilares fundamentais para manutenÃ§Ã£o e otimizaÃ§Ã£o contÃ­nua da saÃºde:
+                        Pilares fundamentais para manutenção e otimização contínua da saúde:
                       </p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
                         {intervencoesFase4.map((intervencao, idx) => {
@@ -274,7 +274,7 @@ export const JornadaFasesVendas = () => {
                       </div>
                       <div className="bg-primary/5 p-4 rounded-lg border border-primary/10">
                         <p className="text-sm text-muted-foreground">
-                          <span className="font-semibold text-foreground">ManutenÃ§Ã£o inteligente:</span> estes trÃªs pilares trabalham juntos para garantir que seus resultados sejam duradouros. NÃ£o Ã© sobre perfeiÃ§Ã£o, mas sobre consistÃªncia e ajustes contÃ­nuos.
+                          <span className="font-semibold text-foreground">Manutenção inteligente:</span> estes três pilares trabalham juntos para garantir que seus resultados sejam duradouros. Não é sobre perfeição, mas sobre consistência e ajustes contínuos.
                         </p>
                       </div>
                     </div>
@@ -290,7 +290,7 @@ export const JornadaFasesVendas = () => {
             size="lg"
             onClick={() => {
               const phone = "5511997023024";
-              const message = "OlÃ¡! Quero seguir a jornada em 4 fases do Programa LevSer.";
+              const message = "Olá! Quero seguir a jornada em 4 fases do Programa LevSer.";
               try { trackEvent("jornada_fases_cta", { path: window.location.pathname }); } catch {}
               window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
             }}

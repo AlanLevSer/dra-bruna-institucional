@@ -15,7 +15,7 @@ import { Footer } from "@/components/Footer";
 import { getPersona, isGoogleSource, isMetaSource, isPriceCampaign } from "@/lib/utm";
 import { useMemo } from "react";
 
-export default function BalaoIntragastricoB() {
+export default function BalãoIntragastricoB() {
   const google = isGoogleSource();
   const meta = isMetaSource();
   const persona = useMemo(() => getPersona() as any, []);

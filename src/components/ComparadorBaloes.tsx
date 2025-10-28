@@ -1,7 +1,7 @@
 ﻿import { Check, Sparkles, Droplet } from "lucide-react";
 import { Button } from "./ui/button";
 
-interface BalaoOption {
+interface BalãoOption {
   name: string;
   duration: string;
   color: string;
@@ -11,7 +11,7 @@ interface BalaoOption {
   destaque?: boolean;
 }
 
-const baloesOptions: BalaoOption[] = [
+const baloesOptions: BalãoOption[] = [
   {
     name: "Balão 6 meses",
     duration: "6 meses",
@@ -80,16 +80,16 @@ export const ComparadorBaloes = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {baloesOptions.map((balao, index) => (
+          {baloesOptions.map((balão, index) => (
             <div
               key={index}
-              className={`relative bg-gradient-to-br ${balao.color} backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:shadow-[0_16px_48px_rgba(202,124,95,0.15)] hover:scale-105 transition-all duration-500 animate-fade-in opacity-0 group`}
+              className={`relative bg-gradient-to-br ${balão.color} backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:shadow-[0_16px_48px_rgba(202,124,95,0.15)] hover:scale-105 transition-all duration-500 animate-fade-in opacity-0 group`}
               style={{
                 animationDelay: `${index * 0.15}s`,
                 animationFillMode: "forwards"
               }}
             >
-              {balao.destaque && (
+              {balão.destaque && (
                 <>
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-secondary to-primary rounded-2xl opacity-75 blur-sm animate-gradient-shift -z-10" />
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 bg-gradient-to-r from-primary to-secondary text-primary-foreground rounded-full text-sm font-bold flex items-center gap-2 shadow-lg backdrop-blur-sm">
@@ -109,25 +109,25 @@ export const ComparadorBaloes = () => {
 
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-serif font-bold text-foreground mb-2">
-                  {balao.name}
+                  {balão.name}
                 </h3>
                 <p className="text-3xl font-bold text-primary mb-1">
-                  {balao.duration}
+                  {balão.duration}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  {balao.ideal}
+                  {balão.ideal}
                 </p>
               </div>
 
               <div className="bg-card/50 backdrop-blur-sm rounded-xl p-4 mb-6">
                 <p className="text-sm text-muted-foreground mb-1">Perda de peso esperada</p>
                 <p className="text-2xl font-bold text-foreground">
-                  {balao.perda}
+                  {balão.perda}
                 </p>
               </div>
 
               <ul className="space-y-3 mb-6">
-                {balao.vantagens.map((vantagem, vIndex) => (
+                {balão.vantagens.map((vantagem, vIndex) => (
                   <li key={vIndex} className="flex items-start gap-2">
                     <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-sm text-muted-foreground">{vantagem}</span>
@@ -136,7 +136,7 @@ export const ComparadorBaloes = () => {
               </ul>
 
               <Button 
-                variant={balao.destaque ? "default" : "outline"} 
+                variant={balão.destaque ? "default" : "outline"} 
                 className="w-full group"
                 onClick={scrollToSection}
               >

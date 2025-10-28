@@ -28,14 +28,14 @@ export const pageSEO: Record<string, SEOData> = {
     canonical: "https://www.brunadurelli.com.br/canetas-emagrecedoras",
   },
 
-  balaoIntragastrico: {
+  balãoIntragastrico: {
     title:
       "Balão Intragástrico | Emagrecimento sem Cirurgia - Dra. Bruna Durelli",
     description:
       "Balão gástrico endoscópico para perda de peso sustentável. Procedimento minimamente invasivo com acompanhamento completo. Resultados de 10 a 25% de perda de peso.",
     keywords:
       "balão intragástrico, balão gástrico, emagrecimento sem cirurgia, procedimento endoscópico, perda de peso, obesidade tratamento",
-    canonical: "https://www.brunadurelli.com.br/balao-intragastrico",
+    canonical: "https://www.brunadurelli.com.br/balão-intragastrico",
   },
 
   gastroplastiaEndoscopica: {

@@ -2,7 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { SubpageHero } from "@/components/SubpageHero";
 import { ProblemasSolucoes } from "@/components/ProblemasSolucoes";
 import { ComoFunciona } from "@/components/ComoFunciona";
-import { TimelineBalao } from "@/components/TimelineBalao";
+import { TimelineBalão } from "@/components/TimelineBalão";
 import { ComparadorBaloes } from "@/components/ComparadorBaloes";
 import { IndicationList } from "@/components/IndicationList";
 import { TreatmentSection } from "@/components/TreatmentSection";
@@ -14,7 +14,7 @@ import { pageSEO, generateStructuredData } from "@/lib/seo";
 import patientImage from "@/assets/patient-confident.avif";
 import { CONTACT } from "@/lib/constants";
 
-const BalaoIntragastrico = () => {
+const BalãoIntragastrico = () => {
   const handleWhatsApp = () => {
     const message = "Olá, Dra. Bruna! Gostaria de saber mais sobre Balão Intragástrico.";
     window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
@@ -29,7 +29,7 @@ const BalaoIntragastrico = () => {
 
   return (
     <>
-      <SEOHead data={pageSEO.balaoIntragastrico} />
+      <SEOHead data={pageSEO.balãoIntragastrico} />
       <StructuredData data={[generateStructuredData.organization, serviceSchema]} />
 
       <div className="min-h-screen">
@@ -71,7 +71,7 @@ const BalaoIntragastrico = () => {
           ]}
         />
 
-        <TimelineBalao />
+        <TimelineBalão />
 
         <CTASection
           title="Pronta para dar o próximo passo?"
@@ -85,4 +85,4 @@ const BalaoIntragastrico = () => {
   );
 };
 
-export default BalaoIntragastrico;
+export default BalãoIntragastrico;

@@ -1,4 +1,4 @@
-﻿import { useRef } from "react";
+�import { useRef } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -26,15 +26,15 @@ interface Transformation {
 
 const transformations: Transformation[] = [
   { image: transformation01, name: "M.S., 34 anos", testimonial: "Mudei completamente meu estilo de vida e recuperei minha autoestima!" },
-  { image: transformation02, name: "A.L., 41 anos", testimonial: "Nunca imaginei que seria possÃ­vel. Hoje me sinto uma nova pessoa!" },
-  { image: transformation03, name: "C.R., 29 anos", testimonial: "O acompanhamento profissional fez toda a diferenÃ§a na minha jornada." },
-  { image: transformation04, name: "F.P., 38 anos", testimonial: "Resultados que vÃ£o muito alÃ©m da balanÃ§a. Ganhei saÃºde e qualidade de vida." },
+  { image: transformation02, name: "A.L., 41 anos", testimonial: "Nunca imaginei que seria possível. Hoje me sinto uma nova pessoa!" },
+  { image: transformation03, name: "C.R., 29 anos", testimonial: "O acompanhamento profissional fez toda a diferença na minha jornada." },
+  { image: transformation04, name: "F.P., 38 anos", testimonial: "Resultados que vão muito além da balança. Ganhei saúde e qualidade de vida." },
   { image: transformation05, name: "L.M., 45 anos", testimonial: "Minha vida mudou completamente. Obrigada Dra. Bruna e equipe!" },
-  { image: transformation06, name: "P.S., 27 anos", testimonial: "Superou minhas expectativas. Me sinto mais confiante e saudÃ¡vel." },
-  { image: transformation07, name: "R.O., 36 anos", testimonial: "O Programa LevSer transformou nÃ£o sÃ³ meu corpo, mas tambÃ©m minha mente." },
-  { image: transformation08, name: "T.A., 42 anos", testimonial: "Resultado incrÃ­vel! Voltei a ter energia e disposiÃ§Ã£o para viver." },
+  { image: transformation06, name: "P.S., 27 anos", testimonial: "Superou minhas expectativas. Me sinto mais confiante e saudável." },
+  { image: transformation07, name: "R.O., 36 anos", testimonial: "O Programa LevSer transformou não só meu corpo, mas também minha mente." },
+  { image: transformation08, name: "T.A., 42 anos", testimonial: "Resultado incrível! Voltei a ter energia e disposição para viver." },
   { image: transformation09, name: "J.B., 33 anos", testimonial: "Cada quilo perdido foi uma conquista. Vale muito a pena!" },
-  { image: transformation10, name: "N.F., 39 anos", testimonial: "Aprendi a me alimentar melhor e hoje tenho uma relaÃ§Ã£o saudÃ¡vel com a comida." },
+  { image: transformation10, name: "N.F., 39 anos", testimonial: "Aprendi a me alimentar melhor e hoje tenho uma relação saudável com a comida." },
 ];
 
 export const TransformacoesReaisVendas = () => {
@@ -60,12 +60,12 @@ export const TransformacoesReaisVendas = () => {
           </div>
 
           <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold mb-4 text-foreground">
-            TransformaÃ§Ãµes que <span className="text-primary">inspiram</span>
+            Transformações que <span className="text-primary">inspiram</span>
           </h2>
 
           <p className="text-lg text-muted-foreground leading-relaxed">
             Mais de <span className="text-primary font-bold">3000 vidas transformadas</span> com o Programa LevSer.
-            Veja histÃ³rias reais de quem conquistou uma nova vida com o balÃ£o intragÃ¡strico.
+            Veja histórias reais de quem conquistou uma nova vida com o balão intragástrico.
           </p>
         </div>
 
@@ -82,7 +82,7 @@ export const TransformacoesReaisVendas = () => {
                     <div className="relative aspect-[3/4] overflow-hidden">
                       <img
                         src={transformation.image}
-                        alt={`TransformaÃ§Ã£o ${transformation.name}`}
+                        alt={`Transformação ${transformation.name}`}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
                       />
@@ -109,7 +109,7 @@ export const TransformacoesReaisVendas = () => {
         <div className="text-center mt-12 md:mt-16 animate-fade-in">
           <div className="max-w-2xl mx-auto">
             <h3 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
-              Sua transformaÃ§Ã£o comeÃ§a agora!
+              Sua transformação começa agora!
             </h3>
             <p className="text-lg text-muted-foreground mb-6">
               Junte-se a mais de 3000 pessoas que transformaram suas vidas com o Programa LevSer.
@@ -120,7 +120,7 @@ export const TransformacoesReaisVendas = () => {
               className="gap-2 shadow-elegant hover:shadow-hover text-lg px-8 py-6 h-auto"
             >
               <MessageCircle className="w-5 h-5" />
-              Quero minha avaliaÃ§Ã£o gratuita
+              Quero minha avaliação gratuita
             </Button>
           </div>
         </div>

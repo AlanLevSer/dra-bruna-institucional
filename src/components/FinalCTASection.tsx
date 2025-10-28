@@ -5,8 +5,8 @@ import { trackEvent } from "@/lib/analytics";
 
 const FinalCTASection = () => {
   const handleWhatsAppClick = (button: string) => {
-    trackEvent('balao_vendas_final_cta', { button, timestamp: new Date().toISOString() });
-    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
+    trackEvent('balão_vendas_final_cta', { button, timestamp: new Date().toISOString() });
+    window.open(CONTACT.WHATSAPP_Balão_VENDAS, "_blank");
   };
 
   return (

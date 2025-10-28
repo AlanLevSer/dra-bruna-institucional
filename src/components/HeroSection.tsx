@@ -10,12 +10,12 @@ const HeroSection = () => {
   const [showQuiz, setShowQuiz] = useState(false);
 
   const handleWhatsAppClick = () => {
-    trackEvent('balao_vendas_hero_cta', { button: 'transformacao', timestamp: new Date().toISOString() });
-    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
+    trackEvent('balão_vendas_hero_cta', { button: 'transformacao', timestamp: new Date().toISOString() });
+    window.open(CONTACT.WHATSAPP_Balão_VENDAS, "_blank");
   };
 
   const handleQuizClick = () => {
-    trackEvent('balao_vendas_hero_cta', { button: 'quiz', timestamp: new Date().toISOString() });
+    trackEvent('balão_vendas_hero_cta', { button: 'quiz', timestamp: new Date().toISOString() });
     setShowQuiz(true);
   };
 

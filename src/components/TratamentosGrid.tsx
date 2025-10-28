@@ -17,7 +17,7 @@ const tratamentos: Tratamento[] = [
     icon: Activity,
     title: "Balão Intragástrico",
     description: "Dispositivo temporário que reduz a capacidade gástrica, promovendo saciedade precoce. Ideal para quem busca perda de 10-25% do peso.",
-    link: "/balao-intragastrico",
+    link: "/balão-intragastrico",
     category: "endoscopico"
   },
   {

@@ -46,7 +46,7 @@ const timelineItems: TimelineItem[] = [
   }
 ];
 
-export const TimelineBalao = () => {
+export const TimelineBalão = () => {
   return (
     <section className="py-16 xl:py-20 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
       <div className="container mx-auto px-4">

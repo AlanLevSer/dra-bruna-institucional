@@ -1,4 +1,4 @@
-﻿import { lazy, Suspense } from "react";
+�import { lazy, Suspense } from "react";
 import { Navigation } from "@/components/Navigation";
 import { SubpageHero } from "@/components/SubpageHero";
 import { SEOHead } from "@/components/SEOHead";
@@ -38,7 +38,7 @@ const Recursos = () => {
     <>
       <SEOHead data={{
         title: "Recursos Educativos - FAQ, Calculadoras, Guias | Dra. Bruna Durelli",
-        description: "Acesse nossos recursos educativos: FAQ completo, calculadoras de IMC e ROI, guias de emagrecimento, vÃ­deos e artigos sobre tratamento de obesidade.",
+        description: "Acesse nossos recursos educativos: FAQ completo, calculadoras de IMC e ROI, guias de emagrecimento, vídeos e artigos sobre tratamento de obesidade.",
         keywords: "faq obesidade, calculadora imc, guia emagrecimento, recursos educativos, dra bruna durelli",
         canonical: "https://www.brunadurelli.com.br/recursos"
       }} />
@@ -48,10 +48,10 @@ const Recursos = () => {
         <main>
           <SubpageHero
             title="Recursos Educativos"
-            subtitle="Ferramentas e ConteÃºdos"
-            description="Acesse calculadoras, FAQ completo e materiais educativos para apoiar sua jornada de transformaÃ§Ã£o. Conhecimento Ã© poder."
+            subtitle="Ferramentas e Conteúdos"
+            description="Acesse calculadoras, FAQ completo e materiais educativos para apoiar sua jornada de transformação. Conhecimento é poder."
             image={heroImage}
-            ctaText="Tirar DÃºvidas"
+            ctaText="Tirar Dúvidas"
             onCtaClick={handleCTA}
           />
           
@@ -107,7 +107,7 @@ const Recursos = () => {
                     </div>
                     <CardTitle>FAQ Completo</CardTitle>
                     <CardDescription>
-                      Respostas detalhadas para as principais dÃºvidas sobre tratamentos e o Programa LevSer
+                      Respostas detalhadas para as principais dúvidas sobre tratamentos e o Programa LevSer
                     </CardDescription>
                   </CardHeader>
                 </Card>
@@ -135,7 +135,7 @@ const Recursos = () => {
                   Calculadora de Retorno sobre Investimento
                 </h2>
                 <p className="text-muted-foreground">
-                  Entenda o valor real do investimento no seu tratamento comparando com gastos evitÃ¡veis
+                  Entenda o valor real do investimento no seu tratamento comparando com gastos evitáveis
                 </p>
               </div>
               
@@ -152,9 +152,9 @@ const Recursos = () => {
           
           <Suspense fallback={<div className="min-h-[10vh]" />}>
             <CTASection
-              title="Ainda Tem DÃºvidas?"
-              description="Entre em contato e tire todas as suas dÃºvidas sobre tratamentos, consultas e o Programa LevSer."
-              buttonText="Tirar DÃºvidas pelo WhatsApp"
+              title="Ainda Tem Dúvidas?"
+              description="Entre em contato e tire todas as suas dúvidas sobre tratamentos, consultas e o Programa LevSer."
+              buttonText="Tirar Dúvidas pelo WhatsApp"
               onButtonClick={handleCTA}
             />
           </Suspense>

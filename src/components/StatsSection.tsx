@@ -31,8 +31,8 @@ const StatsSection = () => {
   ];
 
   const handleTransformationClick = () => {
-    trackEvent('balao_vendas_stats_cta', { timestamp: new Date().toISOString() });
-    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
+    trackEvent('balão_vendas_stats_cta', { timestamp: new Date().toISOString() });
+    window.open(CONTACT.WHATSAPP_Balão_VENDAS, "_blank");
   };
 
   return (

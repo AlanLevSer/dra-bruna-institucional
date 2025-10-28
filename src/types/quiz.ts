@@ -107,7 +107,7 @@ export interface TransformacaoOutput {
       descricao: string;
     }>;
     intervencao?: {
-      tipo: 'balao_6m' | 'balao_12m' | 'gastroplastia' | 'injetaveis' | 'plasma_argonio' | 'protocolo_clinico_intensivo';
+      tipo: 'balão_6m' | 'balão_12m' | 'gastroplastia' | 'injetaveis' | 'plasma_argonio' | 'protocolo_clinico_intensivo';
       nome: string;
       justificativa: string;
       badgeRecuperacao?: '0 dias' | '1-3 dias' | 'até 1 semana';

@@ -1,4 +1,4 @@
-﻿import { Navigation } from "@/components/Navigation";
+�import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SubpageHero } from "@/components/SubpageHero";
 import { TratamentosGrid } from "@/components/TratamentosGrid";
@@ -22,8 +22,8 @@ const Tratamentos = () => {
     <>
       <SEOHead data={{
         title: "Tratamentos para Obesidade - Endoscopia, Farmacologia, Regenerativa | LevSer",
-        description: "ConheÃ§a todos os tratamentos disponÃ­veis: balÃ£o gÃ¡strico, gastroplastia, canetas emagrecedoras, medicina regenerativa. Abordagem personalizada para cada caso.",
-        keywords: "tratamentos obesidade, balÃ£o gÃ¡strico, gastroplastia, canetas emagrecedoras, medicina regenerativa, sÃ£o paulo",
+        description: "Conheça todos os tratamentos disponíveis: balão gástrico, gastroplastia, canetas emagrecedoras, medicina regenerativa. Abordagem personalizada para cada caso.",
+        keywords: "tratamentos obesidade, balão gástrico, gastroplastia, canetas emagrecedoras, medicina regenerativa, são paulo",
         canonical: "https://www.brunadurelli.com.br/tratamentos"
       }} />
       <StructuredData data={[generateStructuredData.organization]} />
@@ -32,11 +32,11 @@ const Tratamentos = () => {
         <Navigation />
         <main>
           <SubpageHero
-            title="Tratamentos DisponÃ­veis"
-            subtitle="OpÃ§Ãµes Personalizadas"
-            description="ConheÃ§a todos os tratamentos disponÃ­veis: terapias endoscÃ³picas, farmacolÃ³gicas e medicina regenerativa. Encontramos juntas a melhor soluÃ§Ã£o para vocÃª."
+            title="Tratamentos Disponíveis"
+            subtitle="Opções Personalizadas"
+            description="Conheça todos os tratamentos disponíveis: terapias endoscópicas, farmacológicas e medicina regenerativa. Encontramos juntas a melhor solução para você."
             image={heroImage}
-            ctaText="Agendar AvaliaÃ§Ã£o"
+            ctaText="Agendar Avaliação"
             onCtaClick={handleCTA}
           />
           
@@ -53,15 +53,15 @@ const Tratamentos = () => {
                     Nenhum tratamento funciona sozinho
                   </h2>
                   <p className="text-lg text-muted-foreground">
-                    A obesidade Ã© uma <strong className="text-foreground">doenÃ§a multifatorial</strong> â€” 
-                    envolve metabolismo, hormÃ´nios, comportamento, sono, estresse e hÃ¡bitos alimentares. 
-                    <strong className="text-foreground"> E tambÃ©m impacta diretamente sua longevidade e qualidade de vida.</strong>
+                    A obesidade é uma <strong className="text-foreground">doença multifatorial</strong> � 
+                    envolve metabolismo, hormônios, comportamento, sono, estresse e hábitos alimentares. 
+                    <strong className="text-foreground"> E também impacta diretamente sua longevidade e qualidade de vida.</strong>
                   </p>
                 </div>
 
                 <div className="bg-card/80 backdrop-blur-sm border border-primary/20 rounded-2xl p-8 shadow-elegant mb-8">
                   <p className="text-lg text-foreground mb-6">
-                    Por isso, <strong>todos os tratamentos da LevSer sÃ£o integrados ao Programa completo</strong>, 
+                    Por isso, <strong>todos os tratamentos da LevSer são integrados ao Programa completo</strong>, 
                     que se baseia em <strong>4 pilares fundamentais:</strong>
                   </p>
                   
@@ -71,8 +71,8 @@ const Tratamentos = () => {
                         <Utensils className="w-6 h-6 text-emerald-600" />
                       </div>
                       <div>
-                        <h3 className="font-serif font-bold text-foreground mb-1">NutriÃ§Ã£o Inteligente</h3>
-                        <p className="text-sm text-muted-foreground">ReeducaÃ§Ã£o alimentar personalizada e sustentÃ¡vel</p>
+                        <h3 className="font-serif font-bold text-foreground mb-1">Nutrição Inteligente</h3>
+                        <p className="text-sm text-muted-foreground">Reeducação alimentar personalizada e sustentável</p>
                       </div>
                     </div>
 
@@ -81,8 +81,8 @@ const Tratamentos = () => {
                         <Dna className="w-6 h-6 text-blue-600" />
                       </div>
                       <div>
-                        <h3 className="font-serif font-bold text-foreground mb-1">SaÃºde MetabÃ³lica & Regenerativa</h3>
-                        <p className="text-sm text-muted-foreground">OtimizaÃ§Ã£o hormonal, controle inflamatÃ³rio e longevidade celular</p>
+                        <h3 className="font-serif font-bold text-foreground mb-1">Saúde Metabólica & Regenerativa</h3>
+                        <p className="text-sm text-muted-foreground">Otimização hormonal, controle inflamatório e longevidade celular</p>
                       </div>
                     </div>
 
@@ -92,7 +92,7 @@ const Tratamentos = () => {
                       </div>
                       <div>
                         <h3 className="font-serif font-bold text-foreground mb-1">Corpo em Movimento</h3>
-                        <p className="text-sm text-muted-foreground">PrescriÃ§Ã£o de atividade fÃ­sica orientada e individualizada</p>
+                        <p className="text-sm text-muted-foreground">Prescrição de atividade física orientada e individualizada</p>
                       </div>
                     </div>
 
@@ -102,7 +102,7 @@ const Tratamentos = () => {
                       </div>
                       <div>
                         <h3 className="font-serif font-bold text-foreground mb-1">Mente & Comportamento</h3>
-                        <p className="text-sm text-muted-foreground">Suporte psicolÃ³gico para gatilhos emocionais e hÃ¡bitos</p>
+                        <p className="text-sm text-muted-foreground">Suporte psicológico para gatilhos emocionais e hábitos</p>
                       </div>
                     </div>
                   </div>
@@ -110,14 +110,14 @@ const Tratamentos = () => {
 
                 <div className="bg-primary/5 border-l-4 border-primary rounded-lg p-6">
                   <p className="text-muted-foreground">
-                    <strong className="text-foreground">O diferencial da Dra. Bruna Durelli:</strong> vocÃª nÃ£o recebe apenas 
-                    um procedimento ou medicaÃ§Ã£o â€” vocÃª recebe um <strong>programa completo de transformaÃ§Ã£o</strong>, 
-                    com time interdisciplinar (mÃ©dico + nutricionista + psicÃ³logo + educador fÃ­sico) trabalhando de forma integrada 
-                    em cada fase da sua jornada, promovendo nÃ£o sÃ³ emagrecimento mas longevidade com qualidade.
+                    <strong className="text-foreground">O diferencial da Dra. Bruna Durelli:</strong> você não recebe apenas 
+                    um procedimento ou medicação � você recebe um <strong>programa completo de transformação</strong>, 
+                    com time interdisciplinar (médico + nutricionista + psicólogo + educador físico) trabalhando de forma integrada 
+                    em cada fase da sua jornada, promovendo não só emagrecimento mas longevidade com qualidade.
                   </p>
                   <p className="mt-3">
                     <a href="/programa-levser" className="text-primary hover:underline font-medium">
-                      ConheÃ§a o Programa LevSer completo â†’
+                      Conheça o Programa LevSer completo � 
                     </a>
                   </p>
                 </div>
@@ -125,7 +125,7 @@ const Tratamentos = () => {
             </div>
           </section>
           
-          {/* Procedimentos EndoscÃ³picos */}
+          {/* Procedimentos Endoscópicos */}
           <section id="endoscopicos" className="py-16 xl:py-20 bg-background relative overflow-hidden">
             <GrafismoDecor variant="background" position="top-left" size="lg" opacity={0.1} rotate={15} color="gray" />
             <div className="container mx-auto px-4 relative z-10">
@@ -134,11 +134,11 @@ const Tratamentos = () => {
                   <Activity className="w-8 h-8 text-primary" />
                 </div>
                 <h2 className="text-3xl xl:text-4xl font-serif font-bold mb-4">
-                  Procedimentos EndoscÃ³picos
+                  Procedimentos Endoscópicos
                 </h2>
                 <p className="text-muted-foreground">
-                  BalÃ£o intragÃ¡strico, gastroplastia endoscÃ³pica e plasma de argÃ´nio. 
-                  Procedimentos minimamente invasivos com recuperaÃ§Ã£o rÃ¡pida e resultados excelentes.
+                  Balão intragástrico, gastroplastia endoscópica e plasma de argônio. 
+                  Procedimentos minimamente invasivos com recuperação rápida e resultados excelentes.
                 </p>
               </div>
               
@@ -158,8 +158,8 @@ const Tratamentos = () => {
                   Emagrecimento & Longevidade
                 </h2>
                 <p className="text-muted-foreground">
-                  Canetas emagrecedoras, medicina regenerativa e nutriÃ§Ã£o celular avanÃ§ada. 
-                  Abordagem integrada para resultados sustentÃ¡veis e qualidade de vida superior.
+                  Canetas emagrecedoras, medicina regenerativa e nutrição celular avançada. 
+                  Abordagem integrada para resultados sustentáveis e qualidade de vida superior.
                 </p>
               </div>
               
@@ -179,11 +179,11 @@ const Tratamentos = () => {
                   <div className="space-y-4">
                     <h3 className="text-xl font-semibold flex items-center gap-2">
                       <CheckCircle2 className="text-primary" size={20} />
-                      AvaliaÃ§Ã£o Personalizada
+                      Avaliação Personalizada
                     </h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      Na primeira consulta, avalio seu histÃ³rico, objetivos, exames e estilo de vida 
-                      para desenhar o plano mais adequado para vocÃª.
+                      Na primeira consulta, avalio seu histórico, objetivos, exames e estilo de vida 
+                      para desenhar o plano mais adequado para você.
                     </p>
                   </div>
 
@@ -193,18 +193,18 @@ const Tratamentos = () => {
                       Abordagem Combinada
                     </h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      Muitas vezes, a melhor estratÃ©gia Ã© combinar diferentes tratamentos. 
-                      Por exemplo: balÃ£o + nutriÃ§Ã£o celular + suporte comportamental.
+                      Muitas vezes, a melhor estratégia é combinar diferentes tratamentos. 
+                      Por exemplo: balão + nutrição celular + suporte comportamental.
                     </p>
                   </div>
 
                   <div className="space-y-4">
                     <h3 className="text-xl font-semibold flex items-center gap-2">
                       <CheckCircle2 className="text-primary" size={20} />
-                      DecisÃ£o Compartilhada
+                      Decisão Compartilhada
                     </h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      VocÃª nÃ£o decide sozinha. ConstruÃ­mos o plano juntas, considerando suas 
+                      Você não decide sozinha. Construímos o plano juntas, considerando suas 
                       expectativas, receios e realidade do dia a dia.
                     </p>
                   </div>
@@ -212,11 +212,11 @@ const Tratamentos = () => {
                   <div className="space-y-4">
                     <h3 className="text-xl font-semibold flex items-center gap-2">
                       <CheckCircle2 className="text-primary" size={20} />
-                      Acompanhamento ContÃ­nuo
+                      Acompanhamento Contínuo
                     </h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      Seu tratamento evolui com vocÃª. Ajustamos estratÃ©gias conforme sua resposta, 
-                      garantindo os melhores resultados possÃ­veis.
+                      Seu tratamento evolui com você. Ajustamos estratégias conforme sua resposta, 
+                      garantindo os melhores resultados possíveis.
                     </p>
                   </div>
                 </div>
@@ -228,9 +228,9 @@ const Tratamentos = () => {
           <ComparadorBaloes />
           
           <CTASection
-            title="Vamos Descobrir o Melhor Tratamento para VocÃª?"
-            description="Agende sua avaliaÃ§Ã£o e receba um plano personalizado baseado no seu perfil e objetivos."
-            buttonText="Agendar AvaliaÃ§Ã£o"
+            title="Vamos Descobrir o Melhor Tratamento para Você?"
+            description="Agende sua avaliação e receba um plano personalizado baseado no seu perfil e objetivos."
+            buttonText="Agendar Avaliação"
             onButtonClick={handleCTA}
           />
           
