@@ -1,4 +1,5 @@
 import { isGoogleSource, isMetaSource } from "@/lib/utm";
+import { fireDataEvent } from "@/lib/events";
 
 export default function Hero() {
   const google = isGoogleSource();
@@ -21,6 +22,7 @@ export default function Hero() {
                 href={meta ? "#oferta" : "#lead"}
                 data-event="cta_click_hero_primary"
                 className="inline-flex items-center rounded-2xl bg-slate-900 px-4 py-2 text-white shadow-sm hover:bg-slate-800"
+                onClick={(e) => fireDataEvent(e.currentTarget as any)}
               >
                 {primaryLabel}
               </a>
@@ -28,6 +30,7 @@ export default function Hero() {
                 href="#oferta"
                 data-event="cta_click_hero_quiz"
                 className="inline-flex items-center rounded-2xl border px-4 py-2 text-slate-900 hover:bg-slate-50"
+                onClick={(e) => fireDataEvent(e.currentTarget as any)}
               >
                 Fazer teste de 60s
               </a>
@@ -35,6 +38,7 @@ export default function Hero() {
                 href="#guia"
                 data-event="cta_click_hero_guide"
                 className="inline-flex items-center rounded-2xl border px-4 py-2 text-slate-900 hover:bg-slate-50"
+                onClick={(e) => fireDataEvent(e.currentTarget as any)}
               >
                 Baixar guia 7 dias
               </a>
@@ -49,4 +53,3 @@ export default function Hero() {
     </section>
   );
 }
-

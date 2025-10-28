@@ -1,4 +1,5 @@
 import { isGoogleSource, isMetaSource } from "@/lib/utm";
+import { fireDataEvent } from "@/lib/events";
 
 type Props = {
   onPrimaryClick?: () => void;
@@ -17,7 +18,7 @@ export default function Header({ onPrimaryClick }: Props) {
           <a
             href="#lead"
             data-event="cta_click_top_primary"
-            onClick={onPrimaryClick}
+            onClick={(e) => { fireDataEvent(e.currentTarget as any); onPrimaryClick?.(); }}
             className="inline-flex items-center rounded-2xl bg-slate-900 px-4 py-2 text-white text-sm shadow-sm hover:bg-slate-800"
           >
             {primaryLabel}
@@ -27,6 +28,7 @@ export default function Header({ onPrimaryClick }: Props) {
             target="_blank"
             rel="noopener noreferrer"
             data-event="cta_click_top_whatsapp"
+            onClick={(e) => fireDataEvent(e.currentTarget as any)}
             className="inline-flex items-center rounded-2xl border px-4 py-2 text-sm text-slate-900 hover:bg-slate-50"
           >
             WhatsApp
@@ -36,4 +38,3 @@ export default function Header({ onPrimaryClick }: Props) {
     </header>
   );
 }
-
