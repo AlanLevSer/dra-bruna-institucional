@@ -1,4 +1,4 @@
-import { OptimizedImage } from "@/components/OptimizedImage";
+ï»¿import { OptimizedImage } from "@/components/OptimizedImage";
 import terraLogo from "@/assets/media/terra-logo.avif";
 import crescerLogo from "@/assets/media/crescer-logo.avif";
 import jovemPanLogo from "@/assets/media/jovem-pan-logo.avif";
@@ -21,10 +21,10 @@ export const MediaRecognitionVendas = () => {
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Reconhecida pela mídia nacional
+            Reconhecida pela mÃ­dia nacional
           </h2>
           <p className="text-lg text-muted-foreground">
-            Dra. Bruna Durelli é referência em emagrecimento sustentável e balão intragástrico.
+            Dra. Bruna Durelli Ã© referÃªncia em emagrecimento sustentÃ¡vel e balÃ£o intragÃ¡strico.
           </p>
         </div>
 
@@ -51,11 +51,10 @@ export const MediaRecognitionVendas = () => {
 
         <div className="text-center mt-12">
           <p className="text-xl font-medium italic text-muted-foreground">
-            "Referência nacional em emagrecimento sustentável e balão intragástrico"
+            "ReferÃªncia nacional em emagrecimento sustentÃ¡vel e balÃ£o intragÃ¡strico"
           </p>
         </div>
       </div>
     </section>
   );
 };
-
