@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+﻿import { useState, useRef, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { QuizData } from "@/types/quiz";
 import { generateTransformacaoOutput } from "@/lib/quiz-logic";
@@ -70,7 +70,7 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
     limitacaoDor: null
   });
 
-  const updateQuizData = (field: string, value: any) => {
+  const updateQuizData = <K extends keyof QuizData>(field: K, value: QuizData[K]) => {
     const newData = { ...quizData, [field]: value };
     if (field === 'peso' || field === 'altura') {
       if (newData.peso > 0 && newData.altura > 0) {
@@ -140,9 +140,9 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
           return false;
       }
     } catch (error: any) {
-      const errorMessage = error.errors?.[0]?.message || "Dados inválidos";
+      const errorMessage = error.errors?.[0]?.message || "Dados invÃ¡lidos";
       toast({
-        title: "Validação de dados",
+        title: "ValidaÃ§Ã£o de dados",
         description: errorMessage,
         variant: "destructive"
       });
@@ -177,7 +177,7 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
     
     setIsGenerating(true);
     
-    // Simular processamento para dar sensação de personalização
+    // Simular processamento para dar sensaÃ§Ã£o de personalizaÃ§Ã£o
     await new Promise(resolve => setTimeout(resolve, 2000));
     
     setShowOutput(true);
@@ -313,7 +313,7 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
               onResetQuiz={resetQuiz}
               notaGlobal={output.perfilSaude.notaGlobal}
               conceito={output.perfilSaude.conceito}
-              tratamentoRecomendado={output.mixEstrategias.intervencao?.nome || 'Protocolo Clínico'}
+              tratamentoRecomendado={output.mixEstrategias.intervencao?.nome || 'Protocolo ClÃ­nico'}
               metaKg={output.planoEnergetico.metaKg}
               semanasPlano={output.planoEnergetico.semanasPlano}
             />
@@ -323,3 +323,4 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
     </Dialog>
   );
 };
+
