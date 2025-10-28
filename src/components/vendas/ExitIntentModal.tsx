@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
@@ -29,8 +29,8 @@ export const ExitIntentModal = () => {
         location: 'exit_intent_modal',
         path: window.location.pathname,
       });
-    } catch {}
-    window.open(CONTACT.WHATSAPP_Balão_VENDAS, "_blank");
+    } catch (e) { void e; }
+    window.open(CONTACT.WHATSAPP_BALAO_£o_VENDAS, "_blank");
     setIsOpen(false);
   };
 
@@ -53,24 +53,24 @@ export const ExitIntentModal = () => {
           
           <div className="bg-muted/30 rounded-xl p-6 mb-6">
             <p className="text-lg text-foreground mb-4">
-              Consulta de Avaliação Completa com a Dra. Bruna Durelli
+              Consulta de AvaliaÃ§Ã£o Completa com a Dra. Bruna Durelli
             </p>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
-                <span className="text-primary font-bold">✓</span>
-                <span>Avaliação médica completa e detalhada</span>
+                <span className="text-primary font-bold">âœ“</span>
+                <span>AvaliaÃ§Ã£o mÃ©dica completa e detalhada</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary font-bold">✓</span>
+                <span className="text-primary font-bold">âœ“</span>
                 <span>Plano de tratamento personalizado</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary font-bold">✓</span>
-                <span>Orientação nutricional inicial</span>
+                <span className="text-primary font-bold">âœ“</span>
+                <span>OrientaÃ§Ã£o nutricional inicial</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary font-bold">✓</span>
-                <span>Sem compromisso de contratação</span>
+                <span className="text-primary font-bold">âœ“</span>
+                <span>Sem compromisso de contrataÃ§Ã£o</span>
               </li>
             </ul>
           </div>
@@ -87,11 +87,12 @@ export const ExitIntentModal = () => {
             onClick={handleClose}
             className="mt-4 text-sm text-muted-foreground hover:text-foreground transition-colors mx-auto block"
           >
-            Não, obrigada
+            NÃ£o, obrigada
           </button>
         </div>
       </DialogContent>
     </Dialog>
   );
 };
+
 
