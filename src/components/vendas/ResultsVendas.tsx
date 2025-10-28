@@ -1,4 +1,4 @@
-import { GrafismoDecor } from "@/components/GrafismoDecor";
+﻿import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { Heart, Zap, Star, Moon } from "lucide-react";
 
 const benefits = [
@@ -67,4 +67,3 @@ export const ResultsVendas = () => {
     </section>
   );
 };
-
