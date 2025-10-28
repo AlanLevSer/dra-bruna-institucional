@@ -1,4 +1,4 @@
-import { CheckCircle2 } from "lucide-react";
+﻿import { CheckCircle2 } from "lucide-react";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import programImage from "@/assets/patient-wellness-1.avif";
 import { CONTACT } from "@/lib/constants";
@@ -66,7 +66,7 @@ export const ProgramaLevSerVendas = () => {
                 </p>
               </div>
 
-              <div className="bg-accent/10 p-6 rounded-xl border border-accent/20">
+              <div className="bg-accent/10 p-6 rounded-XL border border-accent/20">
                 <h3 className="text-lg font-semibold text-foreground mb-4">
                   Para quem é este programa?
                 </h3>
@@ -108,4 +108,3 @@ export const ProgramaLevSerVendas = () => {
     </section>
   );
 };
-
