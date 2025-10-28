@@ -1,3 +1,4 @@
+﻿/* eslint-disable react-refresh/only-export-components */
 import { LucideIcon, Flame, Stethoscope, Trophy } from "lucide-react";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 
@@ -19,7 +20,7 @@ export const CasosDeUso = ({ casos }: CasosDeUsoProps) => {
       <GrafismoDecor variant="background" position="top-left" size="lg" opacity={0.15} rotate={25} color="gray" />
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4 text-center">
-          Casos de Uso Específicos
+          Casos de Uso EspecÃ­ficos
         </h2>
         <p className="text-lg text-muted-foreground mb-12 max-w-3xl mx-auto text-center">
           Programas personalizados para diferentes perfis e necessidades
@@ -48,16 +49,16 @@ export const CasosDeUso = ({ casos }: CasosDeUsoProps) => {
                   </div>
                   
                   <div>
-                    <p className="text-sm font-medium text-primary mb-2">Solução:</p>
+                    <p className="text-sm font-medium text-primary mb-2">SoluÃ§Ã£o:</p>
                     <p className="text-sm text-muted-foreground">{caso.solucao}</p>
                   </div>
                   
                   <div>
-                    <p className="text-sm font-medium text-foreground mb-2">Benefícios:</p>
+                    <p className="text-sm font-medium text-foreground mb-2">BenefÃ­cios:</p>
                     <ul className="space-y-1">
                       {caso.beneficios.map((beneficio, idx) => (
                         <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
-                          <span className="text-primary mt-0.5">•</span>
+                          <span className="text-primary mt-0.5">â€¢</span>
                           <span>{beneficio}</span>
                         </li>
                       ))}
@@ -73,42 +74,43 @@ export const CasosDeUso = ({ casos }: CasosDeUsoProps) => {
   );
 };
 
-// Dados padrão para Medicina Regenerativa
+// Dados padrÃ£o para Medicina Regenerativa
 export const casosDeUsoRegenerativa: CasoDeUso[] = [
   {
     icon: Flame,
-    titulo: "Menopausa & Climatério",
-    problema: "Ganho de peso, fadiga, resistência metabólica, queda de massa magra",
-    solucao: "Programas regenerativos para modular inflamação, preservar músculo e otimizar energia",
+    titulo: "Menopausa & ClimatÃ©rio",
+    problema: "Ganho de peso, fadiga, resistÃªncia metabÃ³lica, queda de massa magra",
+    solucao: "Programas regenerativos para modular inflamaÃ§Ã£o, preservar mÃºsculo e otimizar energia",
     beneficios: [
       "Controle de peso facilitado",
-      "Mais disposição e foco",
+      "Mais disposiÃ§Ã£o e foco",
       "Sono e humor melhores",
-      "Preservação de massa muscular"
+      "PreservaÃ§Ã£o de massa muscular"
     ]
   },
   {
     icon: Stethoscope,
-    titulo: "Pós-Bariátrica",
-    problema: "Deficiências nutricionais severas, fadiga crônica, queda de cabelo, anemia",
-    solucao: "Repleção estratégica intravenosa e via oral para recuperar marcadores e qualidade de vida",
+    titulo: "PÃ³s-BariÃ¡trica",
+    problema: "DeficiÃªncias nutricionais severas, fadiga crÃ´nica, queda de cabelo, anemia",
+    solucao: "RepleÃ§Ã£o estratÃ©gica intravenosa e via oral para recuperar marcadores e qualidade de vida",
     beneficios: [
       "Energia restaurada",
-      "Recuperação capilar e unhas",
+      "RecuperaÃ§Ã£o capilar e unhas",
       "Imunidade fortalecida",
-      "Manutenção do peso saudável"
+      "ManutenÃ§Ã£o do peso saudÃ¡vel"
     ]
   },
   {
     icon: Trophy,
     titulo: "Atletas & Performance",
     problema: "Dificuldade de reduzir gordura sem perder performance ou massa magra",
-    solucao: "Programas de composição corporal + recuperação acelerada + energia limpa",
+    solucao: "Programas de composiÃ§Ã£o corporal + recuperaÃ§Ã£o acelerada + energia limpa",
     beneficios: [
-      "Manutenção de força",
-      "Recuperação mais rápida",
+      "ManutenÃ§Ã£o de forÃ§a",
+      "RecuperaÃ§Ã£o mais rÃ¡pida",
       "Foco mental sustentado",
-      "Controle de inflamação pós-treino"
+      "Controle de inflamaÃ§Ã£o pÃ³s-treino"
     ]
   }
 ];
+
