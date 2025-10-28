@@ -55,7 +55,7 @@ export const FAQVendas = () => {
   const handleWhatsApp = () => {
     try {
       trackWhatsAppClick("faq_vendas");
-    } catch {}
+    } catch (e) { void e; }
     window.open(CONTACT.WHATSAPP_Balão_VENDAS, "_blank");
   };
 
@@ -99,4 +99,5 @@ export const FAQVendas = () => {
     </section>
   );
 };
+
 
