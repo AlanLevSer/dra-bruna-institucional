@@ -1,12 +1,12 @@
-import { Button } from "@/components/ui/button";
+ï»¿import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 import { Phone, MapPin, Clock, Mail } from "lucide-react";
 
 const contactInfo = [
   { icon: Phone, title: "Telefone", value: CONTACT.PHONE_DISPLAY },
-  { icon: MapPin, title: "Endereço", value: `${CONTACT.ADDRESS.street} - ${CONTACT.ADDRESS.neighborhood}` },
-  { icon: Clock, title: "Horário", value: CONTACT.HORARIO.weekdays },
+  { icon: MapPin, title: "EndereÃ§o", value: `${CONTACT.ADDRESS.street} - ${CONTACT.ADDRESS.neighborhood}` },
+  { icon: Clock, title: "HorÃ¡rio", value: CONTACT.HORARIO.weekdays },
   { icon: Mail, title: "E-mail", value: CONTACT.EMAIL },
 ];
 
@@ -27,10 +27,10 @@ export const FinalCTAVendas = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-12">
             <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">
-              Pronta para dar o próximo passo?
+              Pronta para dar o prÃ³ximo passo?
             </h2>
             <p className="text-lg md:text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Agende uma consulta de avaliação e descubra se o balão intragástrico é o tratamento ideal para você.
+              Agende uma consulta de avaliaÃ§Ã£o e descubra se o balÃ£o intragÃ¡strico Ã© o tratamento ideal para vocÃª.
             </p>
 
             <Button
@@ -38,7 +38,7 @@ export const FinalCTAVendas = () => {
               onClick={handleWhatsApp}
               className="bg-card text-foreground hover:bg-card/90 shadow-elegant text-base md:text-lg px-8 py-6 h-auto"
             >
-              Agendar avaliação
+              Agendar avaliaÃ§Ã£o
             </Button>
           </div>
 
@@ -65,4 +65,3 @@ export const FinalCTAVendas = () => {
     </section>
   );
 };
-
