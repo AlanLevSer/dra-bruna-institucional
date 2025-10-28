@@ -6,8 +6,6 @@ import { TargetAudienceVendas } from "@/components/vendas/TargetAudienceVendas";
 import { ProgramaLevSerVendas } from "@/components/vendas/ProgramaLevSerVendas";
 import { PilaresMetodoVendas } from "@/components/vendas/PilaresMetodoVendas";
 import { JornadaFasesVendas } from "@/components/vendas/JornadaFasesVendas";
-import { PlansComparison } from "@/components/vendas/PlansComparison";
-import { ComparadorBaloes } from "@/components/ComparadorBaloes";
 import { ResultsVendas } from "@/components/vendas/ResultsVendas";
 import { TestimonialsVendas } from "@/components/vendas/TestimonialsVendas";
 import { CredentialsVendas } from "@/components/vendas/CredentialsVendas";
@@ -38,8 +36,7 @@ const BalaoVendas = () => {
       <ProgramaLevSerVendas />
       <PilaresMetodoVendas />
       <JornadaFasesVendas />
-      <PlansComparison />
-      <ComparadorBaloes />
+      {/* Removed: <PlansComparison /> and <ComparadorBaloes /> */}
       <ResultsVendas />
       <TestimonialsVendas />
       <CredentialsVendas />
@@ -54,4 +51,3 @@ const BalaoVendas = () => {
 };
 
 export default BalaoVendas;
-
