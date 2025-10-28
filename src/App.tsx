@@ -14,7 +14,7 @@ const ProgramaLevSerPage = lazy(() => import("./pages/ProgramaLevSerPage"));
 const Tratamentos = lazy(() => import("./pages/Tratamentos"));
 const Recursos = lazy(() => import("./pages/Recursos"));
 const NutricaoCelular = lazy(() => import("./pages/NutricaoCelular"));
-const BalÃ£oIntragastrico = lazy(() => import("./pages/BalÃ£oIntragastrico"));
+const BalaoIntragastrico = lazy(() => import("./pages/BalaoIntragastrico"));
 const GastroplastiaEndoscopica = lazy(() => import("./pages/GastroplastiaEndoscopica"));
 const CanetasEmagrecedoras = lazy(() => import("./pages/CanetasEmagrecedoras"));
 const MedicinaRegenerativa = lazy(() => import("./pages/MedicinaRegenerativa"));
@@ -22,8 +22,8 @@ const PlasmaArgonio = lazy(() => import("./pages/PlasmaArgonio"));
 const PoliticaPrivacidade = lazy(() => import("./pages/PoliticaPrivacidade"));
 const TermosUso = lazy(() => import("./pages/TermosUso"));
 const Quiz = lazy(() => import("./pages/Quiz"));
-const BalÃ£oVendas = lazy(() => import("./pages/BalÃ£oVendas"));
-const BalÃ£oIntragastricoB = lazy(() => import("./pages/BalÃ£oIntragastricoB"));
+const BalaoVendas = lazy(() => import("./pages/BalaoVendas"));
+const BalaoIntragastricoB = lazy(() => import("./pages/BalaoIntragastricoB"));
 
 const queryClient = new QueryClient();
 
@@ -71,10 +71,10 @@ const App = () => (
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/descubra-seu-caminho" element={<Quiz />} />
             <Route path="/nutricao-celular" element={<NutricaoCelular />} />
-            <Route path="/balÃ£o-intragastrico" element={<BalÃ£oIntragastrico />} />
-            <Route path="/balÃ£o-intragastrico-a" element={<BalÃ£oVendas />} />
-            <Route path="/balÃ£o-intragastrico-b" element={<BalÃ£oIntragastricoB />} />
-            <Route path="/terapias-endoscopicas" element={<Navigate to="/balÃ£o-intragastrico" replace />} />
+            <Route path="/balao-intragastrico" element={<BalaoIntragastrico />} />
+            <Route path="/balao-intragastrico-a" element={<BalaoVendas />} />
+            <Route path="/balao-intragastrico-b" element={<BalaoIntragastricoB />} />
+            <Route path="/terapias-endoscopicas" element={<Navigate to="/balao-intragastrico" replace />} />
             <Route path="/gastroplastia-endoscopica" element={<GastroplastiaEndoscopica />} />
             <Route path="/canetas-emagrecedoras" element={<CanetasEmagrecedoras />} />
             <Route path="/terapia-sacietogena" element={<Navigate to="/canetas-emagrecedoras" replace />} />
@@ -92,6 +92,10 @@ const App = () => (
 );
 
 export default App;
+
+
+
+
 
 
 

@@ -1,3 +1,4 @@
+﻿/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -126,4 +127,4 @@ export const QuizStep7 = ({
     </div>
   );
 };
-/* eslint-disable @typescript-eslint/no-explicit-any */
+

@@ -1,4 +1,4 @@
-/*
+﻿/*
   Varrida geral para corrigir mojibake/acentos corrompidos (Ã, Â, �) em arquivos .ts, .tsx, .js, .jsx, .html, .md.
   Estratégia: se o texto contiver indicadores de mojibake, tenta redecodificar como se fosse Latin-1 -> UTF-8.
   Mantém backup em memória e só salva se melhorar (reduz contagem de caracteres problemáticos).
@@ -39,7 +39,6 @@ function processFile(filePath) {
   const fixed = repairText(original)
     // normaliza alguns termos comuns que podem aparecer duplamente corrompidos
     .replace(/S\u00e3o Paulo/g, 'São Paulo')
-    .replace(/balao/gi, (m) => (m === 'balao' ? 'balão' : 'Balão'));
 
   if (fixed !== original) {
     fs.writeFileSync(filePath, fixed, 'utf8');
@@ -65,4 +64,5 @@ for (const d of targetDirs) {
 }
 
 console.log('Encoding repair sweep completed.');
+
 

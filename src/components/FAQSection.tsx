@@ -1,4 +1,4 @@
-import {
+﻿import {
   Accordion,
   AccordionContent,
   AccordionItem,
@@ -38,7 +38,7 @@ const FAQSection = () => {
 
   const handleSpecialistClick = () => {
     trackEvent('balão_vendas_faq_cta', { timestamp: new Date().toISOString() });
-    window.open(CONTACT.WHATSAPP_Balão_VENDAS, "_blank");
+    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
   };
 
   return (
@@ -95,3 +95,4 @@ const FAQSection = () => {
 };
 
 export default FAQSection;
+

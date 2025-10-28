@@ -1,3 +1,4 @@
+﻿/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TransformacaoOutput } from "@/types/quiz";
 import { Utensils, Dumbbell, Brain, Sparkles, Syringe, Scissors, Shield, Lightbulb, Zap } from "lucide-react";
 
@@ -154,4 +155,4 @@ export const MixEstrategias = ({ mixEstrategias }: MixEstrategiasProps) => {
     </div>
   );
 };
-/* eslint-disable @typescript-eslint/no-explicit-any */
+

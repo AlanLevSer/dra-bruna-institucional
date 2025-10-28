@@ -99,7 +99,7 @@ export const PilaresMetodoVendas = () => {
             <Button
               size="lg"
               onClick={() => {
-                try { trackEvent('cta_whatsapp_click', { location: 'pilares_metodo_vendas', path: window.location.pathname }); } catch {}
+                try { trackEvent('cta_whatsapp_click', { location: 'pilares_metodo_vendas', path: window.location.pathname }); } catch (e) { void e; }
                 const message = "Olá! Quero conhecer meu plano personalizado pelos 4 pilares do Programa LevSer.";
                 window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, '_blank');
               }}

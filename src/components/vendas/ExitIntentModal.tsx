@@ -30,7 +30,7 @@ export const ExitIntentModal = () => {
         path: window.location.pathname,
       });
     } catch (e) { void e; }
-    window.open(CONTACT.WHATSAPP_BALAO_£o_VENDAS, "_blank");
+    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
     setIsOpen(false);
   };
 
@@ -94,5 +94,6 @@ export const ExitIntentModal = () => {
     </Dialog>
   );
 };
+
 
 

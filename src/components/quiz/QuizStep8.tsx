@@ -1,3 +1,4 @@
+﻿/* eslint-disable @typescript-eslint/no-explicit-any */
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Activity, Dumbbell, Footprints, AlertCircle } from "lucide-react";
@@ -233,4 +234,4 @@ export const QuizStep8 = ({
     </div>
   );
 };
-/* eslint-disable @typescript-eslint/no-explicit-any */
+

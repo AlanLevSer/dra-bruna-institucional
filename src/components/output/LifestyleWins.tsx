@@ -1,12 +1,13 @@
-import { TransformacaoOutput } from "@/types/quiz";
+﻿import { TransformacaoOutput } from "@/types/quiz";
 import { Moon, Droplet, Dumbbell, Smartphone, ChefHat, Check } from "lucide-react";
+import type { ComponentType } from "react";
 
 interface LifestyleWinsProps {
   lifestyleWins: TransformacaoOutput['lifestyleWins'];
 }
 
 export const LifestyleWins = ({ lifestyleWins }: LifestyleWinsProps) => {
-  const iconMap: Record<string, any> = {
+  const iconMap: Record<string, ComponentType<{ className?: string }>> = {
     Moon,
     Droplet,
     Dumbbell,
@@ -71,4 +72,4 @@ export const LifestyleWins = ({ lifestyleWins }: LifestyleWinsProps) => {
     </div>
   );
 };
-/* eslint-disable @typescript-eslint/no-explicit-any */
+

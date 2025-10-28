@@ -1,3 +1,4 @@
+﻿/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
@@ -123,4 +124,4 @@ export const QuizStep1 = ({ peso, altura, metaPeso, imc, idade, sexo, onChange }
     </div>
   );
 };
-/* eslint-disable @typescript-eslint/no-explicit-any */
+

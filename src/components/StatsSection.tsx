@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+﻿import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 
@@ -32,7 +32,7 @@ const StatsSection = () => {
 
   const handleTransformationClick = () => {
     trackEvent('balão_vendas_stats_cta', { timestamp: new Date().toISOString() });
-    window.open(CONTACT.WHATSAPP_Balão_VENDAS, "_blank");
+    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
   };
 
   return (
@@ -98,3 +98,4 @@ const StatsSection = () => {
 };
 
 export default StatsSection;
+

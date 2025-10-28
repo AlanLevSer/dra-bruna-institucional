@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import draBrunaImage from "@/assets/dra-bruna-hero.avif";
@@ -11,7 +11,7 @@ const HeroSection = () => {
 
   const handleWhatsAppClick = () => {
     trackEvent('balão_vendas_hero_cta', { button: 'transformacao', timestamp: new Date().toISOString() });
-    window.open(CONTACT.WHATSAPP_Balão_VENDAS, "_blank");
+    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
   };
 
   const handleQuizClick = () => {
@@ -111,4 +111,5 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
 
