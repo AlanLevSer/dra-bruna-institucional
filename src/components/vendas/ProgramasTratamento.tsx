@@ -72,7 +72,7 @@ export const ProgramasTratamento = () => {
             >
               {p.destaque && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <div className="px-5 py-1.5 rounded-full text-[11px] md:text-xs font-bold tracking-wide text-white shadow-lg bg-gradient-to-r from-primary to-secondary ring-1 ring-white/40 backdrop-blur-sm flex items-center gap-2">
+                  <div className="px-5 py-1.5 rounded-full text-[11px] md:text-xs font-bold tracking-wide text-primary-foreground shadow-lg bg-gradient-premium ring-1 ring-white/40 backdrop-blur-sm flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-white/90 rounded-full animate-pulse" />
                     PROGRAMA MAIS ESCOLHIDO
                   </div>
@@ -80,8 +80,8 @@ export const ProgramasTratamento = () => {
               )}
 
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-serif font-bold text-foreground">{p.titulo}</h3>
-                <p className="text-sm md:text-base mt-1 font-semibold text-primary">{p.duracao}</p>
+                <h3 className="text-3xl md:text-4xl font-serif font-bold text-foreground">{p.titulo}</h3>
+                <p className="text-base md:text-lg mt-1 font-semibold text-primary font-serif">{p.duracao}</p>
               </div>
 
               <ul className="space-y-4 mb-8">
@@ -96,7 +96,7 @@ export const ProgramasTratamento = () => {
                 ))}
               </ul>
 
-              <Button className="w-full bg-gradient-premium hover:opacity-90 text-white" onClick={() => escolher(p.duracao)}>
+              <Button className="w-full bg-gradient-premium hover:opacity-90 text-primary-foreground" onClick={() => escolher(p.duracao)}>
                 Escolher Este Programa
               </Button>
             </div>
@@ -106,3 +106,4 @@ export const ProgramasTratamento = () => {
     </section>
   );
 };
+
