@@ -71,3 +71,4 @@ export const LifestyleWins = ({ lifestyleWins }: LifestyleWinsProps) => {
     </div>
   );
 };
+/* eslint-disable @typescript-eslint/no-explicit-any */

@@ -123,3 +123,4 @@ export const QuizStep1 = ({ peso, altura, metaPeso, imc, idade, sexo, onChange }
     </div>
   );
 };
+/* eslint-disable @typescript-eslint/no-explicit-any */

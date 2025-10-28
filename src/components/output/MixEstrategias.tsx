@@ -154,3 +154,4 @@ export const MixEstrategias = ({ mixEstrategias }: MixEstrategiasProps) => {
     </div>
   );
 };
+/* eslint-disable @typescript-eslint/no-explicit-any */

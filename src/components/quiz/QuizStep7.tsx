@@ -126,3 +126,4 @@ export const QuizStep7 = ({
     </div>
   );
 };
+/* eslint-disable @typescript-eslint/no-explicit-any */

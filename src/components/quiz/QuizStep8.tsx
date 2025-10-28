@@ -233,3 +233,4 @@ export const QuizStep8 = ({
     </div>
   );
 };
+/* eslint-disable @typescript-eslint/no-explicit-any */
