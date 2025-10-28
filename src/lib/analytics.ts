@@ -29,7 +29,6 @@ function sendToAnalytics(metric: Metric) {
 
   // Dev log
   if (import.meta.env.DEV) {
-    // eslint-disable-next-line no-console
     console.log('Web Vital:', { name: metric.name, value: metric.value, rating: metric.rating, delta: metric.delta });
   }
 }
@@ -44,21 +43,26 @@ export function initWebVitals() {
 
 // Performance observer for custom metrics
 export function observePerformance() {
-  if (typeof PerformanceObserver === 'undefined') return;
+  if (typeof PerformanceObserver === 'undefined') {
+    return;
+  }
+
   try {
     const longTaskObserver = new PerformanceObserver((list) => {
       for (const entry of list.getEntries()) {
         if (entry.duration > 50 && import.meta.env.DEV) {
-          // eslint-disable-next-line no-console
           console.warn('Long task detected:', entry.duration.toFixed(2), 'ms');
         }
       }
     });
-    if (((PerformanceObserver as unknown as { supportedEntryTypes\?: string\[\] }).supportedEntryTypes)?..includes('longtask')) {
+
+    const supportedEntries = (PerformanceObserver as unknown as { supportedEntryTypes?: string[] }).supportedEntryTypes;
+
+    if (Array.isArray(supportedEntries) && supportedEntries.includes('longtask')) {
       longTaskObserver.observe({ entryTypes: ['longtask'] });
     }
-  } catch {
-    // Not supported
+  } catch (error) {
+    void error;
   }
 }
 
@@ -71,7 +75,6 @@ export function trackEvent(eventName: string, params?: Record<string, unknown>) 
     window.dataLayer.push({ event: eventName, ...(params || {}) });
   }
   if (import.meta.env.DEV) {
-    // eslint-disable-next-line no-console
     console.log('Analytics event:', eventName, params);
   }
 }
@@ -147,6 +150,9 @@ export function trackWhatsAppClick(source: string, params?: Record<string, unkno
   try {
     const payload = { source, path: window.location.pathname, ...(params || {}) };
     trackEvent('whatsapp_click', payload);
-  } catch {}
+  } catch (error) { void error; }
 }
+
+
+
 

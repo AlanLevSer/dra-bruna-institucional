@@ -1,11 +1,17 @@
 export type EventSourceEl = HTMLElement & { dataset: DOMStringMap };
 
-export const fireDataEvent = (el: EventSourceEl, extra?: Record<string, unknown>) => {
-  const ev = el.dataset.event || 'interaction';
-  if (typeof window !== 'undefined' && (window as any).dataLayer) {
-    try {
-      (window as any).dataLayer.push({ event: ev, ...(extra || {}) });
-    } catch {}
-  }
-};
+type DataLayerEvent = Record<string, unknown>;
+type DataLayerWindow = Window & { dataLayer?: DataLayerEvent[] };
 
+export const fireDataEvent = (el: EventSourceEl, extra?: Record<string, unknown>) => {
+  const eventName = el.dataset.event || 'interaction';
+  if (typeof window === 'undefined') {
+    return;
+  }
+  const dataLayer = (window as DataLayerWindow).dataLayer;
+  if (!Array.isArray(dataLayer)) {
+    return;
+  }
+
+  dataLayer.push({ event: eventName, ...(extra ?? {}) });
+};

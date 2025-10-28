@@ -1,4 +1,4 @@
-export type UTMParams = Record<string, string>;
+﻿export type UTMParams = Record<string, string>;
 
 export const getParams = (): UTMParams => {
   try {
@@ -23,7 +23,7 @@ export const isMetaSource = () => {
   return ['facebook', 'instagram', 'meta'].includes(s) || r.includes('facebook.') || r.includes('instagram.');
 };
 
-export const getPersona = (): string | undefined => {
+export const getPersona = (): "rh" | "empreendedora" | "saude" | undefined => {
   const p = getParams();
   const persona = (p.persona || p.utm_persona || '').toLowerCase();
   if (['rh', 'empreendedora', 'saude'].includes(persona)) return persona;
@@ -35,4 +35,5 @@ export const isPriceCampaign = () => {
   const c = (p.utm_campaign || '').toLowerCase();
   return c.includes('price') || c.includes('valor');
 };
+
 

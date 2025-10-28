@@ -1,4 +1,5 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { ZodError } from "zod";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
@@ -80,8 +81,8 @@ const Quiz = () => {
     });
   }, []);
 
-  const updateQuizData = (field: string, value: any) => {
-    const newData = { ...quizData, [field]: value };
+  const updateQuizData = <K extends keyof QuizData>(field: K, value: QuizData[K]) => {
+    const newData: QuizData = { ...quizData, [field]: value };
     if (field === 'peso' || field === 'altura') {
       if (newData.peso > 0 && newData.altura > 0) {
         const alturaM = newData.altura / 100;
@@ -104,7 +105,7 @@ const Quiz = () => {
     }
   }, [currentStep]);
 
-  const validateCurrentStep = () => {
+  const validateCurrentStep = (): boolean => {
     try {
       switch (currentStep) {
         case 1:
@@ -114,17 +115,17 @@ const Quiz = () => {
           step2Schema.parse({ comorbidades: quizData.comorbidades });
           return true;
         case 3:
-          step3Schema.parse({ 
-            tentativasAnteriores: quizData.tentativasAnteriores, 
-            efeitoSanfona: quizData.efeitoSanfona, 
-            gatilhos: quizData.gatilhos 
+          step3Schema.parse({
+            tentativasAnteriores: quizData.tentativasAnteriores,
+            efeitoSanfona: quizData.efeitoSanfona,
+            gatilhos: quizData.gatilhos
           });
           return true;
         case 4:
-          step4Schema.parse({ 
-            invasividade: quizData.invasividade, 
-            tempoRecuperacao: quizData.tempoRecuperacao, 
-            tempoDisponivel: quizData.tempoDisponivel 
+          step4Schema.parse({
+            invasividade: quizData.invasividade,
+            tempoRecuperacao: quizData.tempoRecuperacao,
+            tempoDisponivel: quizData.tempoDisponivel
           });
           return true;
         case 5:
@@ -134,7 +135,7 @@ const Quiz = () => {
           step6Schema.parse({ expectativas: quizData.expectativas });
           return true;
         case 7:
-          step7Schema.parse({ 
+          step7Schema.parse({
             cirurgiaGastricaPrevia: quizData.cirurgiaGastricaPrevia,
             cirurgiaBariatricaPreviaTipo: quizData.cirurgiaBariatricaPreviaTipo,
             reganhoPosBariatrica: quizData.reganhoPosBariatrica,
@@ -152,10 +153,13 @@ const Quiz = () => {
         default:
           return false;
       }
-    } catch (error: any) {
-      const errorMessage = error.errors?.[0]?.message || "Dados inválidos";
+    } catch (error) {
+      let errorMessage = "Dados invalidos";
+      if (error instanceof ZodError) {
+        errorMessage = error.errors?.[0]?.message ?? errorMessage;
+      }
       toast({
-        title: "Validação de dados",
+        title: "Validacao de dados",
         description: errorMessage,
         variant: "destructive"
       });
@@ -168,9 +172,7 @@ const Quiz = () => {
       case 1: return quizData.peso > 0 && quizData.altura > 0 && quizData.idade > 0 && quizData.sexo !== null;
       case 2: return quizData.comorbidades.length > 0;
       case 3: return quizData.tentativasAnteriores !== null;
-      case 4: return quizData.invasividade !== null && 
-                     quizData.tempoRecuperacao !== null && 
-                     quizData.tempoDisponivel !== null;
+      case 4: return quizData.invasividade !== null && quizData.tempoRecuperacao !== null && quizData.tempoDisponivel !== null;
       case 5: return quizData.dorPrincipal !== null;
       case 6: return quizData.expectativas.length > 0;
       case 7: return true;

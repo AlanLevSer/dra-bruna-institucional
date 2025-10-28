@@ -504,7 +504,7 @@ function generateMixEstrategias(data: QuizData) {
   }
   
   let intervencao: TransformacaoOutput['mixEstrategias']['intervencao'] = undefined;
-  let alternativas: TransformacaoOutput['mixEstrategias']['alternativas'] = [];
+  const alternativas: TransformacaoOutput['mixEstrategias']['alternativas'] = [];
   let microcopy: string | undefined = undefined;
   const comorbidadesQtd = data.comorbidades.filter(c => c !== 'nenhuma').length;
   const metaKg = (data.peso * data.metaPeso) / 100;
@@ -778,3 +778,4 @@ function generateLifestyleWins(data: QuizData) {
   
   return wins;
 }
+

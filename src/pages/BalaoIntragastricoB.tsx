@@ -18,7 +18,7 @@ import { useMemo } from "react";
 export default function BalãoIntragastricoB() {
   const google = isGoogleSource();
   const meta = isMetaSource();
-  const persona = useMemo(() => getPersona() as any, []);
+  const persona = useMemo(() => getPersona(), []);
   const showPrice = isPriceCampaign();
 
   return (
