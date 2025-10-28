@@ -19,6 +19,7 @@ export const HeroVendas = () => {
   const scrollToProgram = () => {
     const programSection = document.querySelector("#programa-levser");
     if (programSection) {
+      try { trackEvent("hero_program_scroll", { path: window.location.pathname }); } catch {}
       programSection.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
@@ -100,3 +101,4 @@ export const HeroVendas = () => {
     </section>
   );
 };
+
