@@ -72,8 +72,11 @@ const App = () => (
             <Route path="/descubra-seu-caminho" element={<Quiz />} />
             <Route path="/nutricao-celular" element={<NutricaoCelular />} />
             <Route path="/balao-intragastrico" element={<BalaoIntragastrico />} />
+            <Route path="/bal\u00e3o-intragastrico" element={<Navigate to="/balao-intragastrico" replace />} />
             <Route path="/balao-intragastrico-a" element={<BalaoVendas />} />
+            <Route path="/bal\u00e3o-intragastrico-a" element={<Navigate to="/balao-intragastrico-a" replace />} />
             <Route path="/balao-intragastrico-b" element={<BalaoIntragastricoB />} />
+            <Route path="/bal\u00e3o-intragastrico-b" element={<Navigate to="/balao-intragastrico-b" replace />} />
             <Route path="/terapias-endoscopicas" element={<Navigate to="/balao-intragastrico" replace />} />
             <Route path="/gastroplastia-endoscopica" element={<GastroplastiaEndoscopica />} />
             <Route path="/canetas-emagrecedoras" element={<CanetasEmagrecedoras />} />
@@ -92,14 +95,4 @@ const App = () => (
 );
 
 export default App;
-
-
-
-
-
-
-
-
-
-
 
