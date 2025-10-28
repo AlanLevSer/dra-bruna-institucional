@@ -139,7 +139,7 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
         default:
           return false;
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       const errorMessage = error.errors?.[0]?.message || "Dados invÃ¡lidos";
       toast({
         title: "ValidaÃ§Ã£o de dados",
@@ -323,4 +323,5 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
     </Dialog>
   );
 };
+
 
