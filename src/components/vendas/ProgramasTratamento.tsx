@@ -6,7 +6,7 @@ import { trackEvent } from "@/lib/analytics";
 interface Programa {
   titulo: string;
   duracao: string;
-  subtitulo: string;
+  subtitulo?: string;
   destaque?: boolean;
   itens: { titulo: string; descricao: string }[];
 }
@@ -15,41 +15,38 @@ const programas: Programa[] = [
   {
     titulo: "12 Meses",
     duracao: "Programa Completo",
-    subtitulo: "",
     itens: [
       { titulo: "Balão", descricao: "1 balão gástrico 12 meses*" },
       { titulo: "Consultas com nutrólogo", descricao: "12 consultas de nutrologia com a Dra. Bruna" },
       { titulo: "Consultas com nutricionista", descricao: "24 consultas com nutricionista" },
       { titulo: "Bioimpedância", descricao: "12" },
       { titulo: "Comunidade de apoio no WhatsApp", descricao: "Incluso" },
-      { titulo: "Tira-dúvidas com nutricionista pelo WhatsApp", descricao: "Incluso" },
+      { titulo: "Tira‑dúvidas com nutricionista pelo WhatsApp", descricao: "Incluso" },
     ],
   },
   {
     titulo: "6 Meses",
     duracao: "Programa Mais Escolhido",
     destaque: true,
-    subtitulo: "",
     itens: [
       { titulo: "Balão", descricao: "1 balão gástrico 6 meses" },
       { titulo: "Consultas com nutrólogo", descricao: "6 consultas de nutrologia com a Dra. Bruna" },
       { titulo: "Consultas com nutricionista", descricao: "12 consultas com nutricionista" },
       { titulo: "Bioimpedância", descricao: "6" },
       { titulo: "Comunidade de apoio no WhatsApp", descricao: "Incluso" },
-      { titulo: "Tira-dúvidas com nutricionista pelo WhatsApp", descricao: "Incluso" },
+      { titulo: "Tira‑dúvidas com nutricionista pelo WhatsApp", descricao: "Incluso" },
     ],
   },
   {
     titulo: "12 Meses",
     duracao: "Programa Reajustável",
-    subtitulo: "",
     itens: [
       { titulo: "Balão", descricao: "1 balão gástrico 12 meses (reajustável)" },
       { titulo: "Consultas com nutrólogo", descricao: "12 consultas de nutrologia com a Dra. Bruna" },
       { titulo: "Consultas com nutricionista", descricao: "24 consultas com nutricionista" },
       { titulo: "Bioimpedância", descricao: "12" },
       { titulo: "Comunidade de apoio no WhatsApp", descricao: "Incluso" },
-      { titulo: "Tira-dúvidas com nutricionista pelo WhatsApp", descricao: "Incluso" },
+      { titulo: "Tira‑dúvidas com nutricionista pelo WhatsApp", descricao: "Incluso" },
     ],
   },
 ];
@@ -64,7 +61,7 @@ export const ProgramasTratamento = () => {
     <section className="py-16 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-2">Programas de Tratamento</h2>
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-2">Programas de Tratamento</h2>
           <p className="text-muted-foreground">
             Compare nossos programas e escolha o ideal para sua jornada de transformação
           </p>
@@ -74,16 +71,16 @@ export const ProgramasTratamento = () => {
           {programas.map((p, idx) => (
             <div
               key={idx}
-              className={`relative bg-card rounded-2xl p-8 shadow-elegant border ${p.destaque ? 'border-primary/60 scale-[1.02]' : 'border-border/50'}`}
+              className={`relative bg-card rounded-2xl p-8 shadow-elegant hover:shadow-hover transition-all border ${p.destaque ? 'border-primary/50 scale-[1.02]' : 'border-border/50'}`}
             >
               {p.destaque && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-xs font-bold shadow-sm">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary/10 text-primary px-4 py-1 rounded-full text-xs font-medium shadow-sm">
                   PROGRAMA MAIS ESCOLHIDO
                 </div>
               )}
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-serif font-bold text-primary">{p.titulo}</h3>
-                <p className="text-base mt-1 font-semibold">{p.duracao}</p>
+                <h3 className="text-2xl font-serif font-bold text-foreground">{p.titulo}</h3>
+                <p className="text-sm md:text-base mt-1 font-semibold text-primary">{p.duracao}</p>
                 {p.subtitulo && <p className="text-sm text-muted-foreground">{p.subtitulo}</p>}
               </div>
 
@@ -99,8 +96,8 @@ export const ProgramasTratamento = () => {
                 ))}
               </ul>
 
-              <Button className="w-full bg-emerald-600 hover:bg-emerald-700" onClick={() => escolher(p.duracao)}>
-                💬 Escolher Este Programa
+              <Button className="w-full bg-gradient-premium hover:opacity-90 text-white" onClick={() => escolher(p.duracao)}>
+                Escolher Este Programa
               </Button>
             </div>
           ))}
