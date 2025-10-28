@@ -9,14 +9,14 @@ export const HeroVendas = () => {
   const handleWhatsApp = () => {
     try {
       trackWhatsAppClick("hero_vendas");
-    } catch {}
-    window.open(CONTACT.WHATSAPP_Balão_VENDAS, "_blank");
+    } catch (e) { void e; }
+    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
   };
 
   const scrollToProgram = () => {
     const programSection = document.querySelector("#programa-levser");
     if (programSection) {
-      try { trackEvent("hero_program_scroll", { path: window.location.pathname }); } catch {}
+      try { trackEvent("hero_program_scroll", { path: window.location.pathname }); } catch (e) { void e; }
       programSection.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
@@ -98,5 +98,6 @@ export const HeroVendas = () => {
     </section>
   );
 };
+
 
 
