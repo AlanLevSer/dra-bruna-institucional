@@ -1,4 +1,4 @@
-import { Check, Sparkles, Droplet } from "lucide-react";
+﻿import { Check, Sparkles, Droplet } from "lucide-react";
 import { Button } from "./ui/button";
 
 interface BalaoOption {
