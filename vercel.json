@@ -1,31 +1,28 @@
-{
-  "rewrites": [
+﻿{
+  "redirects": [
     {
       "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ],
-  "github": {
-    "silent": false,
-    "autoAlias": true
-  },
-  "headers": [
+      "has": [{ "type": "host", "value": "drabrunadurelli.com" }],
+      "destination": "https://www.brunadurelli.com.br/$1",
+      "permanent": true
+    },
     {
       "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        }
-      ]
+      "has": [{ "type": "host", "value": "www.drabrunadurelli.com" }],
+      "destination": "https://www.brunadurelli.com.br/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "brunadurelli.com.br" }],
+      "destination": "https://www.brunadurelli.com.br/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "brunadurelli.com" }],
+      "destination": "https://www.brunadurelli.com.br/$1",
+      "permanent": true
     }
   ]
 }
