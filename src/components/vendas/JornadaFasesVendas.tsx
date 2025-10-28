@@ -1,4 +1,4 @@
-�import { useState } from "react";
+﻿import { useState } from "react";
 import {
   CheckCircle2,
   ArrowRight,
@@ -21,7 +21,7 @@ const fases = [
     numero: "01",
     icon: MapPin,
     titulo: "Mapeamento & Direção",
-    duracao: "2�4 semanas",
+    duracao: "24 semanas",
     objetivo: "Entender sua biologia, hábitos e metas.",
     entregas: [
       "Exames completos",
@@ -35,7 +35,7 @@ const fases = [
     numero: "02",
     icon: Zap,
     titulo: "Reset & Ritmo",
-    duracao: "8�12 semanas",
+    duracao: "812 semanas",
     objetivo:
       "Destravar o peso com estratégia e constância. Introduzimos medidas metabólicas e regenerativas para reduzir inflamação, otimizar saciedade e aumentar gasto energético.",
     entregas: [
@@ -48,7 +48,7 @@ const fases = [
     numero: "03",
     icon: Target,
     titulo: "Consolidação & Autonomia",
-    duracao: "12�16 semanas",
+    duracao: "1216 semanas",
     objetivo: "Manter a perda e ganhar independência.",
     entregas: [
       "Progressão de treino",
@@ -64,7 +64,7 @@ const fases = [
     icon: InfinityIcon,
     titulo: "Manutenção & Estilo de Vida",
     duracao: "12+ meses",
-    objetivo: "Não �Sterminar⬝, e sim sustentar.",
+    objetivo: "Não Sterminar⬝, e sim sustentar.",
     entregas: [
       "Calendário de checkpoints trimestrais",
       "Ciclos leves de programas regenerativos (trimestrais/semestrais)",
@@ -132,7 +132,7 @@ export const JornadaFasesVendas = () => {
             Sua jornada em 4 fases
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Resultados que ficam � rotina possível, não perfeita. Vamos juntas construir consistência, confiança e saúde duradoura.
+            Resultados que ficam  rotina possível, não perfeita. Vamos juntas construir consistência, confiança e saúde duradoura.
           </p>
         </div>
 

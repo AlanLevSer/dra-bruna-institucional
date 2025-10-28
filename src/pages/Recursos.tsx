@@ -1,4 +1,4 @@
-�import { lazy, Suspense } from "react";
+﻿import { lazy, Suspense } from "react";
 import { Navigation } from "@/components/Navigation";
 import { SubpageHero } from "@/components/SubpageHero";
 import { SEOHead } from "@/components/SEOHead";

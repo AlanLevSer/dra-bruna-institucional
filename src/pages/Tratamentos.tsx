@@ -1,4 +1,4 @@
-�import { Navigation } from "@/components/Navigation";
+﻿import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SubpageHero } from "@/components/SubpageHero";
 import { TratamentosGrid } from "@/components/TratamentosGrid";
@@ -53,7 +53,7 @@ const Tratamentos = () => {
                     Nenhum tratamento funciona sozinho
                   </h2>
                   <p className="text-lg text-muted-foreground">
-                    A obesidade é uma <strong className="text-foreground">doença multifatorial</strong> � 
+                    A obesidade é uma <strong className="text-foreground">doença multifatorial</strong>  
                     envolve metabolismo, hormônios, comportamento, sono, estresse e hábitos alimentares. 
                     <strong className="text-foreground"> E também impacta diretamente sua longevidade e qualidade de vida.</strong>
                   </p>
@@ -111,13 +111,13 @@ const Tratamentos = () => {
                 <div className="bg-primary/5 border-l-4 border-primary rounded-lg p-6">
                   <p className="text-muted-foreground">
                     <strong className="text-foreground">O diferencial da Dra. Bruna Durelli:</strong> você não recebe apenas 
-                    um procedimento ou medicação � você recebe um <strong>programa completo de transformação</strong>, 
+                    um procedimento ou medicação  você recebe um <strong>programa completo de transformação</strong>, 
                     com time interdisciplinar (médico + nutricionista + psicólogo + educador físico) trabalhando de forma integrada 
                     em cada fase da sua jornada, promovendo não só emagrecimento mas longevidade com qualidade.
                   </p>
                   <p className="mt-3">
                     <a href="/programa-levser" className="text-primary hover:underline font-medium">
-                      Conheça o Programa LevSer completo � 
+                      Conheça o Programa LevSer completo  
                     </a>
                   </p>
                 </div>

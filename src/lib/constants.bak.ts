@@ -1,4 +1,4 @@
-�export const CONTACT = {
+﻿export const CONTACT = {
   WHATSAPP_NUMBER: "5511997023024",
   WHATSAPP_MESSAGE: "Olá, Dra. Bruna! Gostaria de agendar uma consulta.",
   WHATSAPP_URL: "https://wa.me/5511997023024?text=Olá, Dra. Bruna! Gostaria de agendar uma consulta.",

@@ -1,4 +1,4 @@
-�import { Navigation } from "@/components/Navigation";
+﻿import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SubpageHero } from "@/components/SubpageHero";
 import { SobreDraBruna } from "@/components/SobreDraBruna";

@@ -1,4 +1,4 @@
-�import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
