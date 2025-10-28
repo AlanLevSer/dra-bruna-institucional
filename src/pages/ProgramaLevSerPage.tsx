@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+﻿import { lazy, Suspense } from "react";
 import { Navigation } from "@/components/Navigation";
 import { SubpageHero } from "@/components/SubpageHero";
 import { SEOHead } from "@/components/SEOHead";
@@ -38,9 +38,9 @@ const ProgramaLevSerPage = () => {
     <>
       <SEOHead data={{
         title: "Programa LevSer - Tratamento Completo de Obesidade | Dra. Bruna Durelli",
-        description: "Programa LevSer: tratamento integrado de obesidade com nutrição, medicina regenerativa, suporte psicológico e procedimentos endoscópicos. Abordagem personalizada e humanizada.",
-        keywords: "programa levser, tratamento obesidade, emagrecimento saudável, acompanhamento multidisciplinar, são paulo",
-        canonical: "https://drabrunadurelli.com/programa-levser"
+        description: "Programa LevSer: tratamento integrado de obesidade com nutriÃ§Ã£o, medicina regenerativa, suporte psicolÃ³gico e procedimentos endoscÃ³picos. Abordagem personalizada e humanizada.",
+        keywords: "programa levser, tratamento obesidade, emagrecimento saudÃ¡vel, acompanhamento multidisciplinar, sÃ£o paulo",
+        canonical: "https://www.brunadurelli.com.br/programa-levser"
       }} />
       <StructuredData data={[
         generateStructuredData.organization,
@@ -52,10 +52,10 @@ const ProgramaLevSerPage = () => {
         <main>
           <SubpageHero
             title="Programa LevSer"
-            subtitle="Transformação Completa"
-            description="Sua transformação completa: corpo, mente e metabolismo trabalhando juntos. Abordagem integrada com nutrição, procedimentos, medicina regenerativa e suporte contínuo."
+            subtitle="TransformaÃ§Ã£o Completa"
+            description="Sua transformaÃ§Ã£o completa: corpo, mente e metabolismo trabalhando juntos. Abordagem integrada com nutriÃ§Ã£o, procedimentos, medicina regenerativa e suporte contÃ­nuo."
             image={heroImage}
-            ctaText="Quero Começar Agora"
+            ctaText="Quero ComeÃ§ar Agora"
             onCtaClick={handleCTA}
           />
           
@@ -83,9 +83,9 @@ const ProgramaLevSerPage = () => {
           
           <Suspense fallback={<div className="min-h-[10vh]" />}>
             <CTASection
-              title="Pronta para Começar Sua Transformação?"
-              description="Agende sua avaliação e descubra como o Programa LevSer pode te ajudar a alcançar seus objetivos de forma sustentável."
-              buttonText="Quero Começar Agora"
+              title="Pronta para ComeÃ§ar Sua TransformaÃ§Ã£o?"
+              description="Agende sua avaliaÃ§Ã£o e descubra como o Programa LevSer pode te ajudar a alcanÃ§ar seus objetivos de forma sustentÃ¡vel."
+              buttonText="Quero ComeÃ§ar Agora"
               onButtonClick={handleCTA}
             />
           </Suspense>
@@ -103,3 +103,4 @@ const ProgramaLevSerPage = () => {
 };
 
 export default ProgramaLevSerPage;
+

@@ -25,7 +25,7 @@ const BalaoVendas = () => {
       "Tratamento completo com balão intragástrico, acompanhamento interdisciplinar e resultados duradouros. Consulta de avaliação com desconto. Agende agora!",
     keywords:
       "balão intragástrico, emagrecimento, perda de peso, obesidade, Dra. Bruna Durelli, LevSer, São Paulo",
-    canonical: "https://drabrunadurelli.com/balao-intragastrico-a",
+    canonical: "https://www.brunadurelli.com.br/balao-intragastrico-a",
   } as const;
 
   return (
@@ -54,3 +54,4 @@ const BalaoVendas = () => {
 };
 
 export default BalaoVendas;
+

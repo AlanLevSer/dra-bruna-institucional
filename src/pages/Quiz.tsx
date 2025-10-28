@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
@@ -92,7 +92,7 @@ const Quiz = () => {
   };
 
   useEffect(() => {
-    // Scroll para o topo da página quando step mudar (exceto no step 1 inicial)
+    // Scroll para o topo da pÃ¡gina quando step mudar (exceto no step 1 inicial)
     if (currentStep > 1) {
       setTimeout(() => {
         window.scrollTo({ 
@@ -153,9 +153,9 @@ const Quiz = () => {
           return false;
       }
     } catch (error: any) {
-      const errorMessage = error.errors?.[0]?.message || "Dados inválidos";
+      const errorMessage = error.errors?.[0]?.message || "Dados invÃ¡lidos";
       toast({
-        title: "Validação de dados",
+        title: "ValidaÃ§Ã£o de dados",
         description: errorMessage,
         variant: "destructive"
       });
@@ -199,7 +199,7 @@ const Quiz = () => {
     
     setIsGenerating(true);
     
-    // Simular processamento para dar sensação de personalização
+    // Simular processamento para dar sensaÃ§Ã£o de personalizaÃ§Ã£o
     await new Promise(resolve => setTimeout(resolve, 2000));
     
     setShowOutput(true);
@@ -249,12 +249,12 @@ const Quiz = () => {
     "@context": "https://schema.org",
     "@type": "Quiz",
     "name": "Descubra Seu Caminho - Quiz Personalizado",
-    "description": "Quiz interativo gratuito para descobrir o plano de tratamento ideal personalizado para sua jornada de emagrecimento e saúde",
+    "description": "Quiz interativo gratuito para descobrir o plano de tratamento ideal personalizado para sua jornada de emagrecimento e saÃºde",
     "provider": {
       "@type": "Physician",
       "name": "Dra. Bruna Durelli",
       "jobTitle": "Gastroenterologista e Endoscopista",
-      "url": "https://drabrunadurelli.com"
+      "url": "https://www.brunadurelli.com.br"
     },
     "about": {
       "@type": "MedicalCondition",
@@ -267,9 +267,9 @@ const Quiz = () => {
       <SEOHead data={{
         title: "Descubra Seu Caminho - Quiz Personalizado Gratuito | Dra. Bruna Durelli",
         description: "Responda nosso quiz gratuito de 6 perguntas e descubra o plano de tratamento ideal personalizado para sua jornada. Sem compromisso, 100% online.",
-        keywords: "quiz emagrecimento gratuito, teste obesidade online, plano personalizado, diagnóstico obesidade, avaliação gratuita",
-        canonical: "https://drabrunadurelli.com/quiz",
-        ogImage: "https://drabrunadurelli.com/og-quiz.jpg"
+        keywords: "quiz emagrecimento gratuito, teste obesidade online, plano personalizado, diagnÃ³stico obesidade, avaliaÃ§Ã£o gratuita",
+        canonical: "https://www.brunadurelli.com.br/quiz",
+        ogImage: "https://www.brunadurelli.com.br/og-quiz.jpg"
       }} />
       
       <StructuredData data={quizSchema} />
@@ -293,7 +293,7 @@ const Quiz = () => {
                     Responda 7 perguntas e receba um plano personalizado
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    100% gratuito • Sem compromisso • Resultados imediatos
+                    100% gratuito â€¢ Sem compromisso â€¢ Resultados imediatos
                   </p>
                 </div>
               </div>
@@ -403,7 +403,7 @@ const Quiz = () => {
                         onResetQuiz={resetQuiz}
                         notaGlobal={output.perfilSaude.notaGlobal}
                         conceito={output.perfilSaude.conceito}
-                        tratamentoRecomendado={output.mixEstrategias.intervencao?.nome || 'Protocolo Clínico'}
+                        tratamentoRecomendado={output.mixEstrategias.intervencao?.nome || 'Protocolo ClÃ­nico'}
                         metaKg={output.planoEnergetico.metaKg}
                         semanasPlano={output.planoEnergetico.semanasPlano}
                       />
@@ -433,3 +433,4 @@ const Quiz = () => {
 };
 
 export default Quiz;
+
