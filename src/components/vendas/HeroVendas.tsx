@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+﻿import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 import { OptimizedImage } from "@/components/OptimizedImage";
@@ -100,4 +100,3 @@ export const HeroVendas = () => {
     </section>
   );
 };
-
