@@ -6,7 +6,6 @@ import { trackEvent } from "@/lib/analytics";
 interface Programa {
   titulo: string;
   duracao: string;
-  subtitulo?: string;
   destaque?: boolean;
   itens: { titulo: string; descricao: string }[];
 }
@@ -16,7 +15,7 @@ const programas: Programa[] = [
     titulo: "12 Meses",
     duracao: "Programa Completo",
     itens: [
-      { titulo: "Balão", descricao: "1 balão gástrico 12 meses*" },
+      { titulo: "Balão", descricao: "1 balão gástrico 12 meses" },
       { titulo: "Consultas com nutrólogo", descricao: "12 consultas de nutrologia com a Dra. Bruna" },
       { titulo: "Consultas com nutricionista", descricao: "24 consultas com nutricionista" },
       { titulo: "Bioimpedância", descricao: "12" },
@@ -62,26 +61,27 @@ export const ProgramasTratamento = () => {
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-10">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-2">Programas de Tratamento</h2>
-          <p className="text-muted-foreground">
-            Compare nossos programas e escolha o ideal para sua jornada de transformação
-          </p>
+          <p className="text-muted-foreground">Compare nossos programas e escolha o ideal para sua jornada de transformação</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {programas.map((p, idx) => (
             <div
               key={idx}
-              className={`relative bg-card rounded-2xl p-8 shadow-elegant hover:shadow-hover transition-all border ${p.destaque ? 'border-primary/50 scale-[1.02]' : 'border-border/50'}`}
+              className={`relative bg-card rounded-2xl p-8 shadow-elegant hover:shadow-hover transition-all border ${p.destaque ? 'border-primary/60 ring-1 ring-primary/20 scale-[1.02]' : 'border-border/50'}`}
             >
               {p.destaque && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary/10 text-primary px-4 py-1 rounded-full text-xs font-medium shadow-sm">
-                  PROGRAMA MAIS ESCOLHIDO
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                  <div className="px-5 py-1.5 rounded-full text-[11px] md:text-xs font-bold tracking-wide text-white shadow-lg bg-gradient-to-r from-primary to-secondary ring-1 ring-white/40 backdrop-blur-sm flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-white/90 rounded-full animate-pulse" />
+                    PROGRAMA MAIS ESCOLHIDO
+                  </div>
                 </div>
               )}
+
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-serif font-bold text-foreground">{p.titulo}</h3>
                 <p className="text-sm md:text-base mt-1 font-semibold text-primary">{p.duracao}</p>
-                {p.subtitulo && <p className="text-sm text-muted-foreground">{p.subtitulo}</p>}
               </div>
 
               <ul className="space-y-4 mb-8">
@@ -102,8 +102,6 @@ export const ProgramasTratamento = () => {
             </div>
           ))}
         </div>
-
-        <p className="text-xs text-muted-foreground text-center mt-6">* reajustável ou não</p>
       </div>
     </section>
   );
