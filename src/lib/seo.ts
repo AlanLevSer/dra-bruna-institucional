@@ -94,7 +94,7 @@ export const generateStructuredData = {
       "addressRegion": "SP",
       "postalCode": "01431-000",
       "addressCountry": "BR"
-    },
+  },
     "telephone": "+55-11-99702-3024"
   },
 
@@ -124,7 +124,7 @@ export const generateStructuredData = {
       "addressRegion": "SP",
       "postalCode": "01431-000",
       "addressCountry": "BR"
-    },
+  },
     "telephone": "+55-11-99702-3024"
   },
 
@@ -153,3 +153,4 @@ export const generateStructuredData = {
     "openingHours": "Mo-Fr 08:00-18:00"
   }
 };
+
