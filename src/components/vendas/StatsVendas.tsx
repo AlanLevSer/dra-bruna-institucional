@@ -1,4 +1,4 @@
-import { AnimatedCounter } from "@/components/AnimatedCounter";
+ï»¿import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { Users, Heart, Scale, Calendar } from "lucide-react";
 
@@ -14,14 +14,14 @@ export const StatsVendas = () => {
       icon: Heart,
       value: 98,
       suffix: "%",
-      label: "Taxa de Satisfação",
+      label: "Taxa de SatisfaÃ§Ã£o",
     },
     {
       icon: Scale,
       value: 35,
-      prefix: "até ",
+      prefix: "atÃ© ",
       suffix: " kg",
-      label: "Perda de Peso Média",
+      label: "Perda de Peso MÃ©dia",
     },
     {
       icon: Calendar,
@@ -62,5 +62,3 @@ export const StatsVendas = () => {
     </section>
   );
 };
-
-
