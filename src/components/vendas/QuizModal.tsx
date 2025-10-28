@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -73,7 +73,7 @@ export const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
           location: 'vendas_quiz_modal',
           path: window.location.pathname,
         });
-      } catch {}
+      } catch (e) { void e; }
       const profile = `Idade: ${answers.age}, Meta: ${answers.weight}, Desafio: ${answers.challenge}`;
       window.open(CONTACT.WHATSAPP_QUIZ_RESULT(profile), "_blank");
       onClose();
@@ -155,4 +155,5 @@ export const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
     </Dialog>
   );
 };
+
 

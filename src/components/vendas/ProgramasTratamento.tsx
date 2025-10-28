@@ -52,7 +52,7 @@ const programas: Programa[] = [
 
 export const ProgramasTratamento = () => {
   const escolher = (programa: string) => {
-    try { trackEvent('programas_tratamento_cta', { programa, path: window.location.pathname }); } catch {}
+    try { trackEvent('programas_tratamento_cta', { programa, path: window.location.pathname }); } catch (e) { void e; }
     window.open(CONTACT.WHATSAPP_BALAO_VENDAS, '_blank');
   };
 
@@ -106,5 +106,6 @@ export const ProgramasTratamento = () => {
     </section>
   );
 };
+
 
 

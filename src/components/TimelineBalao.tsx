@@ -1,4 +1,4 @@
-import { Calendar, Droplet, TrendingUp, Target, Heart } from "lucide-react";
+﻿import { Calendar, Droplet, TrendingUp, Target, Heart } from "lucide-react";
 
 interface TimelineItem {
   phase: string;
@@ -46,7 +46,7 @@ const timelineItems: TimelineItem[] = [
   }
 ];
 
-export const TimelineBalão = () => {
+export const TimelineBalao = () => {
   return (
     <section className="py-16 xl:py-20 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
       <div className="container mx-auto px-4">
@@ -106,3 +106,4 @@ export const TimelineBalão = () => {
     </section>
   );
 };
+

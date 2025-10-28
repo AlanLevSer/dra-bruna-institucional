@@ -1,9 +1,9 @@
-import { onCLS, onFCP, onINP, onLCP, onTTFB, type Metric } from 'web-vitals';
+﻿import { onCLS, onFCP, onINP, onLCP, onTTFB, type Metric } from 'web-vitals';
 
 declare global {
   interface Window {
-    gtag?: (...args: any[]) => void;
-    dataLayer?: any[];
+    gtag?: (command: 'event', action: string, params?: Record<string, string | number | boolean | null | undefined>) => void;
+    dataLayer?: Array<Record<string, unknown>>;
   }
 }
 
@@ -19,7 +19,7 @@ function sendToAnalytics(metric: Metric) {
 
   // GA4 (gtag)
   if (window.gtag) {
-    window.gtag('event', metric.name, payload as any);
+    window.gtag('event', metric.name, payload as Record<string, string | number | boolean | null | undefined>);
   }
 
   // GTM (dataLayer)
@@ -54,7 +54,7 @@ export function observePerformance() {
         }
       }
     });
-    if ((PerformanceObserver as any).supportedEntryTypes?.includes('longtask')) {
+    if (((PerformanceObserver as unknown as { supportedEntryTypes\?: string\[\] }).supportedEntryTypes)?..includes('longtask')) {
       longTaskObserver.observe({ entryTypes: ['longtask'] });
     }
   } catch {
@@ -63,9 +63,9 @@ export function observePerformance() {
 }
 
 // Custom event tracking (GA4 via gtag, or GTM via dataLayer)
-export function trackEvent(eventName: string, params?: Record<string, any>) {
+export function trackEvent(eventName: string, params?: Record<string, unknown>) {
   if (window.gtag) {
-    window.gtag('event', eventName, params as any);
+    window.gtag('event', eventName, params as Record<string, string | number | boolean | null | undefined> | undefined);
   }
   if (window.dataLayer) {
     window.dataLayer.push({ event: eventName, ...(params || {}) });
@@ -143,9 +143,10 @@ export function trackFinalCTAClick(ctaType: 'presencial' | 'teleconsulta' | 'duv
 
 
 // Standardized WhatsApp click tracking for GTM/GA4
-export function trackWhatsAppClick(source: string, params?: Record<string, any>) {
+export function trackWhatsAppClick(source: string, params?: Record<string, unknown>) {
   try {
     const payload = { source, path: window.location.pathname, ...(params || {}) };
     trackEvent('whatsapp_click', payload);
   } catch {}
 }
+

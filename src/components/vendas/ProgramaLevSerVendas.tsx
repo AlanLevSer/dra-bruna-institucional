@@ -93,7 +93,7 @@ export const ProgramaLevSerVendas = () => {
                 onClick={() => {
                   try {
                     trackWhatsAppClick("programa_levser_vendas");
-                  } catch {}
+                  } catch (e) { void e; }
                   const message = "Olá! Quero conhecer o Programa LevSer e descobrir meu plano personalizado.";
                   window.open(`${CONTACT.WHATSAPP_URL.split("?")[0]}?text=${encodeURIComponent(message)}`, "_blank");
                 }}
@@ -108,4 +108,5 @@ export const ProgramaLevSerVendas = () => {
     </section>
   );
 };
+
 

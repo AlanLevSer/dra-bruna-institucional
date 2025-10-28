@@ -43,7 +43,7 @@ export const TransformacoesReaisVendas = () => {
   const handleWhatsApp = () => {
     try {
       trackWhatsAppClick("transformacoes_reais_vendas");
-    } catch {}
+    } catch (e) { void e; }
     window.open(CONTACT.WHATSAPP_URL, "_blank");
   };
 
@@ -128,5 +128,6 @@ export const TransformacoesReaisVendas = () => {
     </section>
   );
 };
+
 
 

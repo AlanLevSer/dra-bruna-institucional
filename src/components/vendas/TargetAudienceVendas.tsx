@@ -15,7 +15,7 @@ export const TargetAudienceVendas = () => {
   const handleWhatsApp = () => {
     try {
       trackWhatsAppClick("target_audience_vendas");
-    } catch {}
+    } catch (e) { void e; }
     window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
   };
 
@@ -67,5 +67,6 @@ export const TargetAudienceVendas = () => {
     </section>
   );
 };
+
 
 

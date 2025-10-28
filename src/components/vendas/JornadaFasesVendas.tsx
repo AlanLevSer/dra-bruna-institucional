@@ -291,7 +291,7 @@ export const JornadaFasesVendas = () => {
             onClick={() => {
               const phone = "5511997023024";
               const message = "Olá! Quero seguir a jornada em 4 fases do Programa LevSer.";
-              try { trackEvent("jornada_fases_cta", { path: window.location.pathname }); } catch {}
+              try { trackEvent("jornada_fases_cta", { path: window.location.pathname }); } catch (e) { void e; }
               window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
             }}
             className="bg-gradient-premium hover:opacity-90 transition-opacity group"
@@ -306,5 +306,6 @@ export const JornadaFasesVendas = () => {
     </section>
   );
 };
+
 
 

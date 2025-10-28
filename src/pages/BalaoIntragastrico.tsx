@@ -1,8 +1,8 @@
-import { Navigation } from "@/components/Navigation";
+﻿import { Navigation } from "@/components/Navigation";
 import { SubpageHero } from "@/components/SubpageHero";
 import { ProblemasSolucoes } from "@/components/ProblemasSolucoes";
 import { ComoFunciona } from "@/components/ComoFunciona";
-import { TimelineBalão } from "@/components/TimelineBalão";
+import { TimelineBalao } from "@/components/TimelineBalao";
 import { ComparadorBaloes } from "@/components/ComparadorBaloes";
 import { IndicationList } from "@/components/IndicationList";
 import { TreatmentSection } from "@/components/TreatmentSection";
@@ -71,7 +71,7 @@ const BalãoIntragastrico = () => {
           ]}
         />
 
-        <TimelineBalão />
+        <TimelineBalao />
 
         <CTASection
           title="Pronta para dar o próximo passo?"
@@ -86,3 +86,4 @@ const BalãoIntragastrico = () => {
 };
 
 export default BalãoIntragastrico;
+

@@ -51,7 +51,7 @@ export const PlansComparison = () => {
         location: "plans_comparison",
         path: window.location.pathname,
       });
-    } catch {}
+    } catch (e) { void e; }
     window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
   };
 
@@ -118,4 +118,5 @@ export const PlansComparison = () => {
     </section>
   );
 };
+
 
