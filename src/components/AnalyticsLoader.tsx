@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+﻿import { useEffect } from "react";
 
 declare global {
+  type ClarityFn = ((...args: unknown[]) => void) & { q?: unknown[][] };
   interface Window {
     dataLayer?: Record<string, unknown>[];
-    clarity?: (...args: unknown[]) => void;
+    clarity?: ClarityFn;
     __analyticsLoaded?: boolean;
+    requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => void;
   }
 }
 
@@ -26,24 +28,14 @@ const loadThirdPartyScripts = () => {
   gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
   document.head.appendChild(gtmScript);
 
-  window.clarity =
-    window.clarity ||
-    function (...args: unknown[]) {
-      (window.clarity as any).q = (window.clarity as any).q || [];
-      (window.clarity as any).q.push(args);
-    };
-
-  const clarityScript = document.createElement("script");
-  clarityScript.async = true;
-  clarityScript.src = `https://www.clarity.ms/tag/${CLARITY_ID}`;
   document.head.appendChild(clarityScript);
 };
 
 export const AnalyticsLoader = () => {
   useEffect(() => {
     const scheduleLoad = () => {
-      if ("requestIdleCallback" in window) {
-        (window as any).requestIdleCallback(loadThirdPartyScripts, { timeout: 2000 });
+      if (typeof window.requestIdleCallback === 'function') {
+        window.requestIdleCallback(() => loadThirdPartyScripts(), { timeout: 2000 });
       } else {
         setTimeout(loadThirdPartyScripts, 1500);
       }
