@@ -7,128 +7,73 @@
 }
 
 export const defaultSEO: SEOData = {
-  title: "Dra. Bruna Durelli - Especialista em Obesidade | Programa LevSer SÃ£o Paulo",
+  title: "Dra. Bruna Durelli - Especialista em Obesidade | Programa LevSer São Paulo",
   description:
-    "Dra. Bruna Durelli, CRM 124809, especialista em obesidade com +10 anos de experiÃªncia. SÃ³cia-fundadora da LevSer. Programa personalizado, terapias endoscÃ³picas e medicina regenerativa no Jardim Paulista, SÃ£o Paulo.",
+    "Dra. Bruna Durelli, CRM 124809, especialista em obesidade com +10 anos de experiência. Sócia-fundadora da LevSer. Programa personalizado, terapias endoscópicas e medicina regenerativa no Jardim Paulista, São Paulo.",
   keywords:
-    "dra bruna durelli, obesidade sÃ£o paulo, levser, gastroplastia endoscÃ³pica, balÃ£o gÃ¡strico, medicina regenerativa, nutrologia sÃ£o paulo, jardim paulista, tratamento obesidade",
+    "dra bruna durelli, obesidade são paulo, levser, gastroplastia endoscópica, balão gástrico, medicina regenerativa, nutrologia são paulo, jardim paulista, tratamento obesidade",
   canonical: "https://www.brunadurelli.com.br/",
 };
 
 export const pageSEO: Record<string, SEOData> = {
-  home: {
-    title:
-      "Dra. Bruna Durelli - Especialista em Obesidade | Programa LevSer SÃ£o Paulo",
-    description:
-      "Dra. Bruna Durelli, CRM 124809, especialista em obesidade com +10 anos de experiÃªncia. SÃ³cia-fundadora da LevSer. Programa personalizado, terapias endoscÃ³picas e medicina regenerativa no Jardim Paulista, SÃ£o Paulo.",
-    keywords:
-      "dra bruna durelli, obesidade sÃ£o paulo, levser, gastroplastia endoscÃ³pica, balÃ£o gÃ¡strico, medicina regenerativa, nutrologia sÃ£o paulo, jardim paulista, tratamento obesidade",
-    canonical: "https://www.brunadurelli.com.br/",
-  },
+  home: { ...defaultSEO },
+
   canetasEmagrecedoras: {
     title:
       "Canetas Emagrecedoras SP | Mounjaro, Ozempic, Wegovy - Dra. Bruna Durelli",
     description:
-      "Tratamento com canetas emagrecedoras (Mounjaro, Ozempic, Wegovy, Saxenda) com prescriÃ§Ã£o e acompanhamento mÃ©dico especializado. Controle de fome e emagrecimento sustentÃ¡vel em SÃ£o Paulo.",
+      "Tratamento com canetas emagrecedoras (Mounjaro, Ozempic, Wegovy, Saxenda) com prescrição e acompanhamento médico especializado. Controle de fome e emagrecimento sustentável em São Paulo.",
     keywords:
-      "canetas emagrecedoras, canetas emagrecedoras sp, mounjaro, ozempic, wegovy, saxenda, tirzepatida, semaglutida, liraglutida, medicamentos obesidade, tratamento fome, emagrecimento mÃ©dico, endocrinologista obesidade sÃ£o paulo",
+      "canetas emagrecedoras, canetas emagrecedoras sp, mounjaro, ozempic, wegovy, saxenda, tirzepatida, semaglutida, liraglutida, medicamentos obesidade, tratamento fome, emagrecimento médico, endocrinologista obesidade são paulo",
     canonical: "https://www.brunadurelli.com.br/canetas-emagrecedoras",
   },
+
   balaoIntragastrico: {
     title:
-      "BalÃ£o IntragÃ¡strico | Emagrecimento sem Cirurgia - Dra. Bruna Durelli",
+      "Balão Intragástrico | Emagrecimento sem Cirurgia - Dra. Bruna Durelli",
     description:
-      "BalÃ£o gÃ¡strico endoscÃ³pico para perda de peso sustentÃ¡vel. Procedimento minimamente invasivo com acompanhamento completo. Resultados de 10 a 25% de perda de peso.",
+      "Balão gástrico endoscópico para perda de peso sustentável. Procedimento minimamente invasivo com acompanhamento completo. Resultados de 10 a 25% de perda de peso.",
     keywords:
-      "balÃ£o intragÃ¡strico, balÃ£o gÃ¡strico, emagrecimento sem cirurgia, procedimento endoscÃ³pico, perda de peso, obesidade tratamento",
+      "balão intragástrico, balão gástrico, emagrecimento sem cirurgia, procedimento endoscópico, perda de peso, obesidade tratamento",
     canonical: "https://www.brunadurelli.com.br/balao-intragastrico",
   },
-  terapiasEndoscopicas: {
-    title:
-      "BalÃ£o IntragÃ¡strico | Emagrecimento sem Cirurgia - Dra. Bruna Durelli",
-    description:
-      "BalÃ£o gÃ¡strico endoscÃ³pico para perda de peso sustentÃ¡vel. Procedimento minimamente invasivo com acompanhamento completo. Resultados de 10 a 25% de perda de peso.",
-    keywords:
-      "balÃ£o intragÃ¡strico, balÃ£o gÃ¡strico, emagrecimento sem cirurgia, procedimento endoscÃ³pico, perda de peso, obesidade tratamento",
-    canonical: "https://www.brunadurelli.com.br/balao-intragastrico",
-  },
+
   gastroplastiaEndoscopica: {
     title:
-      "Gastroplastia EndoscÃ³pica | ReduÃ§Ã£o de EstÃ´mago sem Cirurgia",
+      "Gastroplastia Endoscópica | Redução de Estômago sem Cirurgia",
     description:
-      "Gastroplastia endoscÃ³pica: procedimento minimamente invasivo para reduÃ§Ã£o do estÃ´mago sem cortes. RecuperaÃ§Ã£o rÃ¡pida e resultados efetivos.",
+      "Gastroplastia endoscópica: procedimento minimamente invasivo para redução do estômago sem cortes. Recuperação rápida e resultados efetivos.",
     keywords:
-      "gastroplastia endoscÃ³pica, reduÃ§Ã£o estÃ´mago, procedimento endoscÃ³pico, obesidade tratamento, cirurgia bariÃ¡trica alternativa",
+      "gastroplastia endoscópica, redução estômago, procedimento endoscópico, obesidade tratamento, cirurgia bariátrica alternativa",
     canonical: "https://www.brunadurelli.com.br/gastroplastia-endoscopica",
   },
-  terapiasCirurgicas: {
-    title:
-      "Cirurgia BariÃ¡trica | Bypass GÃ¡strico e Sleeve - Dra. Bruna Durelli",
-    description:
-      "Cirurgias bariÃ¡tricas: Bypass GÃ¡strico e Sleeve GÃ¡strico com tÃ©cnica videolaparoscÃ³pica. Tratamento definitivo para obesidade grave.",
-    keywords:
-      "cirurgia bariÃ¡trica, bypass gÃ¡strico, sleeve gÃ¡strico, obesidade grave, videolaparoscopia, cirurgia obesidade sÃ£o paulo",
-    canonical: "https://www.brunadurelli.com.br/terapias-cirurgicas",
-  },
-  nutricaoCelular: {
-    title: "NutriÃ§Ã£o Celular | SuplementaÃ§Ã£o e Terapia Nutricional",
-    description:
-      "NutriÃ§Ã£o celular avanÃ§ada para otimizar resultados do tratamento. SuplementaÃ§Ã£o personalizada e terapia nutricional especializada.",
-    keywords:
-      "nutriÃ§Ã£o celular, suplementaÃ§Ã£o, terapia nutricional, vitaminas, minerais, tratamento nutricional obesidade",
-    canonical: "https://www.brunadurelli.com.br/nutricao-celular",
-  },
+
   medicinaRegenerativa: {
     title:
-      "Medicina Regenerativa | SaÃºde MetabÃ³lica AvanÃ§ada - Dra. Bruna Durelli",
+      "Medicina Regenerativa | Saúde Metabólica Avançada - Dra. Bruna Durelli",
     description:
-      "Abordagem avanÃ§ada para saÃºde metabÃ³lica: mais energia, menos inflamaÃ§Ã£o, preservaÃ§Ã£o muscular. Programas individualizados com base em exames.",
+      "Abordagem avançada para saúde metabólica: mais energia, menos inflamação e preservação muscular. Programas individualizados com base em exames.",
     keywords:
-      "medicina regenerativa, saÃºde metabÃ³lica, nutriÃ§Ã£o celular, otimizaÃ§Ã£o hormonal, preservaÃ§Ã£o muscular, fadiga crÃ´nica, menopausa, pÃ³s-bariÃ¡trica, performance atlÃ©tica",
+      "medicina regenerativa, saúde metabólica, inflamação, otimização hormonal, longevidade, clínica São Paulo",
     canonical: "https://www.brunadurelli.com.br/medicina-regenerativa",
   },
+
+  nutricaoCelular: {
+    title: "Nutrição Celular | Suplementação e Terapia Nutricional",
+    description:
+      "Nutrição celular avançada para otimizar resultados do tratamento. Suplementação personalizada e terapia nutricional especializada.",
+    keywords:
+      "nutrição celular, suplementação, terapia nutricional, vitaminas, minerais, tratamento nutricional obesidade",
+    canonical: "https://www.brunadurelli.com.br/nutricao-celular",
+  },
+
   plasmaArgonio: {
-    title: "Plasma de ArgÃ´nio - Tratamento de Reganho de Peso | LevSer",
+    title: "Plasma de Argônio | Tratamento Endoscópico Avançado",
     description:
-      "TÃ©cnica endoscÃ³pica minimamente invasiva para tratamento de reganho de peso pÃ³s-cirurgia bariÃ¡trica e dilataÃ§Ã£o gÃ¡strica. RecuperaÃ§Ã£o rÃ¡pida e resultados consistentes.",
+      "Terapia com plasma de argônio para tratamento endoscópico de condições do trato gastrointestinal. Procedimento seguro com recuperação rápida.",
     keywords:
-      "plasma de argÃ´nio, reganho de peso, pÃ³s-bariÃ¡trica, dilataÃ§Ã£o gÃ¡strica, endoscopia, anastomose dilatada, revisÃ£o bariÃ¡trica, APC",
+      "plasma de argônio, endoscopia terapêutica, tratamento gastrointestinal, endoscopia avançada",
     canonical: "https://www.brunadurelli.com.br/plasma-argonio",
-  },
-  sobre: {
-    title: "Sobre a Dra. Bruna Durelli - Especialista em Obesidade | LevSer",
-    description:
-      "ConheÃ§a a trajetÃ³ria da Dra. Bruna Durelli, especialista em obesidade com +10 anos de experiÃªncia. FormaÃ§Ã£o no Einstein, Santa Casa, ABRAN. SÃ³cia-fundadora da LevSer.",
-    keywords:
-      "dra bruna durelli, especialista obesidade, endoscopia digestiva, nutrologia, medicina regenerativa, levser, sÃ£o paulo",
-    canonical: "https://www.brunadurelli.com.br/sobre",
-  },
-  programaLevser: {
-    title:
-      "Programa LevSer - Tratamento Completo de Obesidade | Dra. Bruna Durelli",
-    description:
-      "Programa LevSer: tratamento integrado de obesidade com nutriÃ§Ã£o, medicina regenerativa, suporte psicolÃ³gico e procedimentos endoscÃ³picos. Abordagem personalizada e humanizada.",
-    keywords:
-      "programa levser, tratamento obesidade, emagrecimento saudÃ¡vel, acompanhamento multidisciplinar, sÃ£o paulo",
-    canonical: "https://www.brunadurelli.com.br/programa-levser",
-  },
-  tratamentos: {
-    title:
-      "Tratamentos para Obesidade - Endoscopia, Farmacologia, Regenerativa | LevSer",
-    description:
-      "ConheÃ§a todos os tratamentos disponÃ­veis: balÃ£o gÃ¡strico, gastroplastia, canetas emagrecedoras, medicina regenerativa. Abordagem personalizada para cada caso.",
-    keywords:
-      "tratamentos obesidade, balÃ£o gÃ¡strico, gastroplastia, canetas emagrecedoras, medicina regenerativa, sÃ£o paulo",
-    canonical: "https://www.brunadurelli.com.br/tratamentos",
-  },
-  recursos: {
-    title:
-      "Recursos Educativos - FAQ, Calculadoras, Guias | Dra. Bruna Durelli",
-    description:
-      "Acesse nossos recursos educativos: FAQ completo, calculadoras de IMC e ROI, guias de emagrecimento, vÃ­deos e artigos sobre tratamento de obesidade.",
-    keywords:
-      "faq obesidade, calculadora imc, guia emagrecimento, recursos educativos, dra bruna durelli",
-    canonical: "https://www.brunadurelli.com.br/recursos",
   },
 };
 
@@ -138,19 +83,19 @@ export const generateStructuredData = {
     "@type": "MedicalOrganization",
     "name": "LevSer - Dra. Bruna Durelli",
     "description":
-      "ClÃ­nica especializada em tratamento de obesidade com abordagem personalizada, humanizada e baseada em evidÃªncias cientÃ­ficas",
+      "Clínica especializada em tratamento de obesidade com abordagem personalizada, humanizada e baseada em evidências científicas.",
     "url": "https://www.brunadurelli.com.br",
     "logo": "https://www.brunadurelli.com.br/logo.png",
     "medicalSpecialty": "Bariatric Medicine",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Av. Brasil, 173",
-      "addressLocality": "SÃ£o Paulo",
+      "addressLocality": "São Paulo",
       "addressRegion": "SP",
       "postalCode": "01431-000",
-      "addressCountry": "BR",
+      "addressCountry": "BR"
     },
-    "telephone": "+55-11-99702-3024",
+    "telephone": "+55-11-99702-3024"
   },
 
   physician: {
@@ -165,22 +110,22 @@ export const generateStructuredData = {
       "Bariatric Medicine",
       "Endoscopy",
       "Nutrology",
-      "Regenerative Medicine",
+      "Regenerative Medicine"
     ],
     "description":
-      "Especialista em Obesidade, Endoscopia Digestiva, Nutrologia e Medicina Regenerativa. SÃ³cia-fundadora da LevSer. Mais de 10 anos dedicados ao tratamento da obesidade com abordagem humanizada e baseada em evidÃªncias cientÃ­ficas.",
+      "Especialista em Obesidade, Endoscopia Digestiva, Nutrologia e Medicina Regenerativa. Sócia-fundadora da LevSer. Mais de 10 anos dedicados ao tratamento da obesidade com abordagem humanizada e baseada em evidências científicas.",
     "url": "https://www.brunadurelli.com.br",
     "alumniOf": ["Hospital Israelita Albert Einstein", "Santa Casa", "ABRAN"],
     "memberOf": ["SOBED", "ABESO"],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Av. Brasil, 173",
-      "addressLocality": "SÃ£o Paulo",
+      "addressLocality": "São Paulo",
       "addressRegion": "SP",
       "postalCode": "01431-000",
-      "addressCountry": "BR",
+      "addressCountry": "BR"
     },
-    "telephone": "+55-11-99702-3024",
+    "telephone": "+55-11-99702-3024"
   },
 
   localBusiness: {
@@ -188,25 +133,23 @@ export const generateStructuredData = {
     "@type": "MedicalBusiness",
     "name": "LevSer - Dra. Bruna Durelli",
     "description":
-      "ClÃ­nica especializada em tratamento de obesidade. Programa LevSer personalizado, terapias endoscÃ³picas, medicina regenerativa. Jardim Paulista, SÃ£o Paulo.",
+      "Clínica especializada em tratamento de obesidade. Programa LevSer personalizado, terapias endoscópicas e medicina regenerativa. Jardim Paulista, São Paulo.",
     "url": "https://www.brunadurelli.com.br",
     "telephone": "+55-11-99702-3024",
     "priceRange": "$$$",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Av. Brasil, 173",
-      "addressLocality": "SÃ£o Paulo",
+      "addressLocality": "São Paulo",
       "addressRegion": "SP",
       "postalCode": "01431-000",
-      "addressCountry": "BR",
+      "addressCountry": "BR"
     },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": "-23.5680",
-      "longitude": "-46.6553",
+      "longitude": "-46.6553"
     },
-    "openingHours": "Mo-Fr 08:00-18:00",
-  },
+    "openingHours": "Mo-Fr 08:00-18:00"
+  }
 };
-
-
