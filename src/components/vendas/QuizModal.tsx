@@ -155,3 +155,4 @@ export const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
     </Dialog>
   );
 };
+

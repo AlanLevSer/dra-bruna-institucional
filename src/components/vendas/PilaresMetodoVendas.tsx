@@ -1,4 +1,4 @@
-ï»¿import { CheckCircle2, UtensilsCrossed, Activity, Dumbbell, Brain, ArrowRight } from "lucide-react";
+import { CheckCircle2, UtensilsCrossed, Activity, Dumbbell, Brain, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
@@ -6,42 +6,42 @@ import { trackEvent } from "@/lib/analytics";
 const pilares = [
   {
     icon: UtensilsCrossed,
-    title: "NutriÃ§Ã£o Inteligente",
-    subtitle: "AlimentaÃ§Ã£o que cabe na sua rotina, sem sofrimento",
+    title: "Nutrição Inteligente",
+    subtitle: "Alimentação que cabe na sua rotina, sem sofrimento",
     features: [
-      "Plano por fases (nÃ£o restritivo)",
-      "EstratÃ©gias de saciedade e prazer",
-      "EducaÃ§Ã£o alimentar para autonomia",
+      "Plano por fases (não restritivo)",
+      "Estratégias de saciedade e prazer",
+      "Educação alimentar para autonomia",
     ],
   },
   {
     icon: Activity,
-    title: "SaÃºde MetabÃ³lica & Regenerativa",
-    subtitle: "Vou ajudar seu corpo a responder: hormÃ´nios, energia e metabolismo equilibrados",
+    title: "Saúde Metabólica & Regenerativa",
+    subtitle: "Vou ajudar seu corpo a responder: hormônios, energia e metabolismo equilibrados",
     features: [
-      "OtimizaÃ§Ã£o de insulina, glicemia e marcadores inflamatÃ³rios",
-      "NutriÃ§Ã£o celular para mitocÃ´ndrias 'eficientes'",
+      "Otimização de insulina, glicemia e marcadores inflamatórios",
+      "Nutrição celular para mitocôndrias 'eficientes'",
       "Programas regenerativos para preservar massa magra e queimar gordura",
     ],
   },
   {
     icon: Dumbbell,
     title: "Corpo em Movimento",
-    subtitle: "Seu corpo vai ficar forte, funcional e com disposiÃ§Ã£o de verdade",
+    subtitle: "Seu corpo vai ficar forte, funcional e com disposição de verdade",
     features: [
       "Rotina progressiva (sem exageros)",
-      "ForÃ§a + mobilidade + condicionamento",
-      "PrevenÃ§Ã£o de dores e lesÃµes",
+      "Força + mobilidade + condicionamento",
+      "Prevenção de dores e lesões",
     ],
   },
   {
     icon: Brain,
     title: "Mente & Comportamento",
-    subtitle: "VocÃª vai conseguir manter a constÃ¢ncia, sem culpa, com apoio real",
+    subtitle: "Você vai conseguir manter a constância, sem culpa, com apoio real",
     features: [
       "Ferramentas de escolha consciente",
-      "OrganizaÃ§Ã£o alimentar & ambiente",
-      "EstratÃ©gias para recaÃ­das e gatilhos",
+      "Organização alimentar & ambiente",
+      "Estratégias para recaídas e gatilhos",
     ],
   },
 ];
@@ -56,7 +56,7 @@ export const PilaresMetodoVendas = () => {
               Os 4 Pilares do Programa
             </h2>
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-              Desenvolvi um programa com menos fricÃ§Ã£o, mais ciÃªncia. VocÃª no centro de tudo.
+              Desenvolvi um programa com menos fricção, mais ciência. Você no centro de tudo.
             </p>
           </div>
 
@@ -100,7 +100,7 @@ export const PilaresMetodoVendas = () => {
               size="lg"
               onClick={() => {
                 try { trackEvent('cta_whatsapp_click', { location: 'pilares_metodo_vendas', path: window.location.pathname }); } catch {}
-                const message = "OlÃƒÂ¡! Quero conhecer meu plano personalizado pelos 4 pilares do Programa LevSer.";
+                const message = "OlÃ¡! Quero conhecer meu plano personalizado pelos 4 pilares do Programa LevSer.";
                 window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, '_blank');
               }}
               className="bg-gradient-premium hover:opacity-90 transition-opacity group"
@@ -114,5 +114,6 @@ export const PilaresMetodoVendas = () => {
     </section>
   );
 };
+
 
 

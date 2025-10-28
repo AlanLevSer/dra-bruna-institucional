@@ -70,3 +70,4 @@ export const TargetAudienceVendas = () => {
     </section>
   );
 };
+
