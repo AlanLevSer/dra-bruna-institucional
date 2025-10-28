@@ -2,7 +2,7 @@
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import programImage from "@/assets/patient-wellness-1.avif";
 import { CONTACT } from "@/lib/constants";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackWhatsAppClick } from "@/lib/analytics";
 
 const benefits = [
   "Vou te ajudar a transformar corpo, mente e autoestima.",
@@ -92,7 +92,7 @@ export const ProgramaLevSerVendas = () => {
               <button
                 onClick={() => {
                   try {
-                    trackEvent("cta_whatsapp_click", { location: "programa_levser_vendas", path: window.location.pathname });
+                    trackWhatsAppClick("programa_levser_vendas");
                   } catch {}
                   const message = "Olá! Quero conhecer o Programa LevSer e descobrir meu plano personalizado.";
                   window.open(`${CONTACT.WHATSAPP_URL.split("?")[0]}?text=${encodeURIComponent(message)}`, "_blank");
@@ -108,3 +108,4 @@ export const ProgramaLevSerVendas = () => {
     </section>
   );
 };
+

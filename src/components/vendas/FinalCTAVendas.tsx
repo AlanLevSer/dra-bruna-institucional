@@ -1,6 +1,6 @@
 ﻿import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackWhatsAppClick } from "@/lib/analytics";
 import { Phone, MapPin, Clock, Mail } from "lucide-react";
 
 const contactInfo = [
@@ -13,10 +13,7 @@ const contactInfo = [
 export const FinalCTAVendas = () => {
   const handleWhatsApp = () => {
     try {
-      trackEvent("cta_whatsapp_click", {
-        location: "final_cta_vendas",
-        path: window.location.pathname,
-      });
+      trackWhatsAppClick("final_cta_vendas");
     } catch {}
     window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
   };
@@ -65,3 +62,4 @@ export const FinalCTAVendas = () => {
     </section>
   );
 };
+

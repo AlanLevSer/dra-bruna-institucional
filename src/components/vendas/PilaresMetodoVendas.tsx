@@ -1,7 +1,7 @@
 ﻿import { CheckCircle2, UtensilsCrossed, Activity, Dumbbell, Brain, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackWhatsAppClick } from "@/lib/analytics";
 
 const pilares = [
   {
@@ -114,3 +114,4 @@ export const PilaresMetodoVendas = () => {
     </section>
   );
 };
+

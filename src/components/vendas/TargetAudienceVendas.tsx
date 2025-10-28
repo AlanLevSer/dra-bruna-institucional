@@ -1,6 +1,6 @@
 ﻿import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackWhatsAppClick } from "@/lib/analytics";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { Heart, Scale, Zap, Activity } from "lucide-react";
 
@@ -14,10 +14,7 @@ const profiles = [
 export const TargetAudienceVendas = () => {
   const handleWhatsApp = () => {
     try {
-      trackEvent("cta_whatsapp_click", {
-        location: "target_audience_vendas",
-        path: window.location.pathname,
-      });
+      trackWhatsAppClick("target_audience_vendas");
     } catch {}
     window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
   };
@@ -70,3 +67,4 @@ export const TargetAudienceVendas = () => {
     </section>
   );
 };
+
