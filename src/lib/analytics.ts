@@ -141,3 +141,11 @@ export function trackFinalCTAClick(ctaType: 'presencial' | 'teleconsulta' | 'duv
   });
 }
 
+
+// Standardized WhatsApp click tracking for GTM/GA4
+export function trackWhatsAppClick(source: string, params?: Record<string, any>) {
+  try {
+    const payload = { source, path: window.location.pathname, ...(params || {}) };
+    trackEvent('whatsapp_click', payload);
+  } catch {}
+}
