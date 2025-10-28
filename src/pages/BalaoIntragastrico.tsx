@@ -87,3 +87,4 @@ const BalãoIntragastrico = () => {
 
 export default BalãoIntragastrico;
 
+
