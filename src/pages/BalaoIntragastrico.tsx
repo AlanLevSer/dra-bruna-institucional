@@ -29,7 +29,7 @@ const BalãoIntragastrico = () => {
 
   return (
     <>
-      <SEOHead data={pageSEO.balãoIntragastrico} />
+      <SEOHead data={pageSEO.balaoIntragastrico} />
       <StructuredData data={[generateStructuredData.organization, serviceSchema]} />
 
       <div className="min-h-screen">

@@ -52,7 +52,7 @@ const navItems: NavItem[] = [
     type: "dropdown",
     subItems: [
       { label: "Procedimentos Endoscópicos", href: "/tratamentos#endoscopicos", isGroupHeader: true },
-      { label: "Balão Intragástrico", href: "/balão-intragastrico", indent: true },
+      { label: "Balão Intragástrico", href: "/balao-intragastrico", indent: true },
       { label: "Gastroplastia Endoscópica", href: "/gastroplastia-endoscopica", indent: true },
       { label: "Plasma de Argônio", href: "/plasma-argonio", indent: true },
       { label: "divider", href: "#", isDivider: true },
