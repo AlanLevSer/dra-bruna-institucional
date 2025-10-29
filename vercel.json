@@ -2,25 +2,25 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [ { "type": "host", "value": "drabrunadurelli.com" } ],
+      "has": [{ "type": "host", "value": "drabrunadurelli.com" }],
       "destination": "https://www.brunadurelli.com.br/$1",
       "permanent": true
     },
     {
       "source": "/(.*)",
-      "has": [ { "type": "host", "value": "www.drabrunadurelli.com" } ],
+      "has": [{ "type": "host", "value": "www.drabrunadurelli.com" }],
       "destination": "https://www.brunadurelli.com.br/$1",
       "permanent": true
     },
     {
       "source": "/(.*)",
-      "has": [ { "type": "host", "value": "brunadurelli.com.br" } ],
+      "has": [{ "type": "host", "value": "brunadurelli.com.br" }],
       "destination": "https://www.brunadurelli.com.br/$1",
       "permanent": true
     },
     {
       "source": "/(.*)",
-      "has": [ { "type": "host", "value": "brunadurelli.com" } ],
+      "has": [{ "type": "host", "value": "brunadurelli.com" }],
       "destination": "https://www.brunadurelli.com.br/$1",
       "permanent": true
     }
