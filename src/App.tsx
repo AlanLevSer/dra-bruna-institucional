@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-route
 import { Suspense, lazy, useEffect } from "react";
 import { PerformanceMonitor } from "./components/dev/PerformanceMonitor";
 import { AnalyticsLoader } from "./components/AnalyticsLoader";
+import { rememberVisitContext } from "@/lib/utm";
 
 const Index = lazy(() => import("./pages/Index"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -30,6 +31,8 @@ const queryClient = new QueryClient();
 const ScrollManager = () => {
   const location = useLocation();
   useEffect(() => {
+    rememberVisitContext();
+
     const rootStyles = getComputedStyle(document.documentElement);
     const headerVar = rootStyles.getPropertyValue('--header-height').trim();
     const headerOffset = (parseInt(headerVar.replace('px','')) || 80) + 8;
