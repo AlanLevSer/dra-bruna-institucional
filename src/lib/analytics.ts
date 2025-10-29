@@ -197,6 +197,11 @@ const sendWhatsAppWebhook = (source: string, params?: Record<string, unknown>) =
     ...(params || {}),
   };
 
+  if (typeof console !== "undefined") {
+    // Debug log temporário para verificar disparo do webhook
+    console.log("[WhatsApp webhook] payload", payload);
+  }
+
   const body = JSON.stringify(payload);
 
   try {
@@ -216,8 +221,15 @@ const sendWhatsAppWebhook = (source: string, params?: Record<string, unknown>) =
       headers: { "Content-Type": "application/json" },
       body,
       keepalive: true,
+    }).catch((error) => {
+      if (typeof console !== "undefined") {
+        console.error("[WhatsApp webhook] fetch error", error);
+      }
     });
   } catch (error) {
+    if (typeof console !== "undefined") {
+      console.error("[WhatsApp webhook] send error", error);
+    }
     void error;
   }
 };
