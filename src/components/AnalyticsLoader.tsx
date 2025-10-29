@@ -2,16 +2,66 @@
 
 declare global {
   type ClarityFn = ((...args: unknown[]) => void) & { q?: unknown[][] };
+  type FBQFunction = ((...args: unknown[]) => void) & {
+    push?: FBQFunction;
+    loaded?: boolean;
+    version?: string;
+    queue?: unknown[][];
+  };
   interface Window {
     dataLayer?: Record<string, unknown>[];
     clarity?: ClarityFn;
+    fbq?: FBQFunction;
+    _fbq?: FBQFunction;
     __analyticsLoaded?: boolean;
+    __fbPixelLoaded?: boolean;
     requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => void;
   }
 }
 
 const GTM_ID = "GTM-WZFMV5R7";
 const CLARITY_ID = "idm2xm22st";
+const FB_PIXEL_ID = "3581322512114101";
+
+const initFacebookPixel = () => {
+  if (typeof window === "undefined" || window.__fbPixelLoaded) {
+    return;
+  }
+
+  if (!window.fbq) {
+    const fbq: FBQFunction = ((...args: unknown[]) => {
+      fbq.queue?.push(args);
+    }) as FBQFunction;
+
+    fbq.push = fbq;
+    fbq.loaded = true;
+    fbq.version = "2.0";
+    fbq.queue = [];
+
+    window.fbq = fbq;
+    window._fbq = fbq;
+
+    const fbScript = document.createElement("script");
+    fbScript.async = true;
+    fbScript.src = "https://connect.facebook.net/en_US/fbevents.js";
+    document.head.appendChild(fbScript);
+  }
+
+  window.fbq?.("init", FB_PIXEL_ID);
+  window.fbq?.("track", "PageView");
+
+  if (!document.querySelector('[data-fb-pixel="noscript"]')) {
+    const img = document.createElement("img");
+    img.setAttribute("data-fb-pixel", "noscript");
+    img.height = 1;
+    img.width = 1;
+    img.style.display = "none";
+    img.src = `https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`;
+    document.body.appendChild(img);
+  }
+
+  window.__fbPixelLoaded = true;
+};
 
 const loadThirdPartyScripts = () => {
   if (typeof window === "undefined" || window.__analyticsLoaded) {
@@ -42,6 +92,8 @@ const loadThirdPartyScripts = () => {
   clarityScript.src = `https://www.clarity.ms/tag/${CLARITY_ID}`;
   clarityScript.crossOrigin = "anonymous";
   document.head.appendChild(clarityScript);
+
+  initFacebookPixel();
 };
 
 export const AnalyticsLoader = () => {
@@ -69,4 +121,3 @@ export const AnalyticsLoader = () => {
 
   return null;
 };
-
