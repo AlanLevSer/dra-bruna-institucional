@@ -28,6 +28,19 @@ const loadThirdPartyScripts = () => {
   gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
   document.head.appendChild(gtmScript);
 
+  if (typeof window.clarity !== "function") {
+    const queue: unknown[][] = [];
+    const clarityFn: ClarityFn = ((...args: unknown[]) => {
+      queue.push(args);
+    }) as ClarityFn;
+    clarityFn.q = queue;
+    window.clarity = clarityFn;
+  }
+
+  const clarityScript = document.createElement("script");
+  clarityScript.async = true;
+  clarityScript.src = `https://www.clarity.ms/tag/${CLARITY_ID}`;
+  clarityScript.crossOrigin = "anonymous";
   document.head.appendChild(clarityScript);
 };
 
