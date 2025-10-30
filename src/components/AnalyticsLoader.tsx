@@ -15,7 +15,6 @@ declare global {
     _fbq?: FBQFunction;
     __analyticsLoaded?: boolean;
     __fbPixelLoaded?: boolean;
-    requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => void;
   }
 }
 

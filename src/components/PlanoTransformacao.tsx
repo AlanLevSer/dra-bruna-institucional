@@ -13,6 +13,7 @@ import {
   step8Schema
 } from "@/lib/quiz-validation";
 import { toast } from "@/hooks/use-toast";
+import { ZodError } from "zod";
 import { QuizProgress } from "./quiz/QuizProgress";
 import { QuizNavigation } from "./quiz/QuizNavigation";
 import { QuizStep1 } from "./quiz/QuizStep1";
@@ -140,9 +141,11 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
           return false;
       }
     } catch (error: unknown) {
-      const errorMessage = error.errors?.[0]?.message || "Dados invÃ¡lidos";
+      const errorMessage = error instanceof ZodError 
+        ? error.errors[0]?.message || "Dados inválidos"
+        : "Dados inválidos";
       toast({
-        title: "ValidaÃ§Ã£o de dados",
+        title: "Validação de dados",
         description: errorMessage,
         variant: "destructive"
       });
@@ -248,7 +251,15 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
                 tentativasAnteriores={quizData.tentativasAnteriores}
                 efeitoSanfona={quizData.efeitoSanfona}
                 gatilhos={quizData.gatilhos}
-                onChange={updateQuizData}
+                onChange={(field: string, value: number | boolean | string[]) => {
+                  if (field === 'tentativasAnteriores') {
+                    updateQuizData('tentativasAnteriores', value as number);
+                  } else if (field === 'efeitoSanfona') {
+                    updateQuizData('efeitoSanfona', value as boolean);
+                  } else if (field === 'gatilhos') {
+                    updateQuizData('gatilhos', value as QuizData['gatilhos']);
+                  }
+                }}
               />
             )}
             {currentStep === 4 && (
@@ -256,13 +267,21 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
                 invasividade={quizData.invasividade}
                 tempoRecuperacao={quizData.tempoRecuperacao}
                 tempoDisponivel={quizData.tempoDisponivel}
-                onChange={updateQuizData}
+                onChange={(field: string, value: string) => {
+                  if (field === 'invasividade') {
+                    updateQuizData('invasividade', value as QuizData['invasividade']);
+                  } else if (field === 'tempoRecuperacao') {
+                    updateQuizData('tempoRecuperacao', value as QuizData['tempoRecuperacao']);
+                  } else if (field === 'tempoDisponivel') {
+                    updateQuizData('tempoDisponivel', value as QuizData['tempoDisponivel']);
+                  }
+                }}
               />
             )}
             {currentStep === 5 && (
               <QuizStep5
                 dorPrincipal={quizData.dorPrincipal}
-                onChange={(val) => updateQuizData('dorPrincipal', val)}
+                onChange={(val: string) => updateQuizData('dorPrincipal', val as QuizData['dorPrincipal'])}
               />
             )}
             {currentStep === 6 && (
