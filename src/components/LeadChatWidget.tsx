@@ -13,7 +13,7 @@ import {
   type LeadData,
 } from "@/lib/leadValidation";
 import { formatBRPhone } from "@/lib/phoneMask";
-import avatarImage from "@/assets/avatar-dra-bruna.avif";
+import avatarImage from "@/assets/dra-bruna-profile.avif";
 
 type Step = "name" | "whatsapp" | "email" | "confirm";
 
