@@ -13,12 +13,12 @@ import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import patientImage from "@/assets/patient-confident.avif";
-import { CONTACT } from "@/lib/constants";
 
 const BalãoIntragastrico = () => {
-  const handleWhatsApp = () => {
-    const message = "Olá, Dra. Bruna! Gostaria de saber mais sobre Balão Intragástrico.";
-    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
+  const handleCTA = () => {
+    if (typeof window !== "undefined" && window.LeadChat) {
+      window.LeadChat.open();
+    }
   };
 
   const serviceSchema = {
@@ -41,7 +41,7 @@ const BalãoIntragastrico = () => {
           subtitle="Controle da fome + Programa completo = Resultado que você pode manter"
           description="Procedimento endoscópico minimamente invasivo que te ajuda a emagrecer controlando a fome de verdade — sem cortes, sem internação."
           image={patientImage}
-          onCtaClick={handleWhatsApp}
+          onCtaClick={handleCTA}
         />
 
         <ProblemasSolucoes />
@@ -77,7 +77,7 @@ const BalãoIntragastrico = () => {
         <CTASection
           title="Pronta para dar o próximo passo?"
           description="Converse com nossa equipe e descubra se o Balão Intragástrico é ideal para você."
-          onButtonClick={handleWhatsApp}
+          onButtonClick={handleCTA}
         />
 
         <Footer />
