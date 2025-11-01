@@ -290,13 +290,51 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
   return (
     <>
       {showFloatingButton && !isOpen && (
-        <Button
+        <div 
           onClick={handleOpen}
-          className="fixed bottom-6 right-6 z-50 rounded-full shadow-elegant hover:shadow-hover hover:scale-105 transition-all px-6 py-6 text-base font-medium"
-          aria-label="Abrir chat para agendamento"
+          className="fixed bottom-6 right-6 z-50 flex items-center gap-3 cursor-pointer hover:scale-105 transition-all duration-300 animate-fade-in group"
+          role="button"
+          aria-label="Comece sua jornada hoje"
         >
-          Agende sua pré-consulta
-        </Button>
+          {/* Desktop - Speech bubble + Avatar */}
+          <div className="hidden md:flex items-center gap-3">
+            {/* Speech Bubble */}
+            <div className="bg-white rounded-2xl shadow-xl px-4 py-3 relative animate-in slide-in-from-left-2 duration-500">
+              <p className="text-sm font-medium text-gray-800 leading-tight whitespace-nowrap pr-2">
+                Comece sua jornada hoje! ✨
+              </p>
+              {/* Arrow pointing to avatar */}
+              <div className="absolute right-[-8px] top-1/2 -translate-y-1/2 w-0 h-0 border-t-[8px] border-t-transparent border-l-[8px] border-l-white border-b-[8px] border-b-transparent" />
+            </div>
+            
+            {/* Avatar with online indicator */}
+            <div className="relative animate-in zoom-in-50 duration-300" style={{ animationDelay: '200ms' }}>
+              <img 
+                src={avatarImage}
+                alt="Dra. Bruna Durelli" 
+                className="w-14 h-14 rounded-full object-cover object-top border-2 border-white shadow-lg group-hover:shadow-xl transition-shadow"
+              />
+              {/* Online indicator */}
+              <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 rounded-full border-2 border-white animate-pulse" />
+            </div>
+          </div>
+
+          {/* Mobile - Compact version with avatar + small bubble */}
+          <div className="md:hidden flex items-center gap-2">
+            <div className="bg-white rounded-xl shadow-lg px-3 py-2 relative">
+              <span className="text-xs font-medium text-gray-800">Comece hoje! ✨</span>
+              <div className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-t-transparent border-l-[6px] border-l-white border-b-[6px] border-b-transparent" />
+            </div>
+            <div className="relative">
+              <img 
+                src={avatarImage}
+                alt="Dra. Bruna" 
+                className="w-12 h-12 rounded-full object-cover object-top border-2 border-white shadow-lg"
+              />
+              <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white animate-pulse" />
+            </div>
+          </div>
+        </div>
       )}
 
       {isOpen && (
