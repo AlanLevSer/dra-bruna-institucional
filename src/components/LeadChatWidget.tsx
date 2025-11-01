@@ -13,6 +13,7 @@ import {
   type LeadData,
 } from "@/lib/leadValidation";
 import { formatBRPhone } from "@/lib/phoneMask";
+import avatarImage from "@/assets/avatar-dra-bruna.avif";
 
 type Step = "name" | "whatsapp" | "email" | "confirm";
 
@@ -29,10 +30,10 @@ const STEP_PROGRESS: Record<Step, number> = {
 };
 
 const STEP_LABELS: Record<Step, string> = {
-  name: "Nome",
+  name: "Nome Completo",
   whatsapp: "WhatsApp",
-  email: "Email",
-  confirm: "Confirmar",
+  email: "E-mail",
+  confirm: "Confirmação",
 };
 
 export default function LeadChatWidget({ showFloatingButton = false, origin = "unknown" }: Props) {
@@ -252,13 +253,13 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
   const getStepMessage = (): string => {
     switch (step) {
       case "name":
-        return "Qual é o seu nome?";
+        return "Olá! Que alegria ter você aqui! 😊 Para começarmos, qual é o seu nome completo?";
       case "whatsapp":
-        return `Ótimo, ${leadData.name?.split(" ")[0]}! Qual é o seu WhatsApp?`;
+        return `Prazer em te conhecer, ${leadData.name?.split(" ")[0]}! ✨ Agora me conta, qual é o seu WhatsApp? Assim consigo te enviar informações importantes sobre sua jornada de transformação!`;
       case "email":
-        return "Perfeito! Qual é o seu melhor email?";
+        return "Maravilha! 💚 Qual é o seu melhor e-mail? Vou te enviar conteúdos exclusivos e materiais que vão te ajudar nessa jornada!";
       case "confirm":
-        return "Confirme seus dados:";
+        return "Quase lá! 🎯 Dá uma conferida se está tudo certinho com seus dados:";
       default:
         return "";
     }
@@ -267,11 +268,11 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
   const getInputPlaceholder = (): string => {
     switch (step) {
       case "name":
-        return "Digite seu nome completo";
+        return "Ex: Maria Silva Santos";
       case "whatsapp":
-        return "(00) 00000-0000";
+        return "(11) 98765-4321";
       case "email":
-        return "seu@email.com";
+        return "seuemail@exemplo.com";
       default:
         return "";
     }
@@ -318,12 +319,14 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
 
             <div className="flex-1 p-6 overflow-y-auto space-y-4">
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold shrink-0">
-                  DB
-                </div>
+                <img 
+                  src={avatarImage} 
+                  alt="Dra. Bruna" 
+                  className="w-10 h-10 rounded-full object-cover shrink-0 ring-2 ring-primary/20"
+                />
                 <div className="flex-1">
                   <div className="bg-muted rounded-2xl rounded-tl-none p-4">
-                    <p className="text-sm">{getStepMessage()}</p>
+                    <p className="text-sm leading-relaxed">{getStepMessage()}</p>
                   </div>
                 </div>
               </div>
