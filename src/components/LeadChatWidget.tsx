@@ -6,6 +6,8 @@ import { Progress } from "@/components/ui/progress";
 import { trackEvent } from "@/lib/analytics";
 import { getStoredUTMContext } from "@/lib/utm";
 import { CONTACT } from "@/lib/constants";
+import { toast } from "@/hooks/use-toast";
+import confetti from "canvas-confetti";
 import {
   leadNameSchema,
   leadWhatsAppSchema,
@@ -43,6 +45,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
   const [leadData, setLeadData] = useState<Partial<LeadData>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [inputValue, setInputValue] = useState("");
+  const [completedSteps, setCompletedSteps] = useState<Step[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -137,35 +140,154 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
     setTimeout(() => setIsTyping(false), 300);
   };
 
+  const triggerHapticFeedback = () => {
+    if ('vibrate' in navigator) {
+      navigator.vibrate([50]);
+    }
+  };
+
+  const playProgressSound = () => {
+    try {
+      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioContext) return;
+      
+      const audioContext = new AudioContext();
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      const frequencies: Record<Step, number> = {
+        name: 523.25,
+        whatsapp: 659.25,
+        email: 783.99,
+        confirm: 1046.50,
+      };
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.value = frequencies[step];
+      oscillator.type = 'sine';
+      
+      gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 0.3);
+    } catch (error) {
+      // Silently fail if audio not supported
+    }
+  };
+
+  const triggerConfettiCelebration = () => {
+    const duration = 2000;
+    const animationEnd = Date.now() + duration;
+    
+    const randomInRange = (min: number, max: number) => {
+      return Math.random() * (max - min) + min;
+    };
+
+    const colors = ['#B8654B', '#D4A373', '#4A7C59', '#E67E22'];
+
+    const interval = setInterval(() => {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+
+      confetti({
+        particleCount,
+        startVelocity: 30,
+        spread: 360,
+        origin: {
+          x: randomInRange(0.1, 0.9),
+          y: Math.random() - 0.2
+        },
+        colors,
+        ticks: 60,
+        gravity: 0.8,
+        scalar: 1.2,
+        drift: 0,
+      });
+    }, 250);
+  };
+
+  const showMilestoneToast = (stepName: Step) => {
+    const messages: Record<Step, { title: string; description: string }> = {
+      name: { 
+        title: "🎯 Primeira etapa completa!", 
+        description: "Ótimo começo! Continue assim." 
+      },
+      whatsapp: { 
+        title: "💚 Estamos conectados!", 
+        description: "Metade da jornada completa." 
+      },
+      email: { 
+        title: "✨ Quase lá!", 
+        description: "Última etapa antes da confirmação." 
+      },
+      confirm: { 
+        title: "🎉 Jornada completa!", 
+        description: "Vamos te conectar no WhatsApp agora!" 
+      }
+    };
+
+    toast({
+      title: messages[stepName].title,
+      description: messages[stepName].description,
+      duration: 2500,
+    });
+  };
+
   const handleNext = () => {
     const trimmedValue = inputValue.trim();
 
     if (step === "name") {
       if (!validateStep("name", trimmedValue)) return;
       setLeadData({ ...leadData, name: trimmedValue });
+      
+      triggerHapticFeedback();
+      playProgressSound();
+      showMilestoneToast("name");
+      setCompletedSteps([...completedSteps, "name"]);
+      
       showTypingAnimation();
       setTimeout(() => {
         setStep("whatsapp");
         setInputValue("");
-        trackEvent("chat_step", { step: "whatsapp" });
+        trackEvent("chat_step", { step: "whatsapp", milestone: "name_completed" });
       }, 300);
     } else if (step === "whatsapp") {
       const phoneDigits = trimmedValue.replace(/\D/g, "");
       if (!validateStep("whatsapp", phoneDigits)) return;
       setLeadData({ ...leadData, whatsapp: phoneDigits });
+      
+      triggerHapticFeedback();
+      playProgressSound();
+      showMilestoneToast("whatsapp");
+      setCompletedSteps([...completedSteps, "whatsapp"]);
+      
       showTypingAnimation();
       setTimeout(() => {
         setStep("email");
         setInputValue("");
-        trackEvent("chat_step", { step: "email" });
+        trackEvent("chat_step", { step: "email", milestone: "whatsapp_completed" });
       }, 300);
     } else if (step === "email") {
       if (!validateStep("email", trimmedValue)) return;
       setLeadData({ ...leadData, email: trimmedValue });
+      
+      triggerHapticFeedback();
+      playProgressSound();
+      showMilestoneToast("email");
+      setCompletedSteps([...completedSteps, "email"]);
+      
       showTypingAnimation();
       setTimeout(() => {
         setStep("confirm");
-        trackEvent("chat_step", { step: "confirm" });
+        trackEvent("chat_step", { step: "confirm", milestone: "email_completed" });
       }, 300);
     }
   };
@@ -182,6 +304,11 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
   };
 
   const handleConfirm = () => {
+    triggerHapticFeedback();
+    playProgressSound();
+    triggerConfettiCelebration();
+    showMilestoneToast("confirm");
+    
     const utmContext = getStoredUTMContext();
     
     let gaClientId = "";
@@ -222,6 +349,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
 
     trackEvent("form_submit", {
       origin: "chat_widget",
+      had_celebrations: true,
       ...webhookPayload,
     });
 
@@ -384,7 +512,87 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
               </Button>
             </div>
 
-            <Progress value={STEP_PROGRESS[step]} className="h-1" />
+            {/* Premium progress bar with step indicators and animations */}
+            <div className="relative px-4 py-3 bg-gradient-to-b from-primary/5 to-transparent">
+              <div className="flex justify-between items-center mb-3">
+                {(['name', 'whatsapp', 'email', 'confirm'] as Step[]).map((stepName, idx) => {
+                  const stepOrder: Step[] = ['name', 'whatsapp', 'email', 'confirm'];
+                  const currentStepIndex = stepOrder.indexOf(step);
+                  const isActive = idx === currentStepIndex;
+                  const isCompleted = completedSteps.includes(stepName);
+                  const labels = ['Nome', 'WhatsApp', 'E-mail', 'Confirmar'];
+                  
+                  return (
+                    <div key={idx} className="flex flex-col items-center gap-1.5 relative">
+                      {/* Step circle with animations */}
+                      <div className={`
+                        w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold
+                        transition-all duration-500 relative
+                        ${isCompleted 
+                          ? 'bg-gradient-premium text-white scale-110 shadow-lg' 
+                          : isActive 
+                          ? 'bg-primary text-white ring-4 ring-primary/20 scale-110' 
+                          : 'bg-primary/15 text-primary/40 scale-90'
+                        }
+                      `}>
+                        {isCompleted ? (
+                          <span className="text-lg">✓</span>
+                        ) : (
+                          <span>{idx + 1}</span>
+                        )}
+                        
+                        {/* Glow effect for active step */}
+                        {isActive && (
+                          <div className="absolute inset-0 rounded-full bg-primary/30 animate-ping" />
+                        )}
+                      </div>
+                      
+                      {/* Step label */}
+                      <span className={`text-[10px] font-medium transition-all duration-300 ${
+                        isActive ? 'text-primary font-semibold scale-105' : 
+                        isCompleted ? 'text-primary/70' : 
+                        'text-muted-foreground'
+                      }`}>
+                        {labels[idx]}
+                      </span>
+                      
+                      {/* Connection line (except for last step) */}
+                      {idx < 3 && (
+                        <div 
+                          className={`absolute top-[18px] left-[calc(50%+20px)] w-[calc(100vw/5-40px)] md:w-[60px] h-0.5 transition-all duration-500 ${
+                            isCompleted ? 'bg-gradient-premium' : 'bg-primary/10'
+                          }`}
+                          style={{ transformOrigin: 'left center' }}
+                        />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              
+              {/* Main progress bar */}
+              <div className="relative h-2.5 bg-primary/10 rounded-full overflow-hidden shadow-inner">
+                <div 
+                  className="h-full bg-gradient-premium transition-all duration-700 ease-out relative rounded-full"
+                  style={{ width: `${STEP_PROGRESS[step]}%` }}
+                >
+                  {/* Shimmer animation */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer-down opacity-60" />
+                  
+                  {/* Glow at the end */}
+                  <div className="absolute right-0 top-0 h-full w-1 bg-white/60 shadow-lg animate-pulse" />
+                </div>
+              </div>
+              
+              {/* Progress percentage */}
+              <div className="flex justify-between items-center mt-2 px-1">
+                <span className="text-[10px] text-muted-foreground">Início</span>
+                <span className="text-xs font-bold text-primary tabular-nums">
+                  {STEP_PROGRESS[step]}%
+                </span>
+                <span className="text-[10px] text-muted-foreground">Completo</span>
+              </div>
+            </div>
 
             <div className="flex-1 p-6 overflow-y-auto space-y-4">
               <div className="flex items-start gap-3">
