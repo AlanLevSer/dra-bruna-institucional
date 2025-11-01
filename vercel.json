@@ -32,7 +32,7 @@
   ],
   "rewrites": [
     {
-      "source": "/(programa-levser|tratamentos|recursos|nutricao-celular|balao-intragastrico|balao-intragastrico-a|balao-intragastrico-b|gastroplastia-endoscopica|canetas-emagrecedoras|medicina-regenerativa|plasma-argonio|politica-privacidade|termos-uso|quiz|descubra-seu-caminho)(/.*)?",
+      "source": "/(sobre|programa-levser|tratamentos|recursos|nutricao-celular|balao-intragastrico|balao-intragastrico-a|balao-intragastrico-b|gastroplastia-endoscopica|canetas-emagrecedoras|medicina-regenerativa|plasma-argonio|plasma-de-argonio-a|politica-privacidade|termos-uso|quiz|descubra-seu-caminho)(/.*)?",
       "destination": "/index.html"
     }
   ]
