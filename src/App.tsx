@@ -24,6 +24,7 @@ const PoliticaPrivacidade = lazy(() => import("./pages/PoliticaPrivacidade"));
 const TermosUso = lazy(() => import("./pages/TermosUso"));
 const Quiz = lazy(() => import("./pages/Quiz"));
 const BalaoVendas = lazy(() => import("./pages/BalaoVendas"));
+const PlasmaArgonioVendas = lazy(() => import("./pages/PlasmaArgonioVendas"));
 
 const queryClient = new QueryClient();
 
@@ -83,6 +84,8 @@ const App = () => (
             <Route path="/terapia-sacietogena" element={<Navigate to="/canetas-emagrecedoras" replace />} />
             <Route path="/medicina-regenerativa" element={<MedicinaRegenerativa />} />
             <Route path="/plasma-argonio" element={<PlasmaArgonio />} />
+            <Route path="/plasma-de-argonio-a" element={<PlasmaArgonioVendas />} />
+            <Route path="/plasma-argonio-a" element={<Navigate to="/plasma-de-argonio-a" replace />} />
             <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
             <Route path="/termos-uso" element={<TermosUso />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

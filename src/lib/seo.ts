@@ -76,6 +76,15 @@ export const pageSEO: Record<string, SEOData> = {
     canonical: "https://www.brunadurelli.com.br/plasma-argonio",
   },
 
+  plasmaArgonioVendas: {
+    title: "Plasma de Argônio - Tratamento de Reganho Pós-Bariátrica | Dra. Bruna Durelli",
+    description:
+      "Tratamento endoscópico com Plasma de Argônio para reganho de peso após bypass gástrico. Procedimento minimamente invasivo com resultados efetivos e acompanhamento especializado.",
+    keywords:
+      "plasma de argônio, reganho de peso, pós-bariátrica, bypass gástrico, tratamento endoscópico, Dra. Bruna Durelli, LevSer, São Paulo",
+    canonical: "https://www.brunadurelli.com.br/plasma-de-argonio-a",
+  },
+
   quizLanding: {
     title: "Descubra Seu Caminho | Quiz Gratuito de Transformação | Dra. Bruna Durelli",
     description:
