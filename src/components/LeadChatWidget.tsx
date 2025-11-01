@@ -203,7 +203,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       ...webhookPayload,
     });
 
-    fetch("https://hook.us2.make.com/abcd1234", {
+    fetch("https://hook.eu2.make.com/a8npmvf1rzbfjw8c1iigmm1lqezfhd37", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(webhookPayload),
