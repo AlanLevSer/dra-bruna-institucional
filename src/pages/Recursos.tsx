@@ -74,7 +74,7 @@ const Recursos = () => {
                       <span className="text-xs bg-primary text-white px-2 py-0.5 rounded-full font-normal">Novo</span>
                     </CardTitle>
                     <CardDescription>
-                      Quiz personalizado gratuito para descobrir o tratamento ideal. 6 perguntas, resultados imediatos
+                      Quiz personalizado gratuito para descobrir o tratamento ideal. Poucos cliques, resultados imediatos
                     </CardDescription>
                   </CardHeader>
                 </Card>

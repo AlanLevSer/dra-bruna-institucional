@@ -251,7 +251,7 @@ const Quiz = () => {
     "@context": "https://schema.org",
     "@type": "Quiz",
     "name": "Descubra Seu Caminho - Quiz Personalizado",
-    "description": "Quiz interativo gratuito para descobrir o plano de tratamento ideal personalizado para sua jornada de emagrecimento e saúde",
+    "description": "Em poucos cliques, descubra o plano de tratamento ideal personalizado para sua jornada de emagrecimento e saúde",
     "provider": {
       "@type": "Physician",
       "name": "Dra. Bruna Durelli",
@@ -267,8 +267,8 @@ const Quiz = () => {
   return (
     <>
       <SEOHead data={{
-        title: "Descubra Seu Caminho - Quiz Personalizado Gratuito | Dra. Bruna Durelli",
-        description: "Responda nosso quiz gratuito de 6 perguntas e descubra o plano de tratamento ideal personalizado para sua jornada. Sem compromisso, 100% online.",
+        title: "Descubra Seu Caminho - Rápido e Personalizado | Dra. Bruna Durelli",
+        description: "Em poucos cliques, descubra o plano de tratamento ideal personalizado para sua jornada. Rápido, gratuito e sem compromisso.",
         keywords: "quiz emagrecimento gratuito, teste obesidade online, plano personalizado, diagnóstico obesidade, avaliação gratuita",
         canonical: "https://www.brunadurelli.com.br/quiz",
         ogImage: "https://www.brunadurelli.com.br/og-quiz.jpg"
@@ -292,7 +292,7 @@ const Quiz = () => {
                     Descubra Seu Caminho
                   </h1>
                   <p className="text-lg md:text-xl text-muted-foreground mb-2">
-                    Responda 7 perguntas e receba um plano personalizado
+                    Em poucos cliques, seu plano personalizado está pronto
                   </p>
                   <p className="text-sm text-muted-foreground">
                     100% gratuito ⬢ Sem compromisso ⬢ Resultados imediatos

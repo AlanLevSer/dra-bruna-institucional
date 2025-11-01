@@ -50,7 +50,7 @@ export const Hero = () => {
             
             <div className="flex flex-col sm:flex-row gap-3 pt-3">
               <Button size="default" onClick={() => setQuizOpen(true)} className="bg-gradient-premium hover:opacity-90 transition-all shadow-elegant hover:shadow-hover group text-sm px-5 py-2.5">
-                Descubra seu caminho (sem compromisso)
+                Descubra seu caminho em poucos cliques
                 <Sparkles className="ml-2 group-hover:scale-110 transition-transform" size={16} />
               </Button>
               
