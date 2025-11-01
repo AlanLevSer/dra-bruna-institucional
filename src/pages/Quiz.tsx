@@ -452,13 +452,11 @@ const Quiz = () => {
           </section>
         </main>
         
-        {/* Footer e Widget aparecem apenas nos resultados */}
-        {showOutput && (
-          <>
-            <Footer />
-            <LeadChatWidget showFloatingButton origin="quiz" />
-          </>
-        )}
+        {/* Footer sempre visível */}
+        <Footer />
+        
+        {/* Widget apenas nos resultados */}
+        {showOutput && <LeadChatWidget showFloatingButton origin="quiz" />}
       </div>
     </>
   );
