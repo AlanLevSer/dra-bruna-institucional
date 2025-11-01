@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { ZodError } from "zod";
-import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
+import logoHeader from "@/assets/logo-header.avif";
 import { StructuredData } from "@/components/StructuredData";
 import { QuizData } from "@/types/quiz";
 import { generateTransformacaoOutput } from "@/lib/quiz-logic";
@@ -277,9 +277,18 @@ const Quiz = () => {
       <StructuredData data={quizSchema} />
       
       <div className="min-h-screen flex flex-col bg-background">
-        <Navigation />
+        {/* Header minimalista - apenas logo */}
+        <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b">
+          <div className="container mx-auto px-4 py-3">
+            <img 
+              src={logoHeader}
+              alt="Dra. Bruna Durelli" 
+              className="h-8"
+            />
+          </div>
+        </header>
         
-        <main className="flex-1">
+        <main className="flex-1 pt-16">
           {/* Hero Section */}
           {!showOutput && !isGenerating && currentStep === 1 && (
             <section className="py-12 md:py-16 bg-gradient-to-br from-primary/5 via-background to-background border-b">
@@ -443,8 +452,13 @@ const Quiz = () => {
           </section>
         </main>
         
-        <Footer />
-        <LeadChatWidget showFloatingButton origin="quiz" />
+        {/* Footer e Widget aparecem apenas nos resultados */}
+        {showOutput && (
+          <>
+            <Footer />
+            <LeadChatWidget showFloatingButton origin="quiz" />
+          </>
+        )}
       </div>
     </>
   );
