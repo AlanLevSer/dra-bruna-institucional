@@ -213,12 +213,21 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       `Olá! Vim pelo site.\n\n*Nome:* ${leadData.name}\n*WhatsApp:* ${formatBRPhone(leadData.whatsapp || "")}\n*Email:* ${leadData.email}\n*Origem:* ${origin}`
     );
 
+    // Prefer web.whatsapp.com on desktop to avoid environments that block api.whatsapp.com
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi/i.test(
+      navigator.userAgent
+    );
+    const waUrl = isMobile
+      ? `https://wa.me/${CONTACT.WHATSAPP_NUMBER}?text=${whatsappMessage}`
+      : `https://web.whatsapp.com/send?phone=${CONTACT.WHATSAPP_NUMBER}&text=${whatsappMessage}`;
+
     trackEvent("whatsapp_redirect", {
       origin: "chat_widget",
       phone: CONTACT.PHONE_DISPLAY,
+      ua: isMobile ? "mobile" : "desktop",
     });
 
-    window.open(`https://wa.me/${CONTACT.WHATSAPP_NUMBER}?text=${whatsappMessage}`, "_blank");
+    window.open(waUrl, "_blank");
     
     setTimeout(() => {
       setIsOpen(false);
