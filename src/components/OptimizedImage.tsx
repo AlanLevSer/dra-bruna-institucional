@@ -19,18 +19,18 @@ export const OptimizedImage = ({
   className,
   ...props
 }: OptimizedImageProps) => {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      loading={priority ? 'eager' : 'lazy'}
-      fetchPriority={priority ? 'high' : 'auto'}
-      decoding={priority ? 'sync' : 'async'}
-      className={className}
-      sizes={sizes ?? "100vw"}
-      {...props}
-    />
-  );
+  const imgProps: React.ImgHTMLAttributes<HTMLImageElement> = {
+    src,
+    alt,
+    width,
+    height,
+    loading: priority ? 'eager' : 'lazy',
+    decoding: priority ? 'sync' : 'async',
+    className,
+    sizes: sizes ?? "100vw",
+    ...(priority && { fetchPriority: 'high' as const }),
+    ...props,
+  };
+
+  return <img {...imgProps} />;
 };

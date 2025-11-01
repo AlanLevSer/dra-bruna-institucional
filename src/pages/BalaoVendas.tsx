@@ -1,20 +1,23 @@
-﻿import { SEOHead } from "@/components/SEOHead";
+import { lazy, Suspense } from "react";
+import { SEOHead } from "@/components/SEOHead";
 import { HeroVendas } from "@/components/vendas/HeroVendas";
 import { StatsVendas } from "@/components/vendas/StatsVendas";
 import { TransformacoesReaisVendas } from "@/components/vendas/TransformacoesReaisVendas";
 import { TargetAudienceVendas } from "@/components/vendas/TargetAudienceVendas";
 import { ProgramaLevSerVendas } from "@/components/vendas/ProgramaLevSerVendas";
-import { PilaresMetodoVendas } from "@/components/vendas/PilaresMetodoVendas";
-import { JornadaFasesVendas } from "@/components/vendas/JornadaFasesVendas";
-import { ProgramasTratamento } from "@/components/vendas/ProgramasTratamento";
-import { ResultsVendas } from "@/components/vendas/ResultsVendas";
-import { TestimonialsVendas } from "@/components/vendas/TestimonialsVendas";
-import { CredentialsVendas } from "@/components/vendas/CredentialsVendas";
-import { DifferentialsVendas } from "@/components/vendas/DifferentialsVendas";
-import { MediaRecognitionVendas } from "@/components/vendas/MediaRecognitionVendas";
-import { FAQVendas } from "@/components/vendas/FAQVendas";
-import { FinalCTAVendas } from "@/components/vendas/FinalCTAVendas";
-import { Footer } from "@/components/Footer";
+
+// Lazy load below-the-fold components for better FCP
+const PilaresMetodoVendas = lazy(() => import("@/components/vendas/PilaresMetodoVendas").then(m => ({ default: m.PilaresMetodoVendas })));
+const JornadaFasesVendas = lazy(() => import("@/components/vendas/JornadaFasesVendas").then(m => ({ default: m.JornadaFasesVendas })));
+const ProgramasTratamento = lazy(() => import("@/components/vendas/ProgramasTratamento").then(m => ({ default: m.ProgramasTratamento })));
+const ResultsVendas = lazy(() => import("@/components/vendas/ResultsVendas").then(m => ({ default: m.ResultsVendas })));
+const TestimonialsVendas = lazy(() => import("@/components/vendas/TestimonialsVendas").then(m => ({ default: m.TestimonialsVendas })));
+const CredentialsVendas = lazy(() => import("@/components/vendas/CredentialsVendas").then(m => ({ default: m.CredentialsVendas })));
+const DifferentialsVendas = lazy(() => import("@/components/vendas/DifferentialsVendas").then(m => ({ default: m.DifferentialsVendas })));
+const MediaRecognitionVendas = lazy(() => import("@/components/vendas/MediaRecognitionVendas").then(m => ({ default: m.MediaRecognitionVendas })));
+const FAQVendas = lazy(() => import("@/components/vendas/FAQVendas").then(m => ({ default: m.FAQVendas })));
+const FinalCTAVendas = lazy(() => import("@/components/vendas/FinalCTAVendas").then(m => ({ default: m.FinalCTAVendas })));
+const Footer = lazy(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
 import LeadChatWidget from "@/components/LeadChatWidget";
 
 const BalãoVendas = () => {
@@ -35,22 +38,25 @@ const BalãoVendas = () => {
       <TransformacoesReaisVendas />
       <TargetAudienceVendas />
       <ProgramaLevSerVendas />
-      <PilaresMetodoVendas />
-      <JornadaFasesVendas />
-            <ProgramasTratamento />
-{/* Removed: <PlansComparison /> and <ComparadorBaloes /> */}
-      <ResultsVendas />
-      <TestimonialsVendas />
-      <CredentialsVendas />
-      <DifferentialsVendas />
-      <MediaRecognitionVendas />
-      <FAQVendas />
-      <FinalCTAVendas />
-      <Footer />
+      
+      {/* Lazy loaded below-the-fold sections for better FCP */}
+      <Suspense fallback={<div className="min-h-[400px]" />}>
+        <PilaresMetodoVendas />
+        <JornadaFasesVendas />
+        <ProgramasTratamento />
+        <ResultsVendas />
+        <TestimonialsVendas />
+        <CredentialsVendas />
+        <DifferentialsVendas />
+        <MediaRecognitionVendas />
+        <FAQVendas />
+        <FinalCTAVendas />
+        <Footer />
+      </Suspense>
+      
       <LeadChatWidget showFloatingButton={false} origin="balao-vendas" />
     </>
   );
 };
 
 export default BalãoVendas;
-
