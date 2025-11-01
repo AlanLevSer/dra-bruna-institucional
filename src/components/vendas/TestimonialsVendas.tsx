@@ -24,7 +24,7 @@ const testimonials = [
 
 export const TestimonialsVendas = () => {
   return (
-    <section className="relative py-16 md:py-20 bg-muted/30 overflow-hidden">
+    <section className="relative py-10 md:py-12 bg-muted/30 overflow-hidden">
       <GrafismoDecor variant="background" position="top-right" size="lg" opacity={0.15} />
 
       <div className="container mx-auto px-4">

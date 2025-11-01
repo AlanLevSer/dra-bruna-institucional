@@ -16,7 +16,7 @@ const scientificData = [
 
 export const ResultsVendas = () => {
   return (
-    <section className="relative py-16 md:py-20 bg-gradient-to-b from-muted/20 to-background overflow-hidden">
+    <section className="relative py-10 md:py-12 bg-gradient-to-b from-muted/20 to-background overflow-hidden">
       <GrafismoDecor variant="background" position="bottom-left" size="lg" opacity={0.12} />
 
       <div className="container mx-auto px-4">

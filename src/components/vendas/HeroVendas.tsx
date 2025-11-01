@@ -24,12 +24,12 @@ export const HeroVendas = () => {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-muted/20 to-background overflow-hidden">
+    <section className="relative min-h-[85vh] flex items-center bg-gradient-to-br from-muted/20 to-background overflow-hidden">
       <GrafismoDecor variant="background" position="top-right" size="lg" opacity={0.15} />
       <GrafismoDecor variant="background" position="bottom-left" size="md" opacity={0.12} rotate={45} />
 
-      <div className="container mx-auto px-4 py-20 md:py-24">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-6 md:px-8 py-12 md:py-16">
+        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
           <div className="space-y-6 text-center lg:text-left">
             <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
               Consulta de Avaliação Personalizada
@@ -75,13 +75,13 @@ export const HeroVendas = () => {
             </div>
           </div>
 
-          <div className="relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-elegant">
+          <div className="relative lg:justify-self-end">
+            <div className="relative rounded-2xl overflow-hidden shadow-elegant max-w-md mx-auto lg:mx-0">
               <OptimizedImage
                 src={heroImage}
                 alt="Dra. Bruna Durelli - Especialista em Balão Intragástrico"
-                width={800}
-                height={1000}
+                width={600}
+                height={750}
                 className="w-full h-auto"
                 priority
               />

@@ -22,7 +22,7 @@ export const TargetAudienceVendas = () => {
   };
 
   return (
-    <section className="relative py-16 md:py-20 bg-background overflow-hidden">
+    <section className="relative py-10 md:py-12 bg-background overflow-hidden">
       <GrafismoDecor variant="background" position="top-left" size="md" opacity={0.18} />
 
       <div className="container mx-auto px-4">

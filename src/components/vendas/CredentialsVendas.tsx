@@ -37,7 +37,7 @@ const credentials = [
 
 export const CredentialsVendas = () => {
   return (
-    <section className="relative py-16 md:py-20 bg-background overflow-hidden">
+    <section className="relative py-10 md:py-12 bg-background overflow-hidden">
       <GrafismoDecor variant="background" position="center" size="xl" opacity={0.08} />
 
       <div className="container mx-auto px-4">

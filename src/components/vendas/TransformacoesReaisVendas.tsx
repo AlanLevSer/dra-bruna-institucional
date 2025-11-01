@@ -48,7 +48,7 @@ export const TransformacoesReaisVendas = () => {
   };
 
   return (
-    <section className="relative py-16 md:py-24 bg-gradient-to-b from-muted/30 to-background overflow-hidden">
+    <section className="relative py-10 md:py-14 bg-gradient-to-b from-muted/30 to-background overflow-hidden">
       <GrafismoDecor variant="background" position="top-left" size="lg" opacity={0.1} />
       <GrafismoDecor variant="background" position="bottom-right" size="lg" opacity={0.1} />
 

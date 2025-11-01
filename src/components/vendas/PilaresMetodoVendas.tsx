@@ -49,7 +49,7 @@ const pilares = [
 
 export const PilaresMetodoVendas = () => {
   return (
-    <section className="relative overflow-hidden py-16 md:py-20">
+    <section className="relative overflow-hidden py-10 md:py-12">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-7xl">
           <div className="mb-10 text-center">
