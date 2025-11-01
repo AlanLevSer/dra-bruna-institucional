@@ -8,6 +8,7 @@ import { IndicationList } from "@/components/IndicationList";
 import { TreatmentSection } from "@/components/TreatmentSection";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
+import LeadChatWidget from "@/components/LeadChatWidget";
 import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
@@ -80,6 +81,7 @@ const BalãoIntragastrico = () => {
         />
 
         <Footer />
+        <LeadChatWidget showFloatingButton origin="balao-intragastrico" />
       </div>
     </>
   );

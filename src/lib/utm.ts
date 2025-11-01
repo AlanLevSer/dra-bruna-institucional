@@ -22,6 +22,9 @@ const TRACKED_KEYS = new Set([
   "utm_adset",
   "utm_ad",
   "utm_group",
+  "utm_source_platform",
+  "utm_creative_format",
+  "utm_marketing_tactic",
   "gclid",
   "fbclid",
   "msclkid",
@@ -29,6 +32,8 @@ const TRACKED_KEYS = new Set([
   "ttclid",
   "gbraid",
   "wbraid",
+  "gclientid",
+  "ga_utm",
 ]);
 
 const getBrowserParams = (): UTMParams => {

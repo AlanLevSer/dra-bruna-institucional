@@ -13,7 +13,7 @@ const FAQ = lazy(() => import("@/components/FAQ").then(m => ({ default: m.FAQ })
 const InvestimentoPagamento = lazy(() => import("@/components/InvestimentoPagamento").then(m => ({ default: m.InvestimentoPagamento })));
 const CTASection = lazy(() => import("@/components/CTASection").then(m => ({ default: m.CTASection })));
 const Footer = lazy(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
-const WhatsAppButton = lazy(() => import("@/components/WhatsAppButton").then(m => ({ default: m.WhatsAppButton })));
+import LeadChatWidget from "@/components/LeadChatWidget";
 
 const Recursos = () => {
   const navigate = useNavigate();
@@ -163,9 +163,7 @@ const Recursos = () => {
             <Footer />
           </Suspense>
         </main>
-        <Suspense fallback={null}>
-          <WhatsAppButton />
-        </Suspense>
+        <LeadChatWidget showFloatingButton origin="recursos" />
       </div>
     </>
   );

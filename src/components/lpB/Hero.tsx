@@ -6,6 +6,24 @@ export default function Hero() {
   const meta = isMetaSource();
   const primaryLabel = google ? "Agendar minha avaliação" : meta ? "Fazer teste de 60s" : "Agendar minha avaliação";
 
+  const handlePrimaryCTA = (e: React.MouseEvent) => {
+    if (!meta) {
+      e.preventDefault();
+      fireDataEvent(e.currentTarget as import("@/lib/events").EventSourceEl);
+      if (typeof window !== "undefined" && window.LeadChat) {
+        window.LeadChat.open();
+      }
+    }
+  };
+
+  const handleQuizCTA = (e: React.MouseEvent) => {
+    e.preventDefault();
+    fireDataEvent(e.currentTarget as import("@/lib/events").EventSourceEl);
+    if (typeof window !== "undefined" && window.LeadChat) {
+      window.LeadChat.open();
+    }
+  };
+
   return (
     <section id="top" className="relative">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
@@ -19,18 +37,18 @@ export default function Hero() {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a
-                href={meta ? "#oferta" : "#lead"}
+                href={meta ? "#oferta" : "#"}
                 data-event="cta_click_hero_primary"
                 className="inline-flex items-center rounded-2xl bg-slate-900 px-4 py-2 text-white shadow-sm hover:bg-slate-800"
-                onClick={(e) => fireDataEvent(e.currentTarget as import("@/lib/events").EventSourceEl)}
+                onClick={handlePrimaryCTA}
               >
                 {primaryLabel}
               </a>
               <a
-                href="#oferta"
+                href="#"
                 data-event="cta_click_hero_quiz"
                 className="inline-flex items-center rounded-2xl border px-4 py-2 text-slate-900 hover:bg-slate-50"
-                onClick={(e) => fireDataEvent(e.currentTarget as import("@/lib/events").EventSourceEl)}
+                onClick={handleQuizCTA}
               >
                 Fazer teste de 60s
               </a>

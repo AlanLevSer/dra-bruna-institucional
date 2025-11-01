@@ -2,6 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { SubpageHero } from "@/components/SubpageHero";
 import { TreatmentSection } from "@/components/TreatmentSection";
 import { Footer } from "@/components/Footer";
+import LeadChatWidget from "@/components/LeadChatWidget";
 import { IndicationList } from "@/components/IndicationList";
 import { BenefitsList } from "@/components/BenefitsList";
 import { CTASection } from "@/components/CTASection";
@@ -106,6 +107,7 @@ const CanetasEmagrecedoras = () => {
       />
 
       <Footer />
+      <LeadChatWidget showFloatingButton origin="canetas-emagrecedoras" />
     </>
   );
 };

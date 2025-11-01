@@ -15,7 +15,7 @@ import { MediaRecognitionVendas } from "@/components/vendas/MediaRecognitionVend
 import { FAQVendas } from "@/components/vendas/FAQVendas";
 import { FinalCTAVendas } from "@/components/vendas/FinalCTAVendas";
 import { Footer } from "@/components/Footer";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
+import LeadChatWidget from "@/components/LeadChatWidget";
 
 const BalãoVendas = () => {
   const seoData = {
@@ -47,7 +47,7 @@ const BalãoVendas = () => {
       <FAQVendas />
       <FinalCTAVendas />
       <Footer />
-      <WhatsAppButton />
+      <LeadChatWidget showFloatingButton origin="balao-vendas" />
     </>
   );
 };

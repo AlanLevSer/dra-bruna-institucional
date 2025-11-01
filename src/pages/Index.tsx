@@ -4,9 +4,9 @@ import { Hero } from "@/components/Hero";
 import { SobreDraBrunaResumo } from "@/components/SobreDraBrunaResumo";
 import { ProgramaLevSer } from "@/components/ProgramaLevSer";
 import { Comunidade } from "@/components/Comunidade";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { MobileCTA } from "@/components/MobileCTA";
 import { SEOHead } from "@/components/SEOHead";
+import LeadChatWidget from "@/components/LeadChatWidget";
 import { StructuredData } from "@/components/StructuredData";
 import { FAQResumo } from "@/components/FAQResumo";
 import { TratamentosGrid } from "@/components/TratamentosGrid";
@@ -76,7 +76,7 @@ const Index = () => {
           
           <Suspense fallback={<div className="min-h-[20vh]"></div>}><CTAFinal /><Footer /></Suspense>
         </main>
-        <WhatsAppButton />
+        <LeadChatWidget showFloatingButton origin="homepage" />
         <MobileCTA />
       </div>
     </>

@@ -16,7 +16,7 @@ const RegeneracaoMetabolica = lazy(() => import("@/components/RegeneracaoMetabol
 const SegurancaEvidencias = lazy(() => import("@/components/SegurancaEvidencias").then(m => ({ default: m.SegurancaEvidencias })));
 const InvestimentoPagamento = lazy(() => import("@/components/InvestimentoPagamento").then(m => ({ default: m.InvestimentoPagamento })));
 const CTASection = lazy(() => import("@/components/CTASection").then(m => ({ default: m.CTASection })));
-const WhatsAppButton = lazy(() => import("@/components/WhatsAppButton").then(m => ({ default: m.WhatsAppButton })));
+import LeadChatWidget from "@/components/LeadChatWidget";
 
 const ProgramaLevSerPage = () => {
   const handleCTA = () => {
@@ -94,9 +94,7 @@ const ProgramaLevSerPage = () => {
             <Footer />
           </Suspense>
         </main>
-        <Suspense fallback={null}>
-          <WhatsAppButton />
-        </Suspense>
+        <LeadChatWidget showFloatingButton origin="programa-levser" />
       </div>
     </>
   );

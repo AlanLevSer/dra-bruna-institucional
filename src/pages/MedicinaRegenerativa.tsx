@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import LeadChatWidget from "@/components/LeadChatWidget";
 import { SubpageHero } from "@/components/SubpageHero";
 import { TreatmentSection } from "@/components/TreatmentSection";
 import { IndicationList } from "@/components/IndicationList";
@@ -83,6 +84,7 @@ const MedicinaRegenerativa = () => {
           />
         </main>
         <Footer />
+        <LeadChatWidget showFloatingButton origin="medicina-regenerativa" />
       </div>
     </>
   );

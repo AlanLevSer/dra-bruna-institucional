@@ -40,7 +40,7 @@ import { CTAsFinais } from "@/components/output/CTAsFinais";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
+import LeadChatWidget from "@/components/LeadChatWidget";
 import { trackEvent } from "@/lib/analytics";
 
 const Quiz = () => {
@@ -444,7 +444,7 @@ const Quiz = () => {
         </main>
         
         <Footer />
-        <WhatsAppButton />
+        <LeadChatWidget showFloatingButton origin="quiz" />
       </div>
     </>
   );

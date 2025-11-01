@@ -6,8 +6,8 @@ import { JornadaTransformacao } from "@/components/JornadaTransformacao";
 import { ExperienciaConcierge } from "@/components/ExperienciaConcierge";
 import { ReconhecimentoMidia } from "@/components/ReconhecimentoMidia";
 import { CTASection } from "@/components/CTASection";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { SEOHead } from "@/components/SEOHead";
+import LeadChatWidget from "@/components/LeadChatWidget";
 import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import { CONTACT } from "@/lib/constants";
@@ -57,7 +57,7 @@ const Sobre = () => {
           
           <Footer />
         </main>
-        <WhatsAppButton />
+        <LeadChatWidget showFloatingButton origin="sobre" />
       </div>
     </>
   );

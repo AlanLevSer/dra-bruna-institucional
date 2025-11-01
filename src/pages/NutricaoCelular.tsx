@@ -5,6 +5,7 @@ import { IndicationList } from "@/components/IndicationList";
 import { BenefitsList } from "@/components/BenefitsList";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
+import LeadChatWidget from "@/components/LeadChatWidget";
 import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
@@ -77,6 +78,7 @@ const NutricaoCelular = () => {
         />
 
         <Footer />
+        <LeadChatWidget showFloatingButton origin="nutricao-celular" />
       </div>
     </>
   );

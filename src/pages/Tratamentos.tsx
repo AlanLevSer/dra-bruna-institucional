@@ -4,8 +4,8 @@ import { SubpageHero } from "@/components/SubpageHero";
 import { TratamentosGrid } from "@/components/TratamentosGrid";
 import { ComparadorBaloes } from "@/components/ComparadorBaloes";
 import { CTASection } from "@/components/CTASection";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { SEOHead } from "@/components/SEOHead";
+import LeadChatWidget from "@/components/LeadChatWidget";
 import { StructuredData } from "@/components/StructuredData";
 import { generateStructuredData } from "@/lib/seo";
 import { CONTACT } from "@/lib/constants";
@@ -236,7 +236,7 @@ const Tratamentos = () => {
           
           <Footer />
         </main>
-        <WhatsAppButton />
+        <LeadChatWidget showFloatingButton origin="tratamentos" />
       </div>
     </>
   );

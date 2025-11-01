@@ -9,6 +9,7 @@ import { BenefitsList } from "@/components/BenefitsList";
 import { ComparadorGastroVsBariatrica } from "@/components/ComparadorGastroVsBariatrica";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
+import LeadChatWidget from "@/components/LeadChatWidget";
 import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
@@ -90,6 +91,7 @@ const GastroplastiaEndoscopica = () => {
         />
 
         <Footer />
+        <LeadChatWidget showFloatingButton origin="gastroplastia" />
       </div>
     </>
   );
