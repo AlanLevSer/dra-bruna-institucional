@@ -289,7 +289,7 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
       cta_text: 'agendar_avaliacao'
     });
 
-    const message = "Olá! Gostaria de agendar uma avaliação sem compromisso para conhecer o Programa LevSer.";
+    const message = "Olá! Gostaria de agendar uma pré-consulta sem compromisso para conhecer o Programa LevSer.";
     openLeadChat('roi_calc_direto', `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`);
   };
 
@@ -865,7 +865,7 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
               e dados agregados de pacientes, <strong className="text-foreground">não são garantias individuais</strong>. 
               Resultados variam conforme adesão, perfil clínico e histórico de saúde. 
               <strong className="text-foreground block mt-2">
-                Valores do programa são personalizados na consulta de avaliação — sem compromisso de fechamento.
+                Valores do programa são personalizados na pré-consulta — sem compromisso de fechamento.
               </strong>
             </p>
           </CardContent>

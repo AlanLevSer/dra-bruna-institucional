@@ -149,10 +149,10 @@ export const ComparadorBaloes = () => {
 
         <div className="text-center mt-12 animate-fade-in" style={{ animationDelay: "0.4s" }}>
           <p className="text-muted-foreground mb-4">
-            Não sabe qual escolher? Nossa equipe te ajuda a decidir na consulta de avaliação
+            Não sabe qual escolher? Nossa equipe te ajuda a decidir na pré-consulta
           </p>
           <Button size="lg" className="group" onClick={scrollToSection}>
-            Agendar Avaliação
+            Agendar Pré-Consulta
             <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
           </Button>
         </div>

@@ -24,7 +24,7 @@ const BalãoVendas = () => {
   const seoData = {
     title: "Balão Intragástrico - Perca até 35 kg em até 12 meses | Dra. Bruna Durelli",
     description:
-      "Tratamento completo com balão intragástrico, acompanhamento interdisciplinar e resultados duradouros. Consulta de avaliação com desconto. Agende agora!",
+      "Tratamento completo com balão intragástrico, acompanhamento interdisciplinar e resultados duradouros. Pré-consulta personalizada. Agende agora!",
     keywords:
       "balão intragástrico, emagrecimento, perda de peso, obesidade, Dra. Bruna Durelli, LevSer, São Paulo",
     canonical: "https://www.brunadurelli.com.br/balao-intragastrico-a",

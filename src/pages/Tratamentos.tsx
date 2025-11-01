@@ -37,7 +37,7 @@ const Tratamentos = () => {
             subtitle="Opções Personalizadas"
             description="Conheça todos os tratamentos disponíveis: terapias endoscópicas, farmacológicas e medicina regenerativa. Encontramos juntas a melhor solução para você."
             image={heroImage}
-            ctaText="Agendar Avaliação"
+            ctaText="Agendar Pré-Consulta"
             onCtaClick={handleCTA}
           />
           
@@ -230,8 +230,8 @@ const Tratamentos = () => {
           
           <CTASection
             title="Vamos Descobrir o Melhor Tratamento para Você?"
-            description="Agende sua avaliação e receba um plano personalizado baseado no seu perfil e objetivos."
-            buttonText="Agendar Avaliação"
+            description="Agende sua pré-consulta e receba um plano personalizado baseado no seu perfil e objetivos."
+            buttonText="Agendar Pré-Consulta"
             onButtonClick={handleCTA}
           />
           

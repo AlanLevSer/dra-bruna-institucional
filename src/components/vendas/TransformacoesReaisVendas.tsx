@@ -108,16 +108,16 @@ export const TransformacoesReaisVendas = () => {
             <h3 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
               Sua transformação começa agora!
             </h3>
-            <p className="text-lg text-muted-foreground mb-6">
-              Junte-se a mais de 3000 pessoas que transformaram suas vidas com o Programa LevSer.
+            <p className="text-base text-muted-foreground mb-4">
+              Agende sua pré-consulta e descubra o melhor caminho para sua transformação.
             </p>
             <Button
               size="lg"
               onClick={handleWhatsApp}
-              className="gap-2 shadow-elegant hover:shadow-hover text-lg px-8 py-6 h-auto"
+              className="gap-2 shadow-elegant hover:shadow-hover"
             >
               <MessageCircle className="w-5 h-5" />
-              Quero minha avaliação gratuita
+              Iniciar minha transformação
             </Button>
           </div>
         </div>

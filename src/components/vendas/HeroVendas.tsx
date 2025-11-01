@@ -32,7 +32,7 @@ export const HeroVendas = () => {
         <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
           <div className="space-y-6 text-center lg:text-left">
             <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
-              Consulta de Avaliação Personalizada
+              Pré-Consulta Personalizada
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight">
@@ -53,7 +53,7 @@ export const HeroVendas = () => {
                 onClick={handleWhatsApp}
                 className="bg-gradient-premium hover:opacity-90 text-white shadow-elegant hover:shadow-hover transition-all"
               >
-                Agendar avaliação
+                Agendar pré-consulta
               </Button>
               <Button variant="outline" size="lg" onClick={scrollToProgram}>
                 Conhecer o programa

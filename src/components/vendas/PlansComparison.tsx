@@ -99,7 +99,7 @@ export const PlansComparison = () => {
                 onClick={handleWhatsApp}
                 className={plan.recommended ? "w-full bg-gradient-premium hover:opacity-90" : "w-full"}
               >
-                {plan.recommended ? "Agendar avaliação" : "Quero saber mais"}
+                {plan.recommended ? "Agendar pré-consulta" : "Quero saber mais"}
               </Button>
             </div>
           ))}

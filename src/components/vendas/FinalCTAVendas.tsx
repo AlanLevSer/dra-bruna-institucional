@@ -29,7 +29,7 @@ export const FinalCTAVendas = () => {
               Pronta para dar o próximo passo?
             </h2>
             <p className="text-lg md:text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Agende uma consulta de avaliação e descubra se o balão intragástrico é o tratamento ideal para você.
+              Agende uma pré-consulta e descubra se o balão intragástrico é o tratamento ideal para você.
             </p>
 
             <Button
@@ -37,7 +37,7 @@ export const FinalCTAVendas = () => {
               onClick={handleWhatsApp}
               className="bg-card text-foreground hover:bg-card/90 shadow-elegant text-base md:text-lg px-8 py-6 h-auto"
             >
-              Agendar avaliação
+              Agendar pré-consulta
             </Button>
           </div>
 

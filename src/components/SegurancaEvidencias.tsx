@@ -164,7 +164,7 @@ export const SegurancaEvidencias = () => {
         {/* CTA */}
         <div className="text-center">
           <Button size="lg" onClick={handleWhatsAppClick} className="group min-w-[280px]">
-            Agendar avaliação completa
+            Agendar pré-consulta completa
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>

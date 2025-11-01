@@ -24,7 +24,7 @@ export const CTAsFinais = ({
   semanasPlano
 }: CTAsFinaisProps) => {
   const message = encodeURIComponent(
-    "Olá! Acabei de receber meu Plano de Transformação Pessoal e gostaria de agendar uma avaliação."
+    "Olá! Acabei de receber meu Plano de Transformação Pessoal e gostaria de agendar uma pré-consulta."
   );
   
   return (
@@ -79,7 +79,7 @@ export const CTAsFinais = ({
             }}
           >
             <Calendar className="w-6 h-6" />
-            <span className="font-semibold">Agendar Avaliação Presencial</span>
+            <span className="font-semibold">Agendar Pré-Consulta Presencial</span>
             <span className="text-xs opacity-90">São Paulo - Itaim Bibi</span>
           </Button>
           
