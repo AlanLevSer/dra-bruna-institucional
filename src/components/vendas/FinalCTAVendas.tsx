@@ -13,9 +13,11 @@ const contactInfo = [
 export const FinalCTAVendas = () => {
   const handleWhatsApp = () => {
     try {
-      trackWhatsAppClick("final_cta_vendas");
+      trackEvent("cta_clicked", { source: "final_cta_vendas", action: "open_widget" });
     } catch (e) { void e; }
-    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
+    if (window.LeadChat) {
+      window.LeadChat.open();
+    }
   };
 
   return (

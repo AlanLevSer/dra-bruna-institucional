@@ -14,9 +14,11 @@ const profiles = [
 export const TargetAudienceVendas = () => {
   const handleWhatsApp = () => {
     try {
-      trackWhatsAppClick("target_audience_vendas");
+      trackEvent("cta_clicked", { source: "target_audience_vendas", action: "open_widget" });
     } catch (e) { void e; }
-    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
+    if (window.LeadChat) {
+      window.LeadChat.open();
+    }
   };
 
   return (

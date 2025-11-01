@@ -92,10 +92,11 @@ export const ProgramaLevSerVendas = () => {
               <button
                 onClick={() => {
                   try {
-                    trackWhatsAppClick("programa_levser_vendas");
+                    trackEvent("cta_clicked", { source: "programa_levser_vendas", action: "open_widget" });
                   } catch (e) { void e; }
-                  const message = "Olá! Quero conhecer o Programa LevSer e descobrir meu plano personalizado.";
-                  window.open(`${CONTACT.WHATSAPP_URL.split("?")[0]}?text=${encodeURIComponent(message)}`, "_blank");
+                  if (window.LeadChat) {
+                    window.LeadChat.open();
+                  }
                 }}
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-premium px-6 py-3 text-primary-foreground font-medium shadow-elegant hover:opacity-90 transition-all"
               >
