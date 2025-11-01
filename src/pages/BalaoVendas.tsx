@@ -47,7 +47,7 @@ const BalãoVendas = () => {
       <FAQVendas />
       <FinalCTAVendas />
       <Footer />
-      <LeadChatWidget showFloatingButton origin="balao-vendas" />
+      <LeadChatWidget showFloatingButton={false} origin="balao-vendas" />
     </>
   );
 };
