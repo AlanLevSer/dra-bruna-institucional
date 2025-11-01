@@ -13,12 +13,16 @@ import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import patientImage from "@/assets/patient-confident.avif";
+import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 
 const BalãoIntragastrico = () => {
   const handleCTA = () => {
-    if (typeof window !== "undefined" && window.LeadChat) {
-      window.LeadChat.open();
-    }
+    const message = "Olá, Dra. Bruna! Gostaria de saber mais sobre o Balão Intragástrico.";
+    openLeadChat(
+      "balao_intragastrico_page", 
+      `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`
+    );
   };
 
   const serviceSchema = {

@@ -552,9 +552,11 @@ export const ProgramaLevSer = () => {
             <Button
               size="lg"
               onClick={() => {
-                const phone = "5511997023024";
                 const message = "Olá! Quero seguir a jornada em 4 fases do Programa LevSer.";
-                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+                openLeadChat(
+                  "programa_levser_jornada", 
+                  `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`
+                );
               }}
               className="bg-gradient-premium hover:opacity-90 transition-opacity group"
             >
