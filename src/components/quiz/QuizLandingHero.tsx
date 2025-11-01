@@ -20,12 +20,12 @@ export const QuizLandingHero = () => {
 
           {/* Main Headline */}
           <h1 className="text-3xl md:text-5xl font-serif font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
-            Seu Plano de Transformação Personalizado
+            Descubra o Programa que Funciona para SEU Corpo
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-muted-foreground mb-6">
-            Em poucos cliques, descubra qual tratamento é ideal para você
+            Responda 7 perguntas e receba seu programa personalizado em 3 minutos
           </p>
 
           {/* Trust indicators */}
@@ -60,7 +60,7 @@ export const QuizLandingHero = () => {
               <span className="text-sm font-medium">+300 pessoas</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Já descobriram seu plano personalizado e estão transformando suas vidas
+              Já descobriram seu programa personalizado e estão transformando suas vidas
             </p>
           </div>
 

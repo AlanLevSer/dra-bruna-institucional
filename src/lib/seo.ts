@@ -77,12 +77,12 @@ export const pageSEO: Record<string, SEOData> = {
   },
 
   quizLanding: {
-    title: "Seu Plano de Emagrecimento Personalizado | Dra. Bruna Durelli",
+    title: "Descubra Seu Programa Personalizado | Quiz Gratuito | Dra. Bruna Durelli",
     description:
-      "Em poucos cliques, descubra o plano de tratamento ideal para você. Avaliação gratuita personalizada com resultados imediatos. 100% gratuito e sem compromisso.",
+      "Responda 7 perguntas rápidas e descubra o programa de transformação ideal para você. Avaliação gratuita e personalizada com a Dra. Bruna Durelli.",
     keywords:
-      "plano emagrecimento personalizado, quiz obesidade, avaliação gratuita, tratamento personalizado, programa emagrecimento, dra bruna durelli",
-    canonical: "https://www.brunadurelli.com.br/seu-plano-personalizado",
+      "programa personalizado emagrecimento, quiz obesidade, avaliação gratuita, tratamento personalizado, programa emagrecimento, dra bruna durelli",
+    canonical: "https://www.brunadurelli.com.br/seu-programa-personalizado",
   },
 };
 
