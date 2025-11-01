@@ -218,7 +218,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       phone: CONTACT.PHONE_DISPLAY,
     });
 
-    window.open(`${CONTACT.WHATSAPP_URL}&text=${whatsappMessage}`, "_blank");
+    window.open(`https://wa.me/${CONTACT.WHATSAPP_NUMBER}?text=${whatsappMessage}`, "_blank");
     
     setTimeout(() => {
       setIsOpen(false);
