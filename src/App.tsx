@@ -23,6 +23,7 @@ const PlasmaArgonio = lazy(() => import("./pages/PlasmaArgonio"));
 const PoliticaPrivacidade = lazy(() => import("./pages/PoliticaPrivacidade"));
 const TermosUso = lazy(() => import("./pages/TermosUso"));
 const Quiz = lazy(() => import("./pages/Quiz"));
+const QuizLanding = lazy(() => import("./pages/QuizLanding"));
 const BalaoVendas = lazy(() => import("./pages/BalaoVendas"));
 
 const queryClient = new QueryClient();
@@ -72,6 +73,7 @@ const App = () => (
             <Route path="/recursos" element={<Recursos />} />
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/descubra-seu-caminho" element={<Quiz />} />
+            <Route path="/seu-plano-personalizado" element={<QuizLanding />} />
             <Route path="/nutricao-celular" element={<NutricaoCelular />} />
             <Route path="/balao-intragastrico" element={<BalaoIntragastrico />} />
             <Route path="/balão-intragastrico" element={<Navigate to="/balao-intragastrico" replace />} />

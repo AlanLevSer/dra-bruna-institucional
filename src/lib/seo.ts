@@ -75,6 +75,15 @@ export const pageSEO: Record<string, SEOData> = {
       "plasma de argônio, endoscopia terapêutica, tratamento gastrointestinal, endoscopia avançada",
     canonical: "https://www.brunadurelli.com.br/plasma-argonio",
   },
+
+  quizLanding: {
+    title: "Seu Plano de Emagrecimento Personalizado | Dra. Bruna Durelli",
+    description:
+      "Em poucos cliques, descubra o plano de tratamento ideal para você. Avaliação gratuita personalizada com resultados imediatos. 100% gratuito e sem compromisso.",
+    keywords:
+      "plano emagrecimento personalizado, quiz obesidade, avaliação gratuita, tratamento personalizado, programa emagrecimento, dra bruna durelli",
+    canonical: "https://www.brunadurelli.com.br/seu-plano-personalizado",
+  },
 };
 
 export const generateStructuredData = {
