@@ -17,6 +17,8 @@ import { useNavigate } from "react-router-dom";
 import { PlanoTransformacao } from "@/components/PlanoTransformacao";
 import { Button } from "@/components/ui/button";
 import { trackEvent } from "@/lib/analytics";
+import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 
 type Fase = {
   numero: string;
@@ -355,7 +357,6 @@ export const JornadaFasesVendas = () => {
           <Button
             size="lg"
             onClick={() => {
-              const phone = "5511997023024";
               const message =
                 "Olá! Quero seguir a jornada em 4 fases do Programa LevSer.";
               try {
@@ -363,10 +364,8 @@ export const JornadaFasesVendas = () => {
               } catch (error) {
                 void error;
               }
-              window.open(
-                `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
-                "_blank",
-              );
+              const whatsappUrl = `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`;
+              openLeadChat("jornada_fases_vendas", whatsappUrl);
             }}
             className="group bg-gradient-premium transition-opacity hover:opacity-90"
           >

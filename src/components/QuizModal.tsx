@@ -5,6 +5,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 
 interface QuizModalProps {
   open: boolean;
@@ -68,7 +69,8 @@ const QuizModal = ({ open, onOpenChange }: QuizModalProps) => {
     } else {
       // Finalizar quiz
       const profile = `Idade: ${answers.age}, Meta: ${answers.weight}, Desafio: ${answers.challenge}`;
-      window.open(CONTACT.WHATSAPP_QUIZ_RESULT(profile), "_blank");
+      const whatsappUrl = CONTACT.WHATSAPP_QUIZ_RESULT(profile);
+      openLeadChat("quiz_modal_result", whatsappUrl);
       onOpenChange(false);
       // Reset
       setStep(1);

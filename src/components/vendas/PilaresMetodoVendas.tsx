@@ -3,6 +3,7 @@ import { ArrowRight, Brain, CheckCircle2, Dumbbell, Activity, UtensilsCrossed } 
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
 import { trackEvent, trackWhatsAppClick } from "@/lib/analytics";
+import { openLeadChat } from "@/lib/leadChat";
 
 const pilares = [
   {
@@ -93,34 +94,34 @@ export const PilaresMetodoVendas = () => {
           </div>
 
           <div className="text-center">
-            <Button
-              size="lg"
-              onClick={() => {
-                const message =
-                  "Olá! Quero conhecer meu plano personalizado pelos 4 pilares do Programa LevSer.";
-                const targetUrl = `${CONTACT.WHATSAPP_URL.split("?")[0]}?text=${encodeURIComponent(
-                  message,
-                )}`;
+          <Button
+            size="lg"
+            onClick={() => {
+              const message =
+                "Olá! Quero conhecer meu plano personalizado pelos 4 pilares do Programa LevSer.";
+              const targetUrl = `${CONTACT.WHATSAPP_URL.split("?")[0]}?text=${encodeURIComponent(
+                message,
+              )}`;
 
-                try {
-                  trackEvent("cta_whatsapp_click", {
-                    location: "pilares_metodo_vendas",
-                    path: window.location.pathname,
-                  });
-                } catch (error) {
-                  void error;
-                }
+              try {
+                trackEvent("cta_whatsapp_click", {
+                  location: "pilares_metodo_vendas",
+                  path: window.location.pathname,
+                });
+              } catch (error) {
+                void error;
+              }
 
-                try {
-                  trackWhatsAppClick("pilares_metodo_vendas", { message });
-                } catch (error) {
-                  void error;
-                }
+              try {
+                trackWhatsAppClick("pilares_metodo_vendas", { message });
+              } catch (error) {
+                void error;
+              }
 
-                window.open(targetUrl, "_blank");
-              }}
-              className="group bg-gradient-premium transition-opacity hover:opacity-90"
-            >
+              openLeadChat("pilares_metodo_vendas", targetUrl);
+            }}
+            className="group bg-gradient-premium transition-opacity hover:opacity-90"
+          >
               Quero meu plano pelos 4 pilares
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Button>

@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, MessageCircle, RotateCcw } from "lucide-react";
 import { CONTACT } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
+import { openLeadChat } from "@/lib/leadChat";
 
 interface CTAsFinaisProps {
   onResetQuiz?: () => void;
@@ -73,7 +74,8 @@ export const CTAsFinais = ({
             className="h-auto py-6 flex flex-col gap-2"
             onClick={() => {
               trackEvent('quiz_final_cta_clicked', { cta_type: 'presencial' });
-              window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${message}`, '_blank');
+              const whatsappUrl = `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${message}`;
+              openLeadChat('quiz_final_presencial', whatsappUrl);
             }}
           >
             <Calendar className="w-6 h-6" />
@@ -87,8 +89,9 @@ export const CTAsFinais = ({
             className="h-auto py-6 flex flex-col gap-2"
             onClick={() => {
               trackEvent('quiz_final_cta_clicked', { cta_type: 'teleconsulta' });
-              const teleconsultaMsg = encodeURIComponent("Olá! Gostaria de agendar uma teleconsulta.");
-              window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${teleconsultaMsg}`, '_blank');
+              const teleconsultaMsg = "Olá! Gostaria de agendar uma teleconsulta.";
+              const whatsappUrl = `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(teleconsultaMsg)}`;
+              openLeadChat('quiz_final_teleconsulta', whatsappUrl);
             }}
           >
             <MessageCircle className="w-6 h-6" />
@@ -102,8 +105,9 @@ export const CTAsFinais = ({
             className="h-auto py-6 flex flex-col gap-2"
             onClick={() => {
               trackEvent('quiz_final_cta_clicked', { cta_type: 'duvidas' });
-              const duvidasMsg = encodeURIComponent("Olá! Tenho algumas dúvidas sobre o tratamento.");
-              window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${duvidasMsg}`, '_blank');
+              const duvidasMsg = "Olá! Tenho algumas dúvidas sobre o tratamento.";
+              const whatsappUrl = `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(duvidasMsg)}`;
+              openLeadChat('quiz_final_duvidas', whatsappUrl);
             }}
           >
             <MessageCircle className="w-6 h-6" />

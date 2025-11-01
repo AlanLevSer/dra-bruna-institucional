@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, MapPin } from "lucide-react";
 import ctaImage from "@/assets/dra-bruna-elegant.avif";
 import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 
 export const CTAFinal = () => {
   return <section id="agendar" className="py-12 xl:py-16 bg-gradient-premium text-primary-foreground relative overflow-hidden">
@@ -23,12 +24,12 @@ export const CTAFinal = () => {
           <p className="text-sm opacity-80 italic">Vamos juntos, sem pressa. Cada passo importa, conte comigo.</p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-            <Button size="lg" variant="secondary" className="shadow-elegant hover:shadow-hover transition-all" onClick={() => window.open(CONTACT.WHATSAPP_PROGRAMA_URL, '_blank')}>
+            <Button size="lg" variant="secondary" className="shadow-elegant hover:shadow-hover transition-all" onClick={() => openLeadChat('cta_final_phone', CONTACT.WHATSAPP_PROGRAMA_URL)}>
               <Phone className="mr-2" size={20} />
               {CONTACT.PHONE_DISPLAY}
             </Button>
             
-            <Button size="lg" className="bg-card text-foreground hover:bg-card/90 shadow-elegant hover:shadow-hover transition-all" onClick={() => window.open(CONTACT.WHATSAPP_PROGRAMA_URL, '_blank')}>
+            <Button size="lg" className="bg-card text-foreground hover:bg-card/90 shadow-elegant hover:shadow-hover transition-all" onClick={() => openLeadChat('cta_final_whatsapp', CONTACT.WHATSAPP_PROGRAMA_URL)}>
               <MessageCircle className="mr-2" size={20} />
               WhatsApp
             </Button>

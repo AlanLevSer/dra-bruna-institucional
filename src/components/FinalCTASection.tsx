@@ -1,12 +1,13 @@
-﻿import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Phone, MapPin, Clock, Mail } from "lucide-react";
 import { CONTACT } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
+import { openLeadChat } from "@/lib/leadChat";
 
 const FinalCTASection = () => {
   const handleWhatsAppClick = (button: string) => {
     trackEvent('balão_vendas_final_cta', { button, timestamp: new Date().toISOString() });
-    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
+    openLeadChat(`final_cta_section_${button}`, CONTACT.WHATSAPP_BALAO_VENDAS);
   };
 
   return (
@@ -118,4 +119,3 @@ const FinalCTASection = () => {
 };
 
 export default FinalCTASection;
-

@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 const pilares = [{
   icon: Building2,
   title: "Centro Credenciado",
@@ -46,7 +47,8 @@ const compliance = ["Avaliação Pré-Tratamento: Exames laboratoriais completos
 export const SegurancaEvidencias = () => {
   const handleWhatsAppClick = () => {
     const message = "Olá! Gostaria de agendar uma avaliação completa.";
-    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
+    const whatsappUrl = `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`;
+    openLeadChat("seguranca_evidencias", whatsappUrl);
   };
   return <section id="seguranca" className="relative py-20 bg-card overflow-hidden">
       <GrafismoDecor variant="floating" position="bottom-left" size="lg" opacity={0.1} rotate={-20} color="gray" />
