@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Suspense, lazy } from "react";
-import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
+import logoHeader from "@/assets/logo-header.avif";
 import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import LeadChatWidget from "@/components/LeadChatWidget";
@@ -322,7 +322,16 @@ const QuizLanding = () => {
         <SEOHead data={pageSEO.quizLanding} />
         <StructuredData data={[generateStructuredData.organization, generateStructuredData.physician]} />
         <div className="min-h-screen bg-background">
-          <Navigation />
+          {/* Header minimalista para resultados */}
+          <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b">
+            <div className="container mx-auto px-4 py-3">
+              <img 
+                src={logoHeader}
+                alt="Dra. Bruna Durelli" 
+                className="h-8"
+              />
+            </div>
+          </header>
           <main className="pt-20">
             <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-10 w-10 border-2 border-primary border-t-transparent" /></div>}>
               <DeclaracaoTransformacao
@@ -357,18 +366,27 @@ const QuizLanding = () => {
   }
 
   return (
-    <>
+      <>
       <SEOHead data={pageSEO.quizLanding} />
       <StructuredData data={quizSchema} />
       <div className="min-h-screen bg-background">
-        <Navigation />
+        {/* Header minimalista - apenas logo */}
+        <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b">
+          <div className="container mx-auto px-4 py-3">
+            <img 
+              src={logoHeader}
+              alt="Dra. Bruna Durelli" 
+              className="h-8"
+            />
+          </div>
+        </header>
         
         {isGenerating ? (
           <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-10 w-10 border-2 border-primary border-t-transparent" /></div>}>
             <GeneratingAnimation />
           </Suspense>
         ) : (
-          <main className="pt-20 pb-16">
+          <main className="pt-24 pb-16">
             {currentStep === 1 && <QuizLandingHero />}
             
             <div className="container mx-auto px-4 max-w-3xl">
@@ -388,7 +406,6 @@ const QuizLanding = () => {
           </main>
         )}
         
-        <Footer />
         <LeadChatWidget />
         <ExitIntentModal />
       </div>
