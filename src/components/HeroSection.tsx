@@ -5,6 +5,7 @@ import draBrunaImage from "@/assets/dra-bruna-hero.avif";
 import QuizModal from "@/components/QuizModal";
 import { CONTACT } from "@/lib/constants";
 import { openLeadChat } from "@/lib/leadChat";
+import { trackEvent } from "@/lib/analytics";
 
 const HeroSection = () => {
   const [showQuiz, setShowQuiz] = useState(false);
