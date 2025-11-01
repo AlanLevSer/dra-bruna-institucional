@@ -331,7 +331,8 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
                 <img 
                   src={avatarImage} 
                   alt="Dra. Bruna" 
-                  className="w-10 h-10 rounded-full object-cover shrink-0 ring-2 ring-primary/20"
+                  className="w-10 h-10 rounded-full object-cover object-top shrink-0 ring-2 ring-primary/20"
+                  style={{ objectPosition: '50% 20%' }}
                 />
                 <div className="flex-1">
                   <div className="bg-muted rounded-2xl rounded-tl-none p-4">
