@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/seu-programa-personalizado",
+      "destination": "/descubra-seu-caminho",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "drabrunadurelli.com" }],
       "destination": "https://www.brunadurelli.com.br/$1",
