@@ -22,6 +22,7 @@ import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { PlanoTransformacao } from "@/components/PlanoTransformacao";
 import programImage from "@/assets/patient-wellness-1.avif";
 import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 
 const benefits = [
   "Vou te ajudar a transformar corpo, mente e autoestima",
@@ -344,7 +345,7 @@ export const ProgramaLevSer = () => {
               size="lg"
               onClick={() => {
                 const message = "Olá! Quero conhecer meu plano personalizado pelos 4 pilares do Programa LevSer.";
-                window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, '_blank');
+                openLeadChat("programa_levser_4pilares", `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`);
               }}
               className="bg-gradient-premium hover:opacity-90 transition-opacity group"
             >

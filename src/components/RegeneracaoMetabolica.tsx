@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { useNavigate } from "react-router-dom";
 import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 
 const beneficios = [
   {
@@ -127,7 +128,7 @@ export const RegeneracaoMetabolica = () => {
             size="lg"
             onClick={() => {
               const message = "Olá, Dra. Bruna! Quero descobrir meu programa regenerativo personalizado.";
-              window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, '_blank');
+              openLeadChat("regeneracao_metabolica", `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`);
             }}
             className="bg-gradient-premium hover:opacity-90 transition-opacity group"
           >

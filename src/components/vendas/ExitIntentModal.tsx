@@ -2,7 +2,7 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
-import { trackEvent } from "@/lib/analytics";
+import { openLeadChat } from "@/lib/leadChat";
 
 export const ExitIntentModal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,14 +23,8 @@ export const ExitIntentModal = () => {
     };
   }, [hasShown]);
 
-  const handleWhatsApp = () => {
-    try {
-      trackEvent('cta_whatsapp_click', {
-        location: 'exit_intent_modal',
-        path: window.location.pathname,
-      });
-    } catch (e) { void e; }
-    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
+  const handleWhatsApp = async () => {
+    await openLeadChat("exit_intent_modal", CONTACT.WHATSAPP_BALAO_VENDAS);
     setIsOpen(false);
   };
 

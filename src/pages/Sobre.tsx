@@ -11,11 +11,12 @@ import LeadChatWidget from "@/components/LeadChatWidget";
 import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 import heroImage from "@/assets/dra-bruna-hero.avif";
 
 const Sobre = () => {
   const handleCTA = () => {
-    window.open(CONTACT.WHATSAPP_URL, '_blank');
+    openLeadChat("sobre_page", CONTACT.WHATSAPP_URL);
   };
 
   return (

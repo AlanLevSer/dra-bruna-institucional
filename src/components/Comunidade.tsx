@@ -3,11 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 
 export const Comunidade = () => {
   const handleWhatsApp = () => {
     const message = "Olá, Dra. Bruna! Quero saber mais sobre a comunidade LevSer e como posso fazer parte.";
-    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
+    openLeadChat("comunidade", `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`);
   };
 
   const beneficios = [

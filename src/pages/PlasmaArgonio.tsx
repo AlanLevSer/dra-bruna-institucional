@@ -11,11 +11,12 @@ import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import doctorImage from "@/assets/dra-bruna-elegant.avif";
 import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 
 const PlasmaArgonio = () => {
   const handleWhatsApp = () => {
     const message = "Olá, Dra. Bruna! Gostaria de saber mais sobre Plasma de Argônio.";
-    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
+    openLeadChat("plasma_argonio", `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`);
   };
 
   const serviceSchema = {

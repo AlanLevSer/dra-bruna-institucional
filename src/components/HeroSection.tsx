@@ -4,18 +4,19 @@ import { OptimizedImage } from "@/components/OptimizedImage";
 import draBrunaImage from "@/assets/dra-bruna-hero.avif";
 import QuizModal from "@/components/QuizModal";
 import { CONTACT } from "@/lib/constants";
-import { trackEvent } from "@/lib/analytics";
+import { openLeadChat } from "@/lib/leadChat";
 
 const HeroSection = () => {
   const [showQuiz, setShowQuiz] = useState(false);
 
   const handleWhatsAppClick = () => {
-    trackEvent('balão_vendas_hero_cta', { button: 'transformacao', timestamp: new Date().toISOString() });
-    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
+    openLeadChat('balao_vendas_hero_cta', CONTACT.WHATSAPP_BALAO_VENDAS);
   };
 
   const handleQuizClick = () => {
-    trackEvent('balão_vendas_hero_cta', { button: 'quiz', timestamp: new Date().toISOString() });
+    try {
+      trackEvent('balão_vendas_hero_cta', { button: 'quiz', timestamp: new Date().toISOString() });
+    } catch (e) { void e; }
     setShowQuiz(true);
   };
 

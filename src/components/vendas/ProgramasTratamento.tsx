@@ -1,7 +1,8 @@
-﻿import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
+import { openLeadChat } from "@/lib/leadChat";
 
 interface Programa {
   titulo: string;
@@ -53,7 +54,7 @@ const programas: Programa[] = [
 export const ProgramasTratamento = () => {
   const escolher = (programa: string) => {
     try { trackEvent('programas_tratamento_cta', { programa, path: window.location.pathname }); } catch (e) { void e; }
-    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, '_blank');
+    openLeadChat(`programas_tratamento_${programa.toLowerCase().replace(/\s+/g, '_')}`, CONTACT.WHATSAPP_BALAO_VENDAS);
   };
 
   return (
@@ -106,6 +107,3 @@ export const ProgramasTratamento = () => {
     </section>
   );
 };
-
-
-

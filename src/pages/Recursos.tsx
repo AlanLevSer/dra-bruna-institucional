@@ -3,6 +3,7 @@ import { Navigation } from "@/components/Navigation";
 import { SubpageHero } from "@/components/SubpageHero";
 import { SEOHead } from "@/components/SEOHead";
 import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { Calculator, BookOpen, HelpCircle, Sparkles } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -19,7 +20,7 @@ const Recursos = () => {
   const navigate = useNavigate();
   
   const handleCTA = () => {
-    window.open(CONTACT.WHATSAPP_URL, '_blank');
+    openLeadChat("recursos_page", CONTACT.WHATSAPP_URL);
   };
 
   const scrollToCalculadora = () => {

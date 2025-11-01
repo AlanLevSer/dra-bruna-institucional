@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 import { trackEvent } from "@/lib/analytics";
 
 interface SubpageHeroProps {
@@ -23,7 +24,7 @@ export const SubpageHero = ({
 }: SubpageHeroProps) => {
   const defaultCtaAction = () => {
     const message = "Olá, Dra. Bruna! Gostaria de agendar uma consulta.";
-    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
+    openLeadChat("subpage_hero", `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`);
   };
 
   return (

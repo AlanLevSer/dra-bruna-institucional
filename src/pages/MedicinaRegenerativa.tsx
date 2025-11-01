@@ -11,11 +11,12 @@ import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import patientImage from "@/assets/patient-confident.avif";
 import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 
 const MedicinaRegenerativa = () => {
   const handleWhatsApp = () => {
     const message = "Olá! Gostaria de saber mais sobre Medicina Regenerativa.";
-    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
+    openLeadChat("medicina_regenerativa", `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`);
   };
 
   const serviceSchema = {

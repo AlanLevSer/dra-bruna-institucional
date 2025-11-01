@@ -15,11 +15,12 @@ import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import doctorImage from "@/assets/dra-bruna-elegant.avif";
 import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 
 const GastroplastiaEndoscopica = () => {
   const handleWhatsApp = () => {
     const message = "Olá, Dra. Bruna! Gostaria de saber mais sobre Gastroplastia Endoscópica.";
-    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
+    openLeadChat("gastroplastia_endoscopica", `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`);
   };
 
   const serviceSchema = {

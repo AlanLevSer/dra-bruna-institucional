@@ -5,6 +5,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { StructuredData } from "@/components/StructuredData";
 import { generateStructuredData } from "@/lib/seo";
 import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 import heroImage from "@/assets/transformation-success.avif";
 
 const Footer = lazy(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
@@ -20,7 +21,7 @@ import LeadChatWidget from "@/components/LeadChatWidget";
 
 const ProgramaLevSerPage = () => {
   const handleCTA = () => {
-    window.open(CONTACT.WHATSAPP_PROGRAMA_URL, '_blank');
+    openLeadChat("programa_levser_page", CONTACT.WHATSAPP_PROGRAMA_URL);
   };
 
   const programSchema = {

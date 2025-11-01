@@ -9,13 +9,14 @@ import LeadChatWidget from "@/components/LeadChatWidget";
 import { StructuredData } from "@/components/StructuredData";
 import { generateStructuredData } from "@/lib/seo";
 import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { Activity, Zap, CheckCircle2, Utensils, Dna, Dumbbell, Brain } from "lucide-react";
 import heroImage from "@/assets/patient-wellness-1.avif";
 
 const Tratamentos = () => {
   const handleCTA = () => {
-    window.open(CONTACT.WHATSAPP_URL, '_blank');
+    openLeadChat("tratamentos_page", CONTACT.WHATSAPP_URL);
   };
 
   return (

@@ -1,6 +1,6 @@
 ﻿import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
-import { trackEvent } from "@/lib/analytics";
+import { openLeadChat } from "@/lib/leadChat";
 import { Check } from "lucide-react";
 
 const plans = [
@@ -46,13 +46,7 @@ const plans = [
 
 export const PlansComparison = () => {
   const handleWhatsApp = () => {
-    try {
-      trackEvent("cta_whatsapp_click", {
-        location: "plans_comparison",
-        path: window.location.pathname,
-      });
-    } catch (e) { void e; }
-    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
+    openLeadChat("plans_comparison", CONTACT.WHATSAPP_BALAO_VENDAS);
   };
 
   return (

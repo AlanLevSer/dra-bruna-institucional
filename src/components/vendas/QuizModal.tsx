@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { CONTACT } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
+import { openLeadChat } from "@/lib/leadChat";
 
 interface QuizModalProps {
   isOpen: boolean;
@@ -63,7 +64,7 @@ export const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
     }));
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (step < questions.length) {
       setStep(step + 1);
     } else {
@@ -75,7 +76,7 @@ export const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
         });
       } catch (e) { void e; }
       const profile = `Idade: ${answers.age}, Meta: ${answers.weight}, Desafio: ${answers.challenge}`;
-      window.open(CONTACT.WHATSAPP_QUIZ_RESULT(profile), "_blank");
+      await openLeadChat("quiz_vendas_result", CONTACT.WHATSAPP_QUIZ_RESULT(profile));
       onClose();
       // Reset
       setStep(1);

@@ -11,11 +11,12 @@ import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import medicationsImage from "@/assets/medications-sacietogena.avif";
 import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 
 const CanetasEmagrecedoras = () => {
   const handleWhatsApp = () => {
     const message = "Olá, Dra. Bruna! Gostaria de saber mais sobre Canetas Emagrecedoras.";
-    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
+    openLeadChat("canetas_emagrecedoras", `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`);
   };
 
   const serviceSchema = {

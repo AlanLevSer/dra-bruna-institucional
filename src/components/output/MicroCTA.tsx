@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
 import { CONTACT } from "@/lib/constants";
-import { trackEvent } from "@/lib/analytics";
+import { openLeadChat } from "@/lib/leadChat";
 
 interface MicroCTAProps {
   message: string;
@@ -11,14 +11,8 @@ interface MicroCTAProps {
 
 export const MicroCTA = ({ message, variant = 'outline', position }: MicroCTAProps) => {
   const handleClick = () => {
-    trackEvent('quiz_micro_cta_clicked', { 
-      message, 
-      position,
-      timestamp: new Date().toISOString()
-    });
-    
     const whatsappUrl = `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    openLeadChat(`quiz_micro_cta_${position}`, whatsappUrl);
   };
   
   return (

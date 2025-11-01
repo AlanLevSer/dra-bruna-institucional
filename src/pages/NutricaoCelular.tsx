@@ -11,11 +11,12 @@ import { StructuredData } from "@/components/StructuredData";
 import { pageSEO, generateStructuredData } from "@/lib/seo";
 import patientImage from "@/assets/patient-wellness-1.avif";
 import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 
 const NutricaoCelular = () => {
   const handleWhatsApp = () => {
     const message = "Olá, Dra. Bruna! Gostaria de saber mais sobre Nutrição Celular.";
-    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
+    openLeadChat("nutricao_celular", `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`);
   };
 
   const serviceSchema = {

@@ -14,6 +14,7 @@ import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { cn } from "@/lib/utils";
 import { trackEvent, getValueBucket } from "@/lib/analytics";
 import { CONTACT } from "@/lib/constants";
+import { openLeadChat } from "@/lib/leadChat";
 
 interface QLIItem {
   name: string;
@@ -279,7 +280,7 @@ Quero:
 
 Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer pode me ajudar.`;
 
-    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
+    openLeadChat('roi_calc_consolidacao', `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`);
   };
 
   const handleWhatsAppDireto = () => {
@@ -289,7 +290,7 @@ Gostaria de uma avaliação sem compromisso para entender como o Programa LevSer
     });
 
     const message = "Olá! Gostaria de agendar uma avaliação sem compromisso para conhecer o Programa LevSer.";
-    window.open(`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`, "_blank");
+    openLeadChat('roi_calc_direto', `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${encodeURIComponent(message)}`);
   };
 
   return (

@@ -1,6 +1,6 @@
 ﻿import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
-import { trackEvent, trackWhatsAppClick } from "@/lib/analytics";
+import { openLeadChat } from "@/lib/leadChat";
 import {
   Accordion,
   AccordionContent,
@@ -53,10 +53,7 @@ const faqs = [
 
 export const FAQVendas = () => {
   const handleWhatsApp = () => {
-    try {
-      trackWhatsAppClick("faq_vendas");
-    } catch (e) { void e; }
-    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
+    openLeadChat("faq_vendas", CONTACT.WHATSAPP_BALAO_VENDAS);
   };
 
   return (

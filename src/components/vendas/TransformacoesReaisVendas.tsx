@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { CheckCircle2, MessageCircle } from "lucide-react";
 import { CONTACT } from "@/lib/constants";
-import { trackEvent, trackWhatsAppClick } from "@/lib/analytics";
+import { openLeadChat } from "@/lib/leadChat";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
 
 import transformation01 from "@/assets/transformations/before-after-01.avif";
@@ -41,10 +41,7 @@ export const TransformacoesReaisVendas = () => {
   const autoplay = useRef(Autoplay({ delay: 3500, stopOnInteraction: false, stopOnMouseEnter: true }));
 
   const handleWhatsApp = () => {
-    try {
-      trackWhatsAppClick("transformacoes_reais_vendas");
-    } catch (e) { void e; }
-    window.open(CONTACT.WHATSAPP_URL, "_blank");
+    openLeadChat("transformacoes_reais_vendas", CONTACT.WHATSAPP_URL);
   };
 
   return (

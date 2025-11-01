@@ -1,6 +1,6 @@
 ﻿import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/constants";
-import { trackEvent } from "@/lib/analytics";
+import { openLeadChat } from "@/lib/leadChat";
 
 const StatsSection = () => {
   const stats = [
@@ -31,8 +31,7 @@ const StatsSection = () => {
   ];
 
   const handleTransformationClick = () => {
-    trackEvent('balão_vendas_stats_cta', { timestamp: new Date().toISOString() });
-    window.open(CONTACT.WHATSAPP_BALAO_VENDAS, "_blank");
+    openLeadChat('balao_vendas_stats_cta', CONTACT.WHATSAPP_BALAO_VENDAS);
   };
 
   return (

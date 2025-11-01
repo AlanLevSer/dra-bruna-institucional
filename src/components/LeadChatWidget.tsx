@@ -47,13 +47,35 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      // ALWAYS register globally, even if widget isn't visible
       window.LeadChat = {
-        open: () => setIsOpen(true),
-        close: () => setIsOpen(false),
+        open: () => {
+          setIsOpen(true);
+          trackEvent("chat_open", {
+            page_slug: window.location.pathname,
+            origin: origin || "unknown",
+          });
+        },
+        close: () => {
+          setIsOpen(false);
+          trackEvent("chat_close", {
+            step,
+            completed: step === "confirm",
+          });
+        },
         isOpen: () => isOpen,
       };
+      
+      console.log("[LeadChat] Widget registered globally", { origin, showFloatingButton });
     }
-  }, [isOpen]);
+    
+    return () => {
+      // Cleanup on unmount
+      if (typeof window !== "undefined") {
+        delete window.LeadChat;
+      }
+    };
+  }, [isOpen, step, origin, showFloatingButton]);
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
