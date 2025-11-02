@@ -286,6 +286,8 @@ const Quiz = () => {
               className="h-8"
               loading="eager"
               fetchPriority="high"
+              width={32}
+              height={32}
               style={{ imageRendering: 'crisp-edges' }}
             />
           </div>

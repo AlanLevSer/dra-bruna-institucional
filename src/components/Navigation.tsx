@@ -161,8 +161,8 @@ export const Navigation = () => {
                 className="h-12 md:h-14 lg:h-16 w-auto transition-opacity hover:opacity-90 shrink-0"
                 loading="eager"
                 fetchPriority="high"
-                width={200}
-                height={50}
+                width={64}
+                height={64}
                 style={{ imageRendering: 'crisp-edges' }}
               />
           </Link>

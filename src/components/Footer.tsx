@@ -13,8 +13,8 @@ export const Footer = () => {
               alt="Dra. Bruna Durelli - Especialista em Obesidade e Metabolismo"
               className="h-12 md:h-14 lg:h-16 w-auto mx-auto opacity-90 hover:opacity-100 transition-opacity"
               loading="lazy"
-              width={200}
-              height={50}
+              width={64}
+              height={64}
               style={{ imageRendering: 'crisp-edges' }}
             />
           
