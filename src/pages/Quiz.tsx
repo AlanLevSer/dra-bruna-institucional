@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ZodError } from "zod";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
-import logoHeader from "@/assets/logo-header-hq.avif";
+import logoHeader from "@/assets/logo-header-hq.webp";
 import { StructuredData } from "@/components/StructuredData";
 import { QuizData } from "@/types/quiz";
 import { generateTransformacaoOutput } from "@/lib/quiz-logic";
