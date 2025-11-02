@@ -1,4 +1,4 @@
-import logoFooter from "@/assets/logo-header.avif";
+import logoFooter from "@/assets/logo-header-hq.avif";
 import { Instagram, Linkedin, Globe } from "lucide-react";
 
 export const Footer = () => {
@@ -15,6 +15,7 @@ export const Footer = () => {
               loading="lazy"
               width={200}
               height={50}
+              style={{ imageRendering: 'crisp-edges' }}
             />
           
           <div className="space-y-1">

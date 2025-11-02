@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, type ElementType } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown, Sparkles } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logoHeader from "@/assets/logo-header.avif";
+import logoHeader from "@/assets/logo-header-hq.avif";
 
 interface SubMenuItem {
   label: string;
@@ -160,8 +160,10 @@ export const Navigation = () => {
                 alt="Dra. Bruna Durelli - Especialista em Obesidade e Metabolismo"
                 className="h-12 md:h-14 lg:h-16 w-auto transition-opacity hover:opacity-90 shrink-0"
                 loading="eager"
+                fetchPriority="high"
                 width={200}
                 height={50}
+                style={{ imageRendering: 'crisp-edges' }}
               />
           </Link>
 
