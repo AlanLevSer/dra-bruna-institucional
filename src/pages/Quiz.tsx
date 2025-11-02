@@ -283,11 +283,11 @@ const Quiz = () => {
             <img 
               src={logoHeader}
               alt="Dra. Bruna Durelli" 
-              className="h-8"
+              className="h-14 md:h-16 lg:h-18 w-auto"
               loading="eager"
               fetchPriority="high"
-              width={32}
-              height={32}
+              width={72}
+              height={72}
               style={{ imageRendering: 'crisp-edges' }}
             />
           </div>

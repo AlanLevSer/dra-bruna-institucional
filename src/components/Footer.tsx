@@ -11,10 +11,10 @@ export const Footer = () => {
           <img 
               src={logoFooter}
               alt="Dra. Bruna Durelli - Especialista em Obesidade e Metabolismo"
-              className="h-12 md:h-14 lg:h-16 w-auto mx-auto opacity-90 hover:opacity-100 transition-opacity"
+              className="h-16 md:h-18 lg:h-20 w-auto mx-auto opacity-90 hover:opacity-100 transition-opacity"
               loading="lazy"
-              width={64}
-              height={64}
+              width={80}
+              height={80}
               style={{ imageRendering: 'crisp-edges' }}
             />
           
