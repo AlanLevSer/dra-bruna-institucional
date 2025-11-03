@@ -24,6 +24,7 @@ const PoliticaPrivacidade = lazy(() => import("./pages/PoliticaPrivacidade"));
 const TermosUso = lazy(() => import("./pages/TermosUso"));
 const Quiz = lazy(() => import("./pages/Quiz"));
 const BalaoVendas = lazy(() => import("./pages/BalaoVendas"));
+const BalaoIntragasticoB = lazy(() => import("./pages/BalaoIntragasticoB"));
 const PlasmaArgonioVendas = lazy(() => import("./pages/PlasmaArgonioVendas"));
 
 const queryClient = new QueryClient();
@@ -78,6 +79,8 @@ const App = () => (
             <Route path="/balão-intragastrico" element={<Navigate to="/balao-intragastrico" replace />} />
             <Route path="/balao-intragastrico-a" element={<BalaoVendas />} />
             <Route path="/balão-intragastrico-a" element={<Navigate to="/balao-intragastrico-a" replace />} />
+            <Route path="/balao-intragastrico-b" element={<BalaoIntragasticoB />} />
+            <Route path="/balão-intragastrico-b" element={<Navigate to="/balao-intragastrico-b" replace />} />
             <Route path="/terapias-endoscopicas" element={<Navigate to="/balao-intragastrico" replace />} />
             <Route path="/gastroplastia-endoscopica" element={<GastroplastiaEndoscopica />} />
             <Route path="/canetas-emagrecedoras" element={<CanetasEmagrecedoras />} />
