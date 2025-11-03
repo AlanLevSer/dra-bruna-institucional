@@ -34,6 +34,7 @@ const TRACKED_KEYS = new Set([
   "wbraid",
   "gclientid",
   "ga_utm",
+  "click_id",
 ]);
 
 const getBrowserParams = (): UTMParams => {

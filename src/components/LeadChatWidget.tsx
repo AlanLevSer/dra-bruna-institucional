@@ -303,6 +303,10 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
     }
   };
 
+  const generateFallbackId = (): string => {
+    return `LD${Date.now().toString(36).toUpperCase()}`;
+  };
+
   const handleConfirm = () => {
     triggerHapticFeedback();
     playProgressSound();
@@ -324,6 +328,8 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       }
     }
 
+    const protocolId = utmContext.params.click_id || generateFallbackId();
+
     const webhookPayload = {
       nome: leadData.name || "",
       whatsapp: leadData.whatsapp || "",
@@ -344,6 +350,8 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       fbclid: utmContext.params.fbclid || "",
       gclientid: gaClientId,
       ga_utm: `${utmContext.params.utm_source || ""}|${utmContext.params.utm_medium || ""}|${utmContext.params.utm_campaign || ""}`,
+      click_id: utmContext.params.click_id || "",
+      protocol_id: protocolId,
       timestamp: new Date().toISOString(),
     };
 
@@ -360,7 +368,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
     }).catch(() => {});
 
     const whatsappMessage = encodeURIComponent(
-      `Olá! Vim pelo site.\n\n*Nome:* ${leadData.name}\n*WhatsApp:* ${formatBRPhone(leadData.whatsapp || "")}\n*Email:* ${leadData.email}\n*Origem:* ${origin}`
+      `Oi, Dra. Bruna!\n\nAcabei de conhecer seu trabalho e quero saber como você pode me ajudar a transformar minha saúde.\n\n---\n⚠️ *Guarde esta mensagem!*\nEla é seu comprovante de atendimento.\n\n📋 Protocolo: ${protocolId}`
     );
 
     // Prefer web.whatsapp.com on desktop to avoid environments that block api.whatsapp.com
