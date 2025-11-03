@@ -650,7 +650,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
               )}
             </div>
 
-            <div className="p-4 border-t bg-background">
+            <div className="px-4 pt-4 pb-8 md:pb-4 border-t bg-background">
               {errors[step] && (
                 <p className="text-sm text-destructive mb-2">{errors[step]}</p>
               )}
