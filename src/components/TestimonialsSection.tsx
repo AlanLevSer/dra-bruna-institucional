@@ -1,4 +1,5 @@
-import { Star, Quote } from "lucide-react";
+import { Quote } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Carousel,
   CarouselContent,
@@ -7,6 +8,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { OptimizedImage } from "@/components/OptimizedImage";
+import { useGoogleReviews } from "@/hooks/useGoogleReviews";
+import { GoogleReviewCard } from "@/components/GoogleReviewCard";
 
 // Import transformation images
 import transformation1 from "@/assets/transformation-beginning.avif";
@@ -20,32 +23,7 @@ import transformation8 from "@/assets/transformation-success.avif";
 import transformation9 from "@/assets/transformation-wellness.avif";
 
 const TestimonialsSection = () => {
-  const testimonials = [
-    {
-      name: "Maria Silva",
-      age: 42,
-      city: "São Paulo",
-      result: "-18kg em 24 semanas",
-      quote: "Finalmente consegui emagrecer sem passar fome e sem culpa. A Dra. Bruna mudou completamente minha relação com a comida.",
-      rating: 5
-    },
-    {
-      name: "Ana Carolina",
-      age: 35,
-      city: "Rio de Janeiro", 
-      result: "-22kg em 24 semanas",
-      quote: "O acompanhamento interdisciplinar fez toda a diferença. Não foi só perda de peso, foi uma transformação completa de vida.",
-      rating: 5
-    },
-    {
-      name: "Fernanda Costa",
-      age: 38,
-      city: "Belo Horizonte",
-      result: "-15kg em 20 semanas",
-      quote: "Depois de anos tentando dietas milagrosas, encontrei na Dra. Bruna um programa que realmente funciona e é sustentável.",
-      rating: 5
-    }
-  ];
+  const { data, isLoading, isError } = useGoogleReviews();
 
   const transformationImages = [
     {
@@ -109,37 +87,43 @@ const TestimonialsSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {testimonials.map((testimonial, index) => (
-            <div 
-              key={index}
-              className="bg-wellness-cream rounded-2xl p-8 relative hover:scale-105 transition-smooth hover:shadow-warm"
-            >
-              <Quote className="absolute top-4 right-4 w-8 h-8 text-wellness-warm opacity-30" />
-              
-              <div className="mb-6">
-                <div className="flex items-center gap-1 mb-2">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-wellness-warm text-wellness-warm" />
-                  ))}
+          {isLoading && (
+            <>
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="bg-wellness-cream rounded-2xl p-8">
+                  <Skeleton className="h-4 w-20 mb-4" />
+                  <Skeleton className="h-24 w-full mb-6" />
+                  <div className="border-t border-wellness-soft pt-4">
+                    <Skeleton className="h-4 w-32 mb-2" />
+                    <Skeleton className="h-3 w-24 mb-2" />
+                    <Skeleton className="h-6 w-28" />
+                  </div>
                 </div>
-                <p className="text-foreground italic leading-relaxed">
-                  "{testimonial.quote}"
-                </p>
-              </div>
-              
-              <div className="border-t border-wellness-soft pt-4">
-                <div className="font-semibold text-foreground">
-                  {testimonial.name}, {testimonial.age} anos
+              ))}
+            </>
+          )}
+
+          {!isLoading && data?.reviews && (
+            <>
+              {data.reviews.slice(0, 3).map((review, index) => (
+                <div 
+                  key={review.time}
+                  className="bg-wellness-cream rounded-2xl p-8 relative hover:scale-105 transition-smooth hover:shadow-warm"
+                >
+                  <Quote className="absolute top-4 right-4 w-8 h-8 text-wellness-warm opacity-30" />
+                  <GoogleReviewCard review={review} variant="minimal" />
                 </div>
-                <div className="text-sm text-muted-foreground mb-2">
-                  {testimonial.city}
-                </div>
-                <div className="inline-block bg-wellness-warm text-white px-3 py-1 rounded-full text-sm font-medium">
-                  {testimonial.result}
-                </div>
-              </div>
+              ))}
+            </>
+          )}
+
+          {isError && (
+            <div className="col-span-full text-center py-8">
+              <p className="text-muted-foreground">
+                Não foi possível carregar os depoimentos no momento.
+              </p>
             </div>
-          ))}
+          )}
         </div>
 
         {/* Transformations Carousel */}
