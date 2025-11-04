@@ -42,44 +42,45 @@ serve(async (req) => {
       throw new Error("Missing GOOGLE_PLACES_API_KEY or GOOGLE_PLACE_ID");
     }
 
-    console.log('[Google Reviews] Fetching from Google Places API');
+    console.log('[Google Reviews] Fetching from Google Places API (New)');
 
-    const url = new URL("https://maps.googleapis.com/maps/api/place/details/json");
-    url.searchParams.set("place_id", placeId);
-    url.searchParams.set("key", apiKey);
-    url.searchParams.set("fields", "name,rating,user_ratings_total,reviews");
-    url.searchParams.set("language", "pt-BR");
-
-    const response = await fetch(url.toString());
+    // Use Places API (New) endpoint
+    const url = `https://places.googleapis.com/v1/places/${placeId}`;
+    
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Goog-Api-Key': apiKey,
+        'X-Goog-FieldMask': 'displayName,rating,userRatingCount,reviews',
+      },
+    });
     
     if (!response.ok) {
-      console.error(`[Google Reviews] API error: ${response.status}`);
+      const errorText = await response.text();
+      console.error(`[Google Reviews] API error: ${response.status} - ${errorText}`);
       throw new Error(`Google API error: ${response.status}`);
     }
 
     const data = await response.json();
-    console.log(`[Google Reviews] API status: ${data.status}`);
-
-    if (data.status !== "OK") {
-      console.error(`[Google Reviews] Invalid API status: ${data.status}`);
-      throw new Error(`Google API status: ${data.status}`);
-    }
+    console.log(`[Google Reviews] API response received`);
 
     // Filter and process reviews (only 4-5 stars)
+    const reviews = data.reviews || [];
     const processedData = {
-      rating: data.result.rating,
-      total_reviews: data.result.user_ratings_total,
-      reviews: data.result.reviews
+      rating: data.rating || 0,
+      total_reviews: data.userRatingCount || 0,
+      reviews: reviews
         .filter((r: any) => r.rating >= 4)
         .slice(0, 10)
         .map((r: any) => ({
-          author_name: r.author_name,
-          author_url: r.author_url,
-          profile_photo_url: r.profile_photo_url,
-          rating: r.rating,
-          text: r.text,
-          time: r.time,
-          relative_time_description: r.relative_time_description,
+          author_name: r.authorAttribution?.displayName || 'Anonymous',
+          author_url: r.authorAttribution?.uri || '',
+          profile_photo_url: r.authorAttribution?.photoUri || '',
+          rating: r.rating || 0,
+          text: r.text?.text || '',
+          time: new Date(r.publishTime).getTime() / 1000,
+          relative_time_description: r.relativePublishTimeDescription || '',
         })),
     };
 
