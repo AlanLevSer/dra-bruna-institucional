@@ -24,7 +24,11 @@ export const ProgramaLevSerVendas = () => {
               <img
                 src={programImage}
                 alt="Programa LevSer - Transformação com acompanhamento médico"
+                width={665}
+                height={998}
                 className="w-full h-auto object-cover"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>

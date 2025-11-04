@@ -1,4 +1,4 @@
-﻿import { useRef } from "react";
+﻿import { useRef, useState, useEffect } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -39,13 +39,33 @@ const transformations: Transformation[] = [
 
 export const TransformacoesReaisVendas = () => {
   const autoplay = useRef(Autoplay({ delay: 3500, stopOnInteraction: false, stopOnMouseEnter: true }));
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleWhatsApp = () => {
     openLeadChat("transformacoes_reais_vendas", CONTACT.WHATSAPP_URL);
   };
 
   return (
-    <section className="relative py-10 md:py-14 bg-gradient-to-b from-muted/30 to-background overflow-hidden">
+    <section ref={sectionRef} className="relative py-10 md:py-14 bg-gradient-to-b from-muted/30 to-background overflow-hidden">
       <GrafismoDecor variant="background" position="top-left" size="lg" opacity={0.1} />
       <GrafismoDecor variant="background" position="bottom-right" size="lg" opacity={0.1} />
 
@@ -67,22 +87,26 @@ export const TransformacoesReaisVendas = () => {
         </div>
 
         <div className="relative">
-          <Carousel
-            opts={{ align: "start", loop: true, slidesToScroll: 1 }}
-            plugins={[autoplay.current]}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {transformations.map((transformation, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="group relative bg-card rounded-2xl overflow-hidden shadow-elegant hover:shadow-hover transition-all duration-300 hover:-translate-y-1">
-                    <div className="relative aspect-[3/4] overflow-hidden">
-                      <img
-                        src={transformation.image}
-                        alt={`Transformação ${transformation.name}`}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                      />
+          {isVisible ? (
+            <Carousel
+              opts={{ align: "start", loop: true, slidesToScroll: 1 }}
+              plugins={[autoplay.current]}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {transformations.map((transformation, index) => (
+                  <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                    <div className="group relative bg-card rounded-2xl overflow-hidden shadow-elegant hover:shadow-hover transition-all duration-300 hover:-translate-y-1">
+                      <div className="relative aspect-[3/4] overflow-hidden">
+                        <img
+                          src={transformation.image}
+                          alt={`Transformação ${transformation.name}`}
+                          width={665}
+                          height={887}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
+                          decoding="async"
+                        />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                       <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                         <p className="text-lg font-bold mb-3">{transformation.name}</p>
@@ -96,11 +120,16 @@ export const TransformacoesReaisVendas = () => {
               ))}
             </CarouselContent>
 
-            <div className="hidden md:block">
-              <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2" />
-              <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2" />
+              <div className="hidden md:block">
+                <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2" />
+                <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2" />
+              </div>
+            </Carousel>
+          ) : (
+            <div className="h-96 flex items-center justify-center">
+              <div className="animate-pulse text-muted-foreground">Carregando transformações...</div>
             </div>
-          </Carousel>
+          )}
         </div>
 
         <div className="text-center mt-12 md:mt-16 animate-fade-in">

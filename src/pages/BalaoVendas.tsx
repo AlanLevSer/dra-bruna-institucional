@@ -2,11 +2,11 @@ import { lazy, Suspense } from "react";
 import { SEOHead } from "@/components/SEOHead";
 import { HeroVendas } from "@/components/vendas/HeroVendas";
 import { StatsVendas } from "@/components/vendas/StatsVendas";
-import { TransformacoesReaisVendas } from "@/components/vendas/TransformacoesReaisVendas";
-import { TargetAudienceVendas } from "@/components/vendas/TargetAudienceVendas";
-import { ProgramaLevSerVendas } from "@/components/vendas/ProgramaLevSerVendas";
 
 // Lazy load below-the-fold components for better FCP
+const TransformacoesReaisVendas = lazy(() => import("@/components/vendas/TransformacoesReaisVendas").then(m => ({ default: m.TransformacoesReaisVendas })));
+const TargetAudienceVendas = lazy(() => import("@/components/vendas/TargetAudienceVendas").then(m => ({ default: m.TargetAudienceVendas })));
+const ProgramaLevSerVendas = lazy(() => import("@/components/vendas/ProgramaLevSerVendas").then(m => ({ default: m.ProgramaLevSerVendas })));
 const PilaresMetodoVendas = lazy(() => import("@/components/vendas/PilaresMetodoVendas").then(m => ({ default: m.PilaresMetodoVendas })));
 const JornadaFasesVendas = lazy(() => import("@/components/vendas/JornadaFasesVendas").then(m => ({ default: m.JornadaFasesVendas })));
 const ProgramasTratamento = lazy(() => import("@/components/vendas/ProgramasTratamento").then(m => ({ default: m.ProgramasTratamento })));
@@ -33,14 +33,20 @@ const BalaoVendas = () => {
   return (
     <>
       <SEOHead data={seoData} />
+      <link 
+        rel="preload" 
+        as="image" 
+        href="/assets/dra-bruna-hero-BaJOBgnO.avif"
+        type="image/avif"
+      />
       <HeroVendas />
       <StatsVendas />
-      <TransformacoesReaisVendas />
-      <TargetAudienceVendas />
-      <ProgramaLevSerVendas />
       
       {/* Lazy loaded below-the-fold sections for better FCP */}
       <Suspense fallback={<div className="min-h-[400px]" />}>
+        <TransformacoesReaisVendas />
+        <TargetAudienceVendas />
+        <ProgramaLevSerVendas />
         <PilaresMetodoVendas />
         <JornadaFasesVendas />
         <ProgramasTratamento />
