@@ -23,6 +23,29 @@ export const SEOHead = ({ data }: SEOHeadProps) => {
       element.content = content;
     };
 
+    // Add preconnect and dns-prefetch for third-party origins
+    const ensureLink = (rel: string, href: string, crossOrigin = false) => {
+      let el = document.querySelector(`link[rel="${rel}"][href="${href}"]`) as HTMLLinkElement;
+      if (!el) {
+        el = document.createElement('link');
+        el.rel = rel;
+        el.href = href;
+        if (crossOrigin) el.crossOrigin = '';
+        document.head.appendChild(el);
+      }
+    };
+
+    const thirdPartyOrigins = [
+      'https://www.googletagmanager.com',
+      'https://connect.facebook.net',
+      'https://www.clarity.ms'
+    ];
+
+    thirdPartyOrigins.forEach(origin => {
+      ensureLink('preconnect', origin, true);
+      ensureLink('dns-prefetch', origin);
+    });
+
     // Standard meta tags
     updateMetaTag('description', data.description);
     if (data.keywords) {

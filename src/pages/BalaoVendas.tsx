@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import { SEOHead } from "@/components/SEOHead";
 import { HeroVendas } from "@/components/vendas/HeroVendas";
 import { StatsVendas } from "@/components/vendas/StatsVendas";
@@ -18,9 +18,11 @@ const MediaRecognitionVendas = lazy(() => import("@/components/vendas/MediaRecog
 const FAQVendas = lazy(() => import("@/components/vendas/FAQVendas").then(m => ({ default: m.FAQVendas })));
 const FinalCTAVendas = lazy(() => import("@/components/vendas/FinalCTAVendas").then(m => ({ default: m.FinalCTAVendas })));
 const Footer = lazy(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
-import LeadChatWidget from "@/components/LeadChatWidget";
+const LeadChatWidget = lazy(() => import("@/components/LeadChatWidget").then(m => ({ default: m.default })));
 
 const BalaoVendas = () => {
+  const [showWidget, setShowWidget] = useState(false);
+  
   const seoData = {
     title: "Balão Intragástrico - Perca até 35 kg em até 12 meses | Dra. Bruna Durelli",
     description:
@@ -29,6 +31,16 @@ const BalaoVendas = () => {
       "balão intragástrico, emagrecimento, perda de peso, obesidade, Dra. Bruna Durelli, LevSer, São Paulo",
     canonical: "https://www.brunadurelli.com.br/balao-intragastrico-a",
   } as const;
+
+  useEffect(() => {
+    const enableWidget = () => setShowWidget(true);
+    
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(enableWidget, { timeout: 4000 });
+    } else {
+      setTimeout(enableWidget, 3000);
+    }
+  }, []);
 
   return (
     <>
@@ -58,9 +70,8 @@ const BalaoVendas = () => {
         <FAQVendas />
         <FinalCTAVendas />
         <Footer />
+        {showWidget && <LeadChatWidget showFloatingButton={false} origin="balao-vendas" />}
       </Suspense>
-      
-      <LeadChatWidget showFloatingButton={false} origin="balao-vendas" />
     </>
   );
 };
