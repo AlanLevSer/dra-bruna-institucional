@@ -20,7 +20,7 @@ const FinalCTAVendas = lazy(() => import("@/components/vendas/FinalCTAVendas").t
 const Footer = lazy(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
 import LeadChatWidget from "@/components/LeadChatWidget";
 
-const BalãoVendas = () => {
+const BalaoVendas = () => {
   const seoData = {
     title: "Balão Intragástrico - Perca até 35 kg em até 12 meses | Dra. Bruna Durelli",
     description:
@@ -59,4 +59,4 @@ const BalãoVendas = () => {
   );
 };
 
-export default BalãoVendas;
+export default BalaoVendas;
