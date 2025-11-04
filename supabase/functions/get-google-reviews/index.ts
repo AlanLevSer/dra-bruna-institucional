@@ -1,7 +1,42 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const CACHE_TTL = 24 * 60 * 60 * 1000; // 24 horas
-const cache = new Map();
+
+type GoogleReview = {
+  rating?: number;
+  text?: { text?: string };
+  authorAttribution?: {
+    displayName?: string;
+    uri?: string;
+    photoUri?: string;
+  };
+  publishTime?: string;
+  relativePublishTimeDescription?: string;
+};
+
+type GooglePlacesResponse = {
+  rating?: number;
+  userRatingCount?: number;
+  reviews?: GoogleReview[];
+};
+
+type ProcessedReview = {
+  author_name: string;
+  author_url: string;
+  profile_photo_url: string;
+  rating: number;
+  text: string;
+  time: number;
+  relative_time_description: string;
+};
+
+type ProcessedData = {
+  rating: number;
+  total_reviews: number;
+  reviews: ProcessedReview[];
+};
+
+const cache = new Map<string, { data: ProcessedData; timestamp: number }>();
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -62,26 +97,28 @@ serve(async (req) => {
       throw new Error(`Google API error: ${response.status}`);
     }
 
-    const data = await response.json();
+    const data = (await response.json()) as GooglePlacesResponse;
     console.log(`[Google Reviews] API response received`);
 
     // Filter and process reviews (only 4-5 stars)
-    const reviews = data.reviews || [];
-    const processedData = {
-      rating: data.rating || 0,
-      total_reviews: data.userRatingCount || 0,
-      reviews: reviews
-        .filter((r: any) => r.rating >= 4)
-        .slice(0, 10)
-        .map((r: any) => ({
-          author_name: r.authorAttribution?.displayName || 'Anonymous',
-          author_url: r.authorAttribution?.uri || '',
-          profile_photo_url: r.authorAttribution?.photoUri || '',
-          rating: r.rating || 0,
-          text: r.text?.text || '',
-          time: new Date(r.publishTime).getTime() / 1000,
-          relative_time_description: r.relativePublishTimeDescription || '',
-        })),
+    const reviews = data.reviews ?? [];
+    const processedReviews: ProcessedReview[] = reviews
+      .filter((review) => (review.rating ?? 0) >= 4)
+      .slice(0, 10)
+      .map((review) => ({
+        author_name: review.authorAttribution?.displayName ?? 'Anonymous',
+        author_url: review.authorAttribution?.uri ?? '',
+        profile_photo_url: review.authorAttribution?.photoUri ?? '',
+        rating: review.rating ?? 0,
+        text: review.text?.text ?? '',
+        time: review.publishTime ? new Date(review.publishTime).getTime() / 1000 : Date.now() / 1000,
+        relative_time_description: review.relativePublishTimeDescription ?? '',
+      }));
+
+    const processedData: ProcessedData = {
+      rating: data.rating ?? 0,
+      total_reviews: data.userRatingCount ?? 0,
+      reviews: processedReviews,
     };
 
     console.log(`[Google Reviews] Processed ${processedData.reviews.length} reviews`);

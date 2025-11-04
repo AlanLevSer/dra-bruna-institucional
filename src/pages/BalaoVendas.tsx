@@ -20,6 +20,13 @@ const FinalCTAVendas = lazy(() => import("@/components/vendas/FinalCTAVendas").t
 const Footer = lazy(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
 const LeadChatWidget = lazy(() => import("@/components/LeadChatWidget").then(m => ({ default: m.default })));
 
+type IdleCallback = (deadline: { didTimeout: boolean; timeRemaining: () => number }) => void;
+
+type WindowWithIdleCallback = Window & {
+  requestIdleCallback?: (callback: IdleCallback, options?: { timeout?: number }) => number;
+  cancelIdleCallback?: (handle: number) => void;
+};
+
 const BalaoVendas = () => {
   const [showWidget, setShowWidget] = useState(false);
   
@@ -33,13 +40,30 @@ const BalaoVendas = () => {
   } as const;
 
   useEffect(() => {
-    const enableWidget = () => setShowWidget(true);
-    
-    if ('requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(enableWidget, { timeout: 4000 });
-    } else {
-      setTimeout(enableWidget, 3000);
+    if (typeof window === "undefined") {
+      return;
     }
+
+    const enableWidget = () => setShowWidget(true);
+    const win = window as WindowWithIdleCallback;
+
+    let idleCallbackId: number | undefined;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+    if (typeof win.requestIdleCallback === "function") {
+      idleCallbackId = win.requestIdleCallback(() => enableWidget(), { timeout: 4000 });
+    } else {
+      timeoutId = window.setTimeout(enableWidget, 3000);
+    }
+
+    return () => {
+      if (idleCallbackId !== undefined && typeof win.cancelIdleCallback === "function") {
+        win.cancelIdleCallback(idleCallbackId);
+      }
+      if (timeoutId !== undefined) {
+        clearTimeout(timeoutId);
+      }
+    };
   }, []);
 
   return (

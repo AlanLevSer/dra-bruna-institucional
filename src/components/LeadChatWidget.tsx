@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { X, ArrowLeft, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,6 +16,7 @@ import {
 } from "@/lib/leadValidation";
 import { formatBRPhone } from "@/lib/phoneMask";
 import avatarImage from "@/assets/dra-bruna-profile.avif";
+import { ZodError } from "zod";
 
 type Step = "name" | "whatsapp" | "email" | "confirm";
 
@@ -48,24 +49,28 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
   const [completedSteps, setCompletedSteps] = useState<Step[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const handleOpen = useCallback(() => {
+    setIsOpen(true);
+    trackEvent("chat_open", {
+      page_slug: window.location.pathname,
+      origin,
+    });
+  }, [origin]);
+
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+    trackEvent("chat_close", {
+      step,
+      completed: step === "confirm",
+    });
+  }, [step]);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       // ALWAYS register globally, even if widget isn't visible
       window.LeadChat = {
-        open: () => {
-          setIsOpen(true);
-          trackEvent("chat_open", {
-            page_slug: window.location.pathname,
-            origin: origin || "unknown",
-          });
-        },
-        close: () => {
-          setIsOpen(false);
-          trackEvent("chat_close", {
-            step,
-            completed: step === "confirm",
-          });
-        },
+        open: handleOpen,
+        close: handleClose,
         isOpen: () => isOpen,
       };
       
@@ -78,7 +83,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
         delete window.LeadChat;
       }
     };
-  }, [isOpen, step, origin, showFloatingButton]);
+  }, [handleClose, handleOpen, isOpen, origin, showFloatingButton]);
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
@@ -94,23 +99,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
     };
     window.addEventListener("keydown", handleEscape);
     return () => window.removeEventListener("keydown", handleEscape);
-  }, [isOpen]);
-
-  const handleOpen = () => {
-    setIsOpen(true);
-    trackEvent("chat_open", {
-      page_slug: window.location.pathname,
-      origin,
-    });
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-    trackEvent("chat_close", {
-      step,
-      completed: step === "confirm",
-    });
-  };
+  }, [handleClose, isOpen]);
 
   const validateStep = (stepName: Step, value: string): boolean => {
     setErrors({});
@@ -127,8 +116,8 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
           break;
       }
       return true;
-    } catch (error: any) {
-      if (error.errors?.[0]?.message) {
+    } catch (error) {
+      if (error instanceof ZodError && error.errors[0]?.message) {
         setErrors({ [stepName]: error.errors[0].message });
       }
       return false;
@@ -148,10 +137,11 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
 
   const playProgressSound = () => {
     try {
-      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-      if (!AudioContext) return;
+      const win = window as WindowWithWebkitAudioContext;
+      const AudioContextCtor = window.AudioContext ?? win.webkitAudioContext;
+      if (!AudioContextCtor) return;
       
-      const audioContext = new AudioContext();
+      const audioContext = new AudioContextCtor();
       const oscillator = audioContext.createOscillator();
       const gainNode = audioContext.createGain();
       
@@ -722,3 +712,7 @@ declare global {
     };
   }
 }
+
+type WindowWithWebkitAudioContext = Window & {
+  webkitAudioContext?: typeof AudioContext;
+};
