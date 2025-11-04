@@ -1,10 +1,12 @@
+import React from "react";
 import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Star } from "lucide-react";
 import { CONTACT } from "@/lib/constants";
 import { openLeadChat } from "@/lib/leadChat";
 import { useGoogleReviews } from "@/hooks/useGoogleReviews";
 import { GoogleReviewCard } from "@/components/GoogleReviewCard";
 import { Skeleton } from "@/components/ui/skeleton";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
@@ -18,6 +20,10 @@ const GOOGLE_MAPS_URL = "https://www.google.com/maps/place/?q=place_id:ChIJDci2q
 const TestimonialsGoogleB = () => {
   const { data, isLoading, isError } = useGoogleReviews();
   
+  const autoplayPlugin = React.useRef(
+    Autoplay({ delay: 4000, stopOnInteraction: true })
+  );
+  
   const handleWhatsApp = () => {
     openLeadChat('testimonials_google_b', CONTACT.WHATSAPP_BALAO_VENDAS);
   };
@@ -28,6 +34,16 @@ const TestimonialsGoogleB = () => {
         <div className="max-w-7xl mx-auto">
           {/* Header com Badge Destacado */}
           <div className="text-center mb-16">
+            {/* 5 Estrelas Grandes */}
+            <div className="flex justify-center gap-2 mb-4">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star
+                  key={i}
+                  className="w-8 h-8 md:w-10 md:h-10 fill-yellow-400 text-yellow-400"
+                />
+              ))}
+            </div>
+
             {!isLoading && !isError && data?.rating && (
               <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-6 py-3 rounded-full mb-6 shadow-sm">
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -38,7 +54,7 @@ const TestimonialsGoogleB = () => {
                 </svg>
                 <span className="font-semibold">⭐ {data.rating.toFixed(1)}</span>
                 <span className="text-muted-foreground">|</span>
-                <span className="font-medium">{data.total_reviews}+ avaliações</span>
+                <span className="font-medium">Host mais bem avaliado em 2025</span>
               </div>
             )}
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
@@ -52,7 +68,7 @@ const TestimonialsGoogleB = () => {
           {/* Reviews Content */}
           {isLoading && (
             <div className="grid md:grid-cols-3 gap-6 mb-12">
-              {Array.from({ length: 6 }).map((_, i) => (
+              {Array.from({ length: 12 }).map((_, i) => (
                 <Skeleton key={i} className="h-64 rounded-lg" />
               ))}
             </div>
@@ -70,29 +86,23 @@ const TestimonialsGoogleB = () => {
           )}
 
           {!isLoading && !isError && data?.reviews && (
-            <>
-              {/* Desktop: Grid com mais espaçamento */}
-              <div className="hidden md:grid md:grid-cols-3 gap-8 mb-16">
-                {data.reviews.slice(0, 6).map((review) => (
-                  <GoogleReviewCard key={review.time} review={review} variant="default" />
-                ))}
-              </div>
-
-              {/* Mobile: Carousel */}
-              <div className="md:hidden mb-16">
-                <Carousel className="w-full">
-                  <CarouselContent className="gap-6">
-                    {data.reviews.slice(0, 6).map((review) => (
-                      <CarouselItem key={review.time}>
-                        <GoogleReviewCard review={review} variant="default" />
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious />
-                  <CarouselNext />
-                </Carousel>
-              </div>
-            </>
+            <div className="max-w-6xl mx-auto relative mb-12">
+              <Carousel
+                plugins={[autoplayPlugin.current]}
+                opts={{ align: "start", loop: true }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-4">
+                  {data.reviews.slice(0, 12).map((review) => (
+                    <CarouselItem key={review.time} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                      <GoogleReviewCard review={review} variant="default" />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-2 md:-left-12" />
+                <CarouselNext className="right-2 md:-right-12" />
+              </Carousel>
+            </div>
           )}
 
           {/* Ver Todas no Google */}
