@@ -13,7 +13,6 @@ const CredentialsVendasB = lazy(() => import("@/components/vendas/CredentialsVen
 const TestimonialsGoogleB = lazy(() => import("@/components/vendas/TestimonialsGoogleB"));
 const MediaRecognitionVendas = lazy(() => import("@/components/vendas/MediaRecognitionVendas").then(m => ({ default: m.MediaRecognitionVendas })));
 const FAQVendasB = lazy(() => import("@/components/vendas/FAQVendasB"));
-const ContactInfoSection = lazy(() => import("@/components/vendas/ContactInfoSection"));
 const FinalCTAVendasB = lazy(() => import("@/components/vendas/FinalCTAVendasB"));
 const Footer = lazy(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
 
@@ -41,7 +40,6 @@ const BalaoIntragasticoB = () => {
         <TestimonialsGoogleB />
         <MediaRecognitionVendas />
         <FAQVendasB />
-        <ContactInfoSection />
         <FinalCTAVendasB />
         <Footer />
       </Suspense>
