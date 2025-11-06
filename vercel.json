@@ -6,11 +6,6 @@
       "permanent": true
     },
     {
-      "source": "/bal\\u00e3o-intragastrico-preco-a",
-      "destination": "/balao-intragastrico-preco-a",
-      "permanent": true
-    },
-    {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "drabrunadurelli.com" }],
       "destination": "https://www.brunadurelli.com.br/$1",
@@ -37,7 +32,7 @@
   ],
   "rewrites": [
     {
-      "source": "/(sobre|programa-levser|tratamentos|recursos|nutricao-celular|balao-intragastrico|balao-intragastrico-a|balao-intragastrico-b|balao-intragastrico-preco-a|bal\\u00e3o-intragastrico-preco-a|terapias-endoscopicas|gastroplastia-endoscopica|canetas-emagrecedoras|medicina-regenerativa|plasma-argonio|plasma-argonio-a|plasma-de-argonio-a|politica-privacidade|termos-uso|quiz|descubra-seu-caminho)(/.*)?",
+      "source": "/(sobre|programa-levser|tratamentos|recursos|nutricao-celular|balao-intragastrico|balao-intragastrico-a|balao-intragastrico-b|balao-intragastrico-preco-a|terapias-endoscopicas|gastroplastia-endoscopica|canetas-emagrecedoras|medicina-regenerativa|plasma-argonio|plasma-argonio-a|plasma-de-argonio-a|politica-privacidade|termos-uso|quiz|descubra-seu-caminho)(/.*)?",
       "destination": "/index.html"
     }
   ]

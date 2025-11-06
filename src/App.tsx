@@ -83,7 +83,6 @@ const App = () => (
             <Route path="/balao-intragastrico-b" element={<BalaoIntragasticoB />} />
             <Route path="/balão-intragastrico-b" element={<Navigate to="/balao-intragastrico-b" replace />} />
             <Route path="/balao-intragastrico-preco-a" element={<BalaoIntragasticoPreco />} />
-            <Route path="/balão-intragastrico-preco-a" element={<Navigate to="/balao-intragastrico-preco-a" replace />} />
             <Route path="/terapias-endoscopicas" element={<Navigate to="/balao-intragastrico" replace />} />
             <Route path="/gastroplastia-endoscopica" element={<GastroplastiaEndoscopica />} />
             <Route path="/canetas-emagrecedoras" element={<CanetasEmagrecedoras />} />
