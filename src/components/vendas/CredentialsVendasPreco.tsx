@@ -4,10 +4,26 @@ import { GrafismoDecor } from "@/components/GrafismoDecor";
 import draBrunaProfessional from "@/assets/dra-bruna-professional.avif";
 import { CONTACT } from "@/lib/constants";
 import { openLeadChat } from "@/lib/leadChat";
+import { trackPricingCTAClick } from "@/lib/analytics";
 
 const CredentialsVendasPreco = () => {
   const handleWhatsApp = () => {
-    openLeadChat('credentials_preco', CONTACT.WHATSAPP_BALAO_VENDAS);
+    const scrollDepth = Math.round(
+      (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+    );
+    
+    trackPricingCTAClick({
+      source: 'credentials_preco',
+      section: 'credentials',
+      position: 'middle',
+      scroll_depth: scrollDepth,
+    });
+    
+    openLeadChat('credentials_preco', CONTACT.WHATSAPP_BALAO_VENDAS, {
+      section: 'credentials',
+      position: 'middle',
+      scroll_depth: scrollDepth,
+    });
   };
 
   return (

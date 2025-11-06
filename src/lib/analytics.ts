@@ -243,3 +243,98 @@ export const trackWhatsAppClick = (source: string, params?: Record<string, unkno
     void error;
   }
 };
+
+// ============================================
+// PRICING PAGE TRACKING (GA + Facebook Pixel)
+// ============================================
+
+/**
+ * Tracks pricing page view
+ */
+export const trackPricingPageView = () => {
+  // Google Analytics
+  trackEvent("pricing_page_view", {
+    page_type: "pricing",
+    page_path: window.location.pathname,
+    page_title: document.title,
+  });
+
+  // Facebook Pixel - ViewContent
+  if (typeof window !== "undefined" && window.fbq) {
+    window.fbq("track", "ViewContent", {
+      content_name: "Balão Intragástrico - Página de Preços",
+      content_category: "pricing_page",
+      content_type: "product",
+    });
+  }
+};
+
+/**
+ * Tracks CTA click on pricing page
+ */
+export const trackPricingCTAClick = (metadata: {
+  source: string;
+  section: string;
+  position: "hero" | "middle" | "bottom";
+  scroll_depth: number;
+}) => {
+  // Google Analytics
+  trackEvent("pricing_cta_clicked", {
+    ...metadata,
+    page_type: "pricing",
+    cta_type: "whatsapp_consult",
+  });
+
+  // Facebook Pixel - InitiateCheckout
+  if (typeof window !== "undefined" && window.fbq) {
+    window.fbq("track", "InitiateCheckout", {
+      content_name: "Consultar Valores - Balão Intragástrico",
+      content_category: "pricing_inquiry",
+      value: 1,
+      currency: "BRL",
+    });
+  }
+};
+
+/**
+ * Tracks successful lead conversion on pricing page
+ */
+export const trackPricingLeadConversion = (metadata: {
+  source: string;
+  method: "widget" | "whatsapp";
+  section?: string;
+  position?: string;
+  scroll_depth?: number;
+}) => {
+  // Google Analytics
+  trackEvent("pricing_lead_conversion", {
+    ...metadata,
+    page_type: "pricing",
+    conversion_type: "pricing_page",
+  });
+
+  // Facebook Pixel - Lead
+  if (typeof window !== "undefined" && window.fbq) {
+    window.fbq("track", "Lead", {
+      content_name: "Lead - Balão Intragástrico Preço",
+      content_category: "pricing_lead",
+      value: 1,
+      currency: "BRL",
+    });
+
+    // Also fire Contact event
+    window.fbq("track", "Contact", {
+      content_name: "Contato - Página de Preços",
+    });
+  }
+};
+
+/**
+ * Tracks scroll depth on pricing page
+ */
+export const trackPricingScrollDepth = (depth: 25 | 50 | 75 | 100) => {
+  trackEvent("pricing_scroll_depth", {
+    scroll_depth: depth,
+    page_type: "pricing",
+  });
+};

@@ -5,10 +5,26 @@ import { Users, Heart } from "lucide-react";
 import draBrunaHero from "@/assets/dra-bruna-hero.avif";
 import { CONTACT } from "@/lib/constants";
 import { openLeadChat } from "@/lib/leadChat";
+import { trackPricingCTAClick } from "@/lib/analytics";
 
 const HeroVendasPreco = () => {
   const handleWhatsApp = () => {
-    openLeadChat('hero_vendas_preco', CONTACT.WHATSAPP_BALAO_VENDAS);
+    const scrollDepth = Math.round(
+      (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+    );
+    
+    trackPricingCTAClick({
+      source: 'hero_vendas_preco',
+      section: 'hero',
+      position: 'hero',
+      scroll_depth: scrollDepth,
+    });
+    
+    openLeadChat('hero_vendas_preco', CONTACT.WHATSAPP_BALAO_VENDAS, {
+      section: 'hero',
+      position: 'hero',
+      scroll_depth: scrollDepth,
+    });
   };
 
   return (

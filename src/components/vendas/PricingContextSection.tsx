@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, CalendarRange, Sparkles } from "lucide-react";
 import { CONTACT } from "@/lib/constants";
 import { openLeadChat } from "@/lib/leadChat";
+import { trackPricingCTAClick } from "@/lib/analytics";
 
 const plans = [
   {
@@ -30,7 +31,22 @@ const plans = [
 
 const PricingContextSection = () => {
   const handleWhatsApp = () => {
-    openLeadChat('pricing_context', CONTACT.WHATSAPP_BALAO_VENDAS);
+    const scrollDepth = Math.round(
+      (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+    );
+    
+    trackPricingCTAClick({
+      source: 'pricing_context',
+      section: 'pricing_plans',
+      position: 'middle',
+      scroll_depth: scrollDepth,
+    });
+    
+    openLeadChat('pricing_context', CONTACT.WHATSAPP_BALAO_VENDAS, {
+      section: 'pricing_plans',
+      position: 'middle',
+      scroll_depth: scrollDepth,
+    });
   };
 
   return (

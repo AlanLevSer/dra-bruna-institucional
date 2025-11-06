@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/accordion";
 import { CONTACT } from "@/lib/constants";
 import { openLeadChat } from "@/lib/leadChat";
+import { trackPricingCTAClick } from "@/lib/analytics";
 
 const faqs = [
   {
@@ -45,7 +46,22 @@ const faqs = [
 
 const FAQVendasPreco = () => {
   const handleWhatsApp = () => {
-    openLeadChat('faq_preco', CONTACT.WHATSAPP_BALAO_VENDAS);
+    const scrollDepth = Math.round(
+      (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+    );
+    
+    trackPricingCTAClick({
+      source: 'faq_preco',
+      section: 'faq',
+      position: 'bottom',
+      scroll_depth: scrollDepth,
+    });
+    
+    openLeadChat('faq_preco', CONTACT.WHATSAPP_BALAO_VENDAS, {
+      section: 'faq',
+      position: 'bottom',
+      scroll_depth: scrollDepth,
+    });
   };
 
   return (

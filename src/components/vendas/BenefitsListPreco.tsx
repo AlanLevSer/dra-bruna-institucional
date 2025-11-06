@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { DollarSign, Zap, TrendingDown, Shield, Target, CreditCard, Star, Building2 } from "lucide-react";
 import { CONTACT } from "@/lib/constants";
 import { openLeadChat } from "@/lib/leadChat";
+import { trackPricingCTAClick } from "@/lib/analytics";
 
 const benefits = [
   {
@@ -48,7 +49,22 @@ const benefits = [
 
 const BenefitsListPreco = () => {
   const handleWhatsApp = () => {
-    openLeadChat('benefits_preco', CONTACT.WHATSAPP_BALAO_VENDAS);
+    const scrollDepth = Math.round(
+      (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+    );
+    
+    trackPricingCTAClick({
+      source: 'benefits_preco',
+      section: 'benefits',
+      position: 'middle',
+      scroll_depth: scrollDepth,
+    });
+    
+    openLeadChat('benefits_preco', CONTACT.WHATSAPP_BALAO_VENDAS, {
+      section: 'benefits',
+      position: 'middle',
+      scroll_depth: scrollDepth,
+    });
   };
 
   return (

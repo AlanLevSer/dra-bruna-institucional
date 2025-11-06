@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useRef } from "react";
 import { SEOHead } from "@/components/SEOHead";
 import HeroVendasPreco from "@/components/vendas/HeroVendasPreco";
 import ProblemIdentificationPreco from "@/components/vendas/ProblemIdentificationPreco";
@@ -6,6 +6,7 @@ import { StatsVendas } from "@/components/vendas/StatsVendas";
 import { TransformacoesReaisVendasB } from "@/components/vendas/TransformacoesReaisVendasB";
 import WhatsIncludedSection from "@/components/vendas/WhatsIncludedSection";
 import draBrunaHero from "@/assets/dra-bruna-hero.avif";
+import { trackPricingPageView, trackPricingScrollDepth } from "@/lib/analytics";
 
 import { DifferentialsVendas } from "@/components/vendas/DifferentialsVendas";
 import { MediaRecognitionVendas } from "@/components/vendas/MediaRecognitionVendas";
@@ -30,10 +31,46 @@ const BalaoIntragasticoPreco = () => {
     canonical: "https://www.brunadurelli.com.br/balao-intragastrico-preco-a",
   };
 
+  // Track page view on mount
+  useEffect(() => {
+    trackPricingPageView();
+  }, []);
+
   // Preload da imagem hero
   useEffect(() => {
     const heroImagePreload = new Image();
     heroImagePreload.src = draBrunaHero;
+  }, []);
+
+  // Track scroll depth
+  useEffect(() => {
+    const scrollDepths = useRef({ 25: false, 50: false, 75: false, 100: false });
+    
+    const handleScroll = () => {
+      const scrollPercent = Math.round(
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+      );
+
+      if (scrollPercent >= 25 && !scrollDepths.current[25]) {
+        scrollDepths.current[25] = true;
+        trackPricingScrollDepth(25);
+      }
+      if (scrollPercent >= 50 && !scrollDepths.current[50]) {
+        scrollDepths.current[50] = true;
+        trackPricingScrollDepth(50);
+      }
+      if (scrollPercent >= 75 && !scrollDepths.current[75]) {
+        scrollDepths.current[75] = true;
+        trackPricingScrollDepth(75);
+      }
+      if (scrollPercent >= 100 && !scrollDepths.current[100]) {
+        scrollDepths.current[100] = true;
+        trackPricingScrollDepth(100);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Carregar LeadChatWidget com IdleCallback

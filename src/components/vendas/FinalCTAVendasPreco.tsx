@@ -3,10 +3,26 @@ import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { Heart, Sparkles, MapPin, Phone, Mail, Clock, Instagram } from "lucide-react";
 import { CONTACT } from "@/lib/constants";
 import { openLeadChat } from "@/lib/leadChat";
+import { trackPricingCTAClick } from "@/lib/analytics";
 
 const FinalCTAVendasPreco = () => {
   const handleWhatsApp = () => {
-    openLeadChat('final_cta_preco', CONTACT.WHATSAPP_BALAO_VENDAS);
+    const scrollDepth = Math.round(
+      (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+    );
+    
+    trackPricingCTAClick({
+      source: 'final_cta_preco',
+      section: 'final_cta',
+      position: 'bottom',
+      scroll_depth: scrollDepth,
+    });
+    
+    openLeadChat('final_cta_preco', CONTACT.WHATSAPP_BALAO_VENDAS, {
+      section: 'final_cta',
+      position: 'bottom',
+      scroll_depth: scrollDepth,
+    });
   };
 
   return (

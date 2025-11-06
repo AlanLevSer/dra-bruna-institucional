@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Activity, Heart, Smartphone, ClipboardCheck, TrendingUp } from "lucide-react";
 import { CONTACT } from "@/lib/constants";
 import { openLeadChat } from "@/lib/leadChat";
+import { trackPricingCTAClick } from "@/lib/analytics";
 
 const includedItems = [
   {
@@ -33,7 +34,22 @@ const includedItems = [
 
 const WhatsIncludedSection = () => {
   const handleWhatsApp = () => {
-    openLeadChat('whats_included', CONTACT.WHATSAPP_BALAO_VENDAS);
+    const scrollDepth = Math.round(
+      (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+    );
+    
+    trackPricingCTAClick({
+      source: 'whats_included_preco',
+      section: 'whats_included',
+      position: 'middle',
+      scroll_depth: scrollDepth,
+    });
+    
+    openLeadChat('whats_included_preco', CONTACT.WHATSAPP_BALAO_VENDAS, {
+      section: 'whats_included',
+      position: 'middle',
+      scroll_depth: scrollDepth,
+    });
   };
 
   return (

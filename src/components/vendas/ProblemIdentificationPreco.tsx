@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { XCircle, TrendingDown, Clock, CheckCircle2 } from "lucide-react";
 import { CONTACT } from "@/lib/constants";
 import { openLeadChat } from "@/lib/leadChat";
+import { trackPricingCTAClick } from "@/lib/analytics";
 
 const problems = [
   {
@@ -25,7 +26,22 @@ const problems = [
 
 const ProblemIdentificationPreco = () => {
   const handleWhatsApp = () => {
-    openLeadChat('problem_identification_preco', CONTACT.WHATSAPP_BALAO_VENDAS);
+    const scrollDepth = Math.round(
+      (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+    );
+    
+    trackPricingCTAClick({
+      source: 'problem_identification_preco',
+      section: 'problem_identification',
+      position: 'middle',
+      scroll_depth: scrollDepth,
+    });
+    
+    openLeadChat('problem_identification_preco', CONTACT.WHATSAPP_BALAO_VENDAS, {
+      section: 'problem_identification',
+      position: 'middle',
+      scroll_depth: scrollDepth,
+    });
   };
 
   return (
