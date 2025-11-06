@@ -48,7 +48,7 @@ const BalaoVendas = () => {
     const win = window as WindowWithIdleCallback;
 
     let idleCallbackId: number | undefined;
-    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    let timeoutId: number | undefined;
 
     if (typeof win.requestIdleCallback === "function") {
       idleCallbackId = win.requestIdleCallback(() => enableWidget(), { timeout: 4000 });
