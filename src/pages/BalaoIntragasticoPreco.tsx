@@ -24,10 +24,11 @@ const FinalCTAVendasPreco = lazy(() => import("@/components/vendas/FinalCTAVenda
 const LeadChatWidget = lazy(() => import("@/components/LeadChatWidget"));
 
 const BalaoIntragasticoPreco = () => {
+  const scrollDepthsRef = useRef({ 25: false, 50: false, 75: false, 100: false });
   const seoData = {
-    title: "Quanto Custa o Balão Intragástrico? Valores 2025 | Dra. Bruna Durelli",
-    description: "Descubra o valor do balão intragástrico com acompanhamento completo. Perca até 35kg em 6 meses. Parcelamento facilitado. Consulte valores agora!",
-    keywords: "quanto custa balão intragástrico, preço balão gástrico, valor balão intragástrico, investimento balão, São Paulo, Dra. Bruna Durelli",
+    title: "Quanto Custa o Balao Intragastrico? Valores 2025 | Dra. Bruna Durelli",
+    description: "Descubra o valor do balao intragastrico com acompanhamento completo. Perca ate 35kg em 6 meses. Parcelamento facilitado. Consulte valores agora!",
+    keywords: "quanto custa balao intragastrico, preco balao gastrico, valor balao intragastrico, investimento balao, Sao Paulo, Dra. Bruna Durelli",
     canonical: "https://www.brunadurelli.com.br/balao-intragastrico-preco-a",
   };
 
@@ -44,27 +45,26 @@ const BalaoIntragasticoPreco = () => {
 
   // Track scroll depth
   useEffect(() => {
-    const scrollDepths = useRef({ 25: false, 50: false, 75: false, 100: false });
-    
     const handleScroll = () => {
-      const scrollPercent = Math.round(
-        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
-      );
+      const documentHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const safeDocumentHeight = Math.max(1, documentHeight);
+      const scrollPercent = Math.round((window.scrollY / safeDocumentHeight) * 100);
 
-      if (scrollPercent >= 25 && !scrollDepths.current[25]) {
-        scrollDepths.current[25] = true;
+      if (scrollPercent >= 25 && !scrollDepthsRef.current[25]) {
+        scrollDepthsRef.current[25] = true;
         trackPricingScrollDepth(25);
       }
-      if (scrollPercent >= 50 && !scrollDepths.current[50]) {
-        scrollDepths.current[50] = true;
+      if (scrollPercent >= 50 && !scrollDepthsRef.current[50]) {
+        scrollDepthsRef.current[50] = true;
         trackPricingScrollDepth(50);
       }
-      if (scrollPercent >= 75 && !scrollDepths.current[75]) {
-        scrollDepths.current[75] = true;
+      if (scrollPercent >= 75 && !scrollDepthsRef.current[75]) {
+        scrollDepthsRef.current[75] = true;
         trackPricingScrollDepth(75);
       }
-      if (scrollPercent >= 100 && !scrollDepths.current[100]) {
-        scrollDepths.current[100] = true;
+      if (scrollPercent >= 100 && !scrollDepthsRef.current[100]) {
+        scrollDepthsRef.current[100] = true;
         trackPricingScrollDepth(100);
       }
     };
@@ -133,3 +133,4 @@ const BalaoIntragasticoPreco = () => {
 };
 
 export default BalaoIntragasticoPreco;
+

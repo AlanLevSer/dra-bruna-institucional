@@ -10,6 +10,7 @@ declare global {
       params?: Record<string, string | number | boolean | null | undefined>,
     ) => void;
     dataLayer?: Array<Record<string, unknown>>;
+    fbq?: (...args: unknown[]) => void;
   }
 }
 
@@ -260,13 +261,11 @@ export const trackPricingPageView = () => {
   });
 
   // Facebook Pixel - ViewContent
-  if (typeof window !== "undefined" && window.fbq) {
-    window.fbq("track", "ViewContent", {
-      content_name: "Balão Intragástrico - Página de Preços",
-      content_category: "pricing_page",
-      content_type: "product",
-    });
-  }
+  window.fbq?.("track", "ViewContent", {
+    content_name: "Balao Intragastrico - Pagina de Precos",
+    content_category: "pricing_page",
+    content_type: "product",
+  });
 };
 
 /**
@@ -286,14 +285,12 @@ export const trackPricingCTAClick = (metadata: {
   });
 
   // Facebook Pixel - InitiateCheckout
-  if (typeof window !== "undefined" && window.fbq) {
-    window.fbq("track", "InitiateCheckout", {
-      content_name: "Consultar Valores - Balão Intragástrico",
-      content_category: "pricing_inquiry",
-      value: 1,
-      currency: "BRL",
-    });
-  }
+  window.fbq?.("track", "InitiateCheckout", {
+    content_name: "Consultar Valores - Balao Intragastrico",
+    content_category: "pricing_inquiry",
+    value: 1,
+    currency: "BRL",
+  });
 };
 
 /**
@@ -314,19 +311,17 @@ export const trackPricingLeadConversion = (metadata: {
   });
 
   // Facebook Pixel - Lead
-  if (typeof window !== "undefined" && window.fbq) {
-    window.fbq("track", "Lead", {
-      content_name: "Lead - Balão Intragástrico Preço",
-      content_category: "pricing_lead",
-      value: 1,
-      currency: "BRL",
-    });
+  window.fbq?.("track", "Lead", {
+    content_name: "Lead - Balao Intragastrico Preco",
+    content_category: "pricing_lead",
+    value: 1,
+    currency: "BRL",
+  });
 
-    // Also fire Contact event
-    window.fbq("track", "Contact", {
-      content_name: "Contato - Página de Preços",
-    });
-  }
+  // Also fire Contact event
+  window.fbq?.("track", "Contact", {
+    content_name: "Contato - Pagina de Precos",
+  });
 };
 
 /**
@@ -338,3 +333,4 @@ export const trackPricingScrollDepth = (depth: 25 | 50 | 75 | 100) => {
     page_type: "pricing",
   });
 };
+
