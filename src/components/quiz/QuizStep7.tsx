@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { AlertCircle } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 interface QuizStep7Props {
   cirurgiaGastricaPrevia: boolean;
@@ -40,26 +40,39 @@ export const QuizStep7 = ({
             <Label htmlFor="cirurgia-previa" className="text-base font-medium">
               Voce ja fez alguma cirurgia gastrica ou bariatrica?
             </Label>
-            <ToggleGroup
-              type="single"
-              value={cirurgiaGastricaPrevia ? "sim" : "nao"}
-              onValueChange={(val) => {
-                const hasSurgery = val === "sim";
-                onChange("cirurgiaGastricaPrevia", hasSurgery);
-                if (!hasSurgery) {
-                  onChange("cirurgiaBariatricaPreviaTipo", "nenhuma");
-                  onChange("reganhoPosBariatrica", false);
-                }
-              }}
-              className="bg-muted/40 rounded-full p-1 self-start md:self-auto"
-            >
-              <ToggleGroupItem value="nao" className="px-4">
-                Nao
-              </ToggleGroupItem>
-              <ToggleGroupItem value="sim" className="px-4">
-                Sim
-              </ToggleGroupItem>
-            </ToggleGroup>
+            <div className="inline-flex rounded-full border border-border bg-muted/40 p-1 self-start md:self-auto">
+              {[
+                { label: "Nao", value: false },
+                { label: "Sim", value: true },
+              ].map((option) => {
+                const isSelected = cirurgiaGastricaPrevia === option.value;
+                const handleClick = () => {
+                  const nextValue =
+                    option.value && cirurgiaGastricaPrevia === option.value ? false : option.value;
+                  onChange("cirurgiaGastricaPrevia", nextValue);
+                  if (!nextValue) {
+                    onChange("cirurgiaBariatricaPreviaTipo", "nenhuma");
+                    onChange("reganhoPosBariatrica", false);
+                  }
+                };
+                return (
+                  <Button
+                    key={option.label}
+                    type="button"
+                    variant="ghost"
+                    onClick={handleClick}
+                    aria-pressed={isSelected}
+                    className={`rounded-full px-4 text-sm transition ${
+                      isSelected
+                        ? "bg-primary text-primary-foreground shadow-sm"
+                        : "bg-transparent text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {option.label}
+                  </Button>
+                );
+              })}
+            </div>
           </div>
 
           {cirurgiaGastricaPrevia && (
@@ -138,4 +151,3 @@ export const QuizStep7 = ({
     </div>
   );
 };
-
