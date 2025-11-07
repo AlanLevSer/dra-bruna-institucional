@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { AlertCircle } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -36,43 +35,21 @@ export const QuizStep7 = ({
       {/* Cirurgia gastrica previa */}
       <Card>
         <CardContent className="pt-6">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-4">
+          <div className="flex items-center justify-between mb-4">
             <Label htmlFor="cirurgia-previa" className="text-base font-medium">
               Voce ja fez alguma cirurgia gastrica ou bariatrica?
             </Label>
-            <div className="inline-flex rounded-full border border-border bg-muted/40 p-1 self-start md:self-auto">
-              {[
-                { label: "Nao", value: false },
-                { label: "Sim", value: true },
-              ].map((option) => {
-                const isSelected = cirurgiaGastricaPrevia === option.value;
-                const handleClick = () => {
-                  const nextValue =
-                    option.value && cirurgiaGastricaPrevia === option.value ? false : option.value;
-                  onChange("cirurgiaGastricaPrevia", nextValue);
-                  if (!nextValue) {
-                    onChange("cirurgiaBariatricaPreviaTipo", "nenhuma");
-                    onChange("reganhoPosBariatrica", false);
-                  }
-                };
-                return (
-                  <Button
-                    key={option.label}
-                    type="button"
-                    variant="ghost"
-                    onClick={handleClick}
-                    aria-pressed={isSelected}
-                    className={`rounded-full px-4 text-sm transition ${
-                      isSelected
-                        ? "bg-primary text-primary-foreground shadow-sm"
-                        : "bg-transparent text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    {option.label}
-                  </Button>
-                );
-              })}
-            </div>
+            <Switch
+              id="cirurgia-previa"
+              checked={cirurgiaGastricaPrevia}
+              onCheckedChange={(val) => {
+                onChange("cirurgiaGastricaPrevia", val);
+                if (!val) {
+                  onChange("cirurgiaBariatricaPreviaTipo", "nenhuma");
+                  onChange("reganhoPosBariatrica", false);
+                }
+              }}
+            />
           </div>
 
           {cirurgiaGastricaPrevia && (
@@ -112,8 +89,8 @@ export const QuizStep7 = ({
                 </div>
               </RadioGroup>
 
-              <div className="mt-4 flex items-center justify-between gap-4">
-                <Label htmlFor="reganho" className="text-sm flex-1">
+              <div className="mt-4 flex items-center justify-between">
+                <Label htmlFor="reganho" className="text-sm">
                   Teve reganho de peso apos a cirurgia?
                 </Label>
                 <Switch
@@ -151,3 +128,4 @@ export const QuizStep7 = ({
     </div>
   );
 };
+
