@@ -4,7 +4,8 @@ import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import logoHeader from "@/assets/logo-header-hq.webp";
 import { StructuredData } from "@/components/StructuredData";
-import { QuizData } from "@/types/quiz";
+import { QuizData, TransformacaoOutput } from "@/types/quiz";
+import { Navigation } from "@/components/Navigation";
 import { generateTransformacaoOutput } from "@/lib/quiz-logic";
 import { 
   step1Schema, 
@@ -39,14 +40,17 @@ import { LifestyleWins } from "@/components/output/LifestyleWins";
 import { CTAsFinais } from "@/components/output/CTAsFinais";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Sparkles } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LeadChatWidget from "@/components/LeadChatWidget";
 import { trackEvent } from "@/lib/analytics";
 
 const Quiz = () => {
+  const location = useLocation();
+  const isInstitutionalShell = location.pathname === "/quiz";
   const [currentStep, setCurrentStep] = useState(1);
   const [showOutput, setShowOutput] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [quizOutput, setQuizOutput] = useState<TransformacaoOutput | null>(null);
   const [quizData, setQuizData] = useState<QuizData>({
     peso: 0,
     altura: 0,
@@ -193,29 +197,40 @@ const Quiz = () => {
 
   const handleSubmit = async () => {
     if (!validateCurrentStep()) return;
-    
-    trackEvent('quiz_submitted', {
+
+    trackEvent("quiz_submitted", {
       imc: quizData.imc,
-      metaPeso: quizData.metaPeso
+      metaPeso: quizData.metaPeso,
     });
-    
+
     setIsGenerating(true);
-    
-    // Simular processamento para dar sensação de personalização
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setShowOutput(true);
-    setIsGenerating(false);
-    
-    trackEvent('quiz_result_generated', {
-      imc: quizData.imc
-    });
+
+    try {
+      const generatedOutput = generateTransformacaoOutput(quizData);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setQuizOutput(generatedOutput);
+      setShowOutput(true);
+
+      trackEvent("quiz_result_generated", {
+        imc: quizData.imc,
+      });
+    } catch (error) {
+      console.error("Erro ao gerar plano personalizado", error);
+      toast({
+        title: "Nao conseguimos gerar seu plano agora",
+        description: "Tente novamente em instantes ou fale com nossa equipe.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   const resetQuiz = () => {
     setCurrentStep(1);
     setShowOutput(false);
     setIsGenerating(false);
+    setQuizOutput(null);
     setQuizData({
       peso: 0,
       altura: 0,
@@ -245,7 +260,7 @@ const Quiz = () => {
     trackEvent('quiz_reset');
   };
 
-  const output = showOutput ? generateTransformacaoOutput(quizData) : null;
+  const output = quizOutput;
 
   const quizSchema = {
     "@context": "https://schema.org",
@@ -277,23 +292,29 @@ const Quiz = () => {
       <StructuredData data={quizSchema} />
       
       <div className="min-h-screen flex flex-col bg-background">
-        {/* Header minimalista - apenas logo */}
-        <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b">
-          <div className="container mx-auto px-4 py-3">
-            <img 
-              src={logoHeader}
-              alt="Dra. Bruna Durelli" 
-              className="h-14 md:h-16 lg:h-18 w-auto"
-              loading="eager"
-              fetchPriority="high"
-              width={72}
-              height={72}
-              style={{ imageRendering: 'crisp-edges' }}
-            />
-          </div>
-        </header>
+        {isInstitutionalShell ? (
+          <>
+            <Navigation />
+            <div className="h-[var(--header-height,80px)]" aria-hidden="true" />
+          </>
+        ) : (
+          <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b">
+            <div className="container mx-auto px-4 py-3">
+              <img
+                src={logoHeader}
+                alt="Dra. Bruna Durelli"
+                className="h-14 md:h-16 lg:h-18 w-auto"
+                loading="eager"
+                fetchPriority="high"
+                width={72}
+                height={72}
+                style={{ imageRendering: "crisp-edges" }}
+              />
+            </div>
+          </header>
+        )}
         
-        <main className="flex-1 pt-16">
+        <main className={`flex-1 ${isInstitutionalShell ? "pt-10 md:pt-12" : "pt-16"}`}>
           {/* Hero Section */}
           {!showOutput && !isGenerating && currentStep === 1 && (
             <section className="py-12 md:py-16 bg-gradient-to-br from-primary/5 via-background to-background border-b">
@@ -451,7 +472,25 @@ const Quiz = () => {
                       </Link>
                     </div>
                   </div>
-                ) : null}
+                ) : (
+                  <div className="bg-card rounded-2xl shadow-lg border p-8 text-center">
+                    <p className="text-lg font-medium text-foreground mb-2">
+                      Nao conseguimos gerar seu plano agora.
+                    </p>
+                    <p className="text-sm text-muted-foreground mb-6">
+                      Recarregue a pagina ou tente novamente em alguns segundos. Se o problema persistir, fale com nossa equipe pelo WhatsApp.
+                    </p>
+                    <div className="flex flex-wrap gap-4 justify-center">
+                      <Button onClick={resetQuiz}>Refazer o questionario</Button>
+                      <Link to="/">
+                        <Button variant="outline">
+                          <ArrowLeft className="mr-2 h-4 w-4" />
+                          Voltar ao site
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </section>
@@ -468,4 +507,5 @@ const Quiz = () => {
 };
 
 export default Quiz;
+
 
