@@ -440,7 +440,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       {showFloatingButton && !isOpen && (
         <div 
           onClick={handleOpen}
-          className="fixed bottom-6 right-6 z-50 flex items-center gap-3 cursor-pointer hover:scale-105 transition-all duration-300 animate-fade-in group"
+          className="fixed bottom-6 right-6 z-[120] flex items-center gap-3 cursor-pointer hover:scale-105 transition-all duration-300 animate-fade-in group"
           role="button"
           aria-label="Comece sua jornada hoje"
         >
@@ -486,7 +486,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       )}
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center md:items-center md:justify-end md:pr-6 md:pb-6">
+        <div className="fixed inset-0 z-[120] flex items-end justify-center md:items-center md:justify-end md:pr-6 md:pb-6">
           <div
             className="absolute inset-0 bg-black/40 backdrop-blur-sm"
             onClick={handleClose}
