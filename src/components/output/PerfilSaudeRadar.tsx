@@ -7,6 +7,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { trackEvent } from '@/lib/analytics';
 import { CONTACT } from '@/lib/constants';
+import { openLeadChat } from '@/lib/leadChat';
 import { TransformacaoOutput, QuizData } from '@/types/quiz';
 import { useRef, useEffect } from 'react';
 
@@ -94,17 +95,19 @@ export const PerfilSaudeRadar = ({ perfilSaude, quizData }: PerfilSaudeRadarProp
     }
   };
 
+  const whatsappMessage = encodeURIComponent(
+    `Olá, Dra. Bruna! Completei meu Perfil de Saúde e minha nota foi ${notaGlobal}/100 (conceito ${conceito}). Gostaria de conhecer meu Plano de Transformação personalizado.`
+  );
+  const fallbackWhatsappUrl = `${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${whatsappMessage}`;
+
   const handleCTAClick = () => {
     trackEvent('perfil_saude_cta_clicked', { 
       nota_global: notaGlobal,
       conceito,
       problemas_qtd: problemasDetectados.length,
     });
+    openLeadChat('quiz_result_generate_plan', fallbackWhatsappUrl);
   };
-
-  const whatsappMessage = encodeURIComponent(
-    `Olá, Dra. Bruna! Completei meu Perfil de Saúde e minha nota foi ${notaGlobal}/100 (conceito ${conceito}). Gostaria de conhecer meu Plano de Transformação personalizado.`
-  );
 
   return (
     <div ref={chartRef} className="bg-white rounded-2xl shadow-lg overflow-hidden">
@@ -252,17 +255,10 @@ export const PerfilSaudeRadar = ({ perfilSaude, quizData }: PerfilSaudeRadarProp
           <Button 
             size="lg"
             className="ml-auto gap-2 bg-gradient-premium text-white hover:opacity-90 transition-opacity"
-            asChild
             onClick={handleCTAClick}
           >
-            <a 
-              href={`${CONTACT.WHATSAPP_URL.split('?')[0]}?text=${whatsappMessage}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Share2 className="w-5 h-5" />
-              Gerar meu Plano de Transformação
-            </a>
+            <Share2 className="w-5 h-5" />
+            Gerar meu Plano de Transformação
           </Button>
         </div>
 
