@@ -10,7 +10,6 @@ declare global {
       params?: Record<string, string | number | boolean | null | undefined>,
     ) => void;
     dataLayer?: Array<Record<string, unknown>>;
-    fbq?: (...args: unknown[]) => void;
   }
 }
 
@@ -261,11 +260,15 @@ export const trackPricingPageView = () => {
   });
 
   // Facebook Pixel - ViewContent
-  window.fbq?.("track", "ViewContent", {
-    content_name: "Balao Intragastrico - Pagina de Precos",
-    content_category: "pricing_page",
-    content_type: "product",
-  });
+  try {
+    (window as any).fbq?.("track", "ViewContent", {
+      content_name: "Balao Intragastrico - Pagina de Precos",
+      content_category: "pricing_page",
+      content_type: "product",
+    });
+  } catch (e) {
+    void e;
+  }
 };
 
 /**
@@ -285,12 +288,16 @@ export const trackPricingCTAClick = (metadata: {
   });
 
   // Facebook Pixel - InitiateCheckout
-  window.fbq?.("track", "InitiateCheckout", {
-    content_name: "Consultar Valores - Balao Intragastrico",
-    content_category: "pricing_inquiry",
-    value: 1,
-    currency: "BRL",
-  });
+  try {
+    (window as any).fbq?.("track", "InitiateCheckout", {
+      content_name: "Consultar Valores - Balao Intragastrico",
+      content_category: "pricing_inquiry",
+      value: 1,
+      currency: "BRL",
+    });
+  } catch (e) {
+    void e;
+  }
 };
 
 /**
@@ -311,17 +318,21 @@ export const trackPricingLeadConversion = (metadata: {
   });
 
   // Facebook Pixel - Lead
-  window.fbq?.("track", "Lead", {
-    content_name: "Lead - Balao Intragastrico Preco",
-    content_category: "pricing_lead",
-    value: 1,
-    currency: "BRL",
-  });
+  try {
+    (window as any).fbq?.("track", "Lead", {
+      content_name: "Lead - Balao Intragastrico Preco",
+      content_category: "pricing_lead",
+      value: 1,
+      currency: "BRL",
+    });
 
-  // Also fire Contact event
-  window.fbq?.("track", "Contact", {
-    content_name: "Contato - Pagina de Precos",
-  });
+    // Also fire Contact event
+    (window as any).fbq?.("track", "Contact", {
+      content_name: "Contato - Pagina de Precos",
+    });
+  } catch (e) {
+    void e;
+  }
 };
 
 /**
