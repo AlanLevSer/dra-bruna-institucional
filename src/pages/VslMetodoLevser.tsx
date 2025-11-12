@@ -8,7 +8,7 @@ import { trackEvent } from "@/lib/analytics";
 import { TestimonialsGoogle } from "@/components/TestimonialsGoogle";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-const VIDEO_ID = "panda-e3c81653-5d55-4c76-b63f-2af5546db4f6";
+const VIDEO_ID = "e3c81653-5d55-4c76-b63f-2af5546db4f6";
 const CTA_UNLOCK_SECONDS = 370;
 const VIDEO_PROGRESS_CHECKPOINTS = [30, 60, 120, 180, 240, 300, 360];
 
