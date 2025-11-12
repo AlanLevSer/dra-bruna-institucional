@@ -1,4 +1,4 @@
-ï»¿import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Utensils, Activity, Sparkles, Brain, CheckCircle2, Award, Gift, PlayCircle, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/Footer";
@@ -10,6 +10,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 const VIDEO_ID = "panda-e3c81653-5d55-4c76-b63f-2af5546db4f6";
 const CTA_UNLOCK_SECONDS = 370;
+const VIDEO_PROGRESS_CHECKPOINTS = [30, 60, 120, 180, 240, 300, 360];
 
 const copy = {
   hero: {
@@ -104,6 +105,11 @@ const copy = {
 export default function VslMetodoLevser() {
   const [showCTA, setShowCTA] = useState(false);
   const [showLeadChat, setShowLeadChat] = useState(false);
+  const hasUnlockedRef = useRef(false);
+  const videoProgressRef = useRef<{ lastSeconds: number; sentCheckpoints: Set<number> }>({
+    lastSeconds: 0,
+    sentCheckpoints: new Set<number>(),
+  });
 
   useEffect(() => {
     trackEvent("page_view", {
@@ -128,7 +134,20 @@ export default function VslMetodoLevser() {
 
         if (player) {
           player.onEvent("timeupdate", (time: number) => {
-            if (time >= CTA_UNLOCK_SECONDS && !showCTA) {
+            videoProgressRef.current.lastSeconds = time;
+
+            for (const checkpoint of VIDEO_PROGRESS_CHECKPOINTS) {
+              if (time >= checkpoint && !videoProgressRef.current.sentCheckpoints.has(checkpoint)) {
+                videoProgressRef.current.sentCheckpoints.add(checkpoint);
+                trackEvent("video_watch_checkpoint", {
+                  source: "vsl_metodo_levser",
+                  seconds: checkpoint,
+                });
+              }
+            }
+
+            if (!hasUnlockedRef.current && time >= CTA_UNLOCK_SECONDS) {
+              hasUnlockedRef.current = true;
               setShowCTA(true);
               trackEvent("video_cta_unlocked", {
                 source: "vsl_metodo_levser",
@@ -148,7 +167,7 @@ export default function VslMetodoLevser() {
 
     const timer = setTimeout(initPandaPlayer, 1000);
     return () => clearTimeout(timer);
-  }, [showCTA]);
+  }, []);
 
   const handleCTAClick = () => {
     const scrollDepth = Math.round(
@@ -160,6 +179,7 @@ export default function VslMetodoLevser() {
       cta_type: "agendar_pre_consulta",
       position: "bottom",
       scroll_depth: scrollDepth,
+      video_watched_seconds: Math.round(videoProgressRef.current.lastSeconds),
     });
 
     setShowLeadChat(true);
@@ -169,12 +189,12 @@ export default function VslMetodoLevser() {
     <>
       <SEOHead
         data={{
-          title: "VÃ­deo: Descubra o MÃ©todo LevSer | Dra. Bruna Durelli",
+          title: "Vídeo: Descubra o Método LevSer | Dra. Bruna Durelli",
           description:
-            "Assista ao vÃ­deo e entenda por que o seu corpo nÃ£o estÃ¡ respondendo. Descubra o Programa LevSer: tratamento integrado para emagrecer com saÃºde e manter.",
+            "Assista ao vídeo e entenda por que o seu corpo não está respondendo. Descubra o Programa LevSer: tratamento integrado para emagrecer com saúde e manter.",
           canonical: "https://www.brunadurelli.com.br/vsl-metodo-levser",
           keywords:
-            "mÃ©todo levser, programa levser, emagrecimento saudÃ¡vel, tratamento integrado, Dra. Bruna Durelli",
+            "método levser, programa levser, emagrecimento saudável, tratamento integrado, Dra. Bruna Durelli",
         }}
       />
 
@@ -201,11 +221,11 @@ export default function VslMetodoLevser() {
                 <div className="mt-6 flex flex-col items-center gap-3">
                   <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold">
                     <PlayCircle className="w-4 h-4" />
-                    Assista atÃ© 6:10 para liberar o acesso
+                    Assista até 6:10 para liberar o acesso
                   </span>
                   {!showCTA && (
                     <Button variant="outline" disabled className="bg-muted/60 text-muted-foreground border-dashed">
-                      CTA disponÃ­vel apÃ³s 06:10
+                      CTA disponível após 06:10
                     </Button>
                   )}
                 </div>
@@ -221,7 +241,7 @@ export default function VslMetodoLevser() {
                   allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
                   allowFullScreen
                   fetchpriority="high"
-                  title="VSL MÃ©todo LevSer"
+                  title="VSL Método LevSer"
                   className="absolute inset-0 w-full h-full"
                 />
               </div>
@@ -234,7 +254,7 @@ export default function VslMetodoLevser() {
 
               <div className="bg-card/70 border border-border/60 rounded-2xl p-6 md:p-8 shadow-elegant mt-8">
                 <h3 className="text-xl md:text-2xl font-serif font-semibold text-foreground mb-4 text-center">
-                  No vÃ­deo vocÃª vai ver:
+                  No vídeo você vai ver:
                 </h3>
                 <div className="grid md:grid-cols-3 gap-4">
                   {copy.highlights.map((item) => (
@@ -303,7 +323,7 @@ export default function VslMetodoLevser() {
               <div className="max-w-4xl mx-auto">
                 <div className="bg-background rounded-2xl p-8 md:p-12 border border-border/50 shadow-elegant">
                   <h2 className="font-serif font-bold text-2xl md:text-4xl text-foreground mb-8 text-center">
-                    O que vocÃª recebe ao agendar
+                    O que você recebe ao agendar
                   </h2>
 
                   <div className="space-y-4 mb-8">
@@ -366,3 +386,7 @@ export default function VslMetodoLevser() {
     </>
   );
 }
+
+
+
+
