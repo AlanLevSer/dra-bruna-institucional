@@ -15,20 +15,20 @@ const VIDEO_PROGRESS_CHECKPOINTS = [30, 60, 120, 180, 240, 300, 360];
 const copy = {
   hero: {
     title:
-      "Assista ao v\u00eddeo e entenda por que o seu corpo n\u00e3o est\u00e1 respondendo como deveria.",
+      "Assista ao vídeo e entenda por que o seu corpo não está respondendo como deveria.",
     subtitle:
-      "A Dra. Bruna vai mostrar que o verdadeiro inimigo n\u00e3o \u00e9 falta de for\u00e7a de vontade, e sim metabolismo quebrado + tratamentos isolados \u2014 e como o Programa LevSer integra tudo em um s\u00f3 lugar.",
+      "A Dra. Bruna vai mostrar que o verdadeiro inimigo não é falta de força de vontade, e sim metabolismo quebrado + tratamentos isolados — e como o Programa LevSer integra tudo em um só lugar.",
   },
   highlights: [
     {
-      title: "Por que seu corpo n\u00e3o responde",
+      title: "Por que seu corpo não responde",
       description:
-        "A Dra. Bruna mostra os sinais de metabolismo quebrado e como saber se esse \u00e9 o seu caso.",
+        "A Dra. Bruna mostra os sinais de metabolismo quebrado e como saber se esse é o seu caso.",
     },
     {
       title: "Os 4 pilares do LevSer",
       description:
-        "Nutri\u00e7\u00e3o inteligente, movimento, sa\u00fade metab\u00f3lica e comportamento trabalhando juntos.",
+        "Nutrição inteligente, movimento, saúde metabólica e comportamento trabalhando juntos.",
     },
     {
       title: "Quando liberar o CTA",
@@ -37,27 +37,27 @@ const copy = {
     },
   ],
   authority: {
-    name: "Dra. Bruna Durelli \u2013 CRM 124809 / RQE 57361",
+    name: "Dra. Bruna Durelli – CRM 124809 / RQE 57361",
     description:
-      "M\u00e9dica especialista em Obesidade, Nutrologia, Medicina Regenerativa e Endoscopia Digestiva. Criadora do Programa LevSer e s\u00f3cia respons\u00e1vel pela cl\u00ednica na Av. Brasil (SP).",
+      "Médica especialista em Obesidade, Nutrologia, Medicina Regenerativa e Endoscopia Digestiva. Criadora do Programa LevSer e sócia responsável pela clínica na Av. Brasil (SP).",
     stats: "+3.000 pacientes transformados",
   },
   pillarsIntro:
-    "O mercado entrega pe\u00e7as soltas. O LevSer entrega transforma\u00e7\u00e3o integrada em 4 pilares:",
+    "O mercado entrega peças soltas. O LevSer entrega transformação integrada em 4 pilares:",
   pillars: [
     {
-      title: "1. Nutri\u00e7\u00e3o Inteligente",
-      description: "Alimenta\u00e7\u00e3o poss\u00edvel, com saciedade e foco em longevidade.",
+      title: "1. Nutrição Inteligente",
+      description: "Alimentação possível, com saciedade e foco em longevidade.",
       icon: Utensils,
     },
     {
       title: "2. Corpo em Movimento",
-      description: "Exerc\u00edcio pra acelerar metabolismo, n\u00e3o te exaurir.",
+      description: "Exercício pra acelerar metabolismo, não te exaurir.",
       icon: Activity,
     },
     {
-      title: "3. Sa\u00fade Metab\u00f3lica & Regenerativa",
-      description: "O \"segredo\": nutrir e regenerar enquanto emagrece, pra n\u00e3o envelhecer.",
+      title: "3. Saúde Metabólica & Regenerativa",
+      description: "O \"segredo\": nutrir e regenerar enquanto emagrece, pra não envelhecer.",
       icon: Sparkles,
     },
     {
@@ -66,40 +66,40 @@ const copy = {
       icon: Brain,
     },
   ],
-  pillarsFooter: "Assim voc\u00ea n\u00e3o s\u00f3 perde peso \u2014 voc\u00ea consegue manter.",
+  pillarsFooter: "Assim você não só perde peso — você consegue manter.",
   benefits: [
-    "\u2705 Pr\u00e9-consulta m\u00e9dica completa com a Dra. Bruna Durelli",
-    "\u2705 Plano integrado LevSer (4 pilares) personalizado",
-    "\u2705 Acesso \u00e0 equipe multidisciplinar (nutricionista, psic\u00f3loga, educador f\u00edsico) em sincronia",
-    "\u2705 Acompanhamento e suporte para manter o resultado",
-    "\u2705 Comunidade de apoio no WhatsApp \u2013 incluso",
-    "\u2705 Tira-d\u00favidas com nutricionista pelo WhatsApp \u2013 incluso",
+    "✅ Pré-consulta médica completa com a Dra. Bruna Durelli",
+    "✅ Plano integrado LevSer (4 pilares) personalizado",
+    "✅ Acesso à equipe multidisciplinar (nutricionista, psicóloga, educador físico) em sincronia",
+    "✅ Acompanhamento e suporte para manter o resultado",
+    "✅ Comunidade de apoio no WhatsApp – incluso",
+    "✅ Tira-dúvidas com nutricionista pelo WhatsApp – incluso",
   ],
-  bonus: "\uD83C\uDF81 B\u00f4nus para as primeiras 15 pessoas da semana: sess\u00e3o de Nutri\u00e7\u00e3o Celular",
+  bonus: "🎁 Bônus para as primeiras 15 pessoas da semana: sessão de Nutrição Celular",
   testimonials: {
-    title: "Avalia\u00e7\u00f5es 5 estrelas no Google",
+    title: "Avaliações 5 estrelas no Google",
     subtitle: "Pacientes contam como foi passar pelo LevSer e trabalhar com a Dra. Bruna.",
   },
   faqIntro:
     "Respondemos as duvidas que mais seguram quem esta assistindo ao video antes de liberar o chat.",
   faqItems: [
     {
-      question: "Eu preciso j\u00e1 saber qual tratamento quero fazer?",
+      question: "Eu preciso já saber qual tratamento quero fazer?",
       answer:
-        "N\u00e3o. A pr\u00e9-consulta serve justamente para entender seu momento, exames e rotina antes de indicar qualquer procedimento.",
+        "Não. A pré-consulta serve justamente para entender seu momento, exames e rotina antes de indicar qualquer procedimento.",
     },
     {
-      question: "Funciona mesmo se eu j\u00e1 tentei de tudo?",
+      question: "Funciona mesmo se eu já tentei de tudo?",
       answer:
-        "O Programa LevSer combina medicina metab\u00f3lica, nutri\u00e7\u00e3o e comportamento. Muitos pacientes chegam ap\u00f3s tentativas isoladas e s\u00f3 conseguem manter quando integram os 4 pilares.",
+        "O Programa LevSer combina medicina metabólica, nutrição e comportamento. Muitos pacientes chegam após tentativas isoladas e só conseguem manter quando integram os 4 pilares.",
     },
     {
       question: "A equipe atende online ou presencial?",
       answer:
-        "A avalia\u00e7\u00e3o m\u00e9dica \u00e9 feita pela Dra. Bruna e pode come\u00e7ar online. Procedimentos e exames acontecem na cl\u00ednica da Av. Brasil (SP) quando necess\u00e1rio.",
+        "A avaliação médica é feita pela Dra. Bruna e pode começar online. Procedimentos e exames acontecem na clínica da Av. Brasil (SP) quando necessário.",
     },
   ],
-  ctaLabel: "Quero agendar minha pr\u00e9-consulta",
+  ctaLabel: "Quero agendar minha pré-consulta",
 };
 
 export default function VslMetodoLevser() {
@@ -189,12 +189,12 @@ export default function VslMetodoLevser() {
     <>
       <SEOHead
         data={{
-          title: "Video: Descubra o Metodo LevSer | Dra. Bruna Durelli",
+          title: "Vídeo: Descubra o Método LevSer | Dra. Bruna Durelli",
           description:
-            "Assista ao video e entenda por que o seu corpo nao esta respondendo. Descubra o Programa LevSer: tratamento integrado para emagrecer com saude e manter.",
+            "Assista ao vídeo e entenda por que o seu corpo não está respondendo. Descubra o Programa LevSer: tratamento integrado para emagrecer com saúde e manter.",
           canonical: "https://www.brunadurelli.com.br/vsl-metodo-levser",
           keywords:
-            "metodo levser, programa levser, emagrecimento saudavel, tratamento integrado, Dra. Bruna Durelli",
+            "método levser, programa levser, emagrecimento saudável, tratamento integrado, Dra. Bruna Durelli",
         }}
       />
 
@@ -221,11 +221,11 @@ export default function VslMetodoLevser() {
                 <div className="mt-6 flex flex-col items-center gap-3">
                   <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold">
                     <PlayCircle className="w-4 h-4" />
-                    Assista at\u00e9 6:10 para liberar o acesso
+                    Assista até 6:10 para liberar o acesso
                   </span>
                   {!showCTA && (
                     <p className="text-sm text-muted-foreground">
-                      O bot\u00e3o "{copy.ctaLabel}" aparece automaticamente ap\u00f3s 06:10 de v\u00eddeo.
+                      O botão "{copy.ctaLabel}" aparece automaticamente após 06:10 de vídeo.
                     </p>
                   )}
                 </div>
