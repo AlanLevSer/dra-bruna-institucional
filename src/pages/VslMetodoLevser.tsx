@@ -189,12 +189,12 @@ export default function VslMetodoLevser() {
     <>
       <SEOHead
         data={{
-          title: "Vídeo: Descubra o Método LevSer | Dra. Bruna Durelli",
+          title: "Video: Descubra o Metodo LevSer | Dra. Bruna Durelli",
           description:
-            "Assista ao vídeo e entenda por que o seu corpo não está respondendo. Descubra o Programa LevSer: tratamento integrado para emagrecer com saúde e manter.",
+            "Assista ao video e entenda por que o seu corpo nao esta respondendo. Descubra o Programa LevSer: tratamento integrado para emagrecer com saude e manter.",
           canonical: "https://www.brunadurelli.com.br/vsl-metodo-levser",
           keywords:
-            "método levser, programa levser, emagrecimento saudável, tratamento integrado, Dra. Bruna Durelli",
+            "metodo levser, programa levser, emagrecimento saudavel, tratamento integrado, Dra. Bruna Durelli",
         }}
       />
 
@@ -221,12 +221,12 @@ export default function VslMetodoLevser() {
                 <div className="mt-6 flex flex-col items-center gap-3">
                   <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold">
                     <PlayCircle className="w-4 h-4" />
-                    Assista até 6:10 para liberar o acesso
+                    Assista at\u00e9 6:10 para liberar o acesso
                   </span>
                   {!showCTA && (
-                    <Button variant="outline" disabled className="bg-muted/60 text-muted-foreground border-dashed">
-                      CTA disponível após 06:10
-                    </Button>
+                    <p className="text-sm text-muted-foreground">
+                      O bot\u00e3o "{copy.ctaLabel}" aparece automaticamente ap\u00f3s 06:10 de v\u00eddeo.
+                    </p>
                   )}
                 </div>
               </div>
@@ -241,7 +241,7 @@ export default function VslMetodoLevser() {
                   allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
                   allowFullScreen
                   fetchpriority="high"
-                  title="VSL Método LevSer"
+                  title="VSL Metodo LevSer"
                   className="absolute inset-0 w-full h-full"
                 />
               </div>
@@ -254,7 +254,7 @@ export default function VslMetodoLevser() {
 
               <div className="bg-card/70 border border-border/60 rounded-2xl p-6 md:p-8 shadow-elegant mt-8">
                 <h3 className="text-xl md:text-2xl font-serif font-semibold text-foreground mb-4 text-center">
-                  No vídeo você vai ver:
+                  No video voce vai ver:
                 </h3>
                 <div className="grid md:grid-cols-3 gap-4">
                   {copy.highlights.map((item) => (
@@ -323,7 +323,7 @@ export default function VslMetodoLevser() {
               <div className="max-w-4xl mx-auto">
                 <div className="bg-background rounded-2xl p-8 md:p-12 border border-border/50 shadow-elegant">
                   <h2 className="font-serif font-bold text-2xl md:text-4xl text-foreground mb-8 text-center">
-                    O que você recebe ao agendar
+                    O que voce recebe ao agendar
                   </h2>
 
                   <div className="space-y-4 mb-8">
