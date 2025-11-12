@@ -2,6 +2,10 @@ import { onCLS, onFCP, onINP, onLCP, onTTFB, type Metric } from "web-vitals";
 
 import { getStoredUTMContext, rememberVisitContext } from "./utm";
 
+type PandaPlayerInstance = {
+  onEvent: (event: string, callback: (payload?: number) => void) => void;
+};
+
 declare global {
   interface Window {
     gtag?: (
@@ -10,6 +14,9 @@ declare global {
       params?: Record<string, string | number | boolean | null | undefined>,
     ) => void;
     dataLayer?: Array<Record<string, unknown>>;
+    fbq?: (...args: unknown[]) => void;
+    pandascripttag?: Array<() => void>;
+    pandaplayer?: (id: string) => PandaPlayerInstance | undefined;
   }
 }
 
@@ -261,7 +268,7 @@ export const trackPricingPageView = () => {
 
   // Facebook Pixel - ViewContent
   try {
-    (window as any).fbq?.("track", "ViewContent", {
+    window.fbq?.("track", "ViewContent", {
       content_name: "Balao Intragastrico - Pagina de Precos",
       content_category: "pricing_page",
       content_type: "product",
@@ -289,7 +296,7 @@ export const trackPricingCTAClick = (metadata: {
 
   // Facebook Pixel - InitiateCheckout
   try {
-    (window as any).fbq?.("track", "InitiateCheckout", {
+    window.fbq?.("track", "InitiateCheckout", {
       content_name: "Consultar Valores - Balao Intragastrico",
       content_category: "pricing_inquiry",
       value: 1,
@@ -319,7 +326,7 @@ export const trackPricingLeadConversion = (metadata: {
 
   // Facebook Pixel - Lead
   try {
-    (window as any).fbq?.("track", "Lead", {
+    window.fbq?.("track", "Lead", {
       content_name: "Lead - Balao Intragastrico Preco",
       content_category: "pricing_lead",
       value: 1,
@@ -327,7 +334,7 @@ export const trackPricingLeadConversion = (metadata: {
     });
 
     // Also fire Contact event
-    (window as any).fbq?.("track", "Contact", {
+    window.fbq?.("track", "Contact", {
       content_name: "Contato - Pagina de Precos",
     });
   } catch (e) {

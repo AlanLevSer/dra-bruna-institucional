@@ -212,7 +212,7 @@ export const LeadChatWidgetVSL = ({
 
       // Facebook Pixel
       try {
-        (window as any).fbq?.("track", "Lead", {
+        window.fbq?.("track", "Lead", {
           content_name: "Lead VSL Metodo LevSer",
           content_category: "vsl_lead",
           value: 1,
