@@ -256,7 +256,9 @@ export default function VslMetodoLevser() {
         <Footer />
       </div>
 
-      {showLeadChat && <LeadChatWidgetVSL origin="vsl_metodo_levser" showFloatingButton={false} autoOpen />}
+      {showLeadChat && (
+        <LeadChatWidgetVSL origin="vsl_metodo_levser" showFloatingButton={false} autoOpen />
+      )}
     </>
   );
 }

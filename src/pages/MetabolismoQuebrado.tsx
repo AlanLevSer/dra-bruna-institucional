@@ -5,6 +5,7 @@ import { Award, Clock, PlayCircle, TrendingDown, XCircle, Zap } from "lucide-rea
 import draBrunaHero from "@/assets/dra-bruna-hero.avif";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/Footer";
+import LeadChatWidgetRedirect from "@/components/LeadChatWidgetRedirect";
 import { SEOHead } from "@/components/SEOHead";
 import { TestimonialsGoogle } from "@/components/TestimonialsGoogle";
 import { TransformacoesPressel } from "@/components/pressel/TransformacoesPressel";
@@ -20,6 +21,10 @@ const PAIN_SIGNALS = [
 export default function MetabolismoQuebrado() {
   const [patientCount, setPatientCount] = useState(0);
   const [weightCount, setWeightCount] = useState(0);
+  const openLeadChat = () => {
+    if (typeof window === "undefined") return;
+    (window as typeof window & { LeadChatMet?: { open?: () => void } }).LeadChatMet?.open?.();
+  };
 
   useEffect(() => {
     trackEvent("page_view", {
@@ -178,13 +183,13 @@ export default function MetabolismoQuebrado() {
                 <Button
                   size="lg"
                   className="w-full md:w-auto px-8 py-6 text-base shadow-elegant hover:shadow-hover inline-flex items-center gap-2"
-                  onClick={handleCTAClick}
-                  asChild
+                  onClick={() => {
+                    handleCTAClick();
+                    openLeadChat();
+                  }}
                 >
-                  <Link to="/vsl-metodo-levser">
-                    <PlayCircle className="h-5 w-5" />
-                    Quero assistir ao vídeo da Dra. Bruna
-                  </Link>
+                  <PlayCircle className="h-5 w-5" />
+                  Quero assistir ao vídeo da Dra. Bruna
                 </Button>
                 <p className="text-sm text-muted-foreground text-center">
                   +3.000 pacientes acompanhados · protocolo médico · clínica na Av. Brasil (SP)
@@ -205,6 +210,14 @@ export default function MetabolismoQuebrado() {
             />
           </div>
         </section>
+
+        <LeadChatWidgetRedirect
+          showFloatingButton={false}
+          origin="metabolismo_quebrado"
+          redirectUrlOnSuccess="/vsl-metodo-levser"
+          successButtonLabel="Assistir ao vídeo"
+          globalName="LeadChatMet"
+        />
 
         <Footer />
       </div>
