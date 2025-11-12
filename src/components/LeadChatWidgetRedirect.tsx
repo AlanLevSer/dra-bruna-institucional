@@ -39,7 +39,7 @@ const STEP_LABELS: Record<Step, string> = {
   name: "Nome Completo",
   whatsapp: "WhatsApp",
   email: "E-mail",
-  confirm: "Confirma├º├úo",
+  confirm: "Confirmação",
 };
 
 export default function LeadChatWidgetRedirect({
@@ -57,7 +57,7 @@ export default function LeadChatWidgetRedirect({
   const [inputValue, setInputValue] = useState("");
   const [completedSteps, setCompletedSteps] = useState<Step[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
-  const finalButtonLabel = successButtonLabel ?? "Confirmar e assistir ao vídeo";
+  const finalButtonLabel = successButtonLabel ?? "Liberar acesso ao vídeo";
 
   const handleOpen = useCallback(() => {
     setIsOpen(true);
@@ -82,6 +82,8 @@ export default function LeadChatWidgetRedirect({
         close: handleClose,
         isOpen: () => isOpen,
       };
+      
+      console.log("[LeadChat] Widget registered globally", { origin, showFloatingButton });
     }
     
     return () => {
@@ -90,7 +92,7 @@ export default function LeadChatWidgetRedirect({
         delete (window as never as Record<string, unknown>)[globalName];
       }
     };
-  }, [globalName, handleClose, handleOpen, isOpen]);
+  }, [globalName, handleClose, handleOpen, isOpen, origin, showFloatingButton]);
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
@@ -214,20 +216,20 @@ export default function LeadChatWidgetRedirect({
   const showMilestoneToast = (stepName: Step) => {
     const messages: Record<Step, { title: string; description: string }> = {
       name: { 
-        title: "­ƒÄ» Primeira etapa completa!", 
-        description: "├ôtimo come├ºo! Continue assim." 
+        title: "Primeiro passo concluído", 
+        description: "Estamos preparando o acesso ao vídeo para você." 
       },
       whatsapp: { 
-        title: "­ƒÆÜ Estamos conectados!", 
-        description: "Metade da jornada completa." 
+        title: "Contato confirmado", 
+        description: "Assim conseguimos te avisar sobre a cerimônia." 
       },
       email: { 
-        title: "Ô£¿ Quase l├í!", 
-        description: "├Ültima etapa antes da confirma├º├úo." 
+        title: "Quase lá!", 
+        description: "Só falta o e-mail para enviar os materiais de apoio." 
       },
       confirm: { 
-        title: "­ƒÄë Jornada completa!", 
-        description: "Vamos te conectar no WhatsApp agora!" 
+        title: "Tudo pronto!", 
+        description: "Clique para liberar o vídeo completo do Programa LevSer." 
       }
     };
 
@@ -365,7 +367,7 @@ export default function LeadChatWidgetRedirect({
     }).catch(() => {});
 
     const whatsappMessage = encodeURIComponent(
-      `Oi, Dra. Bruna!\n\nAcabei de conhecer seu trabalho e quero saber como voc├¬ pode me ajudar a transformar minha sa├║de.\n\n---\nÔÜá´©Å *Guarde esta mensagem!*\nEla ├® seu comprovante de atendimento.\n\n­ƒôï Protocolo: ${protocolId}`
+      `Oi, Dra. Bruna!\n\nAcabei de conhecer seu trabalho e quero saber como você pode me ajudar a transformar minha saúde.\n\n---\n⚠️ *Guarde esta mensagem!*\nEla é seu comprovante de atendimento.\n\n📋 Protocolo: ${protocolId}`
     );
 
     try {
@@ -434,15 +436,16 @@ export default function LeadChatWidgetRedirect({
   };
 
   const getStepMessage = (): string => {
+    const firstName = leadData.name?.split(" ")[0] ?? "você";
     switch (step) {
       case "name":
-        return "Ol├í! Que alegria ter voc├¬ aqui! ­ƒÿè Para come├ºarmos, qual ├® o seu nome completo?";
+        return "Olá! Antes de liberar o vídeo completo do Programa LevSer, me conta seu nome completo.";
       case "whatsapp":
-        return `Prazer em te conhecer, ${leadData.name?.split(" ")[0]}! Ô£¿ Agora me conta, qual ├® o seu WhatsApp? Assim consigo te enviar informa├º├Áes importantes sobre sua jornada de transforma├º├úo!`;
+        return `Perfeito, ${firstName}! Qual é o WhatsApp onde podemos te enviar o link da cerimônia e lembretes importantes?`;
       case "email":
-        return "Maravilha! ­ƒÆÜ Qual ├® o seu melhor e-mail? Vou te enviar conte├║dos exclusivos e materiais que v├úo te ajudar nessa jornada!";
+        return "Para completar, qual é o seu melhor e-mail? Assim enviamos os materiais complementares enquanto você assiste ao vídeo.";
       case "confirm":
-        return "Quase l├í! ­ƒÄ» D├í uma conferida se est├í tudo certinho com seus dados:";
+        return "Confere se está tudo certo para liberar o acesso ao vídeo agora:";
       default:
         return "";
     }
@@ -453,14 +456,13 @@ export default function LeadChatWidgetRedirect({
       case "name":
         return "Ex: Maria Silva Santos";
       case "whatsapp":
-        return "(11) 98765-4321";
+        return "(11) 91234-5678";
       case "email":
-        return "seuemail@exemplo.com";
+        return "Ex: maria@email.com";
       default:
         return "";
     }
   };
-
   return (
     <>
       {showFloatingButton && !isOpen && (
@@ -475,7 +477,7 @@ export default function LeadChatWidgetRedirect({
             {/* Speech Bubble */}
             <div className="bg-white rounded-2xl shadow-xl px-4 py-3 relative animate-in slide-in-from-left-2 duration-500">
               <p className="text-sm font-medium text-gray-800 leading-tight whitespace-nowrap pr-2">
-                Comece sua jornada hoje! Ô£¿
+                Comece sua jornada hoje! ✨
               </p>
               {/* Arrow pointing to avatar */}
               <div className="absolute right-[-8px] top-1/2 -translate-y-1/2 w-0 h-0 border-t-[8px] border-t-transparent border-l-[8px] border-l-white border-b-[8px] border-b-transparent" />
@@ -496,7 +498,7 @@ export default function LeadChatWidgetRedirect({
           {/* Mobile - Compact version with avatar + small bubble */}
           <div className="md:hidden flex items-center gap-2">
             <div className="bg-white rounded-xl shadow-lg px-3 py-2 relative">
-              <span className="text-xs font-medium text-gray-800">Comece hoje! Ô£¿</span>
+              <span className="text-xs font-medium text-gray-800">Comece hoje! ✨</span>
               <div className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-t-transparent border-l-[6px] border-l-white border-b-[6px] border-b-transparent" />
             </div>
             <div className="relative">
@@ -521,9 +523,9 @@ export default function LeadChatWidgetRedirect({
           <div className="relative w-full md:w-[420px] md:h-[600px] h-[80vh] bg-background rounded-t-2xl md:rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 md:slide-in-from-right-4 duration-300">
             <div className="bg-primary text-primary-foreground p-4 flex items-center justify-between">
               <div className="flex-1">
-                <h3 className="font-semibold text-lg">Agende sua Avalia├º├úo</h3>
+                <h3 className="font-semibold text-lg">Liberar acesso ao vídeo</h3>
                 <p className="text-sm opacity-90">
-                  {STEP_LABELS[step]} ({Object.keys(STEP_LABELS).indexOf(step) + 1}/4)
+                  Etapa {Object.keys(STEP_LABELS).indexOf(step) + 1} de 4
                 </p>
               </div>
               <Button
@@ -560,7 +562,7 @@ export default function LeadChatWidgetRedirect({
                         }
                       `}>
                         {isCompleted ? (
-                          <span className="text-lg">Ô£ô</span>
+                          <span className="text-lg">✓</span>
                         ) : (
                           <span>{idx + 1}</span>
                         )}
@@ -610,7 +612,7 @@ export default function LeadChatWidgetRedirect({
               
               {/* Progress percentage */}
               <div className="flex justify-between items-center mt-2 px-1">
-                <span className="text-[10px] text-muted-foreground">In├¡cio</span>
+                <span className="text-[10px] text-muted-foreground">Início</span>
                 <span className="text-xs font-bold text-primary tabular-nums">
                   {STEP_PROGRESS[step]}%
                 </span>
@@ -739,4 +741,3 @@ declare global {
 type WindowWithWebkitAudioContext = Window & {
   webkitAudioContext?: typeof AudioContext;
 };
-
