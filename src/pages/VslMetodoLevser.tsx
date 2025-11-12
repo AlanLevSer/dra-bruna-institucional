@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Utensils, Activity, Sparkles, Brain, CheckCircle2, Award, Gift, PlayCircle, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/Footer";
@@ -8,41 +8,98 @@ import { trackEvent } from "@/lib/analytics";
 import { TestimonialsGoogle } from "@/components/TestimonialsGoogle";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-const videoHighlights = [
-  {
-    title: "Por que seu corpo não responde",
-    description:
-      "A Dra. Bruna mostra os sinais de metabolismo quebrado e como saber se esse é o seu caso.",
-  },
-  {
-    title: "Os 4 pilares do LevSer",
-    description:
-      "Nutrição inteligente, movimento, saúde metabólica e comportamento trabalhando juntos.",
-  },
-  {
-    title: "Quando liberar o CTA",
-    description:
-      "Aos 6:10 ela abre o caminho para falar com a equipe e receber seu protocolo integrado.",
-  },
-];
+const VIDEO_ID = "panda-e3c81653-5d55-4c76-b63f-2af5546db4f6";
+const CTA_UNLOCK_SECONDS = 370;
 
-const faqItems = [
-  {
-    question: "Eu preciso já saber qual tratamento quero fazer?",
-    answer:
-      "Não. A pré-consulta serve justamente para entender seu momento, exames e rotina antes de indicar qualquer procedimento.",
+const copy = {
+  hero: {
+    title:
+      "Assista ao v\u00eddeo e entenda por que o seu corpo n\u00e3o est\u00e1 respondendo como deveria.",
+    subtitle:
+      "A Dra. Bruna vai mostrar que o verdadeiro inimigo n\u00e3o \u00e9 falta de for\u00e7a de vontade, e sim metabolismo quebrado + tratamentos isolados \u2014 e como o Programa LevSer integra tudo em um s\u00f3 lugar.",
   },
-  {
-    question: "Funciona mesmo se eu já tentei de tudo?",
-    answer:
-      "O Programa LevSer combina medicina metabólica, nutrição e comportamento. Muitos pacientes chegam após tentativas isoladas e só conseguem manter quando integram os 4 pilares.",
+  highlights: [
+    {
+      title: "Por que seu corpo n\u00e3o responde",
+      description:
+        "A Dra. Bruna mostra os sinais de metabolismo quebrado e como saber se esse \u00e9 o seu caso.",
+    },
+    {
+      title: "Os 4 pilares do LevSer",
+      description:
+        "Nutri\u00e7\u00e3o inteligente, movimento, sa\u00fade metab\u00f3lica e comportamento trabalhando juntos.",
+    },
+    {
+      title: "Quando liberar o CTA",
+      description:
+        "Aos 6:10 ela abre o caminho para falar com a equipe e receber seu protocolo integrado.",
+    },
+  ],
+  authority: {
+    name: "Dra. Bruna Durelli \u2013 CRM 124809 / RQE 57361",
+    description:
+      "M\u00e9dica especialista em Obesidade, Nutrologia, Medicina Regenerativa e Endoscopia Digestiva. Criadora do Programa LevSer e s\u00f3cia respons\u00e1vel pela cl\u00ednica na Av. Brasil (SP).",
+    stats: "+3.000 pacientes transformados",
   },
-  {
-    question: "A equipe atende online ou presencial?",
-    answer:
-      "A avaliação médica é feita pela Dra. Bruna e pode começar online. Procedimentos e exames acontecem na clínica da Av. Brasil (SP) quando necessário.",
+  pillarsIntro:
+    "O mercado entrega pe\u00e7as soltas. O LevSer entrega transforma\u00e7\u00e3o integrada em 4 pilares:",
+  pillars: [
+    {
+      title: "1. Nutri\u00e7\u00e3o Inteligente",
+      description: "Alimenta\u00e7\u00e3o poss\u00edvel, com saciedade e foco em longevidade.",
+      icon: Utensils,
+    },
+    {
+      title: "2. Corpo em Movimento",
+      description: "Exerc\u00edcio pra acelerar metabolismo, n\u00e3o te exaurir.",
+      icon: Activity,
+    },
+    {
+      title: "3. Sa\u00fade Metab\u00f3lica & Regenerativa",
+      description: "O \"segredo\": nutrir e regenerar enquanto emagrece, pra n\u00e3o envelhecer.",
+      icon: Sparkles,
+    },
+    {
+      title: "4. Mente & Comportamento",
+      description: "Trabalha gatilhos, ansiedade e fome emocional.",
+      icon: Brain,
+    },
+  ],
+  pillarsFooter: "Assim voc\u00ea n\u00e3o s\u00f3 perde peso \u2014 voc\u00ea consegue manter.",
+  benefits: [
+    "\u2705 Pr\u00e9-consulta m\u00e9dica completa com a Dra. Bruna Durelli",
+    "\u2705 Plano integrado LevSer (4 pilares) personalizado",
+    "\u2705 Acesso \u00e0 equipe multidisciplinar (nutricionista, psic\u00f3loga, educador f\u00edsico) em sincronia",
+    "\u2705 Acompanhamento e suporte para manter o resultado",
+    "\u2705 Comunidade de apoio no WhatsApp \u2013 incluso",
+    "\u2705 Tira-d\u00favidas com nutricionista pelo WhatsApp \u2013 incluso",
+  ],
+  bonus: "\uD83C\uDF81 B\u00f4nus para as primeiras 15 pessoas da semana: sess\u00e3o de Nutri\u00e7\u00e3o Celular",
+  testimonials: {
+    title: "Avalia\u00e7\u00f5es 5 estrelas no Google",
+    subtitle: "Pacientes contam como foi passar pelo LevSer e trabalhar com a Dra. Bruna.",
   },
-];
+  faqIntro:
+    "Respondemos as d\u00favidas que mais seguram quem est\u00e1 assistindo \u00e0 VSL antes de liberar o chat.",
+  faqItems: [
+    {
+      question: "Eu preciso j\u00e1 saber qual tratamento quero fazer?",
+      answer:
+        "N\u00e3o. A pr\u00e9-consulta serve justamente para entender seu momento, exames e rotina antes de indicar qualquer procedimento.",
+    },
+    {
+      question: "Funciona mesmo se eu j\u00e1 tentei de tudo?",
+      answer:
+        "O Programa LevSer combina medicina metab\u00f3lica, nutri\u00e7\u00e3o e comportamento. Muitos pacientes chegam ap\u00f3s tentativas isoladas e s\u00f3 conseguem manter quando integram os 4 pilares.",
+    },
+    {
+      question: "A equipe atende online ou presencial?",
+      answer:
+        "A avalia\u00e7\u00e3o m\u00e9dica \u00e9 feita pela Dra. Bruna e pode come\u00e7ar online. Procedimentos e exames acontecem na cl\u00ednica da Av. Brasil (SP) quando necess\u00e1rio.",
+    },
+  ],
+  ctaLabel: "Quero agendar minha pr\u00e9-consulta",
+};
 
 export default function VslMetodoLevser() {
   const [showCTA, setShowCTA] = useState(false);
@@ -67,11 +124,11 @@ export default function VslMetodoLevser() {
       }
 
       window.pandascripttag.push(() => {
-        const player = window.pandaplayer?.("panda-e3c81653-5d55-4c76-b63f-2af5546db4f6");
+        const player = window.pandaplayer?.(VIDEO_ID);
 
         if (player) {
           player.onEvent("timeupdate", (time: number) => {
-            if (time >= 370 && !showCTA) {
+            if (time >= CTA_UNLOCK_SECONDS && !showCTA) {
               setShowCTA(true);
               trackEvent("video_cta_unlocked", {
                 source: "vsl_metodo_levser",
@@ -80,37 +137,22 @@ export default function VslMetodoLevser() {
             }
           });
 
-          player.onEvent("play", () => {
-            trackEvent("video_play", { source: "vsl_metodo_levser" });
-          });
-
-          player.onEvent("25", () => {
-            trackEvent("video_25", { source: "vsl_metodo_levser" });
-          });
-
-          player.onEvent("50", () => {
-            trackEvent("video_50", { source: "vsl_metodo_levser" });
-          });
-
-          player.onEvent("75", () => {
-            trackEvent("video_75", { source: "vsl_metodo_levser" });
-          });
-
-          player.onEvent("complete", () => {
-            trackEvent("video_complete", { source: "vsl_metodo_levser" });
-          });
+          player.onEvent("play", () => trackEvent("video_play", { source: "vsl_metodo_levser" }));
+          player.onEvent("25", () => trackEvent("video_25", { source: "vsl_metodo_levser" }));
+          player.onEvent("50", () => trackEvent("video_50", { source: "vsl_metodo_levser" }));
+          player.onEvent("75", () => trackEvent("video_75", { source: "vsl_metodo_levser" }));
+          player.onEvent("complete", () => trackEvent("video_complete", { source: "vsl_metodo_levser" }));
         }
       });
     };
 
     const timer = setTimeout(initPandaPlayer, 1000);
-
     return () => clearTimeout(timer);
   }, [showCTA]);
 
   const handleCTAClick = () => {
     const scrollDepth = Math.round(
-      (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+      (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100,
     );
 
     trackEvent("cta_clicked", {
@@ -137,7 +179,6 @@ export default function VslMetodoLevser() {
       />
 
       <div className="min-h-screen bg-background">
-        {/* Hero Section */}
         <section className="relative py-16 md:py-24 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background" />
 
@@ -150,13 +191,11 @@ export default function VslMetodoLevser() {
                 </div>
 
                 <h1 className="font-serif font-bold text-3xl md:text-5xl text-foreground mb-4 leading-tight">
-                  Assista ao vídeo e entenda por que o seu corpo não está respondendo como deveria.
+                  {copy.hero.title}
                 </h1>
 
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                  A Dra. Bruna vai mostrar que o verdadeiro inimigo não é falta de força de vontade, e sim
-                  <strong className="text-foreground"> metabolismo quebrado + tratamentos isolados</strong> — e como o
-                  <strong className="text-primary"> Programa LevSer</strong> integra tudo em um só lugar.
+                  {copy.hero.subtitle}
                 </p>
 
                 <div className="mt-6 flex flex-col items-center gap-3">
@@ -165,11 +204,7 @@ export default function VslMetodoLevser() {
                     Assista até 6:10 para liberar o acesso
                   </span>
                   {!showCTA && (
-                    <Button
-                      variant="outline"
-                      disabled
-                      className="bg-muted/60 text-muted-foreground border-dashed"
-                    >
+                    <Button variant="outline" disabled className="bg-muted/60 text-muted-foreground border-dashed">
                       CTA disponível após 06:10
                     </Button>
                   )}
@@ -178,32 +213,29 @@ export default function VslMetodoLevser() {
 
               <div className="relative rounded-2xl overflow-hidden shadow-elegant border border-border/50 bg-black aspect-video mb-8">
                 <iframe
-                  id="panda-e3c81653-5d55-4c76-b63f-2af5546db4f6"
-                  src="https://player-vz-591feda4-ef7.tv.pandavideo.com.br/embed/?v=e3c81653-5d55-4c76-b63f-2af5546db4f6"
+                  id={VIDEO_ID}
+                  src={`https://player-vz-591feda4-ef7.tv.pandavideo.com.br/embed/?v=${VIDEO_ID}`}
                   style={{ border: "none" }}
                   allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
                   allowFullScreen
                   fetchpriority="high"
-                  title="VSL Metodo LevSer"
+                  title="VSL Método LevSer"
                   className="absolute inset-0 w-full h-full"
                 />
               </div>
 
               <div className="bg-gradient-to-br from-muted/50 to-muted/30 rounded-xl p-6 border border-border/50 text-center">
-                <p className="font-semibold text-foreground mb-2">Dra. Bruna Durelli – CRM 124809 / RQE 57361</p>
-                <p className="text-sm text-muted-foreground">
-                  Médica especialista em Obesidade, Nutrologia, Medicina Regenerativa e Endoscopia Digestiva. Criadora do Programa
-                  LevSer e sócia responsável pela clínica na Av. Brasil (SP).
-                </p>
-                <p className="text-sm font-semibold text-primary mt-2">+3.000 pacientes transformados</p>
+                <p className="font-semibold text-foreground mb-2">{copy.authority.name}</p>
+                <p className="text-sm text-muted-foreground">{copy.authority.description}</p>
+                <p className="text-sm font-semibold text-primary mt-2">{copy.authority.stats}</p>
               </div>
 
-              <div className="bg-card/70 border border-border/60 rounded-2xl p-6 md:p-8 shadow-elegant">
+              <div className="bg-card/70 border border-border/60 rounded-2xl p-6 md:p-8 shadow-elegant mt-8">
                 <h3 className="text-xl md:text-2xl font-serif font-semibold text-foreground mb-4 text-center">
                   No vídeo você vai ver:
                 </h3>
                 <div className="grid md:grid-cols-3 gap-4">
-                  {videoHighlights.map((item) => (
+                  {copy.highlights.map((item) => (
                     <div key={item.title} className="p-4 rounded-xl bg-muted/30 h-full">
                       <p className="text-sm font-semibold text-primary mb-2">{item.title}</p>
                       <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
@@ -222,72 +254,41 @@ export default function VslMetodoLevser() {
                 Por que o LevSer funciona
               </h2>
               <p className="text-lg text-muted-foreground text-center mb-12 max-w-3xl mx-auto">
-                O mercado entrega peças soltas. O LevSer entrega transformação integrada em
-                <strong className="text-foreground"> 4 pilares:</strong>
+                {copy.pillarsIntro}
               </p>
 
               <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-background rounded-xl p-6 border border-border/50 shadow-sm hover:shadow-elegant transition-all">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-full bg-primary/10">
-                      <Utensils className="h-6 w-6 text-primary" />
+                {copy.pillars.map((pillar) => {
+                  const Icon = pillar.icon;
+                  return (
+                    <div
+                      key={pillar.title}
+                      className="bg-background rounded-xl p-6 border border-border/50 shadow-sm hover:shadow-elegant transition-all"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 rounded-full bg-primary/10">
+                          <Icon className="h-6 w-6 text-primary" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-lg text-foreground mb-2">{pillar.title}</h3>
+                          <p className="text-muted-foreground">{pillar.description}</p>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-lg text-foreground mb-2">1. Nutrição Inteligente</h3>
-                      <p className="text-muted-foreground">Alimentação possível, com saciedade e foco em longevidade.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-background rounded-xl p-6 border border-border/50 shadow-sm hover:shadow-elegant transition-all">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-full bg-primary/10">
-                      <Activity className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg text-foreground mb-2">2. Corpo em Movimento</h3>
-                      <p className="text-muted-foreground">Exercício pra acelerar metabolismo, não te exaurir.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-background rounded-xl p-6 border border-border/50 shadow-sm hover:shadow-elegant transition-all">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-full bg-primary/10">
-                      <Sparkles className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg text-foreground mb-2">3. Saúde Metabólica & Regenerativa</h3>
-                      <p className="text-muted-foreground">O “segredo”: nutrir e regenerar enquanto emagrece, pra não envelhecer.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-background rounded-xl p-6 border border-border/50 shadow-sm hover:shadow-elegant transition-all">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-full bg-primary/10">
-                      <Brain className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg text-foreground mb-2">4. Mente & Comportamento</h3>
-                      <p className="text-muted-foreground">Trabalha gatilhos, ansiedade e fome emocional.</p>
-                    </div>
-                  </div>
-                </div>
+                  );
+                })}
               </div>
 
               <div className="mt-8 text-center bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-6 border border-primary/20">
-                <p className="text-lg font-semibold text-foreground">
-                  Assim você não só perde peso — <span className="text-primary">você consegue manter</span>.
-                </p>
+                <p className="text-lg font-semibold text-foreground">{copy.pillarsFooter}</p>
               </div>
             </div>
           </div>
         </section>
 
         <TestimonialsGoogle
-          title="Avaliações 5 estrelas no Google"
-          subtitle="Pacientes contam como foi passar pelo LevSer e trabalhar com a Dra. Bruna."
+          title={copy.testimonials.title}
+          subtitle={copy.testimonials.subtitle}
           reviewCount={6}
           cardVariant="minimal"
           autoplayDelay={4500}
@@ -304,15 +305,8 @@ export default function VslMetodoLevser() {
                   </h2>
 
                   <div className="space-y-4 mb-8">
-                    {[
-                      "✅ Pré-consulta médica completa com a Dra. Bruna Durelli",
-                      "✅ Plano integrado LevSer (4 pilares) personalizado",
-                      "✅ Acesso à equipe multidisciplinar (nutricionista, psicóloga, educador físico) em sincronia",
-                      "✅ Acompanhamento e suporte para manter o resultado",
-                      "✅ Comunidade de apoio no WhatsApp – incluso",
-                      "✅ Tira-dúvidas com nutricionista pelo WhatsApp – incluso",
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-start gap-3">
+                    {copy.benefits.map((item) => (
+                      <div key={item} className="flex items-start gap-3">
                         <CheckCircle2 className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
                         <p className="text-foreground text-lg">{item}</p>
                       </div>
@@ -320,15 +314,13 @@ export default function VslMetodoLevser() {
 
                     <div className="flex items-start gap-3 bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-4 border border-primary/20">
                       <Gift className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
-                      <p className="text-foreground text-lg">
-                        <strong>🎁 Bônus para as primeiras 15 pessoas da semana:</strong> sessão de Nutrição Celular
-                      </p>
+                      <p className="text-foreground text-lg">{copy.bonus}</p>
                     </div>
                   </div>
 
                   <div className="flex justify-center">
                     <Button size="lg" onClick={handleCTAClick} className="text-lg px-8 py-6 shadow-elegant hover:shadow-hover transition-all">
-                      Quero agendar minha pré-consulta
+                      {copy.ctaLabel}
                     </Button>
                   </div>
                 </div>
@@ -345,13 +337,11 @@ export default function VslMetodoLevser() {
                 <span className="text-sm font-semibold">Perguntas frequentes</span>
               </div>
               <h3 className="text-3xl font-serif font-bold text-foreground">Antes de falar com a equipe</h3>
-              <p className="text-muted-foreground mt-3">
-                Respondemos as dúvidas que mais seguram quem está assistindo à VSL antes de liberar o chat.
-              </p>
+              <p className="text-muted-foreground mt-3">{copy.faqIntro}</p>
             </div>
 
             <Accordion type="single" collapsible className="max-w-3xl mx-auto">
-              {faqItems.map((item, index) => (
+              {copy.faqItems.map((item, index) => (
                 <AccordionItem key={item.question} value={`faq-${index}`}>
                   <AccordionTrigger className="text-left text-base font-semibold text-foreground">
                     {item.question}
