@@ -215,6 +215,8 @@ export default function VslMetodoLevser() {
                 <iframe
                   id={VIDEO_ID}
                   src={`https://player-vz-591feda4-ef7.tv.pandavideo.com.br/embed/?v=${VIDEO_ID}`}
+                  width="720"
+                  height="360"
                   style={{ border: "none" }}
                   allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
                   allowFullScreen
