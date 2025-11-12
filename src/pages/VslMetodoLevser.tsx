@@ -81,7 +81,7 @@ const copy = {
     subtitle: "Pacientes contam como foi passar pelo LevSer e trabalhar com a Dra. Bruna.",
   },
   faqIntro:
-    "Respondemos as d\u00favidas que mais seguram quem est\u00e1 assistindo \u00e0 VSL antes de liberar o chat.",
+    "Respondemos as duvidas que mais seguram quem esta assistindo ao video antes de liberar o chat.",
   faqItems: [
     {
       question: "Eu preciso j\u00e1 saber qual tratamento quero fazer?",
@@ -241,7 +241,7 @@ export default function VslMetodoLevser() {
                   allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
                   allowFullScreen
                   fetchpriority="high"
-                  title="VSL Metodo LevSer"
+                  title="Video Metodo LevSer"
                   className="absolute inset-0 w-full h-full"
                 />
               </div>
