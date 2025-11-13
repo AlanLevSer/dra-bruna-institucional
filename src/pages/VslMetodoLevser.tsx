@@ -166,7 +166,6 @@ export default function VslMetodoLevser() {
                   style={{ border: "none" }}
                   allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
                   allowFullScreen
-                  fetchpriority="high"
                   title="Vídeo Método LevSer"
                   className="absolute inset-0 w-full h-full"
                 />
