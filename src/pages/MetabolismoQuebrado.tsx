@@ -203,11 +203,12 @@ export default function MetabolismoQuebrado() {
 
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <TestimonialsGoogle
-              title="Antes e Depois"
-              subtitle="Resultados reais de quem passou pelo Programa LevSer"
-              className="bg-background rounded-2xl border border-border/60 shadow-elegant"
-            />
+            <div className="bg-background rounded-2xl border border-border/60 shadow-elegant">
+              <TestimonialsGoogle
+                title="Antes e Depois"
+                subtitle="Resultados reais de quem passou pelo Programa LevSer"
+              />
+            </div>
           </div>
         </section>
 
