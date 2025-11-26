@@ -1,0 +1,28 @@
+{
+  "version": "v1.0.0",
+  "pillarWeights": { "nutricao": 0.25, "metabolica_regenerativa": 0.30, "movimento": 0.20, "mente_comportamento": 0.25 },
+  "pillarStatusCutoffs": { "ok": 70, "atencao": 40 },
+  "classCutoffs": { "bom": 70, "atencao": 40 },
+  "rules": {
+    "imc": { "obese": 30, "overweight": 27, "penaltyObese": 10, "penaltyOver": 6 },
+    "waist": { "penaltyHigh": 8, "penaltyAbdomenYes": 5 },
+    "diagnoses": {
+      "prediabetes": 5, "diabetes": 10, "hypertension": 5, "dyslipidemia": 4, "hypothyroidism": 4
+    },
+    "sleep": { "lt6h": 6, "sixToSeven": 3, "nonRestorative": 5 },
+    "stress": { "gte7": 6, "fourToSix": 3 },
+    "exercise": { "none": 8, "oneToTwo": 4, "threeToFour": 1, "fivePlusBonus": 5 },
+    "ultraProcessed": { "daily": 6, "fourToSix": 4, "oneToThree": 2, "rareBonus": 2 },
+    "alcohol": { "daily": 4, "weekly": 2 },
+    "lateMeals": { "after21": 2, "midnight": 3 },
+    "symptoms": { "often": 3, "sometimes": 1 },
+    "yoYo": { "one": 3, "twoToThree": 5, "gtThree": 7 },
+    "compulsion": { "frequent": 5, "sometimes": 2 },
+    "emotions": { "eachNegative": 1, "max": 3 },
+    "labs": {
+      "tg_hdl_ratio_high": 5,
+      "glycemia_high": 4,
+      "vitd_low": 2
+    }
+  }
+}

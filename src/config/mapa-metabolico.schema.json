@@ -1,0 +1,81 @@
+{
+  "version": "v1.0.0",
+  "steps": [
+    {
+      "id": "A_basics",
+      "title": "Dados básicos & antropometria",
+      "fields": [
+        {"id": "age", "label": "Idade", "type": "number", "required": true, "min": 18, "max": 85},
+        {"id": "sex", "label": "Sexo (biológico)", "type": "select", "options": ["F","M","ND"], "required": true},
+        {"id": "weight_kg", "label": "Peso (kg)", "type": "number", "required": true, "min": 30, "max": 300},
+        {"id": "height_cm", "label": "Altura (cm)", "type": "number", "required": true, "min": 120, "max": 220},
+        {"id": "waist_cm", "label": "Circunferência abdominal (cm)", "type": "number", "required": false, "min": 50, "max": 200},
+        {"id": "abdominal_protrusion", "label": "Barriga proeminente?", "type": "boolean", "required": false},
+        {
+          "id": "diagnoses",
+          "label": "Diagnósticos prévios (se houver)",
+          "type": "multiselect",
+          "options": ["hypertension","prediabetes","diabetes","dyslipidemia","hypothyroidism","none","other"],
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "B_symptoms",
+      "title": "Sintomas invisíveis",
+      "fields": [
+        {"id": "fatigue", "label": "Cansaço constante", "type": "scale", "min": 0, "max": 10, "required": false},
+        {"id": "brain_fog", "label": "Dificuldade de concentração (brain fog)", "type": "scale", "min": 0, "max": 10, "required": false},
+        {"id": "non_restorative_sleep", "label": "Sono não reparador", "type": "boolean", "required": false},
+        {"id": "joint_pain_inflammation", "label": "Dores articulares / inflamação", "type": "scale", "min": 0, "max": 10, "required": false},
+        {"id": "bloating", "label": "Inchaço / desconforto abdominal", "type": "scale", "min": 0, "max": 10, "required": false}
+      ]
+    },
+    {
+      "id": "C_lifestyle",
+      "title": "Rotina & estilo de vida",
+      "fields": [
+        {"id": "sleep_hours_bucket", "label": "Horas de sono por noite", "type": "select", "options": ["<5","5–6","6–7","7–8",">8"], "required": true},
+        {"id": "stress_0_10", "label": "Estresse (0–10)", "type": "number", "min": 0, "max": 10, "required": true},
+        {"id": "exercise_freq_bucket", "label": "Exercícios por semana", "type": "select", "options": ["0","1–2","3–4","5+"], "required": true},
+        {"id": "sitting_time_bucket", "label": "Tempo sentado por dia", "type": "select", "options": ["<3h","3–6h","6–9h",">9h"], "required": false},
+        {"id": "ultra_processed_freq", "label": "Ultraprocessados (frequência)", "type": "select", "options": ["rare","1–3w","4–6w","daily"], "required": true},
+        {"id": "alcohol_freq", "label": "Álcool (frequência)", "type": "select", "options": ["never","social","weekly","daily"], "required": true},
+        {"id": "last_meal_after_21", "label": "Costuma fazer última refeição após 21h?", "type": "boolean", "required": false},
+        {"id": "midnight_eating", "label": "Come de madrugada?", "type": "boolean", "required": false}
+      ]
+    },
+    {
+      "id": "D_history",
+      "title": "Histórico de peso & comportamento",
+      "fields": [
+        {"id": "lost_5kg_regain_times", "label": "Perdeu >5kg e recuperou quantas vezes?", "type": "select", "options": ["0","1","2–3",">3"], "required": true},
+        {"id": "yo_yo_weight", "label": "Vive efeito sanfona?", "type": "select", "options": ["nunca","às vezes","sim"], "required": true},
+        {"id": "night_snacking", "label": "Beliscar/compulsão à noite", "type": "select", "options": ["nunca","às vezes","frequente"], "required": true},
+        {"id": "emotions_food", "label": "Emoções com comida", "type": "multiselect", "options": ["culpa","ansiedade","vergonha","neutro"], "required": false}
+      ]
+    },
+    {
+      "id": "E_labs_optional",
+      "title": "Exames (opcional, se souber)",
+      "fields": [
+        {"id": "fasting_glucose_mgdl", "label": "Glicemia em jejum (mg/dL)", "type": "number", "required": false},
+        {"id": "hba1c_perc", "label": "Hemoglobina glicada (%)", "type": "number", "step": 0.1, "required": false},
+        {"id": "triglycerides_mgdl", "label": "Triglicerídeos (mg/dL)", "type": "number", "required": false},
+        {"id": "hdl_mgdl", "label": "HDL (mg/dL)", "type": "number", "required": false},
+        {"id": "tsh", "label": "TSH", "type": "number", "required": false},
+        {"id": "vitamin_d", "label": "Vitamina D (25-OH)", "type": "number", "required": false}
+      ]
+    },
+    {
+      "id": "Z_contact",
+      "title": "Contato & LGPD",
+      "fields": [
+        {"id": "full_name", "label": "Nome completo", "type": "text", "required": true},
+        {"id": "whatsapp_phone", "label": "WhatsApp (E.164)", "type": "tel", "required": true},
+        {"id": "email", "label": "E-mail", "type": "email", "required": true},
+        {"id": "lgpd_consent", "label": "Autorizo o contato para orientação sobre avaliação e programas médicos.", "type": "checkbox", "required": true}
+      ]
+    }
+  ]
+}

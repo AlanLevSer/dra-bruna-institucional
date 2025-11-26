@@ -244,11 +244,12 @@ export default function VslMetodoLevser() {
 
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
-            <TestimonialsGoogle
-              title="Avaliações 5 estrelas no Google"
-              subtitle="Pacientes contam como foi passar pelo LevSer e trabalhar com a Dra. Bruna."
-              className="bg-card rounded-2xl border border-border/60 shadow-elegant"
-            />
+            <div className="bg-card rounded-2xl border border-border/60 shadow-elegant">
+              <TestimonialsGoogle
+                title="Avaliações 5 estrelas no Google"
+                subtitle="Pacientes contam como foi passar pelo LevSer e trabalhar com a Dra. Bruna."
+              />
+            </div>
           </div>
         </section>
 
