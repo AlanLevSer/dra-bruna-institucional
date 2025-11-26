@@ -145,7 +145,8 @@ export default function MapaMetabolico() {
         data={{
           title: 'Mapa Metabólico LevSer — Avaliação educativa do seu metabolismo',
           description: 'Descubra sinais e prioridades do seu metabolismo em 5–7 minutos. Score 0–100, 4 pilares e próximos passos responsáveis.',
-          path: '/mapa-metabolico',
+          keywords: 'mapa metabólico, avaliação metabolismo, saúde metabólica, score metabólico, dra bruna durelli, levser',
+          canonical: 'https://www.brunadurelli.com.br/mapa-metabolico',
         }}
       />
       <Navigation />
