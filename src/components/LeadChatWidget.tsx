@@ -3,8 +3,9 @@ import { X, ArrowLeft, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackLeadChatAbandonment } from "@/lib/analytics";
 import { getStoredUTMContext } from "@/lib/utm";
+import { getSessionId } from "@/lib/sessionTracking";
 import { CONTACT } from "@/lib/constants";
 import { toast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
@@ -48,6 +49,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
   const [inputValue, setInputValue] = useState("");
   const [completedSteps, setCompletedSteps] = useState<Step[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
+  const sessionId = useRef(getSessionId());
 
   const handleOpen = useCallback(() => {
     setIsOpen(true);
@@ -58,12 +60,22 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
   }, [origin]);
 
   const handleClose = useCallback(() => {
+    // Track abandonment if not completed
+    if (step !== "confirm") {
+      trackLeadChatAbandonment({
+        source: origin,
+        step,
+        partial_data: leadData,
+        session_id: sessionId.current,
+      });
+    }
+    
     setIsOpen(false);
     trackEvent("chat_close", {
       step,
       completed: step === "confirm",
     });
-  }, [step]);
+  }, [step, origin, leadData]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {

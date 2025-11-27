@@ -351,3 +351,75 @@ export const trackPricingScrollDepth = (depth: 25 | 50 | 75 | 100) => {
   });
 };
 
+/**
+ * Tracks partial lead capture for remarketing
+ */
+export const trackPartialLead = (data: {
+  source: string;
+  last_step: string;
+  partial_data: Record<string, unknown>;
+  page_path: string;
+  session_id?: string;
+}) => {
+  trackEvent("partial_lead_captured", {
+    source: data.source,
+    last_step: data.last_step,
+    page_path: data.page_path,
+    session_id: data.session_id,
+    has_name: !!data.partial_data.name,
+    has_whatsapp: !!data.partial_data.whatsapp,
+    has_email: !!data.partial_data.email,
+    timestamp: new Date().toISOString(),
+  });
+
+  // Send to webhook for remarketing
+  const webhookUrl = "https://hook.eu2.make.com/a8npmvf1rzbfjw8c1iigmm1lqezfhd37";
+  
+  try {
+    fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        type: "partial_lead",
+        ...data.partial_data,
+        last_step: data.last_step,
+        source: data.source,
+        page_path: data.page_path,
+        session_id: data.session_id,
+        timestamp: new Date().toISOString(),
+      }),
+    }).catch(() => {});
+  } catch (e) {
+    void e;
+  }
+};
+
+/**
+ * Tracks lead chat abandonment
+ */
+export const trackLeadChatAbandonment = (data: {
+  source: string;
+  step: string;
+  partial_data: Record<string, unknown>;
+  session_id?: string;
+}) => {
+  trackEvent("lead_chat_abandoned", {
+    source: data.source,
+    step: data.step,
+    session_id: data.session_id,
+    has_partial_data: Object.keys(data.partial_data).length > 0,
+    timestamp: new Date().toISOString(),
+  });
+
+  // Also track as partial lead if we have any data
+  if (Object.keys(data.partial_data).length > 0) {
+    trackPartialLead({
+      source: data.source,
+      last_step: data.step,
+      partial_data: data.partial_data,
+      page_path: window.location.pathname,
+      session_id: data.session_id,
+    });
+  }
+};
+
