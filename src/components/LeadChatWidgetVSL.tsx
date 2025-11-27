@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { X, Send, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CONTACT } from "@/lib/constants";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackLeadChatAbandonment } from "@/lib/analytics";
 import { getStoredUTMContext } from "@/lib/utm";
+import { getSessionId } from "@/lib/sessionTracking";
 import avatarAtendente from "@/assets/avatar-atendente.avif";
 
 type Step = 
@@ -56,6 +57,7 @@ export const LeadChatWidgetVSL = ({
     consent: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const sessionId = useRef(getSessionId());
 
   useEffect(() => {
     if (autoOpen) {
@@ -70,8 +72,22 @@ export const LeadChatWidgetVSL = ({
   };
 
   const handleClose = () => {
+    // Track abandonment if not converted
+    if (currentStep !== "success") {
+      trackLeadChatAbandonment({
+        source: origin,
+        step: currentStep,
+        partial_data: leadData,
+        session_id: sessionId.current,
+      });
+    }
+    
     setIsOpen(false);
-    trackEvent("lead_chat_closed", { source: origin, step: currentStep });
+    trackEvent("lead_chat_closed", { 
+      source: origin, 
+      step: currentStep,
+      converted: currentStep === "success",
+    });
   };
 
   const handleQualificationAnswer = (step: Step, answer: string) => {

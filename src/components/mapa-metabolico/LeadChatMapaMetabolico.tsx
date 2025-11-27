@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { X, Send, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CONTACT } from "@/lib/constants";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackLeadChatAbandonment } from "@/lib/analytics";
 import { getStoredUTMContext } from "@/lib/utm";
+import { getSessionId } from "@/lib/sessionTracking";
 import avatarAtendente from "@/assets/avatar-atendente.avif";
 import type { Answers, ScoreResult } from "@/lib/mapa-metabolico/types";
 
@@ -49,6 +50,56 @@ export const LeadChatMapaMetabolico = ({
     consent: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const sessionId = useRef(getSessionId());
+
+  const handleClose = () => {
+    // Track abandonment if not converted
+    if (currentStep !== "success") {
+      trackLeadChatAbandonment({
+        source: origin,
+        step: currentStep,
+        partial_data: {
+          ...leadData,
+          score: scoring?.total,
+          classification: scoring?.class,
+          answers: answers,
+        },
+        session_id: sessionId.current,
+      });
+    }
+    
+    onClose();
+    trackEvent("lead_chat_closed_mapa", { 
+      source: origin, 
+      step: currentStep,
+      score: scoring?.total,
+      converted: currentStep === "success",
+    });
+  };
+
+  // Track abandonment on page unload
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleBeforeUnload = () => {
+      if (currentStep !== "success") {
+        trackLeadChatAbandonment({
+          source: origin,
+          step: currentStep,
+          partial_data: {
+            ...leadData,
+            score: scoring?.total,
+            classification: scoring?.class,
+            answers: answers,
+          },
+          session_id: sessionId.current,
+        });
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [isOpen, currentStep, leadData, scoring, answers, origin]);
 
   const handleQualificationAnswer = (step: Step, answer: string) => {
     setLeadData((prev) => ({ ...prev, [step]: answer }));
