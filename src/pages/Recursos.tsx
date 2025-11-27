@@ -5,7 +5,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { CONTACT } from "@/lib/constants";
 import { openLeadChat } from "@/lib/leadChat";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
-import { Calculator, BookOpen, HelpCircle, Sparkles } from "lucide-react";
+import { Calculator, BookOpen, HelpCircle, Sparkles, Activity } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/transformation-empowerment.avif";
@@ -63,16 +63,31 @@ const Recursos = () => {
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto mb-16">
                 <Card 
                   className="cursor-pointer hover:shadow-hover transition-all border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-background" 
-                  onClick={() => navigate('/quiz')}
+                  onClick={() => navigate('/mapa-metabolico')}
                 >
                   <CardHeader>
                     <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center mb-4">
-                      <Sparkles className="w-7 h-7 text-white" />
+                      <Activity className="w-7 h-7 text-white" />
                     </div>
                     <CardTitle className="flex items-center gap-2">
-                      Descubra Seu Caminho
+                      Mapa Metabólico
                       <span className="text-xs bg-primary text-white px-2 py-0.5 rounded-full font-normal">Novo</span>
                     </CardTitle>
+                    <CardDescription>
+                      Descubra os sinais do seu corpo em 5 minutos. Score 0-100 e 4 pilares personalizados
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+
+                <Card 
+                  className="cursor-pointer hover:shadow-hover transition-all" 
+                  onClick={() => navigate('/quiz')}
+                >
+                  <CardHeader>
+                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                      <Sparkles className="w-7 h-7 text-primary" />
+                    </div>
+                    <CardTitle>Descubra Seu Caminho</CardTitle>
                     <CardDescription>
                       Quiz personalizado gratuito para descobrir o tratamento ideal. Poucos cliques, resultados imediatos
                     </CardDescription>
