@@ -3,9 +3,6 @@ import { X, ArrowLeft, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
-import { trackEvent, trackLeadChatAbandonment } from "@/lib/analytics";
-import { getStoredUTMContext } from "@/lib/utm";
-import { getSessionId } from "@/lib/sessionTracking";
 import { CONTACT } from "@/lib/constants";
 import { toast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
@@ -18,6 +15,9 @@ import {
 import { formatBRPhone } from "@/lib/phoneMask";
 import avatarImage from "@/assets/dra-bruna-profile.avif";
 import { ZodError } from "zod";
+import { trackEvent, trackLeadChatAbandonment } from "@/lib/analytics";
+import { getStoredUTMContext } from "@/lib/utm";
+import { getSessionId } from "@/lib/sessionTracking";
 
 type Step = "name" | "whatsapp" | "email" | "confirm";
 
@@ -65,7 +65,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       trackLeadChatAbandonment({
         source: origin,
         step,
-        partial_data: leadData,
+        partial_data: leadData as unknown as Record<string, unknown>,
         session_id: sessionId.current,
       });
     }
