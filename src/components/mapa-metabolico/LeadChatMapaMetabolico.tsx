@@ -495,30 +495,34 @@ export const LeadChatMapaMetabolico = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-      <div className="bg-background rounded-2xl shadow-elegant max-w-lg w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-background border-b border-border p-4 flex items-center justify-between rounded-t-2xl">
-          <div className="flex items-center gap-3">
-            <img src={avatarAtendente} alt="Atendente" className="w-10 h-10 rounded-full object-cover" />
-            <div>
-              <h3 className="font-semibold text-foreground">Falta pouco!</h3>
-              <p className="text-xs text-muted-foreground">
-                Etapa {getStepNumber()} de {getTotalSteps()}
-              </p>
-            </div>
+    <div className="fixed inset-0 z-[120] flex items-end justify-center md:items-center md:justify-end md:pr-6 md:pb-6">
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={handleClose} />
+      <div className="relative w-full md:w-[420px] bg-background rounded-t-3xl md:rounded-3xl shadow-2xl max-h-[90vh] md:max-h-[600px] flex flex-col animate-slide-up">
+        {/* Header */}
+        <div className="flex items-center justify-between p-6 border-b border-border/50">
+          <div>
+            <h3 className="font-serif font-bold text-lg text-foreground">Agende sua Pré-consulta</h3>
+            <p className="text-xs text-muted-foreground mt-1">Passo {getStepNumber()} de {getTotalSteps()}</p>
           </div>
           {currentStep !== "success" && (
-            <button
-              onClick={onClose}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Fechar"
-            >
-              <X className="w-5 h-5" />
+            <button onClick={handleClose} className="p-2 hover:bg-muted rounded-full transition-colors" aria-label="Fechar">
+              <X className="h-5 w-5 text-muted-foreground" />
             </button>
           )}
         </div>
 
-        <div className="p-6">{renderStep()}</div>
+        {/* Progress bar */}
+        <div className="px-6 pt-4">
+          <div className="w-full bg-muted/30 rounded-full h-1.5">
+            <div
+              className="bg-gradient-to-r from-primary to-primary/80 h-1.5 rounded-full transition-all duration-300"
+              style={{ width: `${(getStepNumber() / getTotalSteps()) * 100}%` }}
+            />
+          </div>
+        </div>
+
+        {/* Content area */}
+        <div className="flex-1 overflow-y-auto p-6">{renderStep()}</div>
       </div>
     </div>
   );
