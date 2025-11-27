@@ -254,9 +254,6 @@ export const trackWhatsAppClick = (source: string, params?: Record<string, unkno
 // PRICING PAGE TRACKING (GA + Facebook Pixel)
 // ============================================
 
-/**
- * Tracks pricing page view
- */
 export const trackPricingPageView = () => {
   // Google Analytics
   trackEvent("pricing_page_view", {
@@ -277,9 +274,6 @@ export const trackPricingPageView = () => {
   }
 };
 
-/**
- * Tracks CTA click on pricing page
- */
 export const trackPricingCTAClick = (metadata: {
   source: string;
   section: string;
@@ -306,9 +300,6 @@ export const trackPricingCTAClick = (metadata: {
   }
 };
 
-/**
- * Tracks successful lead conversion on pricing page
- */
 export const trackPricingLeadConversion = (metadata: {
   source: string;
   method: "widget" | "whatsapp";
@@ -341,9 +332,6 @@ export const trackPricingLeadConversion = (metadata: {
   }
 };
 
-/**
- * Tracks scroll depth on pricing page
- */
 export const trackPricingScrollDepth = (depth: 25 | 50 | 75 | 100) => {
   trackEvent("pricing_scroll_depth", {
     scroll_depth: depth,
@@ -351,9 +339,10 @@ export const trackPricingScrollDepth = (depth: 25 | 50 | 75 | 100) => {
   });
 };
 
-/**
- * Tracks partial lead capture for remarketing
- */
+// ============================================
+// PARTIAL LEAD & ABANDONMENT TRACKING
+// ============================================
+
 export const trackPartialLead = (data: {
   source: string;
   last_step: string;
@@ -394,9 +383,6 @@ export const trackPartialLead = (data: {
   }
 };
 
-/**
- * Tracks lead chat abandonment
- */
 export const trackLeadChatAbandonment = (data: {
   source: string;
   step: string;
@@ -422,4 +408,3 @@ export const trackLeadChatAbandonment = (data: {
     });
   }
 };
-
