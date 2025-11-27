@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, type ElementType } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, Sparkles } from "lucide-react";
+import { Menu, X, ChevronDown, Sparkles, Activity } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logoHeader from "@/assets/logo-header-hq.webp";
 
@@ -70,6 +70,7 @@ const navItems: NavItem[] = [
     href: "/recursos",
     type: "dropdown",
     subItems: [
+      { label: "Mapa Metabólico", href: "/mapa-metabolico", badge: "Novo", icon: Activity },
       { label: "Descubra Seu Caminho", href: "/quiz", badge: "Novo", icon: Sparkles },
       { label: "FAQ Completo", href: "/recursos#faq" },
       { label: "Calculadoras", href: "/recursos#calculadoras" },
