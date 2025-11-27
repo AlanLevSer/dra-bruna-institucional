@@ -30,6 +30,7 @@ const PlasmaArgonioVendas = lazy(() => import("./pages/PlasmaArgonioVendas"));
 const MetabolismoQuebrado = lazy(() => import("./pages/MetabolismoQuebrado"));
 const VslMetodoLevser = lazy(() => import("./pages/VslMetodoLevser"));
 const MapaMetabolico = lazy(() => import("./pages/MapaMetabolico"));
+const MapaMetabolicoLP = lazy(() => import("./pages/MapaMetabolicoLP"));
 
 const queryClient = new QueryClient();
 
@@ -97,6 +98,7 @@ const App = () => (
             <Route path="/metabolismo-quebrado" element={<MetabolismoQuebrado />} />
             <Route path="/vsl-metodo-levser" element={<VslMetodoLevser />} />
             <Route path="/mapa-metabolico" element={<MapaMetabolico />} />
+            <Route path="/mapa-metabolico-lp" element={<MapaMetabolicoLP />} />
             <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
             <Route path="/termos-uso" element={<TermosUso />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

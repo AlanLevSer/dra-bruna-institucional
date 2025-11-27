@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Navigation } from '@/components/Navigation';
-import { Footer } from '@/components/Footer';
 import { SEOHead } from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle2, Activity, Brain, Sparkles, Utensils } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { MapaProgress } from '@/components/mapa-metabolico/MapaProgress';
 import { MapaNavigation } from '@/components/mapa-metabolico/MapaNavigation';
 import { StepBasics } from '@/components/mapa-metabolico/StepBasics';
@@ -21,7 +19,6 @@ import type { Answers, ScoreResult } from '@/lib/mapa-metabolico/types';
 import { calculateScores } from '@/lib/mapa-metabolico/calculateScores';
 import { saveProgress, loadProgress, clearProgress } from '@/lib/mapa-metabolico/storage';
 import { trackMapaStart, trackMapaStepSubmit, trackMapaCompleted, trackMapaResultView, trackMapaScore } from '@/lib/mapa-metabolico/analytics';
-import { getStoredUTMContext } from '@/lib/utm';
 
 const STEPS = [
   { id: 'A_basics', title: 'Dados básicos' },
@@ -31,7 +28,7 @@ const STEPS = [
   { id: 'E_labs_optional', title: 'Exames' },
 ];
 
-export default function MapaMetabolico() {
+export default function MapaMetabolicoLP() {
   const [started, setStarted] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Partial<Answers>>({});
@@ -51,7 +48,7 @@ export default function MapaMetabolico() {
   const handleStart = () => {
     trackMapaStart();
     setStarted(true);
-    window.scrollTo({ top: 600, behavior: 'smooth' });
+    window.scrollTo({ top: 400, behavior: 'smooth' });
   };
 
   const handleAnswerChange = (key: keyof Answers, value: unknown) => {
@@ -63,7 +60,7 @@ export default function MapaMetabolico() {
       trackMapaStepSubmit(STEPS[currentStep].id, currentStep + 1);
       setCurrentStep((prev) => prev + 1);
       saveProgress({ currentStep: currentStep + 1, answers, lastUpdated: new Date().toISOString() });
-      window.scrollTo({ top: 400, behavior: 'smooth' });
+      window.scrollTo({ top: 200, behavior: 'smooth' });
     } else {
       handleSubmit();
     }
@@ -72,7 +69,7 @@ export default function MapaMetabolico() {
   const handleBack = () => {
     if (currentStep > 0) {
       setCurrentStep((prev) => prev - 1);
-      window.scrollTo({ top: 400, behavior: 'smooth' });
+      window.scrollTo({ top: 200, behavior: 'smooth' });
     }
   };
 
@@ -102,7 +99,6 @@ export default function MapaMetabolico() {
     }
   };
 
-
   const canGoForward = () => {
     if (currentStep === 0) {
       return !!(answers.age && answers.sex && answers.weight_kg && answers.height_cm && answers.diagnoses?.length);
@@ -120,44 +116,42 @@ export default function MapaMetabolico() {
     <>
       <SEOHead
         data={{
-          title: 'Mapa Metabólico LevSer — Avaliação educativa do seu metabolismo',
-          description: 'Descubra sinais e prioridades do seu metabolismo em 5–7 minutos. Score 0–100, 4 pilares e próximos passos responsáveis.',
-          keywords: 'mapa metabólico, avaliação metabolismo, saúde metabólica, score metabólico, dra bruna durelli, levser',
-          canonical: 'https://www.brunadurelli.com.br/mapa-metabolico',
+          title: 'Mapa Metabólico LevSer — Descubra seu metabolismo em 5 minutos',
+          description: 'Avaliação gratuita e educativa do seu metabolismo. Score 0–100, 4 pilares personalizados e próximos passos responsáveis.',
+          keywords: 'mapa metabólico, avaliação metabolismo, saúde metabólica, score metabólico, dra bruna durelli',
+          canonical: 'https://www.brunadurelli.com.br/mapa-metabolico-lp',
         }}
       />
-      <Navigation />
 
-      <main className="min-h-screen">
+      <main className="min-h-screen bg-background">
         {!result && (
-          <section className="py-16 md:py-24 bg-gradient-to-br from-background via-muted/20 to-background">
+          <section className="py-12 md:py-16 bg-gradient-to-br from-background via-muted/20 to-background">
             <div className="container mx-auto px-4 max-w-4xl">
-              <div className="text-center space-y-6 mb-12">
-                <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground">
-                  Mapa Metabólico LevSer
-                </h1>
-                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                  Em poucos minutos, entenda os sinais do seu corpo e descubra os 1–2 pontos mais críticos para
-                  destravar energia e peso — sem culpa e sem promessas mágicas.
-                </p>
-                <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
-                  <span className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary" /> Score 0–100
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary" /> 4 Pilares
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary" /> Direção clínica responsável
-                  </span>
-                </div>
-                {!started && (
+              {!started && (
+                <div className="text-center space-y-6 mb-12">
+                  <h1 className="text-3xl md:text-5xl font-serif font-bold text-foreground">
+                    Mapa Metabólico LevSer
+                  </h1>
+                  <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                    Em 5 minutos, descubra os sinais do seu metabolismo e os pontos críticos para destravar energia e peso
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
+                    <span className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-primary" /> Score 0–100
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-primary" /> 4 Pilares
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-primary" /> Resultado imediato
+                    </span>
+                  </div>
                   <Button onClick={handleStart} size="lg" className="shadow-elegant hover:shadow-hover">
-                    Começar meu mapa
+                    Começar meu mapa gratuito
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
-                )}
-              </div>
+                </div>
+              )}
 
               {started && (
                 <div className="bg-background rounded-2xl border border-border shadow-elegant p-6 md:p-8 space-y-8">
@@ -190,7 +184,7 @@ export default function MapaMetabolico() {
         )}
 
         {result && (
-          <section className="py-16 md:py-24 bg-gradient-to-br from-background via-muted/20 to-background">
+          <section className="py-12 md:py-16 bg-gradient-to-br from-background via-muted/20 to-background">
             <div className="container mx-auto px-4 max-w-5xl space-y-12">
               <ResultHeader result={result} />
 
@@ -217,12 +211,18 @@ export default function MapaMetabolico() {
             onSuccess={handleLeadChatSuccess}
             answers={answers}
             scoring={scoring}
-            origin="mapa_metabolico"
+            origin="mapa_metabolico_lp"
           />
         )}
-      </main>
 
-      <Footer />
+        <footer className="py-8 bg-muted/30 border-t border-border">
+          <div className="container mx-auto px-4 text-center">
+            <p className="text-xs text-muted-foreground">
+              © {new Date().getFullYear()} Dra. Bruna Durelli. Todos os direitos reservados.
+            </p>
+          </div>
+        </footer>
+      </main>
     </>
   );
 }
