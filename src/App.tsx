@@ -7,6 +7,8 @@ import { Suspense, lazy, useEffect } from "react";
 import { PerformanceMonitor } from "./components/dev/PerformanceMonitor";
 import { AnalyticsLoader } from "./components/AnalyticsLoader";
 import { rememberVisitContext } from "@/lib/utm";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { ProtectedRoute } from "@/components/admin/ProtectedRoute";
 
 const Index = lazy(() => import("./pages/Index"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -31,6 +33,13 @@ const MetabolismoQuebrado = lazy(() => import("./pages/MetabolismoQuebrado"));
 const VslMetodoLevser = lazy(() => import("./pages/VslMetodoLevser"));
 const MapaMetabolico = lazy(() => import("./pages/MapaMetabolico"));
 const MapaMetabolicoLP = lazy(() => import("./pages/MapaMetabolicoLP"));
+
+// Admin pages
+const Login = lazy(() => import("./pages/admin/Login"));
+const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
+const Events = lazy(() => import("./pages/admin/Events"));
+const Leads = lazy(() => import("./pages/admin/Leads"));
+const AdminPage = lazy(() => import("./pages/admin/Admin"));
 
 const queryClient = new QueryClient();
 
@@ -70,8 +79,9 @@ const App = () => (
         }}
       >
         <ScrollManager />
-        <Suspense fallback={<div className="min-h-[40vh] w-full flex items-center justify-center bg-background"><div className="animate-spin rounded-full h-10 w-10 border-2 border-primary border-t-transparent" aria-label="Carregando" /></div>}>
-          <Routes>
+        <AuthProvider>
+          <Suspense fallback={<div className="min-h-[40vh] w-full flex items-center justify-center bg-background"><div className="animate-spin rounded-full h-10 w-10 border-2 border-primary border-t-transparent" aria-label="Carregando" /></div>}>
+            <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/programa-levser" element={<ProgramaLevSerPage />} />
@@ -101,10 +111,19 @@ const App = () => (
             <Route path="/mapa-metabolico-lp" element={<MapaMetabolicoLP />} />
             <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
             <Route path="/termos-uso" element={<TermosUso />} />
+            
+            {/* Admin routes */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<ProtectedRoute minRole="readonly"><Dashboard /></ProtectedRoute>} />
+            <Route path="/events" element={<ProtectedRoute minRole="readonly"><Events /></ProtectedRoute>} />
+            <Route path="/leads" element={<ProtectedRoute minRole="readonly"><Leads /></ProtectedRoute>} />
+            <Route path="/admin" element={<ProtectedRoute minRole="admin"><AdminPage /></ProtectedRoute>} />
+            
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
+            </Routes>
+          </Suspense>
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
