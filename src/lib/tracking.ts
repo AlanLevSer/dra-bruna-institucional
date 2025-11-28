@@ -1,4 +1,4 @@
-import { supabase } from '@/integrations/supabase/client';
+import { externalSupabase } from '@/lib/external-supabase';
 
 const VISITOR_ID_KEY = 'levser_visitor_id';
 const SESSION_ID_KEY = 'levser_session_id';
@@ -121,7 +121,7 @@ function getBaseTrackingData(): BaseTrackingData {
 // Send tracking data to Edge Function
 async function sendTrackingEvent(payload: any): Promise<void> {
   try {
-    const { error } = await supabase.functions.invoke('track', {
+    const { error } = await externalSupabase.functions.invoke('track', {
       body: payload,
     });
     
