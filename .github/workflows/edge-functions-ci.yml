@@ -1,0 +1,234 @@
+name: Edge Functions CI/CD
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'supabase/functions/**'
+      - 'supabase/config.toml'
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'supabase/functions/**'
+      - 'supabase/config.toml'
+  workflow_dispatch:
+
+env:
+  SUPABASE_PROJECT_REF: myiczzzzmzodljgmhogmt
+
+jobs:
+  detect-changes:
+    name: 🔍 Detect Changed Functions
+    runs-on: ubuntu-latest
+    outputs:
+      functions: ${{ steps.detect.outputs.functions }}
+      has_changes: ${{ steps.detect.outputs.has_changes }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed functions
+        id: detect
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          else
+            CHANGED=$(git diff --name-only HEAD~1)
+          fi
+          
+          FUNCTIONS=$(echo "$CHANGED" | grep "^supabase/functions/" | cut -d'/' -f3 | sort -u | jq -R -s -c 'split("\n")[:-1]')
+          
+          if [ "$FUNCTIONS" == "[]" ] || [ -z "$FUNCTIONS" ]; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "functions=[]" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "functions=$FUNCTIONS" >> $GITHUB_OUTPUT
+          fi
+          
+          echo "Changed functions: $FUNCTIONS"
+
+  validate:
+    name: ✅ Validate TypeScript
+    runs-on: ubuntu-latest
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Validate functions syntax
+        run: |
+          for func in $(echo '${{ needs.detect-changes.outputs.functions }}' | jq -r '.[]'); do
+            echo "🔍 Validating $func..."
+            deno check --unstable supabase/functions/$func/index.ts || exit 1
+          done
+          echo "✅ All functions validated successfully"
+
+      - name: Lint functions
+        run: |
+          for func in $(echo '${{ needs.detect-changes.outputs.functions }}' | jq -r '.[]'); do
+            echo "🔍 Linting $func..."
+            deno lint supabase/functions/$func/index.ts || true
+          done
+        continue-on-error: true
+
+  analyze:
+    name: 📊 Code Analysis
+    runs-on: ubuntu-latest
+    needs: [detect-changes, validate]
+    if: needs.detect-changes.outputs.has_changes == 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Analyze function sizes
+        id: analyze
+        run: |
+          echo "## 📊 Edge Functions Analysis" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Function | Lines | Size |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|-------|------|" >> $GITHUB_STEP_SUMMARY
+          
+          for func in $(echo '${{ needs.detect-changes.outputs.functions }}' | jq -r '.[]'); do
+            FILE="supabase/functions/$func/index.ts"
+            LINES=$(wc -l < "$FILE")
+            SIZE=$(ls -lh "$FILE" | awk '{print $5}')
+            echo "| $func | $LINES | $SIZE |" >> $GITHUB_STEP_SUMMARY
+            
+            if [ "$LINES" -gt 500 ]; then
+              echo "⚠️ $func has $LINES lines - consider splitting" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+
+      - name: Check for sensitive data
+        run: |
+          echo "🔍 Checking for hardcoded secrets..."
+          
+          PATTERNS="(api_key|apikey|secret|password|token).*=.*['\"][^'\"]{8,}['\"]"
+          
+          for func in $(echo '${{ needs.detect-changes.outputs.functions }}' | jq -r '.[]'); do
+            if grep -iE "$PATTERNS" "supabase/functions/$func/index.ts"; then
+              echo "❌ Potential hardcoded secret found in $func!"
+              exit 1
+            fi
+          done
+          
+          echo "✅ No hardcoded secrets detected"
+
+  deploy:
+    name: 🚀 Deploy to Supabase
+    runs-on: ubuntu-latest
+    needs: [detect-changes, validate, analyze]
+    if: |
+      needs.detect-changes.outputs.has_changes == 'true' && 
+      (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Link Supabase project
+        run: supabase link --project-ref ${{ env.SUPABASE_PROJECT_REF }}
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+
+      - name: Deploy changed functions
+        run: |
+          DEPLOYED=""
+          FAILED=""
+          
+          for func in $(echo '${{ needs.detect-changes.outputs.functions }}' | jq -r '.[]'); do
+            echo "🚀 Deploying $func..."
+            
+            if supabase functions deploy $func --no-verify-jwt; then
+              DEPLOYED="$DEPLOYED $func"
+              echo "✅ $func deployed successfully"
+            else
+              FAILED="$FAILED $func"
+              echo "❌ $func deployment failed"
+            fi
+          done
+          
+          echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Deployed:** $DEPLOYED" >> $GITHUB_STEP_SUMMARY
+          echo "**Failed:** $FAILED" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -n "$FAILED" ]; then
+            exit 1
+          fi
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+
+      - name: Verify deployment
+        run: |
+          echo "🔍 Verifying deployed functions..."
+          supabase functions list
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+
+  pr-comment:
+    name: 💬 PR Comment
+    runs-on: ubuntu-latest
+    needs: [detect-changes, validate, analyze]
+    if: github.event_name == 'pull_request' && needs.detect-changes.outputs.has_changes == 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate report
+        id: report
+        run: |
+          REPORT="## 🔧 Edge Functions Report\n\n"
+          REPORT+="### Changed Functions:\n"
+          
+          for func in $(echo '${{ needs.detect-changes.outputs.functions }}' | jq -r '.[]'); do
+            FILE="supabase/functions/$func/index.ts"
+            LINES=$(wc -l < "$FILE")
+            REPORT+="- **$func** ($LINES lines)\n"
+          done
+          
+          REPORT+="\n### Validation Status:\n"
+          REPORT+="- TypeScript: ✅ Passed\n"
+          REPORT+="- Security scan: ✅ Passed\n"
+          REPORT+="\n> ⏳ Deploy will occur after merge to main"
+          
+          echo "report<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$REPORT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `${{ steps.report.outputs.report }}`
+            })
+
+  status:
+    name: ✅ Pipeline Complete
+    runs-on: ubuntu-latest
+    needs: [detect-changes, validate, analyze, deploy]
+    if: always()
+    steps:
+      - name: Check status
+        run: |
+          if [ "${{ needs.deploy.result }}" == "success" ]; then
+            echo "🎉 All Edge Functions deployed successfully!"
+          elif [ "${{ needs.deploy.result }}" == "skipped" ]; then
+            echo "ℹ️ Deploy skipped (PR or no changes to deploy)"
+          else
+            echo "❌ Pipeline failed"
+            exit 1
+          fi
