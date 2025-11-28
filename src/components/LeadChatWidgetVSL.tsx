@@ -8,6 +8,7 @@ import avatarAtendente from "@/assets/avatar-atendente.avif";
 import { trackEvent, trackLeadChatAbandonment } from "@/lib/analytics";
 import { getStoredUTMContext } from "@/lib/utm";
 import { getSessionId } from "@/lib/sessionTracking";
+import { trackFormSubmission } from "@/lib/tracking";
 
 type Step = 
   | "qualification1" 
@@ -224,6 +225,17 @@ export const LeadChatWidgetVSL = ({
         method: "widget",
         device,
         has_utm: !!utmContext.params.utm_source,
+      });
+      
+      // Track form submission to data platform
+      await trackFormSubmission("vsl_lead", {
+        name: leadData.name,
+        whatsapp: leadData.whatsapp,
+        email: leadData.email,
+        qualification1: leadData.qualification1,
+        qualification2: leadData.qualification2,
+        qualification3: leadData.qualification3,
+        qualification4: leadData.qualification4,
       });
 
       // Facebook Pixel

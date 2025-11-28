@@ -22,6 +22,7 @@ import { calculateScores } from '@/lib/mapa-metabolico/calculateScores';
 import { saveProgress, loadProgress, clearProgress } from '@/lib/mapa-metabolico/storage';
 import { trackMapaStart, trackMapaStepSubmit, trackMapaCompleted, trackMapaResultView, trackMapaScore } from '@/lib/mapa-metabolico/analytics';
 import { getStoredUTMContext } from '@/lib/utm';
+import { initTracking, trackCustomEvent } from '@/lib/tracking';
 
 const STEPS = [
   { id: 'A_basics', title: 'Dados básicos' },
@@ -40,16 +41,21 @@ export default function MapaMetabolico() {
   const [result, setResult] = useState<ScoreResult | null>(null);
 
   useEffect(() => {
+    // Initialize tracking
+    initTracking();
+    
     const saved = loadProgress();
     if (saved && window.confirm('Encontramos um progresso salvo. Deseja continuar de onde parou?')) {
       setAnswers(saved.answers);
       setCurrentStep(saved.currentStep);
       setStarted(true);
+      trackCustomEvent('mapa_resumed', { step: saved.currentStep });
     }
   }, []);
 
   const handleStart = () => {
     trackMapaStart();
+    trackCustomEvent('mapa_start');
     setStarted(true);
     window.scrollTo({ top: 600, behavior: 'smooth' });
   };
@@ -61,6 +67,10 @@ export default function MapaMetabolico() {
   const handleNext = () => {
     if (currentStep < STEPS.length - 1) {
       trackMapaStepSubmit(STEPS[currentStep].id, currentStep + 1);
+      trackCustomEvent('mapa_step_complete', { 
+        step_id: STEPS[currentStep].id, 
+        step_number: currentStep + 1 
+      });
       setCurrentStep((prev) => prev + 1);
       saveProgress({ currentStep: currentStep + 1, answers, lastUpdated: new Date().toISOString() });
       window.scrollTo({ top: 400, behavior: 'smooth' });
