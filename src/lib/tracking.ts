@@ -120,6 +120,12 @@ function getBaseTrackingData(): BaseTrackingData {
 
 // Send tracking data to Edge Function
 async function sendTrackingEvent(payload: any): Promise<void> {
+  // Graceful degradation: skip if external Supabase not configured
+  if (!externalSupabase) {
+    console.warn('Tracking skipped - external Supabase not configured');
+    return;
+  }
+
   try {
     const { error } = await externalSupabase.functions.invoke('track', {
       body: payload,
