@@ -7,6 +7,7 @@ import { CONTACT } from "@/lib/constants";
 import { trackEvent, trackLeadChatAbandonment } from "@/lib/analytics";
 import { getStoredUTMContext } from "@/lib/utm";
 import { getSessionId } from "@/lib/sessionTracking";
+import { trackFormSubmission } from "@/lib/tracking";
 import avatarAtendente from "@/assets/avatar-atendente.avif";
 import type { Answers, ScoreResult } from "@/lib/mapa-metabolico/types";
 
@@ -234,6 +235,18 @@ export const LeadChatMapaMetabolico = ({
         device,
         score: scoring.total,
         classification: scoring.class,
+      });
+      
+      // Track form submission to data platform
+      await trackFormSubmission("mapa_metabolico_lead", {
+        name: leadData.name,
+        whatsapp: leadData.whatsapp,
+        email: leadData.email,
+        qualification1: leadData.qualification1,
+        qualification2: leadData.qualification2,
+        score: scoring.total,
+        classification: scoring.class,
+        priority_pillars: scoring.priorityPillars.join(", "),
       });
 
       try {

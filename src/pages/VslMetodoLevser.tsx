@@ -8,6 +8,7 @@ import { LeadChatWidgetVSL } from "@/components/LeadChatWidgetVSL";
 import { SEOHead } from "@/components/SEOHead";
 import { TestimonialsGoogle } from "@/components/TestimonialsGoogle";
 import { trackEvent } from "@/lib/analytics";
+import { initTracking, trackCustomEvent } from "@/lib/tracking";
 
 const VIDEO_ID = "e3c81653-5d55-4c76-b63f-2af5546db4f6";
 const CTA_UNLOCK_SECONDS = 370;
@@ -56,6 +57,9 @@ export default function VslMetodoLevser() {
   });
 
   useEffect(() => {
+    // Initialize tracking
+    initTracking();
+    
     trackEvent("page_view", {
       page_type: "vsl",
       page_path: "/vsl-metodo-levser",
@@ -87,6 +91,10 @@ export default function VslMetodoLevser() {
                   source: "vsl_metodo_levser",
                   seconds: checkpoint,
                 });
+                trackCustomEvent("video_checkpoint", {
+                  checkpoint_seconds: checkpoint,
+                  page: "vsl_metodo_levser",
+                });
               }
             }
 
@@ -97,11 +105,21 @@ export default function VslMetodoLevser() {
                 source: "vsl_metodo_levser",
                 time_seconds: time,
               });
+              trackCustomEvent("video_cta_unlocked", {
+                time_seconds: time,
+                page: "vsl_metodo_levser",
+              });
             }
           });
 
-          player.onEvent("play", () => trackEvent("video_play", { source: "vsl_metodo_levser" }));
-          player.onEvent("complete", () => trackEvent("video_complete", { source: "vsl_metodo_levser" }));
+          player.onEvent("play", () => {
+            trackEvent("video_play", { source: "vsl_metodo_levser" });
+            trackCustomEvent("video_play", { page: "vsl_metodo_levser" });
+          });
+          player.onEvent("complete", () => {
+            trackEvent("video_complete", { source: "vsl_metodo_levser" });
+            trackCustomEvent("video_complete", { page: "vsl_metodo_levser" });
+          });
         }
       });
     };
@@ -121,6 +139,13 @@ export default function VslMetodoLevser() {
       position: "cta_section",
       scroll_depth: scrollDepth,
       video_watched_seconds: Math.round(videoProgressRef.current.lastSeconds),
+    });
+    
+    trackCustomEvent("cta_click", {
+      cta_type: "agendar_pre_consulta",
+      scroll_depth: scrollDepth,
+      video_watched_seconds: Math.round(videoProgressRef.current.lastSeconds),
+      page: "vsl_metodo_levser",
     });
 
     setShowLeadChat(true);
