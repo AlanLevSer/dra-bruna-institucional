@@ -11,7 +11,7 @@ export const MapaProgress = ({ currentStep, totalSteps, stepTitles }: MapaProgre
   const progress = Math.round(((currentStep + 1) / totalSteps) * 100);
 
   return (
-    <div className="w-full space-y-4">
+    <div className="w-full space-y-5 md:space-y-6">
       <div className="flex justify-between items-center">
         <span className="text-sm font-medium text-muted-foreground">
           Etapa {currentStep + 1} de {totalSteps}
@@ -21,7 +21,7 @@ export const MapaProgress = ({ currentStep, totalSteps, stepTitles }: MapaProgre
 
       <Progress value={progress} className="h-2" />
 
-      <div className="hidden md:flex justify-between items-center pt-2">
+      <div className="hidden md:flex justify-between items-center pt-3">
         {stepTitles.map((title, index) => (
           <div key={index} className="flex items-center gap-2">
             {index < currentStep ? (

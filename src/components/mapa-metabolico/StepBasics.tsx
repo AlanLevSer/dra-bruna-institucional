@@ -27,9 +27,9 @@ export const StepBasics = ({ answers, onChange }: StepBasicsProps) => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-2">
+    <div className="space-y-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="space-y-3">
           <Label htmlFor="age">
             Idade <span className="text-destructive">*</span>
           </Label>
@@ -45,7 +45,7 @@ export const StepBasics = ({ answers, onChange }: StepBasicsProps) => {
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <Label htmlFor="sex">
             Sexo (biológico) <span className="text-destructive">*</span>
           </Label>
@@ -61,7 +61,7 @@ export const StepBasics = ({ answers, onChange }: StepBasicsProps) => {
           </Select>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <Label htmlFor="weight">
             Peso (kg) <span className="text-destructive">*</span>
           </Label>
@@ -78,7 +78,7 @@ export const StepBasics = ({ answers, onChange }: StepBasicsProps) => {
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <Label htmlFor="height">
             Altura (cm) <span className="text-destructive">*</span>
           </Label>
@@ -94,7 +94,7 @@ export const StepBasics = ({ answers, onChange }: StepBasicsProps) => {
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <Label htmlFor="waist">Circunferência abdominal (cm)</Label>
           <Input
             id="waist"
@@ -119,11 +119,11 @@ export const StepBasics = ({ answers, onChange }: StepBasicsProps) => {
         </div>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-4">
         <Label>
           Diagnósticos prévios <span className="text-destructive">*</span>
         </Label>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {diagnosesOptions.map((option) => (
             <div key={option.value} className="flex items-center space-x-2">
               <Checkbox

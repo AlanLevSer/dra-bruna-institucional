@@ -52,6 +52,7 @@ export const LeadChatMapaMetabolico = ({
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const sessionId = useRef(getSessionId());
+  const contentRef = useRef<HTMLDivElement | null>(null);
 
   const handleClose = () => {
     // Track abandonment if not converted
@@ -101,6 +102,10 @@ export const LeadChatMapaMetabolico = ({
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
   }, [isOpen, currentStep, leadData, scoring, answers, origin]);
+
+  useEffect(() => {
+    contentRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentStep]);
 
   const handleQualificationAnswer = (step: Step, answer: string) => {
     setLeadData((prev) => ({ ...prev, [step]: answer }));
@@ -535,7 +540,7 @@ export const LeadChatMapaMetabolico = ({
         </div>
 
         {/* Content area */}
-        <div className="flex-1 overflow-y-auto p-6">{renderStep()}</div>
+        <div ref={contentRef} className="flex-1 overflow-y-auto p-6">{renderStep()}</div>
       </div>
     </div>
   );

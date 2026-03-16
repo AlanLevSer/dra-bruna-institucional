@@ -10,8 +10,8 @@ interface StepLabsProps {
 
 export const StepLabs = ({ answers, onChange }: StepLabsProps) => {
   return (
-    <div className="space-y-6">
-      <div className="bg-muted/50 border border-border rounded-lg p-4 flex gap-3">
+    <div className="space-y-8">
+      <div className="bg-muted/50 border border-border rounded-lg p-5 md:p-6 flex gap-3">
         <Info className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
         <div className="text-sm text-muted-foreground">
           <p className="font-medium text-foreground mb-1">Esta etapa é opcional</p>
@@ -22,8 +22,8 @@ export const StepLabs = ({ answers, onChange }: StepLabsProps) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="space-y-3">
           <Label htmlFor="glucose">Glicemia em jejum (mg/dL)</Label>
           <Input
             id="glucose"
@@ -35,7 +35,7 @@ export const StepLabs = ({ answers, onChange }: StepLabsProps) => {
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <Label htmlFor="hba1c">Hemoglobina glicada (%)</Label>
           <Input
             id="hba1c"
@@ -48,7 +48,7 @@ export const StepLabs = ({ answers, onChange }: StepLabsProps) => {
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <Label htmlFor="triglycerides">Triglicerídeos (mg/dL)</Label>
           <Input
             id="triglycerides"
@@ -60,7 +60,7 @@ export const StepLabs = ({ answers, onChange }: StepLabsProps) => {
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <Label htmlFor="hdl">HDL (mg/dL)</Label>
           <Input
             id="hdl"
@@ -72,7 +72,7 @@ export const StepLabs = ({ answers, onChange }: StepLabsProps) => {
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <Label htmlFor="tsh">TSH</Label>
           <Input
             id="tsh"
@@ -85,7 +85,7 @@ export const StepLabs = ({ answers, onChange }: StepLabsProps) => {
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <Label htmlFor="vitd">Vitamina D (25-OH)</Label>
           <Input
             id="vitd"

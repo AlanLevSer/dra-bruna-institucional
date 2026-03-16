@@ -23,7 +23,7 @@ export const StepSymptoms = ({ answers, onChange }: StepSymptomsProps) => {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <p className="text-sm text-muted-foreground">
         Indique a intensidade de cada sintoma nos últimos 30 dias (0 = nenhum, 10 = muito intenso)
       </p>
@@ -31,7 +31,7 @@ export const StepSymptoms = ({ answers, onChange }: StepSymptomsProps) => {
       {symptoms.map((symptom) => {
         const value = (answers[symptom.key] as number) || 0;
         return (
-          <div key={symptom.key} className="space-y-3">
+          <div key={symptom.key} className="rounded-xl border border-border/60 bg-muted/20 p-4 md:p-5 space-y-4">
             <div className="flex justify-between items-center">
               <Label>{symptom.label}</Label>
               <span className={`text-2xl font-bold ${getScaleColor(value)}`}>{value}</span>
@@ -51,7 +51,7 @@ export const StepSymptoms = ({ answers, onChange }: StepSymptomsProps) => {
         );
       })}
 
-      <div className="flex items-center space-x-2 pt-4">
+      <div className="flex items-center space-x-2 pt-2">
         <Checkbox
           id="sleep-restorative"
           checked={answers.non_restorative_sleep || false}

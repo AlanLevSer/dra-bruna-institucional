@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { SEOHead } from '@/components/SEOHead';
@@ -33,12 +33,24 @@ const STEPS = [
 ];
 
 export default function MapaMetabolico() {
+  const sectionRef = useRef<HTMLElement | null>(null);
   const [started, setStarted] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Partial<Answers>>({});
   const [scoring, setScoring] = useState<ScoreResult | null>(null);
   const [showLeadChat, setShowLeadChat] = useState(false);
   const [result, setResult] = useState<ScoreResult | null>(null);
+
+  const scrollToActiveSectionTop = () => {
+    requestAnimationFrame(() => {
+      const sectionTop = sectionRef.current?.getBoundingClientRect().top ?? 0;
+      const headerVar = getComputedStyle(document.documentElement).getPropertyValue('--header-height').trim();
+      const headerOffset = parseInt(headerVar.replace('px', '')) || 0;
+      const top = sectionTop + window.pageYOffset - headerOffset - 16;
+
+      window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
+    });
+  };
 
   useEffect(() => {
     // Initialize tracking
@@ -57,7 +69,6 @@ export default function MapaMetabolico() {
     trackMapaStart();
     trackCustomEvent('mapa_start');
     setStarted(true);
-    window.scrollTo({ top: 600, behavior: 'smooth' });
   };
 
   const handleAnswerChange = (key: keyof Answers, value: unknown) => {
@@ -73,7 +84,6 @@ export default function MapaMetabolico() {
       });
       setCurrentStep((prev) => prev + 1);
       saveProgress({ currentStep: currentStep + 1, answers, lastUpdated: new Date().toISOString() });
-      window.scrollTo({ top: 400, behavior: 'smooth' });
     } else {
       handleSubmit();
     }
@@ -82,7 +92,6 @@ export default function MapaMetabolico() {
   const handleBack = () => {
     if (currentStep > 0) {
       setCurrentStep((prev) => prev - 1);
-      window.scrollTo({ top: 400, behavior: 'smooth' });
     }
   };
 
@@ -99,7 +108,6 @@ export default function MapaMetabolico() {
     trackMapaCompleted(calculatedScoring.total, calculatedScoring.class);
     
     setShowLeadChat(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleLeadChatSuccess = () => {
@@ -108,9 +116,20 @@ export default function MapaMetabolico() {
       setResult(scoring);
       trackMapaResultView(scoring.total, scoring.class);
       trackMapaScore(scoring.total, scoring.class);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
+  useEffect(() => {
+    if (started && !showLeadChat && !result) {
+      scrollToActiveSectionTop();
+    }
+  }, [started, currentStep]);
+
+  useEffect(() => {
+    if (result) {
+      scrollToActiveSectionTop();
+    }
+  }, [result]);
 
 
   const canGoForward = () => {
@@ -138,11 +157,11 @@ export default function MapaMetabolico() {
       />
       <Navigation />
 
-      <main className="min-h-screen">
+      <main className="min-h-screen pt-[var(--header-height,88px)]">
         {!result && (
-          <section className="py-16 md:py-24 bg-gradient-to-br from-background via-muted/20 to-background">
+          <section ref={sectionRef} className="py-20 md:py-28 bg-gradient-to-br from-background via-muted/20 to-background">
             <div className="container mx-auto px-4 max-w-4xl">
-              <div className="text-center space-y-6 mb-12">
+              <div className="text-center space-y-8 md:space-y-10 mb-14 md:mb-16">
                 <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground">
                   Mapa Metabólico LevSer
                 </h1>
@@ -170,10 +189,10 @@ export default function MapaMetabolico() {
               </div>
 
               {started && (
-                <div className="bg-background rounded-2xl border border-border shadow-elegant p-6 md:p-8 space-y-8">
+                <div className="bg-background rounded-2xl border border-border shadow-elegant p-6 md:p-10 lg:p-12 space-y-10 md:space-y-12">
                   <MapaProgress currentStep={currentStep} totalSteps={STEPS.length} stepTitles={STEPS.map((s) => s.title)} />
 
-                  <div className="space-y-6">
+                  <div className="space-y-8 md:space-y-10">
                     <h2 className="text-2xl font-serif font-bold text-foreground">{STEPS[currentStep].title}</h2>
                     
                     {currentStep === 0 && <StepBasics answers={answers} onChange={handleAnswerChange} />}
@@ -200,7 +219,7 @@ export default function MapaMetabolico() {
         )}
 
         {result && (
-          <section className="py-16 md:py-24 bg-gradient-to-br from-background via-muted/20 to-background">
+          <section ref={sectionRef} className="py-20 md:py-28 bg-gradient-to-br from-background via-muted/20 to-background">
             <div className="container mx-auto px-4 max-w-5xl space-y-12">
               <ResultHeader result={result} />
 

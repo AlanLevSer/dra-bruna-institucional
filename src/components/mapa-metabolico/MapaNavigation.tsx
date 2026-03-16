@@ -23,7 +23,7 @@ export const MapaNavigation = ({
   isLastStep,
 }: MapaNavigationProps) => {
   return (
-    <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-6 border-t border-border">
+    <div className="mt-2 flex flex-col sm:flex-row justify-between items-center gap-5 pt-8 md:pt-10 border-t border-border">
       <Button
         variant="outline"
         onClick={onBack}

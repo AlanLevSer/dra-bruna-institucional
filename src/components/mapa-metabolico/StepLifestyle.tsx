@@ -11,9 +11,9 @@ interface StepLifestyleProps {
 
 export const StepLifestyle = ({ answers, onChange }: StepLifestyleProps) => {
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-2">
+    <div className="space-y-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="space-y-3">
           <Label htmlFor="sleep">
             Horas de sono por noite <span className="text-destructive">*</span>
           </Label>
@@ -31,7 +31,7 @@ export const StepLifestyle = ({ answers, onChange }: StepLifestyleProps) => {
           </Select>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <Label htmlFor="stress">
             Nível de estresse (0-10) <span className="text-destructive">*</span>
           </Label>
@@ -47,7 +47,7 @@ export const StepLifestyle = ({ answers, onChange }: StepLifestyleProps) => {
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <Label htmlFor="exercise">
             Exercícios por semana <span className="text-destructive">*</span>
           </Label>
@@ -67,7 +67,7 @@ export const StepLifestyle = ({ answers, onChange }: StepLifestyleProps) => {
           </Select>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <Label htmlFor="sitting">Tempo sentado por dia</Label>
           <Select
             value={answers.sitting_time_bucket}
@@ -85,7 +85,7 @@ export const StepLifestyle = ({ answers, onChange }: StepLifestyleProps) => {
           </Select>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <Label htmlFor="ultraprocessed">
             Ultraprocessados (frequência) <span className="text-destructive">*</span>
           </Label>
@@ -105,7 +105,7 @@ export const StepLifestyle = ({ answers, onChange }: StepLifestyleProps) => {
           </Select>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <Label htmlFor="alcohol">
             Álcool (frequência) <span className="text-destructive">*</span>
           </Label>
@@ -123,7 +123,7 @@ export const StepLifestyle = ({ answers, onChange }: StepLifestyleProps) => {
         </div>
       </div>
 
-      <div className="space-y-3 pt-4">
+      <div className="space-y-4 pt-2">
         <div className="flex items-center space-x-2">
           <Checkbox
             id="meal-21h"

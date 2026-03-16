@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SEOHead } from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
@@ -29,12 +29,24 @@ const STEPS = [
 ];
 
 export default function MapaMetabolicoLP() {
+  const sectionRef = useRef<HTMLElement | null>(null);
   const [started, setStarted] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Partial<Answers>>({});
   const [scoring, setScoring] = useState<ScoreResult | null>(null);
   const [showLeadChat, setShowLeadChat] = useState(false);
   const [result, setResult] = useState<ScoreResult | null>(null);
+
+  const scrollToActiveSectionTop = () => {
+    requestAnimationFrame(() => {
+      const sectionTop = sectionRef.current?.getBoundingClientRect().top ?? 0;
+      const headerVar = getComputedStyle(document.documentElement).getPropertyValue('--header-height').trim();
+      const headerOffset = parseInt(headerVar.replace('px', '')) || 0;
+      const top = sectionTop + window.pageYOffset - headerOffset - 16;
+
+      window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
+    });
+  };
 
   useEffect(() => {
     const saved = loadProgress();
@@ -48,7 +60,6 @@ export default function MapaMetabolicoLP() {
   const handleStart = () => {
     trackMapaStart();
     setStarted(true);
-    window.scrollTo({ top: 400, behavior: 'smooth' });
   };
 
   const handleAnswerChange = (key: keyof Answers, value: unknown) => {
@@ -60,7 +71,6 @@ export default function MapaMetabolicoLP() {
       trackMapaStepSubmit(STEPS[currentStep].id, currentStep + 1);
       setCurrentStep((prev) => prev + 1);
       saveProgress({ currentStep: currentStep + 1, answers, lastUpdated: new Date().toISOString() });
-      window.scrollTo({ top: 200, behavior: 'smooth' });
     } else {
       handleSubmit();
     }
@@ -69,7 +79,6 @@ export default function MapaMetabolicoLP() {
   const handleBack = () => {
     if (currentStep > 0) {
       setCurrentStep((prev) => prev - 1);
-      window.scrollTo({ top: 200, behavior: 'smooth' });
     }
   };
 
@@ -86,7 +95,6 @@ export default function MapaMetabolicoLP() {
     trackMapaCompleted(calculatedScoring.total, calculatedScoring.class);
     
     setShowLeadChat(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleLeadChatSuccess = () => {
@@ -95,9 +103,20 @@ export default function MapaMetabolicoLP() {
       setResult(scoring);
       trackMapaResultView(scoring.total, scoring.class);
       trackMapaScore(scoring.total, scoring.class);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
+  useEffect(() => {
+    if (started && !showLeadChat && !result) {
+      scrollToActiveSectionTop();
+    }
+  }, [started, currentStep, showLeadChat, result]);
+
+  useEffect(() => {
+    if (result) {
+      scrollToActiveSectionTop();
+    }
+  }, [result]);
 
   const canGoForward = () => {
     if (currentStep === 0) {
@@ -123,12 +142,12 @@ export default function MapaMetabolicoLP() {
         }}
       />
 
-      <main className="min-h-screen bg-background">
+      <main className="min-h-screen bg-background pt-[var(--header-height,88px)]">
         {!result && (
-          <section className="py-12 md:py-16 bg-gradient-to-br from-background via-muted/20 to-background">
+          <section ref={sectionRef} className="py-16 md:py-20 bg-gradient-to-br from-background via-muted/20 to-background">
             <div className="container mx-auto px-4 max-w-4xl">
               {!started && (
-                <div className="text-center space-y-6 mb-12">
+                <div className="text-center space-y-8 md:space-y-10 mb-14 md:mb-16">
                   <h1 className="text-3xl md:text-5xl font-serif font-bold text-foreground">
                     Mapa Metabólico LevSer
                   </h1>
@@ -154,10 +173,10 @@ export default function MapaMetabolicoLP() {
               )}
 
               {started && (
-                <div className="bg-background rounded-2xl border border-border shadow-elegant p-6 md:p-8 space-y-8">
+                <div className="bg-background rounded-2xl border border-border shadow-elegant p-6 md:p-10 lg:p-12 space-y-10 md:space-y-12">
                   <MapaProgress currentStep={currentStep} totalSteps={STEPS.length} stepTitles={STEPS.map((s) => s.title)} />
 
-                  <div className="space-y-6">
+                  <div className="space-y-8 md:space-y-10">
                     <h2 className="text-2xl font-serif font-bold text-foreground">{STEPS[currentStep].title}</h2>
                     
                     {currentStep === 0 && <StepBasics answers={answers} onChange={handleAnswerChange} />}
@@ -184,7 +203,7 @@ export default function MapaMetabolicoLP() {
         )}
 
         {result && (
-          <section className="py-12 md:py-16 bg-gradient-to-br from-background via-muted/20 to-background">
+          <section ref={sectionRef} className="py-16 md:py-20 bg-gradient-to-br from-background via-muted/20 to-background">
             <div className="container mx-auto px-4 max-w-5xl space-y-12">
               <ResultHeader result={result} />
 

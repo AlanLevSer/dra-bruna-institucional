@@ -23,8 +23,8 @@ export const StepHistory = ({ answers, onChange }: StepHistoryProps) => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="space-y-2">
+    <div className="space-y-8">
+      <div className="space-y-3">
         <Label htmlFor="regain">
           Perdeu mais de 5kg e recuperou quantas vezes? <span className="text-destructive">*</span>
         </Label>
@@ -44,7 +44,7 @@ export const StepHistory = ({ answers, onChange }: StepHistoryProps) => {
         </Select>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-3">
         <Label htmlFor="yoyo">
           Vive efeito sanfona? <span className="text-destructive">*</span>
         </Label>
@@ -60,7 +60,7 @@ export const StepHistory = ({ answers, onChange }: StepHistoryProps) => {
         </Select>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-3">
         <Label htmlFor="snacking">
           Beliscar/compulsão à noite <span className="text-destructive">*</span>
         </Label>
@@ -76,9 +76,9 @@ export const StepHistory = ({ answers, onChange }: StepHistoryProps) => {
         </Select>
       </div>
 
-      <div className="space-y-3 pt-4">
+      <div className="space-y-4 pt-2">
         <Label>Emoções que você sente em relação à comida</Label>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {emotionOptions.map((option) => (
             <div key={option.value} className="flex items-center space-x-2">
               <Checkbox
