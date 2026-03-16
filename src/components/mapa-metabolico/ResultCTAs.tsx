@@ -3,16 +3,27 @@ import { Calendar, Mail, MessageCircle } from 'lucide-react';
 import { trackMapaCTAClick } from '@/lib/mapa-metabolico/analytics';
 import { trackWhatsAppClick } from '@/lib/analytics';
 import { CONTACT } from '@/lib/constants';
+import { formatMapaMetabolicoWhatsApp } from '@/lib/formatResultados';
+import type { Answers, ScoreResult } from '@/lib/mapa-metabolico/types';
 
 interface ResultCTAsProps {
   score: number;
   priorityPillar: string;
+  answers?: Partial<Answers>;
+  scoring?: ScoreResult;
 }
 
-export const ResultCTAs = ({ score, priorityPillar }: ResultCTAsProps) => {
+export const ResultCTAs = ({ score, priorityPillar, answers, scoring }: ResultCTAsProps) => {
+  const getWhatsAppMessage = (): string => {
+    if (answers && scoring) {
+      return formatMapaMetabolicoWhatsApp(answers, scoring);
+    }
+    return `Oi, fiz meu Mapa Metabólico LevSer (score ${score}/100; foco: ${priorityPillar}). Gostaria de orientação para os próximos passos.`;
+  };
+
   const handleBooking = () => {
     trackMapaCTAClick('booking', score);
-    const message = `Oi, fiz meu Mapa Metabólico LevSer (score ${score}/100; foco: ${priorityPillar}). Gostaria de orientação para os próximos passos.`;
+    const message = getWhatsAppMessage();
     const whatsappUrl = `https://wa.me/${CONTACT.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     trackWhatsAppClick('mapa_metabolico_booking', { score, priority: priorityPillar });
     window.open(whatsappUrl, '_blank');
@@ -20,7 +31,7 @@ export const ResultCTAs = ({ score, priorityPillar }: ResultCTAsProps) => {
 
   const handleWhatsApp = () => {
     trackMapaCTAClick('whatsapp', score);
-    const message = `Oi, fiz meu Mapa Metabólico LevSer (score ${score}/100; foco: ${priorityPillar}). Gostaria de orientação para os próximos passos.`;
+    const message = getWhatsAppMessage();
     const whatsappUrl = `https://wa.me/${CONTACT.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     trackWhatsAppClick('mapa_metabolico_direct', { score, priority: priorityPillar });
     window.open(whatsappUrl, '_blank');

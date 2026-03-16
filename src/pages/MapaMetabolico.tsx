@@ -123,7 +123,7 @@ export default function MapaMetabolico() {
     if (started && !showLeadChat && !result) {
       scrollToActiveSectionTop();
     }
-  }, [started, currentStep]);
+  }, [started, currentStep, showLeadChat, result]);
 
   useEffect(() => {
     if (result) {
@@ -232,7 +232,7 @@ export default function MapaMetabolico() {
 
               <InsightsList insights={result.insights} />
 
-              <ResultCTAs score={result.total} priorityPillar={result.priorityPillars[0]} />
+              <ResultCTAs score={result.total} priorityPillar={result.priorityPillars[0]} answers={answers} scoring={result} />
 
               <ResultDisclaimer />
             </div>

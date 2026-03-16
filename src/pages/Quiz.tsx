@@ -7,6 +7,7 @@ import { StructuredData } from "@/components/StructuredData";
 import { QuizData, TransformacaoOutput } from "@/types/quiz";
 import { Navigation } from "@/components/Navigation";
 import { generateTransformacaoOutput } from "@/lib/quiz-logic";
+import { formatQuizResultadoWhatsApp } from "@/lib/formatResultados";
 import { 
   step1Schema, 
   step2Schema, 
@@ -466,7 +467,21 @@ const Quiz = () => {
         <Footer />
         
         {/* Widget apenas nos resultados */}
-        {showOutput && <LeadChatWidget showFloatingButton origin="quiz" />}
+        {showOutput && quizOutput && (
+          <LeadChatWidget 
+            showFloatingButton 
+            origin="quiz"
+            quizData={{
+              imc: quizData.imc,
+              peso: quizData.peso,
+              metaPeso: quizData.metaPeso,
+              comorbidades: quizData.comorbidades || [],
+              tratamentoRecomendado: quizOutput.tratamentoRecomendado,
+              timelineMeses: quizOutput.timelineMeses,
+              resumoWhatsApp: formatQuizResultadoWhatsApp(quizData, quizOutput),
+            }}
+          />
+        )}
       </div>
     </>
   );

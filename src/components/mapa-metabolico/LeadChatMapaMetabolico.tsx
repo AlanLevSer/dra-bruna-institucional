@@ -8,6 +8,7 @@ import { trackEvent, trackLeadChatAbandonment } from "@/lib/analytics";
 import { getStoredUTMContext } from "@/lib/utm";
 import { getSessionId } from "@/lib/sessionTracking";
 import { trackFormSubmission } from "@/lib/tracking";
+import { createMapaWebhookData } from "@/lib/formatResultados";
 import avatarAtendente from "@/assets/avatar-atendente.avif";
 import type { Answers, ScoreResult } from "@/lib/mapa-metabolico/types";
 
@@ -167,17 +168,13 @@ export const LeadChatMapaMetabolico = ({
       const protocolId = `MAPA-${Date.now()}-${Math.random().toString(36).substring(7)}`;
       const device = /Mobi|Android/i.test(navigator.userAgent) ? "mobile" : "desktop";
 
-      const webhookPayload = {
-        // Personal data
+      // Create structured webhook data with Mapa info
+      const baseWebhookPayload = {
         nome: leadData.name || "",
         whatsapp: leadData.whatsapp || "",
         email: leadData.email || "",
-
-        // Qualification answers
         principal_objetivo: leadData.qualification1 || "",
         interesse_procedimento: leadData.qualification2 || "",
-
-        // Mapa Metabólico scoring
         score_total: scoring.total,
         classificacao: scoring.class,
         pilar_nutricao: scoring.pillars.nutricao,
@@ -186,8 +183,6 @@ export const LeadChatMapaMetabolico = ({
         pilar_mente: scoring.pillars.mente_comportamento,
         pilares_prioritarios: scoring.priorityPillars.join(", "),
         insights: scoring.insights.join(" | "),
-
-        // Selected assessment answers
         idade: answers.age,
         peso_kg: answers.weight_kg,
         altura_cm: answers.height_cm,
@@ -196,37 +191,28 @@ export const LeadChatMapaMetabolico = ({
         horas_sono: answers.sleep_hours_bucket,
         nivel_estresse: answers.stress_0_10,
         frequencia_exercicio: answers.exercise_freq_bucket,
-        
-        // Origin
+        frequencia_ultra_processados: answers.ultra_processed_freq,
         origem: origin,
         page_slug: window.location.pathname,
         url: window.location.href,
         device,
-
-        // Basic UTMs
         utm_source: utmContext.params.utm_source || "",
         utm_medium: utmContext.params.utm_medium || "",
         utm_campaign: utmContext.params.utm_campaign || "",
         utm_content: utmContext.params.utm_content || "",
         utm_term: utmContext.params.utm_term || "",
-
-        // Advanced UTMs
         utm_source_platform: utmContext.params.utm_source_platform || "",
         utm_creative_format: utmContext.params.utm_creative_format || "",
         utm_marketing_tactic: utmContext.params.utm_marketing_tactic || "",
-
-        // Tracking IDs
         gclid: utmContext.params.gclid || "",
         fbclid: utmContext.params.fbclid || "",
         gclientid: gaClientId,
-
-        // Referrer
         referrer: utmContext.referrer || document.referrer || "",
-
-        // Timestamp & Protocol
         timestamp: new Date().toISOString(),
         protocol_id: protocolId,
       };
+
+      const webhookPayload = baseWebhookPayload;
 
       await fetch(WEBHOOK_URL, {
         method: "POST",

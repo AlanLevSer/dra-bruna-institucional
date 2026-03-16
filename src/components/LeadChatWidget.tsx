@@ -24,6 +24,22 @@ type Step = "name" | "whatsapp" | "email" | "confirm";
 type Props = {
   showFloatingButton?: boolean;
   origin?: string;
+  quizData?: {
+    imc: number;
+    peso: number;
+    metaPeso: number;
+    comorbidades: string[];
+    tratamentoRecomendado?: string;
+    timelineMeses?: string;
+    resumoWhatsApp: string;
+  };
+  mapaData?: {
+    scoreTotal: number;
+    classificacao: string;
+    pilaresPrioritarios: string[];
+    resumoWhatsApp: string;
+    answers: Record<string, unknown>;
+  };
 };
 
 const STEP_PROGRESS: Record<Step, number> = {
@@ -332,7 +348,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
 
     const protocolId = utmContext.params.click_id || generateFallbackId();
 
-    const webhookPayload = {
+    const baseWebhookPayload = {
       nome: leadData.name || "",
       whatsapp: leadData.whatsapp || "",
       email: leadData.email || "",
@@ -357,9 +373,33 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       timestamp: new Date().toISOString(),
     };
 
+    // Adiciona dados do Quiz se disponível
+    const webhookPayload = quizData ? {
+      ...baseWebhookPayload,
+      // Dados do Quiz
+      imc: quizData.imc,
+      peso_atual_kg: quizData.peso,
+      meta_peso_kg: quizData.metaPeso,
+      perda_esperada_kg: quizData.peso - quizData.metaPeso,
+      comorbidades: quizData.comorbidades.join(", "),
+      tratamento_recomendado: quizData.tratamentoRecomendado || "",
+      timeline_meses: quizData.timelineMeses || "",
+      tipo_resultado: "quiz",
+    } : mapaData ? {
+      ...baseWebhookPayload,
+      // Dados do Mapa Metabólico
+      score_total: mapaData.scoreTotal,
+      classificacao: mapaData.classificacao,
+      pilares_prioritarios: mapaData.pilaresPrioritarios.join(", "),
+      answers_coletadas: JSON.stringify(mapaData.answers),
+      tipo_resultado: "mapa_metabolico",
+    } : baseWebhookPayload;
+
     trackEvent("form_submit", {
       origin: "chat_widget",
       had_celebrations: true,
+      tem_quiz_data: !!quizData,
+      tem_mapa_data: !!mapaData,
       ...webhookPayload,
     });
 
@@ -369,8 +409,17 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       body: JSON.stringify(webhookPayload),
     }).catch(() => {});
 
+    // Constrói mensagem com resumo do Quiz/Mapa se disponível
+    let baseMessage = `Oi, Dra. Bruna!\n\nAcabei de conhecer seu trabalho e quero saber como você pode me ajudar a transformar minha saúde.`;
+    
+    if (quizData) {
+      baseMessage = quizData.resumoWhatsApp;
+    } else if (mapaData) {
+      baseMessage = mapaData.resumoWhatsApp;
+    }
+
     const whatsappMessage = encodeURIComponent(
-      `Oi, Dra. Bruna!\n\nAcabei de conhecer seu trabalho e quero saber como você pode me ajudar a transformar minha saúde.\n\n---\n⚠️ *Guarde esta mensagem!*\nEla é seu comprovante de atendimento.\n\n📋 Protocolo: ${protocolId}`
+      `${baseMessage}\n\n---\n⚠️ *Guarde esta mensagem!*\nEla é seu comprovante de atendimento.\n\n📋 Protocolo: ${protocolId}`
     );
 
     // Prefer web.whatsapp.com on desktop to avoid environments that block api.whatsapp.com
@@ -385,6 +434,8 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       origin: "chat_widget",
       phone: CONTACT.PHONE_DISPLAY,
       ua: isMobile ? "mobile" : "desktop",
+      tem_quiz_data: !!quizData,
+      tem_mapa_data: !!mapaData,
     });
 
     window.open(waUrl, "_blank");
