@@ -42,7 +42,6 @@ const Quiz = () => {
   const location = useLocation();
   const isInstitutionalShell = location.pathname === "/quiz";
   const [currentStep, setCurrentStep] = useState(1);
-  const [showOutput, setShowOutput] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [quizOutput, setQuizOutput] = useState<TransformacaoOutput | null>(null);
   const [quizData, setQuizData] = useState<QuizData>({
@@ -203,7 +202,6 @@ const Quiz = () => {
       const generatedOutput = generateTransformacaoOutput(quizData);
       await new Promise((resolve) => setTimeout(resolve, 2000));
       setQuizOutput(generatedOutput);
-      setShowOutput(true);
 
       trackEvent("quiz_result_generated", {
         imc: quizData.imc,
@@ -222,7 +220,6 @@ const Quiz = () => {
 
   const resetQuiz = () => {
     setCurrentStep(1);
-    setShowOutput(false);
     setIsGenerating(false);
     setQuizOutput(null);
     setQuizData({
@@ -253,8 +250,6 @@ const Quiz = () => {
     
     trackEvent('quiz_reset');
   };
-
-  const output = quizOutput;
 
   const quizSchema = {
     "@context": "https://schema.org",
@@ -310,7 +305,7 @@ const Quiz = () => {
         
         <main className={`flex-1 ${isInstitutionalShell ? "pt-10 md:pt-12" : "pt-16"}`}>
           {/* Hero Section */}
-          {!showOutput && !isGenerating && currentStep === 1 && (
+          {!quizOutput && !isGenerating && currentStep === 1 && (
             <section className="py-12 md:py-16 bg-gradient-to-br from-primary/5 via-background to-background border-b">
               <div className="container mx-auto px-4">
                 <div className="max-w-3xl mx-auto text-center">
@@ -337,7 +332,7 @@ const Quiz = () => {
               <div className="max-w-4xl mx-auto">
                 {isGenerating ? (
                   <GeneratingAnimation />
-                ) : !showOutput ? (
+                ) : !quizOutput ? (
                   <div className="bg-card rounded-2xl shadow-lg border p-6 md:p-8">
                     <QuizProgress currentStep={currentStep} totalSteps={8} />
                     
@@ -430,33 +425,15 @@ const Quiz = () => {
                       onSubmit={handleSubmit}
                     />
                   </div>
-                ) : output ? (
+                ) : (
                   <Suspense fallback={<GeneratingAnimation />}>
                     <QuizResultView
                       layout="page"
-                      output={output}
+                      output={quizOutput}
                       quizData={quizData}
                       onResetQuiz={resetQuiz}
                     />
                   </Suspense>
-                ) : (
-                  <div className="bg-card rounded-2xl shadow-lg border p-8 text-center">
-                    <p className="text-lg font-medium text-foreground mb-2">
-                      Nao conseguimos gerar seu plano agora.
-                    </p>
-                    <p className="text-sm text-muted-foreground mb-6">
-                      Recarregue a pagina ou tente novamente em alguns segundos. Se o problema persistir, fale com nossa equipe pelo WhatsApp.
-                    </p>
-                    <div className="flex flex-wrap gap-4 justify-center">
-                      <Button onClick={resetQuiz}>Refazer o questionario</Button>
-                      <Link to="/">
-                        <Button variant="outline">
-                          <ArrowLeft className="mr-2 h-4 w-4" />
-                          Voltar ao site
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
                 )}
               </div>
             </div>
@@ -467,7 +444,7 @@ const Quiz = () => {
         <Footer />
         
         {/* Widget apenas nos resultados */}
-        {showOutput && quizOutput && (
+        {quizOutput && (
           <LeadChatWidget 
             showFloatingButton 
             origin="quiz"
