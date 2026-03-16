@@ -4,7 +4,6 @@ import "./index.css";
 import { initWebVitals, observePerformance } from "./lib/analytics";
 import { initTracking } from "./lib/tracking";
 
-// Initialize Web Vitals monitoring without blocking initial render
 const bootstrapAnalytics = () => {
   initWebVitals();
   observePerformance();

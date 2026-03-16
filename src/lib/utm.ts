@@ -79,7 +79,7 @@ const persistContext = (context: StoredContext) => {
     try {
       window.localStorage?.setItem(STORAGE_KEY, payload);
     } catch {
-      // ignore storage failures (Safari private mode, etc.)
+      // ignore storage failures
     }
   }
 };

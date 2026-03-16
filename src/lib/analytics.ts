@@ -14,6 +14,7 @@ declare global {
       params?: Record<string, string | number | boolean | null | undefined>,
     ) => void;
     dataLayer?: Array<Record<string, unknown>>;
+    fbq?: (...args: unknown[]) => void;
     pandascripttag?: Array<() => void>;
     pandaplayer?: (id: string) => PandaPlayerInstance | undefined;
   }
@@ -204,7 +205,6 @@ const sendWhatsAppWebhook = (source: string, params?: Record<string, unknown>) =
   };
 
   if (typeof console !== "undefined") {
-    // Debug log temporário para verificar disparo do webhook
     console.log("[WhatsApp webhook] payload", payload);
   }
 
@@ -250,19 +250,13 @@ export const trackWhatsAppClick = (source: string, params?: Record<string, unkno
   }
 };
 
-// ============================================
-// PRICING PAGE TRACKING (GA + Facebook Pixel)
-// ============================================
-
 export const trackPricingPageView = () => {
-  // Google Analytics
   trackEvent("pricing_page_view", {
     page_type: "pricing",
     page_path: window.location.pathname,
     page_title: document.title,
   });
 
-  // Facebook Pixel - ViewContent
   try {
     window.fbq?.("track", "ViewContent", {
       content_name: "Balao Intragastrico - Pagina de Precos",
@@ -280,14 +274,12 @@ export const trackPricingCTAClick = (metadata: {
   position: "hero" | "middle" | "bottom";
   scroll_depth: number;
 }) => {
-  // Google Analytics
   trackEvent("pricing_cta_clicked", {
     ...metadata,
     page_type: "pricing",
     cta_type: "whatsapp_consult",
   });
 
-  // Facebook Pixel - InitiateCheckout
   try {
     window.fbq?.("track", "InitiateCheckout", {
       content_name: "Consultar Valores - Balao Intragastrico",
@@ -307,14 +299,12 @@ export const trackPricingLeadConversion = (metadata: {
   position?: string;
   scroll_depth?: number;
 }) => {
-  // Google Analytics
   trackEvent("pricing_lead_conversion", {
     ...metadata,
     page_type: "pricing",
     conversion_type: "pricing_page",
   });
 
-  // Facebook Pixel - Lead
   try {
     window.fbq?.("track", "Lead", {
       content_name: "Lead - Balao Intragastrico Preco",
@@ -323,7 +313,6 @@ export const trackPricingLeadConversion = (metadata: {
       currency: "BRL",
     });
 
-    // Also fire Contact event
     window.fbq?.("track", "Contact", {
       content_name: "Contato - Pagina de Precos",
     });
@@ -338,10 +327,6 @@ export const trackPricingScrollDepth = (depth: 25 | 50 | 75 | 100) => {
     page_type: "pricing",
   });
 };
-
-// ============================================
-// PARTIAL LEAD & ABANDONMENT TRACKING
-// ============================================
 
 export const trackPartialLead = (data: {
   source: string;
@@ -361,11 +346,8 @@ export const trackPartialLead = (data: {
     timestamp: new Date().toISOString(),
   });
 
-  // Send to webhook for remarketing
-  const webhookUrl = "https://hook.eu2.make.com/a8npmvf1rzbfjw8c1iigmm1lqezfhd37";
-  
   try {
-    fetch(webhookUrl, {
+    fetch(WHATSAPP_WEBHOOK_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -397,7 +379,6 @@ export const trackLeadChatAbandonment = (data: {
     timestamp: new Date().toISOString(),
   });
 
-  // Also track as partial lead if we have any data
   if (Object.keys(data.partial_data).length > 0) {
     trackPartialLead({
       source: data.source,

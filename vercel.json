@@ -6,6 +6,21 @@
       "permanent": true
     },
     {
+      "source": "/bal\\u00e3o-intragastrico",
+      "destination": "/balao-intragastrico",
+      "permanent": true
+    },
+    {
+      "source": "/bal\\u00e3o-intragastrico-a",
+      "destination": "/balao-intragastrico-a",
+      "permanent": true
+    },
+    {
+      "source": "/bal\\u00e3o-intragastrico-b",
+      "destination": "/balao-intragastrico-b",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "drabrunadurelli.com" }],
       "destination": "https://www.brunadurelli.com.br/$1",

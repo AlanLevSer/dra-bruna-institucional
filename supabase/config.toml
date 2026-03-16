@@ -2,6 +2,3 @@ project_id = "myiczzzzmzodljgmhogmt"
 
 [functions.get-google-reviews]
 verify_jwt = false
-
-[functions.track]
-verify_jwt = false

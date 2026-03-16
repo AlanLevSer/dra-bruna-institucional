@@ -1,4 +1,4 @@
-﻿import { useEffect } from "react";
+import { useEffect } from "react";
 
 declare global {
   type ClarityFn = ((...args: unknown[]) => void) & { q?: unknown[][] };
@@ -98,7 +98,7 @@ const loadThirdPartyScripts = () => {
 export const AnalyticsLoader = () => {
   useEffect(() => {
     const scheduleLoad = () => {
-      if (typeof window.requestIdleCallback === 'function') {
+      if (typeof window.requestIdleCallback === "function") {
         window.requestIdleCallback(() => loadThirdPartyScripts(), { timeout: 2000 });
       } else {
         setTimeout(loadThirdPartyScripts, 1500);
