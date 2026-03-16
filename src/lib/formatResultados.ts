@@ -14,18 +14,54 @@ export const formatQuizResultadoWhatsApp = (
     `📊 IMC: ${quizData.imc.toFixed(1)} kg/m²`,
     `⚖️ Peso Atual: ${quizData.peso}kg → Meta: ${quizData.metaPeso}kg`,
     `📉 Perda Esperada: ${(quizData.peso - quizData.metaPeso)}kg`,
+    `👤 Idade: ${quizData.idade} anos | Sexo: ${quizData.sexo === 'masculino' ? 'Masculino' : 'Feminino'}`,
   ];
 
   if (quizData.comorbidades && quizData.comorbidades.length > 0) {
     linhas.push(`⚠️ Comorbidades: ${quizData.comorbidades.join(", ")}`);
   }
 
-  if (output.tratamentoRecomendado) {
-    linhas.push(`💡 Tratamento Recomendado: ${output.tratamentoRecomendado}`);
+  if (quizData.expectativas && quizData.expectativas.length > 0) {
+    linhas.push(`🎯 Expectativas: ${quizData.expectativas.join(", ")}`);
   }
 
-  if (output.timelineMeses) {
-    linhas.push(`⏱️ Timeline Esperada: ${output.timelineMeses} meses`);
+  if (quizData.tentativasAnteriores) {
+    linhas.push(`📈 Tentativas Anteriores: ${quizData.tentativasAnteriores}`);
+  }
+
+  if (quizData.efeitoSanfona) {
+    linhas.push(`🔄 Efeito Sanfona: Sim`);
+  }
+
+  if (quizData.cirurgiaGastricaPrevia) {
+    linhas.push(`🏥 Cirurgia Gástrica Prévia: Sim`);
+    if (quizData.cirurgiaBariatricaPreviaTipo) {
+      linhas.push(`   Tipo: ${quizData.cirurgiaBariatricaPreviaTipo}`);
+    }
+    if (quizData.reganhoPosBariatrica) {
+      linhas.push(`   Reganho Pós-Bariátrica: Sim`);
+    }
+  }
+
+  if (quizData.falhaPreviaClinica) {
+    linhas.push(`❌ Falha Prévia Clínica: Sim`);
+  }
+
+  if (output.mixEstrategias.intervencao) {
+    linhas.push(`💡 Tratamento Recomendado: ${output.mixEstrategias.intervencao.nome}`);
+    linhas.push(`   Justificativa: ${output.mixEstrategias.intervencao.justificativa}`);
+    if (output.mixEstrategias.intervencao.badgeRecuperacao) {
+      linhas.push(`   Recuperação: ${output.mixEstrategias.intervencao.badgeRecuperacao}`);
+    }
+  }
+
+  if (output.planoEnergetico) {
+    linhas.push(`⚡ Déficit Diário: ${output.planoEnergetico.deficitDiario} kcal`);
+    linhas.push(`📅 Timeline: ${output.planoEnergetico.semanasPlano} semanas`);
+  }
+
+  if (output.perfilSaude) {
+    linhas.push(`🏥 Perfil Saúde: ${output.perfilSaude.conceito} (${output.perfilSaude.notaGlobal} pontos)`);
   }
 
   linhas.push("", "Gostaria de conversar sobre meu diagnóstico!");

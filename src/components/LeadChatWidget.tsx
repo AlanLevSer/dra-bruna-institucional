@@ -326,7 +326,6 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
   };
 
   const handleConfirm = () => {
-    console.log("handleConfirm chamado");
     triggerHapticFeedback();
     playProgressSound();
     triggerConfettiCelebration();
@@ -375,16 +374,49 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
     };
 
     // Adiciona dados do Quiz se disponível
+    console.log("DEBUG: quizData no handleConfirm:", quizData);
+    console.log("DEBUG: tratamento_recomendado:", quizData?.tratamentoRecomendado);
     const webhookPayload = quizData ? {
       ...baseWebhookPayload,
-      // Dados do Quiz
+      // Dados do Quiz - Informações Básicas
       imc: quizData.imc,
       peso_atual_kg: quizData.peso,
       meta_peso_kg: quizData.metaPeso,
       perda_esperada_kg: quizData.peso - quizData.metaPeso,
+      idade: quizData.idade,
+      sexo: quizData.sexo,
+
+      // Saúde e Comorbidades
       comorbidades: quizData.comorbidades.join(", "),
+      dor_principal: quizData.dorPrincipal,
+
+      // Histórico de Tratamentos
+      tentativas_anteriores: quizData.tentativasAnteriores,
+      efeito_sanfona: quizData.efeitoSanfona,
+      gatilhos: quizData.gatilhos.join(", "),
+      cirurgia_gastrica_previa: quizData.cirurgiaGastricaPrevia,
+      cirurgia_bariatrica_previa_tipo: quizData.cirurgiaBariatricaPreviaTipo,
+      reganho_pos_bariatrica: quizData.reganhoPosBariatrica,
+      falha_previa_clinica: quizData.falhaPreviaClinica,
+
+      // Preferências de Tratamento
+      invasividade_preferida: quizData.invasividade,
+      tempo_recuperacao_preferido: quizData.tempoRecuperacao,
+      tempo_disponivel: quizData.tempoDisponivel,
+
+      // Atividade Física
+      nivel_atividade: quizData.nivelAtividade,
+      forca_resistencia: quizData.forcaResistencia,
+      passos_dia: quizData.passosDia,
+      limitacao_dor: quizData.limitacaoDor,
+
+      // Expectativas
+      expectativas: quizData.expectativas.join(", "),
+
+      // Resultado da Análise
       tratamento_recomendado: quizData.tratamentoRecomendado || "",
-      timeline_meses: quizData.timelineMeses || "",
+      timeline_semanas: quizData.timelineMeses || "",
+
       tipo_resultado: "quiz",
     } : mapaData ? {
       ...baseWebhookPayload,
@@ -415,6 +447,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
     
     if (quizData) {
       baseMessage = quizData.resumoWhatsApp;
+      console.log("DEBUG: Usando resumoWhatsApp do quiz:", baseMessage);
     } else if (mapaData) {
       baseMessage = mapaData.resumoWhatsApp;
     }
@@ -431,10 +464,6 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       ? `https://wa.me/${CONTACT.WHATSAPP_NUMBER}?text=${whatsappMessage}`
       : `https://web.whatsapp.com/send?phone=${CONTACT.WHATSAPP_NUMBER}&text=${whatsappMessage}`;
 
-    console.log("WhatsApp URL construída:", waUrl);
-    console.log("isMobile:", isMobile);
-    console.log("CONTACT.WHATSAPP_NUMBER:", CONTACT.WHATSAPP_NUMBER);
-
     trackEvent("whatsapp_redirect", {
       origin: "chat_widget",
       phone: CONTACT.PHONE_DISPLAY,
@@ -443,7 +472,6 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       tem_mapa_data: !!mapaData,
     });
 
-    console.log("Abrindo WhatsApp...");
     window.open(waUrl, "_blank");
     
     setTimeout(() => {

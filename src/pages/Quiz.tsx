@@ -199,19 +199,9 @@ const Quiz = () => {
     setIsGenerating(true);
 
     try {
-      console.log("Iniciando geração do output do quiz");
-      console.log("Dados do quiz:", quizData);
       const generatedOutput = generateTransformacaoOutput(quizData);
-      console.log("Output gerado:", generatedOutput);
-      console.log("Output é null?", generatedOutput === null);
-      console.log("Output é undefined?", generatedOutput === undefined);
-      console.log("Output tem headline?", generatedOutput?.headline);
-      console.log("Output tem planoEnergetico?", generatedOutput?.planoEnergetico);
-      console.log("Keys do output:", Object.keys(generatedOutput || {}));
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log("Antes de setQuizOutput:", generatedOutput);
       setQuizOutput(generatedOutput);
-      console.log("Estado quizOutput definido:", generatedOutput);
 
       trackEvent("quiz_result_generated", {
         imc: quizData.imc,
@@ -436,25 +426,14 @@ const Quiz = () => {
                     />
                   </div>
                 ) : (
-                  <>
-                    {console.log("Renderizando QuizResultView com output:", quizOutput)}
-                    {console.log("quizOutput é null?", quizOutput === null)}
-                    {console.log("quizOutput é undefined?", quizOutput === undefined)}
-                    {quizOutput ? (
-                      <Suspense fallback={<GeneratingAnimation />}>
-                        <QuizResultView
-                          layout="page"
-                          output={quizOutput}
-                          quizData={quizData}
-                          onResetQuiz={resetQuiz}
-                        />
-                      </Suspense>
-                    ) : (
-                      <div className="text-center p-8">
-                        <p>Output é nulo. Tente novamente.</p>
-                      </div>
-                    )}
-                  </>
+                  <Suspense fallback={<GeneratingAnimation />}>
+                    <QuizResultView
+                      layout="page"
+                      output={quizOutput}
+                      quizData={quizData}
+                      onResetQuiz={resetQuiz}
+                    />
+                  </Suspense>
                 )}
               </div>
             </div>
@@ -474,8 +453,8 @@ const Quiz = () => {
               peso: quizData.peso,
               metaPeso: quizData.metaPeso,
               comorbidades: quizData.comorbidades || [],
-              tratamentoRecomendado: quizOutput.tratamentoRecomendado,
-              timelineMeses: quizOutput.timelineMeses,
+              tratamentoRecomendado: quizOutput.mixEstrategias.intervencao?.nome || "",
+              timelineMeses: quizOutput.planoEnergetico.semanasPlano,
               resumoWhatsApp: formatQuizResultadoWhatsApp(quizData, quizOutput),
             }}
           />
