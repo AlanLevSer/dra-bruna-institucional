@@ -199,9 +199,15 @@ const Quiz = () => {
     setIsGenerating(true);
 
     try {
+      console.log("Iniciando geração do output do quiz");
+      console.log("Dados do quiz:", quizData);
       const generatedOutput = generateTransformacaoOutput(quizData);
+      console.log("Output gerado:", generatedOutput);
+      console.log("Output é null?", generatedOutput === null);
+      console.log("Output é undefined?", generatedOutput === undefined);
       await new Promise((resolve) => setTimeout(resolve, 2000));
       setQuizOutput(generatedOutput);
+      console.log("Estado quizOutput definido:", generatedOutput);
 
       trackEvent("quiz_result_generated", {
         imc: quizData.imc,
@@ -333,8 +339,10 @@ const Quiz = () => {
                 {isGenerating ? (
                   <GeneratingAnimation />
                 ) : !quizOutput ? (
-                  <div className="bg-card rounded-2xl shadow-lg border p-6 md:p-8">
-                    <QuizProgress currentStep={currentStep} totalSteps={8} />
+                  <div>
+                    <div>DEBUG: quizOutput is null/undefined - showing quiz form</div>
+                    <div className="bg-card rounded-2xl shadow-lg border p-6 md:p-8">
+                      <QuizProgress currentStep={currentStep} totalSteps={8} />
                     
                     {currentStep === 1 && (
                       <QuizStep1
@@ -426,14 +434,17 @@ const Quiz = () => {
                     />
                   </div>
                 ) : (
-                  <Suspense fallback={<GeneratingAnimation />}>
-                    <QuizResultView
-                      layout="page"
-                      output={quizOutput}
-                      quizData={quizData}
-                      onResetQuiz={resetQuiz}
-                    />
-                  </Suspense>
+                  <div>
+                    <div>DEBUG: quizOutput exists - showing results</div>
+                    <Suspense fallback={<GeneratingAnimation />}>
+                      <QuizResultView
+                        layout="page"
+                        output={quizOutput}
+                        quizData={quizData}
+                        onResetQuiz={resetQuiz}
+                      />
+                    </Suspense>
+                  </div>
                 )}
               </div>
             </div>
