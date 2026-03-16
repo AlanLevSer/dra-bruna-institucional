@@ -374,8 +374,6 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
     };
 
     // Adiciona dados do Quiz se disponível
-    console.log("DEBUG: quizData no handleConfirm:", quizData);
-    console.log("DEBUG: tratamento_recomendado:", quizData?.tratamentoRecomendado);
     const webhookPayload = quizData ? {
       ...baseWebhookPayload,
       // Dados do Quiz - Informações Básicas
@@ -447,7 +445,6 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
     
     if (quizData) {
       baseMessage = quizData.resumoWhatsApp;
-      console.log("DEBUG: Usando resumoWhatsApp do quiz:", baseMessage);
     } else if (mapaData) {
       baseMessage = mapaData.resumoWhatsApp;
     }

@@ -648,6 +648,15 @@ function generateMixEstrategias(data: QuizData) {
     };
   }
   
+  // FALLBACK: Sempre garantir uma intervenção
+  if (!intervencao) {
+    intervencao = {
+      tipo: 'protocolo_clinico_intensivo',
+      nome: 'Protocolo Clínico Estruturado',
+      justificativa: "Abordagem completa com nutrição, movimento e comportamento. Avaliação personalizada para definir o melhor caminho."
+    };
+  }
+  
   return { pilares, intervencao, alternativas, microcopy };
 }
 
