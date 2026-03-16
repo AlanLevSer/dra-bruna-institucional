@@ -326,6 +326,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
   };
 
   const handleConfirm = () => {
+    console.log("handleConfirm chamado");
     triggerHapticFeedback();
     playProgressSound();
     triggerConfettiCelebration();
@@ -430,6 +431,10 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       ? `https://wa.me/${CONTACT.WHATSAPP_NUMBER}?text=${whatsappMessage}`
       : `https://web.whatsapp.com/send?phone=${CONTACT.WHATSAPP_NUMBER}&text=${whatsappMessage}`;
 
+    console.log("WhatsApp URL construída:", waUrl);
+    console.log("isMobile:", isMobile);
+    console.log("CONTACT.WHATSAPP_NUMBER:", CONTACT.WHATSAPP_NUMBER);
+
     trackEvent("whatsapp_redirect", {
       origin: "chat_widget",
       phone: CONTACT.PHONE_DISPLAY,
@@ -438,6 +443,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       tem_mapa_data: !!mapaData,
     });
 
+    console.log("Abrindo WhatsApp...");
     window.open(waUrl, "_blank");
     
     setTimeout(() => {
