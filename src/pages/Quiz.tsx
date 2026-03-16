@@ -339,9 +339,7 @@ const Quiz = () => {
                 {isGenerating ? (
                   <GeneratingAnimation />
                 ) : !quizOutput ? (
-                  <div>
-                    <div>DEBUG: quizOutput is null/undefined - showing quiz form</div>
-                    <div className="bg-card rounded-2xl shadow-lg border p-6 md:p-8">
+                  <div className="bg-card rounded-2xl shadow-lg border p-6 md:p-8">
                       <QuizProgress currentStep={currentStep} totalSteps={8} />
                     
                     {currentStep === 1 && (
@@ -434,18 +432,14 @@ const Quiz = () => {
                     />
                   </div>
                 ) : (
-                  <div>
-                    <div>DEBUG: quizOutput exists - showing results</div>
-                    <div>Output keys: {quizOutput ? Object.keys(quizOutput).join(', ') : 'none'}</div>
-                    <Suspense fallback={<div>Carregando resultados...</div>}>
-                      <QuizResultView
-                        layout="page"
-                        output={quizOutput}
-                        quizData={quizData}
-                        onResetQuiz={resetQuiz}
-                      />
-                    </Suspense>
-                  </div>
+                  <Suspense fallback={<GeneratingAnimation />}>
+                    <QuizResultView
+                      layout="page"
+                      output={quizOutput}
+                      quizData={quizData}
+                      onResetQuiz={resetQuiz}
+                    />
+                  </Suspense>
                 )}
               </div>
             </div>
