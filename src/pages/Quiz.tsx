@@ -436,7 +436,8 @@ const Quiz = () => {
                 ) : (
                   <div>
                     <div>DEBUG: quizOutput exists - showing results</div>
-                    <Suspense fallback={<GeneratingAnimation />}>
+                    <div>Output keys: {quizOutput ? Object.keys(quizOutput).join(', ') : 'none'}</div>
+                    <Suspense fallback={<div>Carregando resultados...</div>}>
                       <QuizResultView
                         layout="page"
                         output={quizOutput}
