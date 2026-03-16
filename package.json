@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "type-check": "tsc --noEmit",
-    "deploy:check": "node ./scripts/deploy-check.mjs"
+    "deploy:check": "node ./scripts/deploy-check.mjs",
+    "site:audit": "node ./scripts/site-audit.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Suspense, lazy, useState } from "react";
 import {
   Activity,
   ArrowRight,
@@ -14,11 +14,14 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-import { PlanoTransformacao } from "@/components/PlanoTransformacao";
 import { Button } from "@/components/ui/button";
 import { trackEvent } from "@/lib/analytics";
 import { CONTACT } from "@/lib/constants";
 import { openLeadChat } from "@/lib/leadChat";
+
+const PlanoTransformacao = lazy(() =>
+  import("@/components/PlanoTransformacao").then((module) => ({ default: module.PlanoTransformacao }))
+);
 
 type Fase = {
   numero: string;
@@ -375,7 +378,11 @@ export const JornadaFasesVendas = () => {
         </div>
       </div>
 
-      <PlanoTransformacao open={quizOpen} onOpenChange={setQuizOpen} />
+      {quizOpen ? (
+        <Suspense fallback={null}>
+          <PlanoTransformacao open={quizOpen} onOpenChange={setQuizOpen} />
+        </Suspense>
+      ) : null}
     </section>
   );
 };

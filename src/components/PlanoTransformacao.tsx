@@ -1,5 +1,6 @@
 ﻿import { useState, useRef, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Suspense, lazy } from "react";
 import { QuizData } from "@/types/quiz";
 import { generateTransformacaoOutput } from "@/lib/quiz-logic";
 import { 
@@ -25,15 +26,7 @@ import { QuizStep6 } from "./quiz/QuizStep6";
 import { QuizStep7 } from "./quiz/QuizStep7";
 import { QuizStep8 } from "./quiz/QuizStep8";
 import { GeneratingAnimation } from "./quiz/GeneratingAnimation";
-import { DeclaracaoTransformacao } from "./output/DeclaracaoTransformacao";
-import { PlanoEnergeticoComponent } from "./output/PlanoEnergetico";
-import { PerfilSaudeRadar } from "./output/PerfilSaudeRadar";
-import { IndiceQLI } from "./output/IndiceQLI";
-import { RoadmapFases } from "./output/RoadmapFases";
-import { MixEstrategias } from "./output/MixEstrategias";
-import { KPIsClinicas } from "./output/KPIsClinicas";
-import { LifestyleWins } from "./output/LifestyleWins";
-import { CTAsFinais } from "./output/CTAsFinais";
+const QuizResultView = lazy(() => import("./quiz/QuizResultView"));
 
 interface PlanoTransformacaoProps {
   open: boolean;
@@ -319,24 +312,14 @@ export const PlanoTransformacao = ({ open, onOpenChange }: PlanoTransformacaoPro
             />
           </div>
         ) : output ? (
-          <div>
-            <DeclaracaoTransformacao headline={output.headline} alertaClinico={output.alertaClinico} />
-            <PlanoEnergeticoComponent planoEnergetico={output.planoEnergetico} />
-            <PerfilSaudeRadar perfilSaude={output.perfilSaude} quizData={quizData} />
-            <IndiceQLI qli={output.qli} />
-            <RoadmapFases roadmap={output.roadmap} />
-            <MixEstrategias mixEstrategias={output.mixEstrategias} />
-            <KPIsClinicas kpis={output.kpis} />
-            <LifestyleWins lifestyleWins={output.lifestyleWins} />
-            <CTAsFinais 
+          <Suspense fallback={<GeneratingAnimation />}>
+            <QuizResultView
+              layout="dialog"
+              output={output}
+              quizData={quizData}
               onResetQuiz={resetQuiz}
-              notaGlobal={output.perfilSaude.notaGlobal}
-              conceito={output.perfilSaude.conceito}
-              tratamentoRecomendado={output.mixEstrategias.intervencao?.nome || 'Protocolo ClÃ­nico'}
-              metaKg={output.planoEnergetico.metaKg}
-              semanasPlano={output.planoEnergetico.semanasPlano}
             />
-          </div>
+          </Suspense>
         ) : null}
       </DialogContent>
     </Dialog>

@@ -15,14 +15,17 @@ import {
   Pill,
   Flame
 } from "lucide-react";
-import { useState } from "react";
+import { Suspense, lazy, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
-import { PlanoTransformacao } from "@/components/PlanoTransformacao";
 import programImage from "@/assets/patient-wellness-1.avif";
 import { CONTACT } from "@/lib/constants";
 import { openLeadChat } from "@/lib/leadChat";
+
+const PlanoTransformacao = lazy(() =>
+  import("@/components/PlanoTransformacao").then((module) => ({ default: module.PlanoTransformacao }))
+);
 
 const benefits = [
   "Vou te ajudar a transformar corpo, mente e autoestima",
@@ -567,7 +570,11 @@ export const ProgramaLevSer = () => {
         </div>
       </div>
 
-      <PlanoTransformacao open={quizOpen} onOpenChange={setQuizOpen} />
+      {quizOpen ? (
+        <Suspense fallback={null}>
+          <PlanoTransformacao open={quizOpen} onOpenChange={setQuizOpen} />
+        </Suspense>
+      ) : null}
     </section>
   );
 };

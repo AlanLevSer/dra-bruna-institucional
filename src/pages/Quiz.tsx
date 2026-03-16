@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { ZodError } from "zod";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
@@ -29,20 +29,13 @@ import { QuizStep6 } from "@/components/quiz/QuizStep6";
 import { QuizStep7 } from "@/components/quiz/QuizStep7";
 import { QuizStep8 } from "@/components/quiz/QuizStep8";
 import { GeneratingAnimation } from "@/components/quiz/GeneratingAnimation";
-import { DeclaracaoTransformacao } from "@/components/output/DeclaracaoTransformacao";
-import { PlanoEnergeticoComponent } from "@/components/output/PlanoEnergetico";
-import { PerfilSaudeRadar } from "@/components/output/PerfilSaudeRadar";
-import { IndiceQLI } from "@/components/output/IndiceQLI";
-import { RoadmapFases } from "@/components/output/RoadmapFases";
-import { MixEstrategias } from "@/components/output/MixEstrategias";
-import { KPIsClinicas } from "@/components/output/KPIsClinicas";
-import { LifestyleWins } from "@/components/output/LifestyleWins";
-import { CTAsFinais } from "@/components/output/CTAsFinais";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Sparkles } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import LeadChatWidget from "@/components/LeadChatWidget";
 import { trackEvent } from "@/lib/analytics";
+
+const QuizResultView = lazy(() => import("@/components/quiz/QuizResultView"));
 
 const Quiz = () => {
   const location = useLocation();
@@ -437,41 +430,14 @@ const Quiz = () => {
                     />
                   </div>
                 ) : output ? (
-                  <div className="space-y-6">
-                    <div className="bg-card rounded-2xl shadow-lg border overflow-hidden">
-                      <DeclaracaoTransformacao headline={output.headline} alertaClinico={output.alertaClinico} />
-                    </div>
-                    
-                    <PlanoEnergeticoComponent planoEnergetico={output.planoEnergetico} />
-                    
-                    <PerfilSaudeRadar perfilSaude={output.perfilSaude} quizData={quizData} />
-                    
-                    <div className="bg-card rounded-2xl shadow-lg border overflow-hidden">
-                      <IndiceQLI qli={output.qli} />
-                      <RoadmapFases roadmap={output.roadmap} />
-                      <MixEstrategias mixEstrategias={output.mixEstrategias} />
-                      <KPIsClinicas kpis={output.kpis} />
-                      <LifestyleWins lifestyleWins={output.lifestyleWins} />
-                      <CTAsFinais 
-                        onResetQuiz={resetQuiz}
-                        notaGlobal={output.perfilSaude.notaGlobal}
-                        conceito={output.perfilSaude.conceito}
-                        tratamentoRecomendado={output.mixEstrategias.intervencao?.nome || 'Protocolo Clínico'}
-                        metaKg={output.planoEnergetico.metaKg}
-                        semanasPlano={output.planoEnergetico.semanasPlano}
-                      />
-                    </div>
-                    
-                    {/* Back to Site Button */}
-                    <div className="flex justify-center pt-4">
-                      <Link to="/">
-                        <Button variant="outline" size="lg">
-                          <ArrowLeft className="mr-2 h-4 w-4" />
-                          Voltar ao Site
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
+                  <Suspense fallback={<GeneratingAnimation />}>
+                    <QuizResultView
+                      layout="page"
+                      output={output}
+                      quizData={quizData}
+                      onResetQuiz={resetQuiz}
+                    />
+                  </Suspense>
                 ) : (
                   <div className="bg-card rounded-2xl shadow-lg border p-8 text-center">
                     <p className="text-lg font-medium text-foreground mb-2">

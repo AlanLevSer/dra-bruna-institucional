@@ -1,22 +1,16 @@
-import { useState, useEffect } from "react";
+import { Suspense, lazy, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { GrafismoDecor } from "@/components/GrafismoDecor";
-import { PlanoTransformacao } from "@/components/PlanoTransformacao";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import heroImage from "@/assets/dra-bruna-hero.avif";
 
+const PlanoTransformacao = lazy(() =>
+  import("@/components/PlanoTransformacao").then((module) => ({ default: module.PlanoTransformacao }))
+);
+
 export const Hero = () => {
-  // Preload LCP image programmatically
-  useEffect(() => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
-    link.href = heroImage;
-    link.fetchPriority = 'high';
-    document.head.appendChild(link);
-  }, []);
   const [quizOpen, setQuizOpen] = useState(false);
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -60,7 +54,11 @@ export const Hero = () => {
               </Button>
             </div>
             
-            <PlanoTransformacao open={quizOpen} onOpenChange={setQuizOpen} />
+            {quizOpen ? (
+              <Suspense fallback={null}>
+                <PlanoTransformacao open={quizOpen} onOpenChange={setQuizOpen} />
+              </Suspense>
+            ) : null}
             
             <p className="text-xs text-muted-foreground/80 italic pt-2">Estou ao seu lado. Vamos juntos.</p>
           </div>

@@ -15,6 +15,11 @@
       "destination": "/balao-intragastrico-a",
       "permanent": true
     },
+    {
+      "source": "/terapia-sacietogena",
+      "destination": "/canetas-emagrecedoras",
+      "permanent": true
+    },
 
     {
       "source": "/(.*)",
