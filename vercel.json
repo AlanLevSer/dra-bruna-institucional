@@ -15,11 +15,7 @@
       "destination": "/balao-intragastrico-a",
       "permanent": true
     },
-    {
-      "source": "/balao-intragastrico-preco-a",
-      "destination": "/balao-intragastrico-preco",
-      "permanent": true
-    },
+
     {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "drabrunadurelli.com" }],
@@ -47,7 +43,7 @@
   ],
   "rewrites": [
     {
-      "source": "/(sobre|programa-levser|tratamentos|recursos|nutricao-celular|balao-intragastrico|balao-intragastrico-a|balao-intragastrico-b|balao-intragastrico-preco|terapias-endoscopicas|gastroplastia-endoscopica|canetas-emagrecedoras|medicina-regenerativa|plasma-argonio|plasma-argonio-a|plasma-de-argonio-a|politica-privacidade|termos-uso|quiz|descubra-seu-caminho|metabolismo-quebrado|vsl-metodo-levser|mapa-metabolico|mapa-metabolico-lp|login|dashboard|events|leads|admin)(/.*)?",
+      "source": "/(sobre|programa-levser|tratamentos|recursos|nutricao-celular|balao-intragastrico|balao-intragastrico-a|balao-intragastrico-b|balao-intragastrico-preco-a|terapias-endoscopicas|gastroplastia-endoscopica|canetas-emagrecedoras|medicina-regenerativa|plasma-argonio|plasma-argonio-a|plasma-de-argonio-a|politica-privacidade|termos-uso|quiz|descubra-seu-caminho|metabolismo-quebrado|vsl-metodo-levser|mapa-metabolico|mapa-metabolico-lp|login|dashboard|events|leads|admin)(/.*)?",
       "destination": "/index.html"
     }
   ]
