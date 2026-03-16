@@ -56,7 +56,7 @@ const STEP_LABELS: Record<Step, string> = {
   confirm: "Confirmação",
 };
 
-export default function LeadChatWidget({ showFloatingButton = false, origin = "unknown" }: Props) {
+export default function LeadChatWidget({ showFloatingButton = false, origin = "unknown", quizData, mapaData }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState<Step>("name");
   const [isTyping, setIsTyping] = useState(false);
