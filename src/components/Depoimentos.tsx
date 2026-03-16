@@ -3,6 +3,7 @@ import { TestimonialsGoogle } from "@/components/TestimonialsGoogle";
 export const Depoimentos = () => {
   return (
     <TestimonialsGoogle
+      sectionId="depoimentos-google"
       title="O que dizem nossos pacientes"
       subtitle="Transformações que vão além dos números na balança. Vidas que foram impactadas de forma positiva e duradoura."
       cardVariant="default"

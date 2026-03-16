@@ -64,7 +64,7 @@ const navItems: NavItem[] = [
       { label: "Ver todos os tratamentos", href: "/tratamentos" },
     ],
   },
-  { label: "Depoimentos", href: "/#depoimentos", type: "anchor" },
+  { label: "Depoimentos", href: "/#depoimentos-google", type: "anchor" },
   {
     label: "Recursos",
     href: "/recursos",

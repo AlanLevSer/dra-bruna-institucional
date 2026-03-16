@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/carousel";
 
 interface TestimonialsGoogleProps {
+  sectionId?: string;
   title?: string;
   subtitle?: string;
   showStars?: boolean;
@@ -29,6 +30,7 @@ interface TestimonialsGoogleProps {
 }
 
 export const TestimonialsGoogle = ({
+  sectionId,
   title = "O que nossas pacientes dizem",
   subtitle = "Histórias reais de transformação",
   showStars = true,
@@ -48,7 +50,7 @@ export const TestimonialsGoogle = ({
   );
 
   return (
-    <section className={`relative py-20 md:py-28 ${backgroundColor} overflow-hidden`}>
+    <section id={sectionId} className={`relative py-20 md:py-28 ${backgroundColor} overflow-hidden`}>
       {showGrafismo && (
         <GrafismoDecor variant="background" position="top-right" size="lg" opacity={0.15} />
       )}
