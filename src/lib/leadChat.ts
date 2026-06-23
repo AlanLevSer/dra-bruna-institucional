@@ -1,5 +1,5 @@
 import { CONTACT } from "./constants";
-import { trackEvent, trackPricingLeadConversion } from "./analytics";
+import { trackEvent, trackPricingLeadConversion, trackWhatsAppClick } from "./analytics";
 
 export interface ConversionMetadata {
   section?: string;
@@ -76,6 +76,7 @@ export const openLeadChat = (
           }
           
           const url = fallbackUrl || CONTACT.WHATSAPP_URL;
+          trackWhatsAppClick(source, { action: "fallback_whatsapp", destination_url: url });
           window.open(url, "_blank");
           resolve(false);
         }
@@ -94,6 +95,7 @@ export const openLeadChat = (
       }
       
       const url = fallbackUrl || CONTACT.WHATSAPP_URL;
+      trackWhatsAppClick(source, { action: "fallback_whatsapp", destination_url: url });
       window.open(url, "_blank");
       resolve(false);
     }

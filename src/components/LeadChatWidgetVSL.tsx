@@ -5,10 +5,10 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CONTACT } from "@/lib/constants";
 import avatarAtendente from "@/assets/avatar-atendente.avif";
-import { trackEvent, trackLeadChatAbandonment } from "@/lib/analytics";
-import { getStoredUTMContext } from "@/lib/utm";
+import { trackEvent, trackLeadChatAbandonment, trackWhatsAppClick } from "@/lib/analytics";
 import { getSessionId } from "@/lib/sessionTracking";
 import { trackFormSubmission } from "@/lib/tracking";
+import { buildLeadTrackingPayload } from "@/lib/tracking";
 
 type Step = 
   | "qualification1" 
@@ -129,21 +129,6 @@ export const LeadChatWidgetVSL = ({
     }
   };
 
-  const getGAClientId = (): string => {
-    try {
-      const match = document.cookie.match(/_ga=(.+?);/);
-      if (match && match[1]) {
-        const parts = match[1].split(".");
-        if (parts.length >= 3) {
-          return `${parts[2]}.${parts[3]}`;
-        }
-      }
-    } catch (e) {
-      void e;
-    }
-    return "";
-  };
-
   const handleConfirm = async () => {
     if (!leadData.consent) {
       alert("Por favor, autorize o contato para continuar.");
@@ -153,8 +138,7 @@ export const LeadChatWidgetVSL = ({
     setIsSubmitting(true);
 
     try {
-      const utmContext = getStoredUTMContext();
-      const gaClientId = getGAClientId();
+      const trackingPayload = buildLeadTrackingPayload();
       const protocolId = `VSL-${Date.now()}-${Math.random().toString(36).substring(7)}`;
 
       // Detect device
@@ -181,32 +165,46 @@ export const LeadChatWidgetVSL = ({
         device,
 
         // Basic UTMs
-        utm_source: utmContext.params.utm_source || "",
-        utm_medium: utmContext.params.utm_medium || "",
-        utm_campaign: utmContext.params.utm_campaign || "",
-        utm_content: utmContext.params.utm_content || "",
-        utm_term: utmContext.params.utm_term || "",
-        utm_id: utmContext.params.utm_id || "",
+        utm_source: trackingPayload.utm_source,
+        utm_medium: trackingPayload.utm_medium,
+        utm_campaign: trackingPayload.utm_campaign,
+        utm_content: trackingPayload.utm_content,
+        utm_term: trackingPayload.utm_term,
+        utm_id: trackingPayload.utm_id,
+        utm_adgroup: trackingPayload.utm_adgroup,
+        utm_matchtype: trackingPayload.utm_matchtype,
+        utm_device: trackingPayload.utm_device,
+        utm_network: trackingPayload.utm_network,
 
         // Advanced UTMs
-        utm_source_platform: utmContext.params.utm_source_platform || "",
-        utm_creative_format: utmContext.params.utm_creative_format || "",
-        utm_marketing_tactic: utmContext.params.utm_marketing_tactic || "",
+        utm_source_platform: trackingPayload.utm_source_platform,
+        utm_creative_format: trackingPayload.utm_creative_format,
+        utm_marketing_tactic: trackingPayload.utm_marketing_tactic,
 
         // Tracking IDs
-        gclid: utmContext.params.gclid || "",
-        fbclid: utmContext.params.fbclid || "",
-        gclientid: gaClientId,
+        gclid: trackingPayload.gclid,
+        gbraid: trackingPayload.gbraid,
+        wbraid: trackingPayload.wbraid,
+        fbclid: trackingPayload.fbclid,
+        fbp: trackingPayload.fbp,
+        fbc: trackingPayload.fbc,
+        gclientid: trackingPayload.gclientid,
 
         // Referrer
-        referrer: utmContext.referrer || document.referrer || "",
-        utm_referrer: utmContext.params.utm_referrer || "",
+        referrer: trackingPayload.referrer,
+        click_id: trackingPayload.click_id,
+        utm_referrer: trackingPayload.utm_referrer,
+        landing_page: trackingPayload.landing_page,
+        first_page: trackingPayload.first_page,
+        last_page: trackingPayload.last_page,
+        page_path: trackingPayload.page_path,
+        page_url: trackingPayload.page_url,
 
         // GA UTM string
-        ga_utm: `${utmContext.params.utm_source || ""}|${utmContext.params.utm_medium || ""}|${utmContext.params.utm_campaign || ""}`,
+        ga_utm: `${trackingPayload.utm_source || ""}|${trackingPayload.utm_medium || ""}|${trackingPayload.utm_campaign || ""}`,
 
         // Timestamp
-        timestamp: new Date().toISOString(),
+        timestamp: trackingPayload.timestamp,
 
         // Protocol ID
         protocol_id: protocolId,
@@ -224,7 +222,8 @@ export const LeadChatWidgetVSL = ({
         source: origin,
         method: "widget",
         device,
-        has_utm: !!utmContext.params.utm_source,
+        has_utm: !!trackingPayload.utm_source,
+        ...trackingPayload,
       });
       
       // Track form submission to data platform
@@ -263,7 +262,9 @@ export const LeadChatWidgetVSL = ({
     const message = encodeURIComponent(
       `Oi, acabei de ver o vídeo do Programa LevSer e preenchi o formulário. Minha situação é: ${leadData.qualification1}. Quero saber qual caminho vocês indicam pra mim.`
     );
-    window.open(`${CONTACT.WHATSAPP_URL}?text=${message}`, "_blank");
+    const whatsappUrl = `${CONTACT.WHATSAPP_URL}?text=${message}`;
+    trackWhatsAppClick(origin, { destination_url: whatsappUrl, qualification_step: leadData.qualification1 });
+    window.open(whatsappUrl, "_blank");
     trackEvent("lead_whatsapp_redirect", { source: origin });
   };
 
@@ -633,7 +634,10 @@ export const LeadChatWidgetVSL = ({
       )}
 
       {isOpen && (
-        <div className="fixed inset-0 z-[120] flex items-end justify-center md:items-center md:justify-end md:pr-6 md:pb-6">
+        <div
+          className="fixed inset-0 z-[120] flex items-end justify-center md:items-center md:justify-end md:pr-6 md:pb-6"
+          data-gtm-suppress-click="true"
+        >
           <div
             className="absolute inset-0 bg-black/40 backdrop-blur-sm"
             onClick={handleClose}

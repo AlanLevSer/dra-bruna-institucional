@@ -1,6 +1,13 @@
 import { onCLS, onFCP, onINP, onLCP, onTTFB, type Metric } from "web-vitals";
 
-import { getStoredUTMContext, rememberVisitContext } from "./utm";
+import {
+  buildLeadTrackingPayload,
+  persistTrackingParams,
+  trackEvent,
+} from "./tracking";
+import { getStoredUTMContext } from "./utm";
+
+export { trackEvent } from "./tracking";
 
 type PandaPlayerInstance = {
   onEvent: (event: string, callback: (payload?: number) => void) => void;
@@ -97,22 +104,6 @@ export const observePerformance = () => {
   }
 };
 
-export const trackEvent = (eventName: string, params?: Record<string, unknown>) => {
-  if (window.gtag) {
-    window.gtag(
-      "event",
-      eventName,
-      params as Record<string, string | number | boolean | null | undefined> | undefined,
-    );
-  }
-  if (window.dataLayer) {
-    window.dataLayer.push({ event: eventName, ...(params || {}) });
-  }
-  if (import.meta.env.DEV) {
-    console.log("Analytics event:", eventName, params);
-  }
-};
-
 export const getValueBucket = (value: number): string => {
   if (value === 0) return "0";
   if (value <= 500) return "1-500";
@@ -181,9 +172,9 @@ export const trackFinalCTAClick = (
 const sendWhatsAppWebhook = (source: string, params?: Record<string, unknown>) => {
   if (typeof window === "undefined") return;
 
-  rememberVisitContext();
+  persistTrackingParams();
   const context = getStoredUTMContext();
-  const utmFlat = context.params ?? {};
+  const trackingPayload = buildLeadTrackingPayload();
 
   const payload = {
     event: "whatsapp_click",
@@ -191,16 +182,13 @@ const sendWhatsAppWebhook = (source: string, params?: Record<string, unknown>) =
     page: window.location.pathname,
     url: window.location.href,
     timestamp: new Date().toISOString(),
-    referrer:
-      context.referrer ??
-      (typeof document !== "undefined" ? document.referrer : undefined) ??
-      undefined,
+    referrer: context.referrer ?? trackingPayload.referrer,
     landingPage: context.landingPage,
     lastPage: context.lastPage,
     firstVisit: context.firstVisit,
     updatedAt: context.updatedAt,
-    utm: utmFlat,
-    ...utmFlat,
+    utm: context.params ?? {},
+    ...trackingPayload,
     ...(params || {}),
   };
 
@@ -242,7 +230,13 @@ const sendWhatsAppWebhook = (source: string, params?: Record<string, unknown>) =
 
 export const trackWhatsAppClick = (source: string, params?: Record<string, unknown>) => {
   try {
-    const payload = { source, path: window.location.pathname, ...(params || {}) };
+    const payload = {
+      source,
+      path: window.location.pathname,
+      page_path: window.location.pathname,
+      ...buildLeadTrackingPayload(),
+      ...(params || {}),
+    };
     trackEvent("whatsapp_click", payload);
     sendWhatsAppWebhook(source, params);
   } catch (error) {

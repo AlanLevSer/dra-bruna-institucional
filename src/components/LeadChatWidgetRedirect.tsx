@@ -3,8 +3,8 @@ import { X, ArrowLeft, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
-import { trackEvent } from "@/lib/analytics";
-import { getStoredUTMContext } from "@/lib/utm";
+import { trackEvent, trackWhatsAppClick } from "@/lib/analytics";
+import { buildAnalyticsLeadEventPayload, buildLeadTrackingPayload } from "@/lib/tracking";
 import { CONTACT } from "@/lib/constants";
 import { toast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
@@ -312,22 +312,9 @@ export default function LeadChatWidgetRedirect({
     triggerConfettiCelebration();
     showMilestoneToast("confirm");
     
-    const utmContext = getStoredUTMContext();
-    
-    let gaClientId = "";
-    if (typeof document !== "undefined") {
-      const gaCookie = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("_ga="));
-      if (gaCookie) {
-        const parts = gaCookie.split(".");
-        if (parts.length >= 4) {
-          gaClientId = `${parts[2]}.${parts[3]}`;
-        }
-      }
-    }
+    const trackingPayload = buildLeadTrackingPayload();
 
-    const protocolId = utmContext.params.click_id || generateFallbackId();
+    const protocolId = generateFallbackId();
 
     const webhookPayload = {
       nome: leadData.name || "",
@@ -335,29 +322,49 @@ export default function LeadChatWidgetRedirect({
       email: leadData.email || "",
       origem: origin,
       url: window.location.href,
-      referrer: utmContext.referrer || "",
-      utm_source: utmContext.params.utm_source || "",
-      utm_medium: utmContext.params.utm_medium || "",
-      utm_campaign: utmContext.params.utm_campaign || "",
-      utm_content: utmContext.params.utm_content || "",
-      utm_term: utmContext.params.utm_term || "",
-      utm_id: utmContext.params.utm_id || "",
-      utm_source_platform: utmContext.params.utm_source_platform || "",
-      utm_creative_format: utmContext.params.utm_creative_format || "",
-      utm_marketing_tactic: utmContext.params.utm_marketing_tactic || "",
-      gclid: utmContext.params.gclid || "",
-      fbclid: utmContext.params.fbclid || "",
-      gclientid: gaClientId,
-      ga_utm: `${utmContext.params.utm_source || ""}|${utmContext.params.utm_medium || ""}|${utmContext.params.utm_campaign || ""}`,
-      click_id: utmContext.params.click_id || "",
+      referrer: trackingPayload.referrer,
+      utm_source: trackingPayload.utm_source,
+      utm_medium: trackingPayload.utm_medium,
+      utm_campaign: trackingPayload.utm_campaign,
+      utm_content: trackingPayload.utm_content,
+      utm_term: trackingPayload.utm_term,
+      utm_id: trackingPayload.utm_id,
+      utm_adgroup: trackingPayload.utm_adgroup,
+      utm_matchtype: trackingPayload.utm_matchtype,
+      utm_device: trackingPayload.utm_device,
+      utm_network: trackingPayload.utm_network,
+      utm_source_platform: trackingPayload.utm_source_platform,
+      utm_creative_format: trackingPayload.utm_creative_format,
+      utm_marketing_tactic: trackingPayload.utm_marketing_tactic,
+      gclid: trackingPayload.gclid,
+      gbraid: trackingPayload.gbraid,
+      wbraid: trackingPayload.wbraid,
+      fbclid: trackingPayload.fbclid,
+      fbp: trackingPayload.fbp,
+      fbc: trackingPayload.fbc,
+      gclientid: trackingPayload.gclientid,
+      ga_utm: `${trackingPayload.utm_source || ""}|${trackingPayload.utm_medium || ""}|${trackingPayload.utm_campaign || ""}`,
+      click_id: trackingPayload.click_id,
+      utm_referrer: trackingPayload.utm_referrer,
+      landing_page: trackingPayload.landing_page,
+      first_page: trackingPayload.first_page,
+      last_page: trackingPayload.last_page,
+      page_path: trackingPayload.page_path,
+      page_url: trackingPayload.page_url,
       protocol_id: protocolId,
-      timestamp: new Date().toISOString(),
+      timestamp: trackingPayload.timestamp,
     };
 
     trackEvent("form_submit", {
-      origin: "chat_widget",
-      had_celebrations: true,
-      ...webhookPayload,
+      ...buildAnalyticsLeadEventPayload("form_submit", {
+        name: leadData.name,
+        phone: leadData.whatsapp,
+        email: leadData.email,
+        extra: {
+          origin: "chat_widget",
+          had_celebrations: true,
+        },
+      }),
     });
 
     fetch("https://hook.eu2.make.com/a8npmvf1rzbfjw8c1iigmm1lqezfhd37", {
@@ -400,8 +407,15 @@ export default function LeadChatWidgetRedirect({
         origin: "chat_widget",
         phone: CONTACT.PHONE_DISPLAY,
         ua: isMobile ? "mobile" : "desktop",
+        ...trackingPayload,
       });
 
+      trackWhatsAppClick(origin, {
+        page_path: trackingPayload.page_path,
+        origin: "chat_widget_redirect",
+        protocol_id: protocolId,
+        destination_url: waUrl,
+      });
       window.open(waUrl, "_blank");
     }
     
@@ -514,7 +528,10 @@ export default function LeadChatWidgetRedirect({
       )}
 
       {isOpen && (
-        <div className="fixed inset-0 z-[120] flex items-end justify-center md:items-center md:justify-end md:pr-6 md:pb-6">
+        <div
+          className="fixed inset-0 z-[120] flex items-end justify-center md:items-center md:justify-end md:pr-6 md:pb-6"
+          data-gtm-suppress-click="true"
+        >
           <div
             className="absolute inset-0 bg-black/40 backdrop-blur-sm"
             onClick={handleClose}

@@ -15,9 +15,9 @@ import {
 import { formatBRPhone } from "@/lib/phoneMask";
 import avatarImage from "@/assets/dra-bruna-profile.avif";
 import { ZodError } from "zod";
-import { trackEvent, trackLeadChatAbandonment } from "@/lib/analytics";
-import { getStoredUTMContext } from "@/lib/utm";
+import { trackEvent, trackLeadChatAbandonment, trackWhatsAppClick } from "@/lib/analytics";
 import { getSessionId } from "@/lib/sessionTracking";
+import { buildAnalyticsLeadEventPayload, buildLeadTrackingPayload } from "@/lib/tracking";
 
 type Step = "name" | "whatsapp" | "email" | "confirm";
 
@@ -331,22 +331,9 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
     triggerConfettiCelebration();
     showMilestoneToast("confirm");
     
-    const utmContext = getStoredUTMContext();
-    
-    let gaClientId = "";
-    if (typeof document !== "undefined") {
-      const gaCookie = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("_ga="));
-      if (gaCookie) {
-        const parts = gaCookie.split(".");
-        if (parts.length >= 4) {
-          gaClientId = `${parts[2]}.${parts[3]}`;
-        }
-      }
-    }
+    const trackingPayload = buildLeadTrackingPayload();
 
-    const protocolId = utmContext.params.click_id || generateFallbackId();
+    const protocolId = generateFallbackId();
 
     const baseWebhookPayload = {
       nome: leadData.name || "",
@@ -354,23 +341,37 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       email: leadData.email || "",
       origem: origin,
       url: window.location.href,
-      referrer: utmContext.referrer || "",
-      utm_source: utmContext.params.utm_source || "",
-      utm_medium: utmContext.params.utm_medium || "",
-      utm_campaign: utmContext.params.utm_campaign || "",
-      utm_content: utmContext.params.utm_content || "",
-      utm_term: utmContext.params.utm_term || "",
-      utm_id: utmContext.params.utm_id || "",
-      utm_source_platform: utmContext.params.utm_source_platform || "",
-      utm_creative_format: utmContext.params.utm_creative_format || "",
-      utm_marketing_tactic: utmContext.params.utm_marketing_tactic || "",
-      gclid: utmContext.params.gclid || "",
-      fbclid: utmContext.params.fbclid || "",
-      gclientid: gaClientId,
-      ga_utm: `${utmContext.params.utm_source || ""}|${utmContext.params.utm_medium || ""}|${utmContext.params.utm_campaign || ""}`,
-      click_id: utmContext.params.click_id || "",
+      referrer: trackingPayload.referrer,
+      utm_source: trackingPayload.utm_source,
+      utm_medium: trackingPayload.utm_medium,
+      utm_campaign: trackingPayload.utm_campaign,
+      utm_content: trackingPayload.utm_content,
+      utm_term: trackingPayload.utm_term,
+      utm_id: trackingPayload.utm_id,
+      utm_adgroup: trackingPayload.utm_adgroup,
+      utm_matchtype: trackingPayload.utm_matchtype,
+      utm_device: trackingPayload.utm_device,
+      utm_network: trackingPayload.utm_network,
+      utm_source_platform: trackingPayload.utm_source_platform,
+      utm_creative_format: trackingPayload.utm_creative_format,
+      utm_marketing_tactic: trackingPayload.utm_marketing_tactic,
+      gclid: trackingPayload.gclid,
+      gbraid: trackingPayload.gbraid,
+      wbraid: trackingPayload.wbraid,
+      fbclid: trackingPayload.fbclid,
+      fbp: trackingPayload.fbp,
+      fbc: trackingPayload.fbc,
+      gclientid: trackingPayload.gclientid,
+      ga_utm: `${trackingPayload.utm_source || ""}|${trackingPayload.utm_medium || ""}|${trackingPayload.utm_campaign || ""}`,
+      click_id: trackingPayload.click_id,
+      utm_referrer: trackingPayload.utm_referrer,
+      landing_page: trackingPayload.landing_page,
+      first_page: trackingPayload.first_page,
+      last_page: trackingPayload.last_page,
+      page_path: trackingPayload.page_path,
+      page_url: trackingPayload.page_url,
       protocol_id: protocolId,
-      timestamp: new Date().toISOString(),
+      timestamp: trackingPayload.timestamp,
     };
 
     // Adiciona dados do Quiz se disponível
@@ -427,11 +428,17 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
     } : baseWebhookPayload;
 
     trackEvent("form_submit", {
-      origin: "chat_widget",
-      had_celebrations: true,
-      tem_quiz_data: !!quizData,
-      tem_mapa_data: !!mapaData,
-      ...webhookPayload,
+      ...buildAnalyticsLeadEventPayload("form_submit", {
+        name: leadData.name,
+        phone: leadData.whatsapp,
+        email: leadData.email,
+        extra: {
+          origin: "chat_widget",
+          had_celebrations: true,
+          tem_quiz_data: !!quizData,
+          tem_mapa_data: !!mapaData,
+        },
+      }),
     });
 
     fetch("https://hook.eu2.make.com/a8npmvf1rzbfjw8c1iigmm1lqezfhd37", {
@@ -467,8 +474,15 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       ua: isMobile ? "mobile" : "desktop",
       tem_quiz_data: !!quizData,
       tem_mapa_data: !!mapaData,
+      ...trackingPayload,
     });
 
+    trackWhatsAppClick(origin, {
+      page_path: trackingPayload.page_path,
+      origin: "chat_widget",
+      protocol_id: protocolId,
+      destination_url: waUrl,
+    });
     window.open(waUrl, "_blank");
     
     setTimeout(() => {
@@ -580,7 +594,10 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       )}
 
       {isOpen && (
-        <div className="fixed inset-0 z-[120] flex items-end justify-center md:items-center md:justify-end md:pr-6 md:pb-6">
+        <div
+          className="fixed inset-0 z-[120] flex items-end justify-center md:items-center md:justify-end md:pr-6 md:pb-6"
+          data-gtm-suppress-click="true"
+        >
           <div
             className="absolute inset-0 bg-black/40 backdrop-blur-sm"
             onClick={handleClose}

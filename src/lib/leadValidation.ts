@@ -6,7 +6,7 @@ export const leadNameSchema = z.object({
     .trim()
     .min(3, "Nome deve ter pelo menos 3 caracteres")
     .max(100, "Nome muito longo")
-    .regex(/^[a-zA-ZÀ-ÿ\s]+$/, "Use apenas letras e espaços"),
+    .regex(/^[a-zA-ZÀ-ÿ\s'’.-]+$/, "Use apenas letras e caracteres comuns de nomes"),
 });
 
 export const leadWhatsAppSchema = z.object({
