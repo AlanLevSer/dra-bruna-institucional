@@ -18,6 +18,7 @@ import { ZodError } from "zod";
 import { trackEvent, trackLeadChatAbandonment, trackWhatsAppClick } from "@/lib/analytics";
 import { getSessionId } from "@/lib/sessionTracking";
 import { buildAnalyticsLeadEventPayload, buildLeadTrackingPayload } from "@/lib/tracking";
+import { queueFailedLeadPayload, submitLeadPayload } from "@/lib/leadDelivery";
 
 type Step = "name" | "whatsapp" | "email" | "confirm";
 
@@ -64,8 +65,10 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [inputValue, setInputValue] = useState("");
   const [completedSteps, setCompletedSteps] = useState<Step[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const sessionId = useRef(getSessionId());
+  const submitLockRef = useRef(false);
 
   const handleOpen = useCallback(() => {
     setIsOpen(true);
@@ -325,7 +328,13 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
     return `LD${Date.now().toString(36).toUpperCase()}`;
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
+    if (isSubmitting || submitLockRef.current) {
+      return;
+    }
+
+    submitLockRef.current = true;
+    setIsSubmitting(true);
     triggerHapticFeedback();
     playProgressSound();
     triggerConfettiCelebration();
@@ -427,71 +436,87 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       tipo_resultado: "mapa_metabolico",
     } : baseWebhookPayload;
 
-    trackEvent("form_submit", {
-      ...buildAnalyticsLeadEventPayload("form_submit", {
-        name: leadData.name,
-        phone: leadData.whatsapp,
-        email: leadData.email,
-        extra: {
-          origin: "chat_widget",
-          had_celebrations: true,
-          tem_quiz_data: !!quizData,
-          tem_mapa_data: !!mapaData,
-        },
-      }),
-    });
+    const openWhatsApp = () => {
+      let baseMessage = `Oi, Dra. Bruna!\n\nAcabei de conhecer seu trabalho e quero saber como você pode me ajudar a transformar minha saúde.`;
 
-    fetch("https://hook.eu2.make.com/a8npmvf1rzbfjw8c1iigmm1lqezfhd37", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(webhookPayload),
-    }).catch(() => {});
+      if (quizData) {
+        baseMessage = quizData.resumoWhatsApp;
+      } else if (mapaData) {
+        baseMessage = mapaData.resumoWhatsApp;
+      }
 
-    // Constrói mensagem com resumo do Quiz/Mapa se disponível
-    let baseMessage = `Oi, Dra. Bruna!\n\nAcabei de conhecer seu trabalho e quero saber como você pode me ajudar a transformar minha saúde.`;
-    
-    if (quizData) {
-      baseMessage = quizData.resumoWhatsApp;
-    } else if (mapaData) {
-      baseMessage = mapaData.resumoWhatsApp;
+      const whatsappMessage = encodeURIComponent(
+        `${baseMessage}\n\n---\n⚠️ *Guarde esta mensagem!*\nEla é seu comprovante de atendimento.\n\n📋 Protocolo: ${protocolId}`
+      );
+
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi/i.test(
+        navigator.userAgent
+      );
+      const waUrl = isMobile
+        ? `https://wa.me/${CONTACT.WHATSAPP_NUMBER}?text=${whatsappMessage}`
+        : `https://web.whatsapp.com/send?phone=${CONTACT.WHATSAPP_NUMBER}&text=${whatsappMessage}`;
+
+      trackEvent("whatsapp_redirect", {
+        origin: "chat_widget",
+        phone: CONTACT.PHONE_DISPLAY,
+        ua: isMobile ? "mobile" : "desktop",
+        tem_quiz_data: !!quizData,
+        tem_mapa_data: !!mapaData,
+        ...trackingPayload,
+      });
+
+      trackWhatsAppClick(origin, {
+        page_path: trackingPayload.page_path,
+        origin: "chat_widget",
+        protocol_id: protocolId,
+        destination_url: waUrl,
+      });
+      window.open(waUrl, "_blank");
+
+      setTimeout(() => {
+        setIsOpen(false);
+        setStep("name");
+        setLeadData({});
+        setInputValue("");
+        setErrors({});
+      }, 500);
+    };
+
+    try {
+      await submitLeadPayload(webhookPayload);
+
+      trackEvent("form_submit", {
+        ...buildAnalyticsLeadEventPayload("form_submit", {
+          name: leadData.name,
+          phone: leadData.whatsapp,
+          email: leadData.email,
+          extra: {
+            origin: "chat_widget",
+            had_celebrations: true,
+            tem_quiz_data: !!quizData,
+            tem_mapa_data: !!mapaData,
+          },
+        }),
+      });
+    } catch (error) {
+      console.error("Error submitting lead:", error);
+      queueFailedLeadPayload(webhookPayload);
+      trackEvent("lead_submit_failed_whatsapp_fallback", {
+        origin: "chat_widget",
+        source: origin,
+        protocol_id: protocolId,
+        page_path: trackingPayload.page_path,
+        tem_quiz_data: !!quizData,
+        tem_mapa_data: !!mapaData,
+      });
+    } finally {
+      try {
+        openWhatsApp();
+      } finally {
+        submitLockRef.current = false;
+        setIsSubmitting(false);
+      }
     }
-
-    const whatsappMessage = encodeURIComponent(
-      `${baseMessage}\n\n---\n⚠️ *Guarde esta mensagem!*\nEla é seu comprovante de atendimento.\n\n📋 Protocolo: ${protocolId}`
-    );
-
-    // Prefer web.whatsapp.com on desktop to avoid environments that block api.whatsapp.com
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi/i.test(
-      navigator.userAgent
-    );
-    const waUrl = isMobile
-      ? `https://wa.me/${CONTACT.WHATSAPP_NUMBER}?text=${whatsappMessage}`
-      : `https://web.whatsapp.com/send?phone=${CONTACT.WHATSAPP_NUMBER}&text=${whatsappMessage}`;
-
-    trackEvent("whatsapp_redirect", {
-      origin: "chat_widget",
-      phone: CONTACT.PHONE_DISPLAY,
-      ua: isMobile ? "mobile" : "desktop",
-      tem_quiz_data: !!quizData,
-      tem_mapa_data: !!mapaData,
-      ...trackingPayload,
-    });
-
-    trackWhatsAppClick(origin, {
-      page_path: trackingPayload.page_path,
-      origin: "chat_widget",
-      protocol_id: protocolId,
-      destination_url: waUrl,
-    });
-    window.open(waUrl, "_blank");
-    
-    setTimeout(() => {
-      setIsOpen(false);
-      setStep("name");
-      setLeadData({});
-      setInputValue("");
-      setErrors({});
-    }, 500);
   };
 
   const handleInputChange = (value: string) => {
@@ -794,6 +819,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
                     variant="outline"
                     onClick={handleBack}
                     className="flex-1"
+                    disabled={isSubmitting}
                   >
                     <ArrowLeft size={18} className="mr-2" />
                     Voltar
@@ -801,6 +827,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
                   <Button
                     onClick={handleConfirm}
                     className="flex-1"
+                    disabled={isSubmitting}
                   >
                     Confirmar e falar no WhatsApp
                   </Button>
