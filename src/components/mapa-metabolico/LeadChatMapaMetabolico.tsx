@@ -9,6 +9,7 @@ import { trackFormSubmission } from "@/lib/tracking";
 import avatarAtendente from "@/assets/avatar-atendente.avif";
 import type { Answers, ScoreResult } from "@/lib/mapa-metabolico/types";
 import { buildLeadTrackingPayload } from "@/lib/tracking";
+import { submitLeadPayload } from "@/lib/leadDelivery";
 
 type Step = "qualification1" | "qualification2" | "name" | "whatsapp" | "email" | "confirm" | "success";
 
@@ -29,8 +30,6 @@ interface LeadChatMapaMetabolicoProps {
   scoring: ScoreResult;
   origin?: string;
 }
-
-const WEBHOOK_URL = "https://hook.eu2.make.com/a8npmvf1rzbfjw8c1iigmm1lqezfhd37";
 
 export const LeadChatMapaMetabolico = ({
   isOpen,
@@ -138,6 +137,10 @@ export const LeadChatMapaMetabolico = ({
   };
 
   const handleConfirm = async () => {
+    if (isSubmitting) {
+      return;
+    }
+
     if (!leadData.consent) {
       alert("Por favor, autorize o contato para continuar.");
       return;
@@ -212,11 +215,7 @@ export const LeadChatMapaMetabolico = ({
 
       const webhookPayload = baseWebhookPayload;
 
-      await fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(webhookPayload),
-      });
+      await submitLeadPayload(webhookPayload);
 
       trackEvent("lead_converted", {
         source: origin,

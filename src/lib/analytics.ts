@@ -5,6 +5,7 @@ import {
   persistTrackingParams,
   trackEvent,
 } from "./tracking";
+import { queueLeadEventPayload, submitLeadEventPayload } from "./leadDelivery";
 import { getStoredUTMContext } from "./utm";
 
 export { trackEvent } from "./tracking";
@@ -26,9 +27,6 @@ declare global {
     pandaplayer?: (id: string) => PandaPlayerInstance | undefined;
   }
 }
-
-const WHATSAPP_WEBHOOK_URL =
-  "https://hook.eu2.make.com/a8npmvf1rzbfjw8c1iigmm1lqezfhd37";
 
 const sendToAnalytics = (metric: Metric) => {
   const payload = {
@@ -196,12 +194,9 @@ const sendWhatsAppWebhook = (source: string, params?: Record<string, unknown>) =
     console.log("[WhatsApp webhook] payload", payload);
   }
 
-  const body = JSON.stringify(payload);
-
   try {
     if (navigator.sendBeacon) {
-      const blob = new Blob([body], { type: "application/json" });
-      if (navigator.sendBeacon(WHATSAPP_WEBHOOK_URL, blob)) {
+      if (queueLeadEventPayload(payload)) {
         return;
       }
     }
@@ -210,10 +205,7 @@ const sendWhatsAppWebhook = (source: string, params?: Record<string, unknown>) =
   }
 
   try {
-    void fetch(WHATSAPP_WEBHOOK_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body,
+    void submitLeadEventPayload(payload, {
       keepalive: true,
     }).catch((error) => {
       if (typeof console !== "undefined") {
@@ -341,18 +333,14 @@ export const trackPartialLead = (data: {
   });
 
   try {
-    fetch(WHATSAPP_WEBHOOK_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        type: "partial_lead",
-        ...data.partial_data,
-        last_step: data.last_step,
-        source: data.source,
-        page_path: data.page_path,
-        session_id: data.session_id,
-        timestamp: new Date().toISOString(),
-      }),
+    void submitLeadEventPayload({
+      type: "partial_lead",
+      ...data.partial_data,
+      last_step: data.last_step,
+      source: data.source,
+      page_path: data.page_path,
+      session_id: data.session_id,
+      timestamp: new Date().toISOString(),
     }).catch(() => {});
   } catch (e) {
     void e;

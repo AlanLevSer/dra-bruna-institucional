@@ -9,6 +9,7 @@ import { trackEvent, trackLeadChatAbandonment, trackWhatsAppClick } from "@/lib/
 import { getSessionId } from "@/lib/sessionTracking";
 import { trackFormSubmission } from "@/lib/tracking";
 import { buildLeadTrackingPayload } from "@/lib/tracking";
+import { submitLeadPayload } from "@/lib/leadDelivery";
 
 type Step = 
   | "qualification1" 
@@ -37,8 +38,6 @@ interface LeadChatWidgetVSLProps {
   showFloatingButton?: boolean;
   autoOpen?: boolean;
 }
-
-const WEBHOOK_URL = "https://hook.eu2.make.com/a8npmvf1rzbfjw8c1iigmm1lqezfhd37";
 
 export const LeadChatWidgetVSL = ({ 
   origin = "vsl_metodo_levser",
@@ -130,6 +129,10 @@ export const LeadChatWidgetVSL = ({
   };
 
   const handleConfirm = async () => {
+    if (isSubmitting) {
+      return;
+    }
+
     if (!leadData.consent) {
       alert("Por favor, autorize o contato para continuar.");
       return;
@@ -211,11 +214,7 @@ export const LeadChatWidgetVSL = ({
       };
 
       // Send to webhook
-      await fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(webhookPayload),
-      });
+      await submitLeadPayload(webhookPayload);
 
       // Track conversion
       trackEvent("lead_converted", {
