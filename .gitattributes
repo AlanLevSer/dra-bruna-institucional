@@ -1,0 +1,10 @@
+# Política de line endings: normalizar todos os arquivos de texto para LF no commit.
+# Desenvolvedores em Windows terão CRLF no working tree (checkout automático),
+# mas os commits sempre armazenam LF.
+* text=auto eol=lf
+
+# Binários — sem conversão de line ending
+*.avif binary
+*.webp binary
+*.ico  binary
+*.lockb binary
