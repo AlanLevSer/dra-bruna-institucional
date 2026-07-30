@@ -1,8 +1,8 @@
-type NodeRequest = AsyncIterable<Buffer | string> & {
+export type NodeRequest = AsyncIterable<Buffer | string> & {
   method?: string;
 };
 
-type NodeResponse = {
+export type NodeResponse = {
   status: (code: number) => NodeResponse;
   setHeader: (name: string, value: string) => void;
   end: (body?: string) => void;
