@@ -22,6 +22,13 @@ import { queueFailedLeadPayload, submitLeadPayload } from "@/lib/leadDelivery";
 
 type Step = "name" | "whatsapp" | "email" | "confirm";
 
+interface LeadChatOpenData {
+  cta_source?: string;
+  program_selected?: string;
+}
+
+const SESSION_KEY_PROGRAM = "lc_program_selected";
+
 type Props = {
   showFloatingButton?: boolean;
   origin?: string;
@@ -69,17 +76,28 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
   const inputRef = useRef<HTMLInputElement>(null);
   const sessionId = useRef(getSessionId());
   const submitLockRef = useRef(false);
+  const ctaSourceRef = useRef("");
+  const programSelectedRef = useRef("");
+  const formStartFiredRef = useRef(false);
 
-  const handleOpen = useCallback(() => {
+  const handleOpen = useCallback((data?: LeadChatOpenData) => {
+    ctaSourceRef.current = data?.cta_source ?? "";
+    programSelectedRef.current =
+      data?.program_selected ??
+      sessionStorage.getItem(SESSION_KEY_PROGRAM) ??
+      "";
+    formStartFiredRef.current = false;
+
     setIsOpen(true);
     trackEvent("chat_open", {
       page_slug: window.location.pathname,
       origin,
+      ...(ctaSourceRef.current ? { cta_source: ctaSourceRef.current } : {}),
+      ...(programSelectedRef.current ? { program_selected: programSelectedRef.current } : {}),
     });
   }, [origin]);
 
   const handleClose = useCallback(() => {
-    // Track abandonment if not completed
     if (step !== "confirm") {
       trackLeadChatAbandonment({
         source: origin,
@@ -88,7 +106,8 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
         session_id: sessionId.current,
       });
     }
-    
+
+    sessionStorage.removeItem(SESSION_KEY_PROGRAM);
     setIsOpen(false);
     trackEvent("chat_close", {
       step,
@@ -104,10 +123,10 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
         close: handleClose,
         isOpen: () => isOpen,
       };
-      
+
       console.log("[LeadChat] Widget registered globally", { origin, showFloatingButton });
     }
-    
+
     return () => {
       // Cleanup on unmount
       if (typeof window !== "undefined") {
@@ -115,6 +134,12 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       }
     };
   }, [handleClose, handleOpen, isOpen, origin, showFloatingButton]);
+
+  // Clear program context on unmount to prevent stale sessionStorage if the user
+  // navigates away via React Router without closing the modal (handleClose not called).
+  useEffect(() => {
+    return () => { sessionStorage.removeItem(SESSION_KEY_PROGRAM); };
+  }, []);
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
@@ -349,6 +374,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       whatsapp: leadData.whatsapp || "",
       email: leadData.email || "",
       origem: origin,
+      program_selected: programSelectedRef.current || "",
       url: window.location.href,
       referrer: trackingPayload.referrer,
       utm_source: trackingPayload.utm_source,
@@ -462,6 +488,8 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
         ua: isMobile ? "mobile" : "desktop",
         tem_quiz_data: !!quizData,
         tem_mapa_data: !!mapaData,
+        ...(ctaSourceRef.current ? { cta_source: ctaSourceRef.current } : {}),
+        ...(programSelectedRef.current ? { program_selected: programSelectedRef.current } : {}),
         ...trackingPayload,
       });
 
@@ -495,6 +523,8 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
             had_celebrations: true,
             tem_quiz_data: !!quizData,
             tem_mapa_data: !!mapaData,
+            ...(ctaSourceRef.current ? { cta_source: ctaSourceRef.current } : {}),
+            ...(programSelectedRef.current ? { program_selected: programSelectedRef.current } : {}),
           },
         }),
       });
@@ -527,6 +557,20 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       setInputValue(value);
     }
     setErrors({});
+
+    // PATCH_C: fire form_start exactly once per form open, on first real input in the name field
+    if (!formStartFiredRef.current && step === "name" && value.trim() !== "") {
+      formStartFiredRef.current = true;
+      trackEvent("form_start", {
+        page_slug: window.location.pathname,
+        ...(origin === "plasma-vendas" ? { route: "plasma", lp_variant: "plasma_a" } : {}),
+        origin,
+        ...(ctaSourceRef.current ? { cta_source: ctaSourceRef.current } : {}),
+        ...(programSelectedRef.current ? { program_selected: programSelectedRef.current } : {}),
+        form_step: "name",
+        session_id: sessionId.current,
+      });
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -571,8 +615,8 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
   return (
     <>
       {showFloatingButton && !isOpen && (
-        <div 
-          onClick={handleOpen}
+        <div
+          onClick={() => handleOpen()}
           className="fixed bottom-6 right-6 z-[120] flex items-center gap-3 cursor-pointer hover:scale-105 transition-all duration-300 animate-fade-in group"
           role="button"
           aria-label="Comece sua jornada hoje"
@@ -844,7 +888,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
 declare global {
   interface Window {
     LeadChat: {
-      open: () => void;
+      open: (data?: LeadChatOpenData) => void;
       close: () => void;
       isOpen: () => boolean;
     };
