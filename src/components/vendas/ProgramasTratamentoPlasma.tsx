@@ -6,6 +6,15 @@ import { trackEvent } from "@/lib/analytics";
 import { openLeadChat } from "@/lib/leadChat";
 import { CONTACT } from "@/lib/constants";
 
+// Canonical program slugs — never use raw visual text downstream
+const PROGRAM_SLUG_MAP: Record<string, string> = {
+  "Sessão Única": "plasma_sessao_unica",
+  "Plasma Intermediário": "plasma_intermediario",
+  "Pacote Plasma": "plasma_pacote_completo",
+};
+
+const SESSION_KEY_PROGRAM = "lc_program_selected";
+
 interface ProgramaItem {
   titulo: string;
   descricao: string;
@@ -58,9 +67,13 @@ export const ProgramasTratamentoPlasma = () => {
     },
   ];
 
-  const escolher = (programa: string) => {
-    trackEvent("programa_clicked", { source: "plasma_programas", programa });
-    openLeadChat("plasma_programas", CONTACT.WHATSAPP_PLASMA_VENDAS);
+  const escolher = (titulo: string) => {
+    const slug = PROGRAM_SLUG_MAP[titulo] ?? titulo.toLowerCase().replace(/\s+/g, "_");
+    sessionStorage.setItem(SESSION_KEY_PROGRAM, slug);
+    trackEvent("programa_clicked", { source: "plasma_programas", programa: slug });
+    openLeadChat("plasma_programas", CONTACT.WHATSAPP_PLASMA_VENDAS, {
+      program_selected: slug,
+    });
   };
 
   return (

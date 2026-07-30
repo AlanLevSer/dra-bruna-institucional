@@ -5,28 +5,33 @@ export interface ConversionMetadata {
   section?: string;
   position?: "hero" | "middle" | "bottom";
   scroll_depth?: number;
+  /** Forwarded to window.LeadChat.open() so chat_open includes program context */
+  program_selected?: string;
 }
 
 /**
  * Opens the LeadChat widget with robust fallback handling
- * 
- * @param source - Tracking source identifier
+ *
+ * @param source - Tracking source identifier (also used as cta_source in chat_open)
  * @param fallbackUrl - WhatsApp URL to use if widget is unavailable
- * @param conversionMetadata - Optional metadata for conversion tracking
+ * @param conversionMetadata - Optional metadata for conversion tracking and widget context
  * @returns Promise<boolean> - true if widget opened, false if fallback used
  */
 export const openLeadChat = (
-  source: string, 
+  source: string,
   fallbackUrl?: string,
   conversionMetadata?: ConversionMetadata
 ): Promise<boolean> => {
   return new Promise((resolve) => {
     try {
       trackEvent("cta_clicked", { source, action: "attempt_widget" });
-      
+
       // Check if widget is available
       if (typeof window !== "undefined" && window.LeadChat) {
-        window.LeadChat.open();
+        window.LeadChat.open({
+          cta_source: source,
+          program_selected: conversionMetadata?.program_selected,
+        });
         trackEvent("cta_clicked", { source, action: "widget_opened" });
         
         // Track pricing conversion if metadata provided
@@ -45,7 +50,10 @@ export const openLeadChat = (
       // Retry after short delay (widget may still be loading)
       setTimeout(() => {
         if (window.LeadChat) {
-          window.LeadChat.open();
+          window.LeadChat.open({
+            cta_source: source,
+            program_selected: conversionMetadata?.program_selected,
+          });
           trackEvent("cta_clicked", { source, action: "widget_opened_delayed" });
           
           // Track pricing conversion if metadata provided

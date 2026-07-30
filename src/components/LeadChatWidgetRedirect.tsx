@@ -774,7 +774,7 @@ export default function LeadChatWidgetRedirect({
 declare global {
   interface Window {
     LeadChat: {
-      open: () => void;
+      open: (data?: { cta_source?: string; program_selected?: string }) => void;
       close: () => void;
       isOpen: () => boolean;
     };
