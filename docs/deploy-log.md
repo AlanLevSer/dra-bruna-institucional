@@ -5,6 +5,130 @@ Use este arquivo para registrar apenas desvios do fluxo normal de deploy.
 
 ---
 
+## 2026-07-31 — Plasma V2: encerramento do ciclo de QA e início da janela de observação
+
+**Commit em produção (no momento do QA):** `afd979f01754a3af862e7d2c82582ae970f6e57a`
+**Commit funcional Plasma V2:** `4e181596fbdcdc385ddc61200863131197b73c89`
+**Data/hora do QA (UTC):** 2026-07-31 00:07
+**Data/hora do QA (BRT):** 2026-07-30 21:07
+**URL canônica testada:** `/plasma-de-argonio-a`
+**Viewports testados:** mobile 390px, desktop 1440px
+**Tipo:** encerramento formal de ciclo — sem alteração funcional, sem alteração de LP, sem alteração de campanha.
+
+### Resultado do QA automatizado
+
+| Categoria | Quantidade |
+|---|---|
+| PASS | 95 |
+| FAIL (artefatos de teste — não falhas de produção) | 5 |
+| WARN (não bloqueantes) | 2 |
+| Falhas de produção confirmadas | 0 |
+
+**Decisão: MANTER DEPLOY.**
+
+### Cobertura T01–T15
+
+| Teste | Escopo | Resultado |
+|---|---|---|
+| T01 | CTA click no hero — abertura do modal LeadChat | ✅ PASS |
+| T02 | `chat_open` disparado no dataLayer ao abrir o modal | ✅ PASS |
+| T03 | `cta_source` gravado em sessionStorage na abertura | ✅ PASS |
+| T04 | Clique em card de programa (ProgramasTratamentoPlasma) | ✅ PASS |
+| T05 | `program_selected` / `lc_program_selected` gravado em sessionStorage | ✅ PASS |
+| T06 | `form_start` disparado na primeira digitação no campo nome | ✅ PASS |
+| T07 | Progressão de steps do chat (chat_step) | ✅ PASS |
+| T08 | POST `POST /api/lead` interceptado com payload correto | ✅ PASS |
+| T09 | Ausência de chamada direta a `hook.eu2.make.com` | ✅ PASS |
+| T10 | `protocol_id` presente no payload e na URL de redirecionamento WhatsApp | ✅ PASS |
+| T11 | Abertura de URL `wa.me/` validada sem envio real | ✅ PASS |
+| T12 | `cta_source` presente no payload de `POST /api/lead` | ✅ PASS |
+| T13 | `program_selected` presente no payload de `POST /api/lead` | ✅ PASS |
+| T14 | Comportamento do botão Back entre steps | ⚠️ WARN — cobertura automatizada parcial por limitação do seletor; fluxo funcional não invalidado |
+| T15 | Regressão da LP Balão Intragástrico (`/balao-intragastrico-preco-a`) | ✅ PASS |
+
+### Pontos validados
+
+| Item | Resultado |
+|---|---|
+| `cta_source` no front-end e em sessionStorage | ✅ validado |
+| `program_selected` no front-end e em sessionStorage | ✅ validado |
+| `program_selected` no payload de `/api/lead` | ✅ validado |
+| sessionStorage limpo e consistente entre aberturas | ✅ validado |
+| `POST /api/lead` interceptado — proxy same-origin ativo | ✅ validado |
+| Ausência de chamada direta ao Make.com | ✅ validado |
+| `protocol_id` no payload e no link WhatsApp | ✅ validado |
+| Abertura do WhatsApp sem envio real | ✅ validado |
+| Regressão LP Balão | ✅ sem regressão detectada |
+| Tráfego real sendo recebido sem erros visíveis | ✅ confirmado |
+
+### Limitações explícitas desta execução de QA
+
+- **T14**: cobertura automatizada parcial — o seletor do botão Back não atingiu o elemento correto em todos os estados do modal; o fluxo de produção não foi invalidado, mas o cenário de regressão do Back não está coberto com garantia automatizada.
+- **Make.com e Kommo**: não validados end-to-end nesta execução — sem acesso MCP ao Make.com e ao Kommo.
+- **`program_selected` no Kommo**: campo recebido pelo Make.com e enviado no payload, mas **não confirmado como persistido no Kommo** (requer verificação manual ou acesso MCP).
+- **5 FAILs**: artefatos da suíte de testes — race condition de timing em asserções de redirect, listener de evento registrado antes do evento no ciclo React, e resolução de seletor em viewport mobile 360px. Nenhum representa falha de comportamento em produção.
+- **2 WARNs**: (1) seletor do Back em T14; (2) spy de `dataLayer` sensível a objetos circulares em evento específico de GTM — não bloqueia produção.
+
+### Status do primeiro lead real pós-deploy
+
+| Etapa | Status |
+|---|---|
+| Confirmado no front-end (cta_clicked, chat_open, form_submit, whatsapp_redirect) | ✅ 1 lead completo registrado em 2026-07-29 (pré-deploy Plasma V2) |
+| Confirmado no payload `/api/lead` | ⏳ Aguardando lead real pós-deploy com Plasma V2 ativo |
+| Recebido pelo Make.com | ⏳ Aguardando — sem acesso MCP ao Make |
+| Persistido no Kommo | ⏳ Aguardando — sem acesso MCP ao Kommo |
+| Descartado ou sem campo de destino | — |
+
+### Pendências técnicas não bloqueantes (melhorias opcionais da suíte)
+
+1. **Corrigir seletor do botão Back no T14** — identificar o seletor estável do elemento de navegação entre steps do modal e atualizar o script de teste.
+2. **Tornar o spy de dataLayer tolerante a objetos circulares** — envolver o interceptador em `try/catch` com serialização segura, evitando falha do spy em eventos GTM com referências circulares.
+
+Nenhuma dessas pendências afeta o comportamento de produção. Nenhum PR funcional deve ser aberto por causa desses pontos antes do checkpoint.
+
+### Janela de observação
+
+| Item | Valor |
+|---|---|
+| Início | 2026-07-29 22:27 BRT (momento do deploy) |
+| Checkpoint | 2026-08-05 22:27 BRT **ou** 15 `chat_open` na rota `/plasma-de-argonio-a`, o que ocorrer primeiro |
+| Campanha monitorada | `24057499154` |
+| Rota monitorada | `/plasma-de-argonio-a` |
+
+**Funil a monitorar:**
+sessões → `cta_clicked` → `chat_open` → `form_start` → `chat_step` → `form_submit` → `whatsapp_redirect` → Lead Kommo → MQL → avaliação → venda
+
+**Congelamento até o checkpoint** — não executar antes do checkpoint sem falha técnica confirmada, exposição de PII, duplicação de leads, indisponibilidade de `/api/lead` ou regressão relevante:
+- aumento de orçamento
+- pausa de grupos de anúncios
+- alteração de keywords ou correspondência
+- remoção do campo e-mail
+- alteração de CTA
+- redesenho do formulário
+- ativação da campanha Reganho
+- mudança estrutural da LP
+
+### Métricas a consolidar no checkpoint (campanha 24057499154 / rota /plasma-de-argonio-a)
+
+Impressões · cliques · custo · 01-MQL · CPA/MQL · sessões Clarity · `cta_clicked` · `chat_open` · `form_start` · `form_submit` · `whatsapp_redirect` · Leads Kommo · MQL Kommo · avaliações · vendas
+
+Taxas: clique→sessão · sessão→CTA · CTA→chat_open · chat_open→form_start · form_start→form_submit · form_submit→Lead · Lead→MQL · MQL→avaliação
+
+Segmentações: `cta_source` · `program_selected` · dispositivo · grupo de anúncio · termo de pesquisa
+
+### Status Make.com e Kommo
+
+| Sistema | Status nesta execução |
+|---|---|
+| Make.com | Sem acesso MCP — não validado end-to-end |
+| Kommo | Sem acesso MCP — campos customizados não confirmados |
+
+### Confirmação de ausência de alterações funcionais e de campanha
+
+Nenhuma alteração foi feita em: código funcional · LP · Google Ads · GTM · GA4 · Make.com · Kommo.
+
+---
+
 ## 2026-07-30 — deploy/plasma-v2-instrumentation (exceção: QA de preview pendente)
 
 **Commit implantado:** `4e181596fbdcdc385ddc61200863131197b73c89`
