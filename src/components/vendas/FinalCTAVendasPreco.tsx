@@ -3,26 +3,35 @@ import { GrafismoDecor } from "@/components/GrafismoDecor";
 import { Heart, Sparkles, MapPin, Phone, Mail, Clock, Instagram } from "lucide-react";
 import { CONTACT } from "@/lib/constants";
 import { openLeadChat } from "@/lib/leadChat";
-import { trackPricingCTAClick } from "@/lib/analytics";
+import { trackEvent, trackPricingCTAClick } from "@/lib/analytics";
 
 const FinalCTAVendasPreco = () => {
   const handleWhatsApp = () => {
     const scrollDepth = Math.round(
       (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
     );
-    
+
     trackPricingCTAClick({
       source: 'final_cta_preco',
       section: 'final_cta',
       position: 'bottom',
       scroll_depth: scrollDepth,
     });
-    
+
     openLeadChat('final_cta_preco', CONTACT.WHATSAPP_BALAO_VENDAS, {
       section: 'final_cta',
       position: 'bottom',
       scroll_depth: scrollDepth,
     });
+  };
+
+  const handleWhatsAppPhoneRow = () => {
+    trackEvent("whatsapp_phone_row", {
+      cta_source: "whatsapp_phone_row",
+      section: "final_cta",
+      page_path: window.location.pathname,
+    });
+    openLeadChat("whatsapp_phone_row", CONTACT.WHATSAPP_BALAO_VENDAS);
   };
 
   return (
@@ -81,13 +90,18 @@ const FinalCTAVendasPreco = () => {
                 </div>
               </div>
               
-              <div className="flex items-start gap-3">
+              <button
+                type="button"
+                onClick={handleWhatsAppPhoneRow}
+                className="flex items-start gap-3 text-left hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 rounded"
+                aria-label="Falar no WhatsApp: (11) 99702-3024"
+              >
                 <Phone className="w-5 h-5 flex-shrink-0 mt-1" />
                 <div>
-                  <p className="font-medium">WhatsApp</p>
-                  <p className="text-sm text-white/80">(11) 99702-3024</p>
+                  <p className="font-medium">WhatsApp · Ligar</p>
+                  <p className="text-sm text-white/80 underline underline-offset-2">(11) 99702-3024</p>
                 </div>
-              </div>
+              </button>
               
               <div className="flex items-start gap-3">
                 <Mail className="w-5 h-5 flex-shrink-0 mt-1" />
