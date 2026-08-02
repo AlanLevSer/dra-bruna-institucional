@@ -11,6 +11,7 @@ import { trackPricingPageView, trackPricingScrollDepth } from "@/lib/analytics";
 import { DifferentialsVendas } from "@/components/vendas/DifferentialsVendas";
 import { MediaRecognitionVendas } from "@/components/vendas/MediaRecognitionVendas";
 import { Footer } from "@/components/Footer";
+import { StickyPriceCtaMobile } from "@/components/vendas/StickyPriceCtaMobile";
 
 // Lazy imports para componentes below-the-fold
 const BenefitsListPreco = lazy(() => import("@/components/vendas/BenefitsListPreco"));
@@ -26,7 +27,7 @@ const LeadChatWidget = lazy(() => import("@/components/LeadChatWidget"));
 const BalaoIntragasticoPreco = () => {
   const scrollDepthsRef = useRef({ 25: false, 50: false, 75: false, 100: false });
   const seoData = {
-    title: "Quanto Custa o Balao Intragastrico? Valores 2025 | Dra. Bruna Durelli",
+    title: "Quanto Custa o Balao Intragastrico? Valores 2026 | Dra. Bruna Durelli",
     description: "Descubra o valor do balao intragastrico com acompanhamento completo. Perca ate 35kg em 6 meses. Parcelamento facilitado. Consulte valores agora!",
     keywords: "quanto custa balao intragastrico, preco balao gastrico, valor balao intragastrico, investimento balao, Sao Paulo, Dra. Bruna Durelli",
     canonical: "https://www.brunadurelli.com.br/balao-intragastrico-preco-a",
@@ -122,12 +123,15 @@ const BalaoIntragasticoPreco = () => {
       {/* LeadChatWidget carregado sob demanda */}
       <div id="lead-chat-widget" style={{ display: "none" }}>
         <Suspense fallback={null}>
-          <LeadChatWidget 
-            showFloatingButton={false} 
-            origin="balao-intragastrico-preco-a" 
+          <LeadChatWidget
+            showFloatingButton={false}
+            origin="balao-intragastrico-preco-a"
           />
         </Suspense>
       </div>
+
+      {/* CTA fixo mobile — aparece quando hero CTA sai do viewport */}
+      <StickyPriceCtaMobile />
     </>
   );
 };

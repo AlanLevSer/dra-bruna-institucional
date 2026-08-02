@@ -8,53 +8,69 @@ import { openLeadChat } from "@/lib/leadChat";
 import { trackPricingCTAClick } from "@/lib/analytics";
 
 const HeroVendasPreco = () => {
-  const handleWhatsApp = () => {
+  const handleCTA = () => {
     const scrollDepth = Math.round(
       (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
     );
-    
+
     trackPricingCTAClick({
-      source: 'hero_vendas_preco',
-      section: 'hero',
-      position: 'hero',
+      source: "hero_price_primary",
+      section: "hero",
+      position: "hero",
       scroll_depth: scrollDepth,
     });
-    
-    openLeadChat('hero_vendas_preco', CONTACT.WHATSAPP_BALAO_VENDAS, {
-      section: 'hero',
-      position: 'hero',
+
+    openLeadChat("hero_price_primary", CONTACT.WHATSAPP_BALAO_VENDAS, {
+      section: "hero",
+      position: "hero",
       scroll_depth: scrollDepth,
     });
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-background via-muted/30 to-background py-20 overflow-hidden">
+    <section className="relative flex items-start md:items-center bg-gradient-to-br from-background via-muted/30 to-background pt-10 pb-8 md:py-20 md:min-h-[90vh] overflow-hidden">
       <GrafismoDecor variant="background" position="top-right" size="xl" opacity={0.08} />
       <GrafismoDecor variant="background" position="bottom-left" size="lg" opacity={0.06} rotate={180} />
-      
+
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-          {/* Texto */}
-          <div className="space-y-8">
+        <div className="grid lg:grid-cols-2 gap-10 items-center max-w-7xl mx-auto">
+          {/* Texto — sempre primeiro na ordem do DOM */}
+          <div className="space-y-5 md:space-y-8">
             {/* Badge CRM */}
             <div className="inline-block">
-              <span className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium border border-primary/20">
+              <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium border border-primary/20">
                 CRM 124809 | RQE 57361 – Especialista em Obesidade
               </span>
             </div>
 
-            {/* Headline */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight text-foreground">
-              Quanto custa mudar de vida?
+            {/* H1 */}
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight text-foreground">
+              Preço do Balão Gástrico em São Paulo
             </h1>
 
-            {/* Subheadline */}
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              O balão gástrico não é um gasto, é o investimento mais inteligente que você pode fazer na sua saúde, na sua autoestima e na sua longevidade. Com acompanhamento completo e tecnologia de ponta, é possível eliminar até 35 kg em apenas 6 meses, com segurança, conforto e suporte integral.
+            {/* Subtítulo */}
+            <p className="text-base md:text-xl text-muted-foreground leading-relaxed">
+              Entenda a faixa de investimento, o que está incluído no tratamento e qual
+              possibilidade pode fazer sentido para o seu objetivo.
             </p>
 
-            {/* Card de destaque */}
-            <div className="bg-primary/5 backdrop-blur-sm rounded-xl p-6 border border-primary/10 space-y-4">
+            {/* CTA principal + microtexto */}
+            <div className="flex flex-col gap-3" id="hero-price-cta-area">
+              <Button
+                id="hero-price-cta"
+                size="lg"
+                onClick={handleCTA}
+                className="w-full sm:w-auto text-base px-8 py-6 h-auto shadow-elegant hover:shadow-hover"
+              >
+                Ver faixa de investimento
+              </Button>
+              <p className="text-xs md:text-sm text-muted-foreground">
+                Resposta imediata · Sem compromisso · Indicação definida após Avaliação Estratégica
+              </p>
+            </div>
+
+            {/* Card de credenciais — oculto em telas muito pequenas para garantir CTA acima do fold */}
+            <div className="hidden sm:block bg-primary/5 backdrop-blur-sm rounded-xl p-6 border border-primary/10 space-y-4">
               <p className="text-base md:text-lg font-medium text-foreground">
                 Quer entender o valor real de um tratamento que funciona?
               </p>
@@ -73,21 +89,10 @@ const HeroVendasPreco = () => {
                 </div>
               </div>
             </div>
-
-            {/* CTA */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                size="lg"
-                onClick={handleWhatsApp}
-                className="text-base px-8 py-6 h-auto shadow-elegant hover:shadow-hover"
-              >
-                Consultar Valores
-              </Button>
-            </div>
           </div>
 
-          {/* Imagem */}
-          <div className="relative lg:block">
+          {/* Imagem — oculta em mobile para garantir CTA above-the-fold */}
+          <div className="hidden lg:block relative">
             <div className="relative rounded-2xl overflow-hidden shadow-elegant hover:shadow-hover transition-all">
               <OptimizedImage
                 src={draBrunaHero}
