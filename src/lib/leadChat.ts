@@ -1,5 +1,6 @@
 import { CONTACT } from "./constants";
 import { trackEvent, trackPricingLeadConversion, trackWhatsAppClick } from "./analytics";
+import { buildLeadTrackingPayload } from "./tracking";
 
 export interface ConversionMetadata {
   section?: string;
@@ -7,29 +8,27 @@ export interface ConversionMetadata {
   scroll_depth?: number;
 }
 
-/**
- * Opens the LeadChat widget with robust fallback handling
- * 
- * @param source - Tracking source identifier
- * @param fallbackUrl - WhatsApp URL to use if widget is unavailable
- * @param conversionMetadata - Optional metadata for conversion tracking
- * @returns Promise<boolean> - true if widget opened, false if fallback used
- */
 export const openLeadChat = (
-  source: string, 
+  source: string,
   fallbackUrl?: string,
   conversionMetadata?: ConversionMetadata
 ): Promise<boolean> => {
   return new Promise((resolve) => {
     try {
-      trackEvent("cta_clicked", { source, action: "attempt_widget" });
-      
-      // Check if widget is available
+      // Exatamente 1 cta_clicked por ação real do usuário, com campos de atribuição Google Ads
+      const trackingPayload = buildLeadTrackingPayload();
+      trackEvent("cta_clicked", {
+        source,
+        cta_source: source,
+        ...(trackingPayload.campaign_id ? { campaign_id: trackingPayload.campaign_id } : {}),
+        ...(trackingPayload.ad_group_id ? { ad_group_id: trackingPayload.ad_group_id } : {}),
+        ...(trackingPayload.keyword ? { keyword: trackingPayload.keyword } : {}),
+      });
+
       if (typeof window !== "undefined" && window.LeadChat) {
         window.LeadChat.open({ cta_source: source });
-        trackEvent("cta_clicked", { source, action: "widget_opened" });
-        
-        // Track pricing conversion if metadata provided
+        // chat_open é disparado dentro de LeadChatWidget.handleOpen — sem segundo cta_clicked aqui
+
         if (conversionMetadata) {
           trackPricingLeadConversion({
             source,
@@ -37,18 +36,19 @@ export const openLeadChat = (
             ...conversionMetadata,
           });
         }
-        
+
         resolve(true);
         return;
       }
-      
-      // Retry after short delay (widget may still be loading)
+
+      // Evento técnico: widget ainda não montado, tentando retry
+      trackEvent("leadchat_open_attempt", { source, outcome: "retry_pending" });
+
       setTimeout(() => {
         if (window.LeadChat) {
           window.LeadChat.open({ cta_source: source });
-          trackEvent("cta_clicked", { source, action: "widget_opened_delayed" });
-          
-          // Track pricing conversion if metadata provided
+          // chat_open disparado pelo widget — sem cta_clicked extra aqui
+
           if (conversionMetadata) {
             trackPricingLeadConversion({
               source,
@@ -56,17 +56,16 @@ export const openLeadChat = (
               ...conversionMetadata,
             });
           }
-          
+
           resolve(true);
         } else {
-          // Fallback: open WhatsApp directly
-          trackEvent("cta_clicked", { 
-            source, 
-            action: "fallback_whatsapp", 
-            reason: "widget_not_available" 
+          // Widget indisponível — fallback WhatsApp direto (evento técnico, não conversão)
+          trackEvent("leadchat_open_attempt", {
+            source,
+            outcome: "whatsapp_fallback",
+            reason: "widget_not_available",
           });
-          
-          // Track pricing conversion if metadata provided
+
           if (conversionMetadata) {
             trackPricingLeadConversion({
               source,
@@ -74,7 +73,7 @@ export const openLeadChat = (
               ...conversionMetadata,
             });
           }
-          
+
           const url = fallbackUrl || CONTACT.WHATSAPP_URL;
           trackWhatsAppClick(source, { action: "fallback_whatsapp", destination_url: url });
           window.open(url, "_blank");
@@ -82,10 +81,8 @@ export const openLeadChat = (
         }
       }, 300);
     } catch (error) {
-      // Error handling: fallback to WhatsApp
       trackEvent("cta_error", { source, error: String(error) });
-      
-      // Track pricing conversion if metadata provided
+
       if (conversionMetadata) {
         trackPricingLeadConversion({
           source,
@@ -93,7 +90,7 @@ export const openLeadChat = (
           ...conversionMetadata,
         });
       }
-      
+
       const url = fallbackUrl || CONTACT.WHATSAPP_URL;
       trackWhatsAppClick(source, { action: "fallback_whatsapp", destination_url: url });
       window.open(url, "_blank");

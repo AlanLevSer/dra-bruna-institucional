@@ -176,36 +176,14 @@ describe("FinalCTAVendasPreco — semântica do canal de contato", () => {
 });
 
 // ---------------------------------------------------------------------------
-// 6. openLeadChat — cta_source flui via trackEvent
+// 6. openLeadChat — exatamente 1 cta_clicked por clique, com cta_source
 // ---------------------------------------------------------------------------
 
-describe("openLeadChat — rastreamento de cta_source", () => {
+describe("openLeadChat — exatamente 1 cta_clicked por clique", () => {
   beforeEach(() => {
     vi.resetModules();
     sessionStorage.clear();
     localStorage.clear();
-  });
-
-  it("dispara evento cta_clicked com source=sticky_price_mobile", async () => {
-    const pushedEvents: Array<Record<string, unknown>> = [];
-
-    // dataLayer precisa ser array para window.dataLayer.push() funcionar
-    Object.defineProperty(window, "dataLayer", {
-      writable: true,
-      configurable: true,
-      value: pushedEvents,
-    });
-
-    Object.defineProperty(window, "LeadChat", {
-      writable: true,
-      configurable: true,
-      value: {
-        open: vi.fn(),
-        close: vi.fn(),
-        isOpen: () => false,
-      },
-    });
-
     Object.defineProperty(window, "location", {
       writable: true,
       configurable: true,
@@ -216,14 +194,65 @@ describe("openLeadChat — rastreamento de cta_source", () => {
         href: "https://www.brunadurelli.com.br/balao-intragastrico-preco-a",
       },
     });
+  });
+
+  it("dispara cta_clicked exatamente 1x quando widget disponível", async () => {
+    const pushedEvents: Array<Record<string, unknown>> = [];
+    Object.defineProperty(window, "dataLayer", { writable: true, configurable: true, value: pushedEvents });
+    Object.defineProperty(window, "LeadChat", {
+      writable: true,
+      configurable: true,
+      value: { open: vi.fn(), close: vi.fn(), isOpen: () => false },
+    });
 
     const { openLeadChat } = await import("@/lib/leadChat");
     openLeadChat("sticky_price_mobile");
 
-    // cta_clicked é disparado sincronamente com action="attempt_widget"
-    const ctaEvent = pushedEvents.find((e) => e.event === "cta_clicked");
-    expect(ctaEvent).toBeDefined();
-    // O campo de identificação da origem é "source" (não "cta_source")
-    expect(ctaEvent?.source).toBe("sticky_price_mobile");
+    const ctaEvents = pushedEvents.filter((e) => e.event === "cta_clicked");
+    expect(ctaEvents).toHaveLength(1);
+    expect(ctaEvents[0].source).toBe("sticky_price_mobile");
+    expect(ctaEvents[0].cta_source).toBe("sticky_price_mobile");
+  });
+
+  it("cta_clicked inclui cta_source e não dispara novamente em widget_opened", async () => {
+    const pushedEvents: Array<Record<string, unknown>> = [];
+    Object.defineProperty(window, "dataLayer", { writable: true, configurable: true, value: pushedEvents });
+    Object.defineProperty(window, "LeadChat", {
+      writable: true,
+      configurable: true,
+      value: { open: vi.fn(), close: vi.fn(), isOpen: () => false },
+    });
+
+    const { openLeadChat } = await import("@/lib/leadChat");
+    await openLeadChat("hero_price_primary");
+
+    // Exatamente 1 — sem duplicata "widget_opened"
+    const ctaEvents = pushedEvents.filter((e) => e.event === "cta_clicked");
+    expect(ctaEvents).toHaveLength(1);
+    // Não deve existir action=widget_opened como cta_clicked
+    const legacyWidgetOpened = pushedEvents.find(
+      (e) => e.event === "cta_clicked" && e.action === "widget_opened",
+    );
+    expect(legacyWidgetOpened).toBeUndefined();
+  });
+
+  it("quando widget indisponível usa leadchat_open_attempt (não cta_clicked) para fallback", async () => {
+    const pushedEvents: Array<Record<string, unknown>> = [];
+    Object.defineProperty(window, "dataLayer", { writable: true, configurable: true, value: pushedEvents });
+    // Sem window.LeadChat — força fallback
+    Object.defineProperty(window, "LeadChat", { writable: true, configurable: true, value: undefined });
+    // Suprime window.open
+    Object.defineProperty(window, "open", { writable: true, configurable: true, value: vi.fn() });
+
+    const { openLeadChat } = await import("@/lib/leadChat");
+    await openLeadChat("whatsapp_phone_row");
+    await new Promise((r) => setTimeout(r, 400));
+
+    const ctaEvents = pushedEvents.filter((e) => e.event === "cta_clicked");
+    expect(ctaEvents).toHaveLength(1); // apenas o do clique inicial
+    const fallbackAttempt = pushedEvents.find(
+      (e) => e.event === "leadchat_open_attempt" && e.outcome === "whatsapp_fallback",
+    );
+    expect(fallbackAttempt).toBeDefined();
   });
 });
