@@ -26,7 +26,7 @@ const LeadChatWidget = lazy(() => import("@/components/LeadChatWidget"));
 const BalaoIntragasticoPreco = () => {
   const scrollDepthsRef = useRef({ 25: false, 50: false, 75: false, 100: false });
   const seoData = {
-    title: "Quanto Custa o Balao Intragastrico? Valores 2025 | Dra. Bruna Durelli",
+    title: "Quanto Custa o Balao Intragastrico? Valores 2026 | Dra. Bruna Durelli",
     description: "Descubra o valor do balao intragastrico com acompanhamento completo. Perca ate 35kg em 6 meses. Parcelamento facilitado. Consulte valores agora!",
     keywords: "quanto custa balao intragastrico, preco balao gastrico, valor balao intragastrico, investimento balao, Sao Paulo, Dra. Bruna Durelli",
     canonical: "https://www.brunadurelli.com.br/balao-intragastrico-preco-a",
