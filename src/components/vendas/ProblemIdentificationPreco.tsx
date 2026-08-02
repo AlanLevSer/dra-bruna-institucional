@@ -31,15 +31,15 @@ const ProblemIdentificationPreco = () => {
     );
     
     trackPricingCTAClick({
-      source: 'problem_identification_preco',
-      section: 'problem_identification',
-      position: 'middle',
+      source: "section_price_cta",
+      section: "problem_identification",
+      position: "middle",
       scroll_depth: scrollDepth,
     });
-    
-    openLeadChat('problem_identification_preco', CONTACT.WHATSAPP_BALAO_VENDAS, {
-      section: 'problem_identification',
-      position: 'middle',
+
+    openLeadChat("section_price_cta", CONTACT.WHATSAPP_BALAO_VENDAS, {
+      section: "problem_identification",
+      position: "middle",
       scroll_depth: scrollDepth,
     });
   };

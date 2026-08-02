@@ -11,6 +11,7 @@ import { trackPricingPageView, trackPricingScrollDepth } from "@/lib/analytics";
 import { DifferentialsVendas } from "@/components/vendas/DifferentialsVendas";
 import { MediaRecognitionVendas } from "@/components/vendas/MediaRecognitionVendas";
 import { Footer } from "@/components/Footer";
+import { StickyPriceCtaMobile } from "@/components/vendas/StickyPriceCtaMobile";
 
 // Lazy imports para componentes below-the-fold
 const BenefitsListPreco = lazy(() => import("@/components/vendas/BenefitsListPreco"));
@@ -122,12 +123,15 @@ const BalaoIntragasticoPreco = () => {
       {/* LeadChatWidget carregado sob demanda */}
       <div id="lead-chat-widget" style={{ display: "none" }}>
         <Suspense fallback={null}>
-          <LeadChatWidget 
-            showFloatingButton={false} 
-            origin="balao-intragastrico-preco-a" 
+          <LeadChatWidget
+            showFloatingButton={false}
+            origin="balao-intragastrico-preco-a"
           />
         </Suspense>
       </div>
+
+      {/* CTA fixo mobile — aparece quando hero CTA sai do viewport */}
+      <StickyPriceCtaMobile />
     </>
   );
 };
