@@ -42,6 +42,9 @@ export const TRACKING_PARAM_KEYS = [
   "utm_source_platform",
   "utm_creative_format",
   "utm_marketing_tactic",
+  "campaign_id",
+  "ad_group_id",
+  "keyword",
 ] as const;
 
 export type TrackingParamKey = (typeof TRACKING_PARAM_KEYS)[number];
