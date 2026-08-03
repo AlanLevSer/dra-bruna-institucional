@@ -10,7 +10,8 @@ const plans = [
     title: "Balão 6 Meses",
     subtitle: "Opção Inicial",
     description: "Para quem quer começar leve e testar o tratamento",
-    highlighted: false,
+    highlighted: true,
+    badge: "Mais Recomendado",
   },
   {
     icon: CalendarRange,
@@ -24,8 +25,7 @@ const plans = [
     title: "Balão Ajustável",
     subtitle: "Controle Total",
     description: "Ajuste de volume conforme evolução. Perda potencial até 35kg",
-    highlighted: true,
-    badge: "Mais Recomendado",
+    highlighted: false,
   },
 ];
 

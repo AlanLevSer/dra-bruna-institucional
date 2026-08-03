@@ -1,0 +1,52 @@
+{
+  "sha_publicado": "a5e9b0c",
+  "url": "https://www.brunadurelli.com.br/balao-intragastrico-preco-a",
+  "deploy_timestamp_brt": "2026-08-02 20:15:35 BRT",
+  "viewports": {
+    "360x800": {
+      "viewport": "360x800",
+      "title": "Vercel Security Checkpoint",
+      "checkpoint_blocked": true,
+      "title_2026": false,
+      "h1_correct": false
+    },
+    "390x844": {
+      "viewport": "390x844",
+      "title": "Vercel Security Checkpoint",
+      "checkpoint_blocked": true,
+      "title_2026": false,
+      "h1_correct": false
+    },
+    "1366x768": {
+      "viewport": "1366x768",
+      "title": "Vercel Security Checkpoint",
+      "checkpoint_blocked": true,
+      "title_2026": false,
+      "h1_correct": false
+    }
+  },
+  "attr_test": {
+    "final_url": "https://www.brunadurelli.com.br/balao-intragastrico-preco-a?utm_source=google&utm_medium=cpc&utm_campaign=23236971034&utm_content=192095102070-782802705785&utm_term=teste&campaign_id=23236971034&ad_group_id=192095102070&keyword=teste&gclid=TESTE_SMOKE",
+    "no_redirect": true,
+    "params_in_url": true,
+    "checkpoint_blocked": true
+  },
+  "defects": [],
+  "screenshots_prod": [
+    "/mnt/c/Users/alan_/OneDrive/Documentos/GitHub/dra-bruna-institucional/docs/qa/balao-preco-final-browser/PROD-360x800-checkpoint.png",
+    "/mnt/c/Users/alan_/OneDrive/Documentos/GitHub/dra-bruna-institucional/docs/qa/balao-preco-final-browser/PROD-390x844-checkpoint.png",
+    "/mnt/c/Users/alan_/OneDrive/Documentos/GitHub/dra-bruna-institucional/docs/qa/balao-preco-final-browser/PROD-1366x768-checkpoint.png"
+  ],
+  "notas": [
+    "360x800: Vercel Security Checkpoint ativo — conteúdo da LP não acessível via Playwright. Smoke visual requer navegador real.",
+    "390x844: Vercel Security Checkpoint ativo — conteúdo da LP não acessível via Playwright. Smoke visual requer navegador real.",
+    "1366x768: Vercel Security Checkpoint ativo — conteúdo da LP não acessível via Playwright. Smoke visual requer navegador real.",
+    "Atribuição: Security Checkpoint bloqueou — não foi possível verificar sessionStorage via headless."
+  ],
+  "deploy_info": {
+    "x_vercel_id": "gru1::1785712534-gx9s3N5uy58JaaJmAv3PXUJiknTi2Ksb",
+    "cache_control": "private, no-store, max-age=0",
+    "server": "Vercel"
+  },
+  "recommendation": "SMOKE INCONCLUSIVO — Vercel Security Checkpoint bloqueando Playwright headless. Verificação manual necessária."
+}
