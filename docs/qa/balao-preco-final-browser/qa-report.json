@@ -1,0 +1,479 @@
+{
+  "sha": "f93908c",
+  "url_tested": "http://127.0.0.1:4174/balao-intragastrico-preco-a",
+  "screenshots": [
+    "/mnt/c/Users/alan_/OneDrive/Documentos/GitHub/dra-bruna-institucional/docs/qa/balao-preco-final-browser/360x800-fullpage.png",
+    "/mnt/c/Users/alan_/OneDrive/Documentos/GitHub/dra-bruna-institucional/docs/qa/balao-preco-final-browser/360x800-atf.png",
+    "/mnt/c/Users/alan_/OneDrive/Documentos/GitHub/dra-bruna-institucional/docs/qa/balao-preco-final-browser/390x844-fullpage.png",
+    "/mnt/c/Users/alan_/OneDrive/Documentos/GitHub/dra-bruna-institucional/docs/qa/balao-preco-final-browser/390x844-atf.png",
+    "/mnt/c/Users/alan_/OneDrive/Documentos/GitHub/dra-bruna-institucional/docs/qa/balao-preco-final-browser/1366x768-fullpage.png",
+    "/mnt/c/Users/alan_/OneDrive/Documentos/GitHub/dra-bruna-institucional/docs/qa/balao-preco-final-browser/1366x768-atf.png",
+    "/mnt/c/Users/alan_/OneDrive/Documentos/GitHub/dra-bruna-institucional/docs/qa/balao-preco-final-browser/390x844-sticky-visible.png"
+  ],
+  "hero_cta_position": {
+    "360x800": {
+      "x": 16,
+      "y": 325,
+      "width": 328,
+      "height": 72
+    },
+    "390x844": {
+      "x": 16,
+      "y": 283,
+      "width": 358,
+      "height": 72
+    }
+  },
+  "race_condition": {
+    "timings": [
+      {
+        "delay_ms": 0,
+        "modal_visible": true,
+        "container_display": "block",
+        "events": [
+          {
+            "event": "gtm.click",
+            "gtm.element": "ref: <Node>",
+            "gtm.elementClasses": "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md w-full sm:w-auto text-base px-8 py-6 h-auto shadow-elegant hover:shadow-hover",
+            "gtm.elementId": "hero-price-cta",
+            "gtm.elementTarget": "",
+            "gtm.triggers": "6,7",
+            "gtm.elementUrl": ""
+          },
+          {
+            "event": "pricing_cta_clicked",
+            "source": "hero_price_primary",
+            "section": "hero",
+            "position": "hero",
+            "scroll_depth": 0,
+            "page_type": "pricing",
+            "cta_type": "whatsapp_consult"
+          },
+          {
+            "event": "cta_clicked",
+            "source": "hero_price_primary",
+            "action": "attempt_widget"
+          },
+          {
+            "event": "chat_open",
+            "page_slug": "/balao-intragastrico-preco-a",
+            "origin": "balao-intragastrico-preco-a",
+            "cta_source": "hero_price_primary"
+          },
+          {
+            "event": "cta_clicked",
+            "source": "hero_price_primary",
+            "action": "widget_opened"
+          },
+          {
+            "event": "pricing_lead_conversion",
+            "source": "hero_price_primary",
+            "method": "widget",
+            "section": "hero",
+            "position": "hero",
+            "scroll_depth": 0,
+            "page_type": "pricing",
+            "conversion_type": "pricing_page"
+          },
+          {
+            "event": "web_vital",
+            "metric_name": "LCP",
+            "value": 2316,
+            "metric_id": "v5-1785710509754-7491352851124",
+            "metric_value": 2316,
+            "metric_delta": 2316,
+            "event_category": "Web Vitals",
+            "rating": "good"
+          }
+        ],
+        "errors": [],
+        "focus_received": true,
+        "js_errors": [],
+        "network_errors": [
+          "https://www.google.com/ccm/collect?rcb=15&frm=0&ae=g&auid=890123226.1785710511&dt=Dra.%20Bruna%20Durelli%20-%20Especialista%20em%20Obesidade%20%7C%20Tratamento%20Personalizado&en=page_view&dl=http%3A%2F%2F127.0.0.1%3A4174%2Fbalao-intragastrico-preco-a&scrsrc=www.googletagmanager.com&rnd=280715988.1785710511&navt=n&npa=0&ep.ads_data_redaction=0&gtm=45He67t1v9233130463za200zd9233130463xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938466~115938468~118897920~118897930~119896802&apvc=1&tft=1785710510559&tfd=1230&fmt=8",
+          "https://ad.doubleclick.net/ccm/s/collect?auid=890123226.1785710511&gtm=45He67t1v9233130463za200zd9233130463xea",
+          "https://analytics.google.com/g/collect?v=2&tid=G-KMMT4DTVQF&gtm=45je67t1v876988310z89233130463za20gzb9233130463zd9233130463&_p=1785710509780&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGAC&are=1&cid=526605621.1785710511&frm=0&pscdl=noapi&rcb=0&sr=390x844&uaa=arm&uab=64&uafvl=Chromium%3B151.0.7922.34%7CNot%253DA%253FBrand%3B99.0.0.0&uam=&uamb=0&uap=Android&uapv=12&uaw=0&ul=en-us&gaf=2&_s=1&tag_exp=115938466~115938468~118395334~118897920~118897930~119896802&sid=1785710511&sct=1&seg=0&dl=http%3A%2F%2F127.0.0.1%2Fbalao-intragastrico-preco-a&dt=Quanto%20Custa%20o%20Balao%20Intragastrico%3F%20Valores%202026%20%7C%20Dra.%20Bruna%20Durelli&en=gtm.init_consent&_fv=1&_nsi=1&_ss=1&tfd=1986",
+          "https://lzogolhiuhdjpqlizhxq.supabase.co/functions/v1/get-google-reviews"
+        ]
+      },
+      {
+        "delay_ms": 500,
+        "modal_visible": true,
+        "container_display": "block",
+        "events": [
+          {
+            "event": "gtm.click",
+            "gtm.element": "ref: <Node>",
+            "gtm.elementClasses": "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md w-full sm:w-auto text-base px-8 py-6 h-auto shadow-elegant hover:shadow-hover",
+            "gtm.elementId": "hero-price-cta",
+            "gtm.elementTarget": "",
+            "gtm.triggers": "6,7",
+            "gtm.elementUrl": ""
+          },
+          {
+            "event": "pricing_cta_clicked",
+            "source": "hero_price_primary",
+            "section": "hero",
+            "position": "hero",
+            "scroll_depth": 0,
+            "page_type": "pricing",
+            "cta_type": "whatsapp_consult"
+          },
+          {
+            "event": "cta_clicked",
+            "source": "hero_price_primary",
+            "action": "attempt_widget"
+          },
+          {
+            "event": "chat_open",
+            "page_slug": "/balao-intragastrico-preco-a",
+            "origin": "balao-intragastrico-preco-a",
+            "cta_source": "hero_price_primary"
+          },
+          {
+            "event": "cta_clicked",
+            "source": "hero_price_primary",
+            "action": "widget_opened"
+          },
+          {
+            "event": "pricing_lead_conversion",
+            "source": "hero_price_primary",
+            "method": "widget",
+            "section": "hero",
+            "position": "hero",
+            "scroll_depth": 0,
+            "page_type": "pricing",
+            "conversion_type": "pricing_page"
+          },
+          {
+            "event": "web_vital",
+            "metric_name": "LCP",
+            "value": 2348,
+            "metric_id": "v5-1785710513358-3597500573786",
+            "metric_value": 2348,
+            "metric_delta": 2348,
+            "event_category": "Web Vitals",
+            "rating": "good"
+          }
+        ],
+        "errors": [],
+        "focus_received": true,
+        "js_errors": [],
+        "network_errors": [
+          "https://ad.doubleclick.net/ccm/s/collect?auid=899659986.1785710514&gtm=45He67t1v9233130463za200zd9233130463xea",
+          "https://www.google.com/ccm/collect?rcb=14&frm=0&ae=g&auid=899659986.1785710514&dt=Dra.%20Bruna%20Durelli%20-%20Especialista%20em%20Obesidade%20%7C%20Tratamento%20Personalizado&en=page_view&dl=http%3A%2F%2F127.0.0.1%3A4174%2Fbalao-intragastrico-preco-a&scrsrc=www.googletagmanager.com&rnd=1783274509.1785710514&navt=n&npa=0&ep.ads_data_redaction=0&gtm=45He67t1v9233130463za200zd9233130463xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938466~115938468~118897920~118897930~119896803&apvc=1&tft=1785710514010&tfd=1038&fmt=8",
+          "https://analytics.google.com/g/collect?v=2&tid=G-KMMT4DTVQF&gtm=45je67t1v876988310z89233130463za20gzb9233130463zd9233130463&_p=1785710513376&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGAC&are=1&cid=68753842.1785710515&frm=0&pscdl=noapi&rcb=7&sr=390x844&uaa=arm&uab=64&uafvl=Chromium%3B151.0.7922.34%7CNot%253DA%253FBrand%3B99.0.0.0&uam=&uamb=0&uap=Android&uapv=12&uaw=0&ul=en-us&gaf=2&_s=1&tag_exp=115938466~115938468~118897920~118897930~119527020~119896802&sid=1785710514&sct=1&seg=0&dl=http%3A%2F%2F127.0.0.1%2Fbalao-intragastrico-preco-a&dt=Quanto%20Custa%20o%20Balao%20Intragastrico%3F%20Valores%202026%20%7C%20Dra.%20Bruna%20Durelli&en=gtm.init_consent&_fv=1&_nsi=1&_ss=1&tfd=1985",
+          "https://lzogolhiuhdjpqlizhxq.supabase.co/functions/v1/get-google-reviews"
+        ]
+      },
+      {
+        "delay_ms": 1000,
+        "modal_visible": true,
+        "container_display": "block",
+        "events": [
+          {
+            "event": "gtm.click",
+            "gtm.element": "ref: <Node>",
+            "gtm.elementClasses": "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md w-full sm:w-auto text-base px-8 py-6 h-auto shadow-elegant hover:shadow-hover",
+            "gtm.elementId": "hero-price-cta",
+            "gtm.elementTarget": "",
+            "gtm.triggers": "6,7",
+            "gtm.elementUrl": ""
+          },
+          {
+            "event": "pricing_cta_clicked",
+            "source": "hero_price_primary",
+            "section": "hero",
+            "position": "hero",
+            "scroll_depth": 0,
+            "page_type": "pricing",
+            "cta_type": "whatsapp_consult"
+          },
+          {
+            "event": "cta_clicked",
+            "source": "hero_price_primary",
+            "action": "attempt_widget"
+          },
+          {
+            "event": "chat_open",
+            "page_slug": "/balao-intragastrico-preco-a",
+            "origin": "balao-intragastrico-preco-a",
+            "cta_source": "hero_price_primary"
+          },
+          {
+            "event": "cta_clicked",
+            "source": "hero_price_primary",
+            "action": "widget_opened"
+          },
+          {
+            "event": "pricing_lead_conversion",
+            "source": "hero_price_primary",
+            "method": "widget",
+            "section": "hero",
+            "position": "hero",
+            "scroll_depth": 0,
+            "page_type": "pricing",
+            "conversion_type": "pricing_page"
+          },
+          {
+            "event": "web_vital",
+            "metric_name": "LCP",
+            "value": 2844,
+            "metric_id": "v5-1785710517259-6527256556161",
+            "metric_value": 2844,
+            "metric_delta": 2844,
+            "event_category": "Web Vitals",
+            "rating": "needs-improvement"
+          }
+        ],
+        "errors": [],
+        "focus_received": true,
+        "js_errors": [],
+        "network_errors": [
+          "https://www.google.com/ccm/collect?rcb=2&frm=0&ae=g&auid=1805155432.1785710518&dt=Dra.%20Bruna%20Durelli%20-%20Especialista%20em%20Obesidade%20%7C%20Tratamento%20Personalizado&en=page_view&dl=http%3A%2F%2F127.0.0.1%3A4174%2Fbalao-intragastrico-preco-a&scrsrc=www.googletagmanager.com&rnd=111370602.1785710518&navt=n&npa=0&ep.ads_data_redaction=0&gtm=45He67t1v9233130463za200zd9233130463xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938466~115938468~118897920~118897930~119791749~119896803&apvc=1&tft=1785710518195&tfd=1300&fmt=8",
+          "https://ad.doubleclick.net/ccm/s/collect?auid=1805155432.1785710518&gtm=45He67t1v9233130463za200zd9233130463xea",
+          "https://analytics.google.com/g/collect?v=2&tid=G-KMMT4DTVQF&gtm=45je67t1v876988310z89233130463za20gzb9233130463zd9233130463&_p=1785710517285&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGAC&are=1&cid=435633852.1785710519&frm=0&pscdl=noapi&rcb=7&sr=390x844&uaa=arm&uab=64&uafvl=Chromium%3B151.0.7922.34%7CNot%253DA%253FBrand%3B99.0.0.0&uam=&uamb=0&uap=Android&uapv=12&uaw=0&ul=en-us&gaf=2&_s=1&tag_exp=115616986~115938466~115938469~118395334~118897920~118897930~119791748~119896803&sid=1785710519&sct=1&seg=0&dl=http%3A%2F%2F127.0.0.1%2Fbalao-intragastrico-preco-a&dt=Quanto%20Custa%20o%20Balao%20Intragastrico%3F%20Valores%202026%20%7C%20Dra.%20Bruna%20Durelli&en=gtm.init_consent&_fv=1&_nsi=1&_ss=1&tfd=2351",
+          "https://lzogolhiuhdjpqlizhxq.supabase.co/functions/v1/get-google-reviews"
+        ]
+      },
+      {
+        "delay_ms": 2000,
+        "modal_visible": true,
+        "container_display": "block",
+        "events": [
+          {
+            "event": "gtm.click",
+            "gtm.element": "ref: <Node>",
+            "gtm.elementClasses": "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md w-full sm:w-auto text-base px-8 py-6 h-auto shadow-elegant hover:shadow-hover",
+            "gtm.elementId": "hero-price-cta",
+            "gtm.elementTarget": "",
+            "gtm.triggers": "6,7",
+            "gtm.elementUrl": ""
+          },
+          {
+            "event": "pricing_cta_clicked",
+            "source": "hero_price_primary",
+            "section": "hero",
+            "position": "hero",
+            "scroll_depth": 0,
+            "page_type": "pricing",
+            "cta_type": "whatsapp_consult"
+          },
+          {
+            "event": "cta_clicked",
+            "source": "hero_price_primary",
+            "action": "attempt_widget"
+          },
+          {
+            "event": "chat_open",
+            "page_slug": "/balao-intragastrico-preco-a",
+            "origin": "balao-intragastrico-preco-a",
+            "cta_source": "hero_price_primary"
+          },
+          {
+            "event": "cta_clicked",
+            "source": "hero_price_primary",
+            "action": "widget_opened"
+          },
+          {
+            "event": "pricing_lead_conversion",
+            "source": "hero_price_primary",
+            "method": "widget",
+            "section": "hero",
+            "position": "hero",
+            "scroll_depth": 0,
+            "page_type": "pricing",
+            "conversion_type": "pricing_page"
+          },
+          {
+            "event": "web_vital",
+            "metric_name": "LCP",
+            "value": 3108,
+            "metric_id": "v5-1785710521714-8087155659658",
+            "metric_value": 3108,
+            "metric_delta": 3108,
+            "event_category": "Web Vitals",
+            "rating": "needs-improvement"
+          }
+        ],
+        "errors": [],
+        "focus_received": true,
+        "js_errors": [],
+        "network_errors": [
+          "https://www.google.com/ccm/collect?rcb=13&frm=0&ae=g&auid=1579343083.1785710523&dt=Dra.%20Bruna%20Durelli%20-%20Especialista%20em%20Obesidade%20%7C%20Tratamento%20Personalizado&en=page_view&dl=http%3A%2F%2F127.0.0.1%3A4174%2Fbalao-intragastrico-preco-a&scrsrc=www.googletagmanager.com&rnd=349188977.1785710523&navt=n&npa=0&ep.ads_data_redaction=0&gtm=45He67t1v9233130463za200zd9233130463xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938465~115938469~118395335~118897920~118897930~119896802&apvc=1&tft=1785710522880&tfd=1709&fmt=8",
+          "https://ad.doubleclick.net/ccm/s/collect?auid=1579343083.1785710523&gtm=45He67t1v9233130463za200zd9233130463xea",
+          "https://analytics.google.com/g/collect?v=2&tid=G-KMMT4DTVQF&gtm=45je67t1v876988310z89233130463za20gzb9233130463zd9233130463&_p=1785710521733&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGAC&are=1&cid=958462606.1785710524&frm=0&pscdl=noapi&rcb=9&sr=390x844&uaa=arm&uab=64&uafvl=Chromium%3B151.0.7922.34%7CNot%253DA%253FBrand%3B99.0.0.0&uam=&uamb=0&uap=Android&uapv=12&uaw=0&ul=en-us&gaf=2&_s=1&tag_exp=115616986~115938465~115938468~118395335~118897920~118897930~119527020~119896803&sid=1785710523&sct=1&seg=0&dl=http%3A%2F%2F127.0.0.1%2Fbalao-intragastrico-preco-a&dt=Quanto%20Custa%20o%20Balao%20Intragastrico%3F%20Valores%202026%20%7C%20Dra.%20Bruna%20Durelli&en=gtm.init_consent&_fv=1&_nsi=1&_ss=1&tfd=2673",
+          "https://lzogolhiuhdjpqlizhxq.supabase.co/functions/v1/get-google-reviews"
+        ]
+      },
+      {
+        "delay_ms": 4000,
+        "modal_visible": true,
+        "container_display": "block",
+        "events": [
+          {
+            "event": "gtm.click",
+            "gtm.element": "ref: <Node>",
+            "gtm.elementClasses": "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md w-full sm:w-auto text-base px-8 py-6 h-auto shadow-elegant hover:shadow-hover",
+            "gtm.elementId": "hero-price-cta",
+            "gtm.elementTarget": "",
+            "gtm.triggers": "6,7",
+            "gtm.elementUrl": ""
+          },
+          {
+            "event": "pricing_cta_clicked",
+            "source": "hero_price_primary",
+            "section": "hero",
+            "position": "hero",
+            "scroll_depth": 0,
+            "page_type": "pricing",
+            "cta_type": "whatsapp_consult"
+          },
+          {
+            "event": "cta_clicked",
+            "source": "hero_price_primary",
+            "action": "attempt_widget"
+          },
+          {
+            "event": "chat_open",
+            "page_slug": "/balao-intragastrico-preco-a",
+            "origin": "balao-intragastrico-preco-a",
+            "cta_source": "hero_price_primary"
+          },
+          {
+            "event": "cta_clicked",
+            "source": "hero_price_primary",
+            "action": "widget_opened"
+          },
+          {
+            "event": "pricing_lead_conversion",
+            "source": "hero_price_primary",
+            "method": "widget",
+            "section": "hero",
+            "position": "hero",
+            "scroll_depth": 0,
+            "page_type": "pricing",
+            "conversion_type": "pricing_page"
+          },
+          {
+            "event": "web_vital",
+            "metric_name": "LCP",
+            "value": 3256,
+            "metric_id": "v5-1785710526708-2789522945456",
+            "metric_value": 3256,
+            "metric_delta": 3256,
+            "event_category": "Web Vitals",
+            "rating": "needs-improvement"
+          }
+        ],
+        "errors": [],
+        "focus_received": true,
+        "js_errors": [],
+        "network_errors": [
+          "https://ad.doubleclick.net/ccm/s/collect?auid=1302708255.1785710528&gtm=45He67t1v9233130463za200zd9233130463xea",
+          "https://www.google.com/ccm/collect?rcb=18&frm=0&ae=g&auid=1302708255.1785710528&dt=Dra.%20Bruna%20Durelli%20-%20Especialista%20em%20Obesidade%20%7C%20Tratamento%20Personalizado&en=page_view&dl=http%3A%2F%2F127.0.0.1%3A4174%2Fbalao-intragastrico-preco-a&scrsrc=www.googletagmanager.com&rnd=1356973084.1785710528&navt=n&npa=0&ep.ads_data_redaction=0&gtm=45He67t1v9233130463za200zd9233130463xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938465~115938469~118131810~118897920~118897930~119896803&apvc=1&tft=1785710527891&tfd=1835&fmt=8",
+          "https://analytics.google.com/g/collect?v=2&tid=G-KMMT4DTVQF&gtm=45je67t1v876988310z89233130463za20gzb9233130463zd9233130463&_p=1785710526721&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGAC&are=1&cid=401380303.1785710529&frm=0&pscdl=noapi&rcb=12&sr=390x844&uaa=arm&uab=64&uafvl=Chromium%3B151.0.7922.34%7CNot%253DA%253FBrand%3B99.0.0.0&uam=&uamb=0&uap=Android&uapv=12&uaw=0&ul=en-us&gaf=2&_s=1&tag_exp=115938465~115938469~118897920~118897930~119896802&sid=1785710528&sct=1&seg=0&dl=http%3A%2F%2F127.0.0.1%2Fbalao-intragastrico-preco-a&dt=Quanto%20Custa%20o%20Balao%20Intragastrico%3F%20Valores%202026%20%7C%20Dra.%20Bruna%20Durelli&en=gtm.init_consent&_fv=1&_nsi=1&_ss=1&tfd=2977",
+          "https://lzogolhiuhdjpqlizhxq.supabase.co/functions/v1/get-google-reviews",
+          "https://lzogolhiuhdjpqlizhxq.supabase.co/functions/v1/get-google-reviews"
+        ]
+      }
+    ]
+  },
+  "whatsapp_row": {
+    "button_found": true,
+    "has_whatsapp_svg": true,
+    "tel_links": 0,
+    "phone_number_present": true,
+    "no_underline": true,
+    "event_count": 1
+  },
+  "sticky_cta": {
+    "visible_with_hero": false,
+    "visible_after_scroll": true,
+    "hidden_when_modal_open": true,
+    "cls_score": 0.09844521297641735,
+    "hidden_on_desktop": true
+  },
+  "attribution": {
+    "final_url": "http://127.0.0.1:4174/balao-intragastrico-preco-a?utm_source=google&utm_medium=cpc&utm_campaign=23236971034&utm_content=192095102070-782802705785&utm_term=teste&campaign_id=23236971034&ad_group_id=192095102070&keyword=teste&gclid=TESTE",
+    "stored_tracking": {
+      "gclid": "TESTE",
+      "gbraid": "",
+      "wbraid": "",
+      "fbclid": "",
+      "fbp": "",
+      "fbc": "",
+      "click_id": "",
+      "utm_referrer": "",
+      "utm_source": "google",
+      "utm_medium": "cpc",
+      "utm_campaign": "23236971034",
+      "utm_id": "",
+      "utm_adgroup": "",
+      "utm_term": "teste",
+      "utm_content": "192095102070-782802705785",
+      "utm_matchtype": "",
+      "utm_device": "",
+      "utm_network": "",
+      "utm_source_platform": "",
+      "utm_creative_format": "",
+      "utm_marketing_tactic": "",
+      "campaign_id": "23236971034",
+      "ad_group_id": "192095102070",
+      "keyword": "teste"
+    },
+    "payload_intercepted": null
+  },
+  "console_network": {
+    "js_errors": [
+      "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+      "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+      "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+    ],
+    "failed_requests": [
+      {
+        "url": "https://ad.doubleclick.net/ccm/s/collect?auid=561046041.1785710550&gtm=45He67u0h2v9233130463za200zd9233130463xea",
+        "reason": "net::ERR_ABORTED"
+      },
+      {
+        "url": "https://www.google.com/ccm/collect?rcb=4&frm=0&ae=g&auid=561046041.1785710550&dt=Dra.%20Bruna%20Durelli%20-%20Especialista%20em%20Obesidade%20%7C%20Tratamento%20Personalizado&en=page_view&dl=http%3A%2F%2F127.0.0.1%3A4174%2Fbalao-intragastrico-preco-a&scrsrc=www.googletagmanager.com&rnd=1941523273.1785710550&navt=n&npa=0&ep.ads_data_redaction=0&gtm=45He67u0h2v9233130463za200zd9233130463xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616985~115938465~115938469~118897920~118897930~119896802&apvc=1&tft=1785710549776&tfd=1094&fmt=8",
+        "reason": "net::ERR_ABORTED"
+      },
+      {
+        "url": "https://analytics.google.com/g/collect?v=2&tid=G-KMMT4DTVQF&gtm=45je67u0h2v876988310z89233130463za20gzb9233130463zd9233130463&_p=1785710549019&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGQC&are=1&cid=1858039127.1785710550&frm=0&pscdl=noapi&rcb=12&sr=390x844&uaa=arm&uab=64&uafvl=Chromium%3B151.0.7922.34%7CNot%253DA%253FBrand%3B99.0.0.0&uam=&uamb=0&uap=Android&uapv=12&uaw=0&ul=en-us&gaf=2&tag_exp=115938465~115938468~118897920~118897930~119896802&sid=1785710550&sct=1&seg=1&dl=http%3A%2F%2F127.0.0.1%2Fbalao-intragastrico-preco-a&dt=Dra.%20Bruna%20Durelli%20-%20Especialista%20em%20Obesidade%20%7C%20Tratamento%20Personalizado&_s=2&tfd=1745",
+        "reason": "net::ERR_ABORTED"
+      },
+      {
+        "url": "https://analytics.google.com/g/collect?v=2&tid=G-KMMT4DTVQF&gtm=45je67u0h2v876988310za20gzb9233130463zd9233130463&_p=1785710549019&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AEAAAGQC&ae=a&are=1&cid=1858039127.1785710550&frm=0&pscdl=noapi&rcb=12&sr=390x844&uaa=arm&uab=64&uafvl=Chromium%3B151.0.7922.34%7CNot%253DA%253FBrand%3B99.0.0.0&uam=&uamb=0&uap=Android&uapv=12&uaw=0&ul=en-us&gaf=2&_s=3&tag_exp=115938465~115938468~118897920~118897930~119896802&sid=1785710550&sct=1&seg=1&dl=http%3A%2F%2F127.0.0.1%2Fbalao-intragastrico-preco-a&dt=Dra.%20Bruna%20Durelli%20-%20Especialista%20em%20Obesidade%20%7C%20Tratamento%20Personalizado&en=scroll&epn.percent_scrolled=90&_et=3&tfd=1778",
+        "reason": "net::ERR_ABORTED"
+      },
+      {
+        "url": "https://analytics.google.com/g/collect?v=2&tid=G-KMMT4DTVQF&gtm=45je67u0h2v876988310z89233130463za20gzb9233130463zd9233130463&_p=1785710549019&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGAC&are=1&cid=1858039127.1785710550&frm=0&pscdl=noapi&rcb=12&sr=390x844&uaa=arm&uab=64&uafvl=Chromium%3B151.0.7922.34%7CNot%253DA%253FBrand%3B99.0.0.0&uam=&uamb=0&uap=Android&uapv=12&uaw=0&ul=en-us&gaf=2&_s=1&tag_exp=115938465~115938468~118897920~118897930~119896802&sid=1785710550&sct=1&seg=0&dl=http%3A%2F%2F127.0.0.1%2Fbalao-intragastrico-preco-a&dt=Dra.%20Bruna%20Durelli%20-%20Especialista%20em%20Obesidade%20%7C%20Tratamento%20Personalizado&en=gtm.init_consent&_fv=1&_nsi=1&_ss=1&tfd=1637",
+        "reason": "net::ERR_ABORTED"
+      },
+      {
+        "url": "https://lzogolhiuhdjpqlizhxq.supabase.co/functions/v1/get-google-reviews",
+        "reason": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "url": "https://lzogolhiuhdjpqlizhxq.supabase.co/functions/v1/get-google-reviews",
+        "reason": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "url": "https://lzogolhiuhdjpqlizhxq.supabase.co/functions/v1/get-google-reviews",
+        "reason": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "url": "https://analytics.google.com/g/collect?v=2&tid=G-KMMT4DTVQF&gtm=45je67u0h2v876988310z89233130463za20gzb9233130463zd9233130463&_p=1785710549019&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGQC&are=1&cid=1858039127.1785710550&frm=0&pscdl=noapi&rcb=12&sr=390x844&uaa=arm&uab=64&uafvl=Chromium%3B151.0.7922.34%7CNot%253DA%253FBrand%3B99.0.0.0&uam=&uamb=0&uap=Android&uapv=12&uaw=0&ul=en-us&gaf=2&tag_exp=115938465~115938468~118897920~118897930~119896802&sid=1785710550&sct=1&seg=1&dl=http%3A%2F%2F127.0.0.1%2Fbalao-intragastrico-preco-a&dt=Quanto%20Custa%20o%20Balao%20Intragastrico%3F%20Valores%202026%20%7C%20Dra.%20Bruna%20Durelli&_s=4&tfd=6780",
+        "reason": "net::ERR_ABORTED"
+      }
+    ],
+    "not_found_404": [],
+    "final_pathname": "/balao-intragastrico-preco-a"
+  },
+  "defects": [
+    "Console errors: Failed to load resource: net::ERR_NAME_NOT_RESOLVED; Failed to load resource: net::ERR_NAME_NOT_RESOLVED; Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+    "Network failures: https://ad.doubleclick.net/ccm/s/collect?auid=561046041.1785710550&gtm=45He67u0h2v9233130463za200zd9233130463xea, https://www.google.com/ccm/collect?rcb=4&frm=0&ae=g&auid=561046041.1785710550&dt=Dra.%20Bruna%20Durelli%20-%20Especialista%20em%20Obesidade%20%7C%20Tratamento%20Personalizado&en=page_view&dl=http%3A%2F%2F127.0.0.1%3A4174%2Fbalao-intragastrico-preco-a&scrsrc=www.googletagmanager.com&rnd=1941523273.1785710550&navt=n&npa=0&ep.ads_data_redaction=0&gtm=45He67u0h2v9233130463za200zd9233130463xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616985~115938465~115938469~118897920~118897930~119896802&apvc=1&tft=1785710549776&tfd=1094&fmt=8, https://analytics.google.com/g/collect?v=2&tid=G-KMMT4DTVQF&gtm=45je67u0h2v876988310z89233130463za20gzb9233130463zd9233130463&_p=1785710549019&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGQC&are=1&cid=1858039127.1785710550&frm=0&pscdl=noapi&rcb=12&sr=390x844&uaa=arm&uab=64&uafvl=Chromium%3B151.0.7922.34%7CNot%253DA%253FBrand%3B99.0.0.0&uam=&uamb=0&uap=Android&uapv=12&uaw=0&ul=en-us&gaf=2&tag_exp=115938465~115938468~118897920~118897930~119896802&sid=1785710550&sct=1&seg=1&dl=http%3A%2F%2F127.0.0.1%2Fbalao-intragastrico-preco-a&dt=Dra.%20Bruna%20Durelli%20-%20Especialista%20em%20Obesidade%20%7C%20Tratamento%20Personalizado&_s=2&tfd=1745, https://analytics.google.com/g/collect?v=2&tid=G-KMMT4DTVQF&gtm=45je67u0h2v876988310za20gzb9233130463zd9233130463&_p=1785710549019&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AEAAAGQC&ae=a&are=1&cid=1858039127.1785710550&frm=0&pscdl=noapi&rcb=12&sr=390x844&uaa=arm&uab=64&uafvl=Chromium%3B151.0.7922.34%7CNot%253DA%253FBrand%3B99.0.0.0&uam=&uamb=0&uap=Android&uapv=12&uaw=0&ul=en-us&gaf=2&_s=3&tag_exp=115938465~115938468~118897920~118897930~119896802&sid=1785710550&sct=1&seg=1&dl=http%3A%2F%2F127.0.0.1%2Fbalao-intragastrico-preco-a&dt=Dra.%20Bruna%20Durelli%20-%20Especialista%20em%20Obesidade%20%7C%20Tratamento%20Personalizado&en=scroll&epn.percent_scrolled=90&_et=3&tfd=1778, https://analytics.google.com/g/collect?v=2&tid=G-KMMT4DTVQF&gtm=45je67u0h2v876988310z89233130463za20gzb9233130463zd9233130463&_p=1785710549019&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGAC&are=1&cid=1858039127.1785710550&frm=0&pscdl=noapi&rcb=12&sr=390x844&uaa=arm&uab=64&uafvl=Chromium%3B151.0.7922.34%7CNot%253DA%253FBrand%3B99.0.0.0&uam=&uamb=0&uap=Android&uapv=12&uaw=0&ul=en-us&gaf=2&_s=1&tag_exp=115938465~115938468~118897920~118897930~119896802&sid=1785710550&sct=1&seg=0&dl=http%3A%2F%2F127.0.0.1%2Fbalao-intragastrico-preco-a&dt=Dra.%20Bruna%20Durelli%20-%20Especialista%20em%20Obesidade%20%7C%20Tratamento%20Personalizado&en=gtm.init_consent&_fv=1&_nsi=1&_ss=1&tfd=1637, https://lzogolhiuhdjpqlizhxq.supabase.co/functions/v1/get-google-reviews, https://lzogolhiuhdjpqlizhxq.supabase.co/functions/v1/get-google-reviews, https://lzogolhiuhdjpqlizhxq.supabase.co/functions/v1/get-google-reviews, https://analytics.google.com/g/collect?v=2&tid=G-KMMT4DTVQF&gtm=45je67u0h2v876988310z89233130463za20gzb9233130463zd9233130463&_p=1785710549019&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGQC&are=1&cid=1858039127.1785710550&frm=0&pscdl=noapi&rcb=12&sr=390x844&uaa=arm&uab=64&uafvl=Chromium%3B151.0.7922.34%7CNot%253DA%253FBrand%3B99.0.0.0&uam=&uamb=0&uap=Android&uapv=12&uaw=0&ul=en-us&gaf=2&tag_exp=115938465~115938468~118897920~118897930~119896802&sid=1785710550&sct=1&seg=1&dl=http%3A%2F%2F127.0.0.1%2Fbalao-intragastrico-preco-a&dt=Quanto%20Custa%20o%20Balao%20Intragastrico%3F%20Valores%202026%20%7C%20Dra.%20Bruna%20Durelli&_s=4&tfd=6780"
+  ],
+  "recommendation": "BLOQUEAR MERGE"
+}
