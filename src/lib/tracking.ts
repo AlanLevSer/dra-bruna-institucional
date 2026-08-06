@@ -470,9 +470,8 @@ export const trackEvent = (eventName: string, params?: Record<string, unknown>) 
 
   const eventParams = params as Record<string, Primitive> | undefined;
 
-  if (window.dataLayer) {
-    window.dataLayer.push({ event: eventName, ...(params || {}) });
-  }
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: eventName, ...(params || {}) });
 
   if (window.gtag) {
     window.gtag("event", eventName, eventParams);
