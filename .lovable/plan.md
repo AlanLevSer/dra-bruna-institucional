@@ -72,7 +72,7 @@ Copy segue as proibições: sem marcas de medicamento, dose, mg, preço, promess
 
 ### Performance
 
-Mobile-first; hero acima da dobra sem imagem pesada; seções abaixo da dobra em `lazy` + `Suspense`; LeadChat carregado em idle (mesmo padrão das LPs atuais); nenhuma dependência nova.
+Mobile-first, sem dependências novas. Todas as seções de conteúdo (leves) são renderizadas normalmente, em um único módulo de página — sem `lazy`/`Suspense` indiscriminado, para evitar fragmentação e layout shift. Carregamento diferido apenas onde há ganho real: o LeadChat existente (idle callback, padrão atual das LPs), imagens abaixo da dobra (`loading="lazy"` + `width`/`height` reservados) e eventuais componentes pesados, caso surjam.
 
 ## Fase 3 — QA
 
@@ -87,5 +87,6 @@ Ao final: rota criada, arquivos criados/alterados, componentes e tracking reutil
 ## Detalhes técnicos
 
 - Arquivos novos: `src/pages/TratamentoGlp1.tsx` e `src/components/glp1/*.tsx`.
-- Arquivos alterados (mínimo): `src/App.tsx` (uma rota), `src/lib/tracking.ts` (4 chaves novas), `src/components/LeadChatWidget.tsx` (5 campos novos no payload), `public/sitemap.xml` opcional.
+- Arquivos alterados (mínimo): `src/App.tsx` (uma rota), `src/lib/tracking.ts` (`ad_id` + helper de page context), `src/components/LeadChatWidget.tsx` (campos novos no payload).
+- **`public/sitemap.xml` não será alterado** nesta implementação (SEO fora do escopo do MVP).
 - Não serão tocados: LeadChat UX/passos, `api/lead.ts`, `leadDelivery.ts`, funil Kommo, MCP/agent integrations, demais páginas.
