@@ -83,7 +83,13 @@ Playwright headless em viewports mobile (iPhone/Android) e desktop: hero e CTA a
 
 Também será verificado que as páginas institucionais continuam funcionando e que não enviam os campos de page context.
 
-Este QA é automatizado e **não libera a LP para tráfego pago**. O QA E2E real (URL → LP → LeadChat → webhook → Kommo, com Lead de teste confirmando atribuição e contexto) fica para depois do deploy, sob sua condução.
+Critérios adicionais obrigatórios:
+
+1. **Page context antes de tudo** — `setPageContext()` roda antes de `lp_view`, antes de qualquer abertura do LeadChat e antes da construção do payload da LP. Todo Lead submetido a partir da C1 carrega `route_intent=GLP`, `lp_variant=GLP_C1_V1` e `intent_cluster` da URL (ou `UNKNOWN`).
+2. **cta_source do CTA efetivo** — testar o cenário abre no `hero_primary` → fecha → reabre no `evaluation_section` → envia; o payload deve trazer `cta_source: evaluation_section`.
+3. **lp_view único** — um carregamento real da LP gera exatamente um `lp_view`, sem duplicidade por re-render, remount ou StrictMode (guarda por ref).
+
+Este QA é automatizado e **não libera a LP para tráfego pago**. O QA E2E real (URL → LP → LeadChat → `/api/lead` → webhook → Kommo, com Lead de teste confirmando atribuição e contexto) fica para depois do deploy, sob sua condução. GO-LIVE não autorizado.
 
 ## Fase 4 — Relatório
 
