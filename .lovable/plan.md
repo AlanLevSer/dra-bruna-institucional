@@ -32,21 +32,23 @@ O que já existe e será **reutilizado sem reconstrução**:
 
 ### Extensões mínimas de tracking (aditivas)
 
-1. Em `src/lib/tracking.ts`: incluir `ad_id`, `route_intent`, `intent_cluster`, `lp_variant` em `TRACKING_PARAM_KEYS`, para serem capturados da URL e persistidos pelo mesmo mecanismo first/last touch já existente. Nada é renomeado.
-2. Em `src/components/LeadChatWidget.tsx`: acrescentar ao `baseWebhookPayload` os campos já disponíveis `cta_source` (do `ctaSourceRef`), `ad_id`, `route_intent`, `intent_cluster`, `lp_variant`. Campos vazios em outras páginas — sem impacto no institucional.
-3. Defaults da LP: ao montar a página, se a URL não trouxer `route_intent`/`lp_variant`, gravar `route_intent=GLP` e `lp_variant=GLP_C1_V1` via a persistência existente. `intent_cluster` **nunca** é hardcoded: vem da URL (`GLP_C1_G1_MEDICO_CLINICA` | `GLP_C1_G2_TRATAMENTO` | `GLP_C1_G3_CATEGORIA_GLP1`).
+Separação clara entre **atribuição de aquisição** (persistida) e **contexto de página** (não persistido):
+
+1. `src/lib/tracking.ts` — acrescentar apenas `ad_id` a `TRACKING_PARAM_KEYS` (campo opcional; capturado e preservado somente quando vier na URL/origem, nunca presumido). Nenhuma outra chave de aquisição é criada ou renomeada.
+2. `src/lib/tracking.ts` — novo helper leve de **page context**, separado do first/last touch: `setPageContext({ route_intent, lp_variant })` guarda o contexto em memória para a página ativa e lê `intent_cluster` exclusivamente da URL, sem inferência; ausente ⇒ `UNKNOWN`. `getPageContext()` devolve o objeto; limpeza no unmount da LP, para que páginas institucionais não enviem esses campos.
+3. `src/components/LeadChatWidget.tsx` — acrescentar ao `baseWebhookPayload`: `cta_source` (do `ctaSourceRef`), `ad_id` e o page context (`route_intent`, `lp_variant`, `intent_cluster`). Em páginas sem page context, os campos simplesmente não aparecem.
+4. Na LP: `route_intent = GLP`, `lp_variant = GLP_C1_V1`, definidos como contexto de página — não gravados no mecanismo de first/last touch.
+
+`cta_source` preservado nos valores: `hero_primary`, `journey_section`, `evaluation_section`, `final_cta`, `sticky_mobile`.
 
 ### Eventos
 
-Reutilizar a nomenclatura vigente, adicionando apenas o alias de page view da LP:
+Nomenclatura atual mantida, sem eventos duplicados para renomeação:
 
-- `lp_view` — disparado no mount da LP com o payload de tracking (única adição).
-- `cta_clicked` + `chat_open` (com `cta_source`) — já cobrem `leadchat_open`.
-- `chat_step` — já cobre `leadchat_start`.
-- `form_submit` — já cobre `lead_submit`.
-- `whatsapp_redirect` / `trackWhatsAppClick` — já cobrem `whatsapp_click`.
+- `cta_clicked`, `chat_open`, `chat_step`, `form_submit`, `whatsapp_redirect` — inalterados.
+- `lp_view` — única adição, no mount da LP, com o payload de tracking + page context.
 
-Nenhum desses é marcado como conversão primária. A conversão continua sendo 01-MQL, offline no Kommo.
+Nenhum é marcado como conversão primária. 01-MQL permanece offline no Kommo, sem alteração.
 
 ### Página e seções
 
@@ -70,20 +72,26 @@ Copy segue as proibições: sem marcas de medicamento, dose, mg, preço, promess
 
 ### Performance
 
-Mobile-first; hero acima da dobra sem imagem pesada; seções abaixo da dobra em `lazy` + `Suspense`; LeadChat carregado em idle (mesmo padrão das LPs atuais); nenhuma dependência nova.
+Mobile-first, sem dependências novas. Todas as seções de conteúdo (leves) são renderizadas normalmente, em um único módulo de página — sem `lazy`/`Suspense` indiscriminado, para evitar fragmentação e layout shift. Carregamento diferido apenas onde há ganho real: o LeadChat existente (idle callback, padrão atual das LPs), imagens abaixo da dobra (`loading="lazy"` + `width`/`height` reservados) e eventuais componentes pesados, caso surjam.
 
 ## Fase 3 — QA
 
-Playwright headless em viewports mobile (iPhone/Android) e desktop: hero e CTA acima da dobra, abertura do LeadChat por todos os CTAs, sticky mobile, FAQ, link de WhatsApp, console sem erros, requisições quebradas, layout shift. Teste com URL contendo utm_*, gclid, campaign_id, ad_group_id, ad_id, intent_cluster, verificando persistência até o payload enviado a `/api/lead` (interceptando a requisição). Verificação de que as páginas institucionais continuam funcionando.
+Playwright headless em viewports mobile (iPhone/Android) e desktop: hero e CTA acima da dobra, abertura do LeadChat por todos os CTAs, sticky mobile, FAQ, link de WhatsApp, console sem erros, requisições quebradas, layout shift. Dois cenários de URL:
 
-Fora do meu alcance: confirmar a chegada real do Lead no Kommo (depende do webhook de produção) — fica como validação sua após o deploy.
+- **com parametrização completa** (utm_*, gclid, campaign_id, ad_group_id, ad_id, intent_cluster) — interceptar a chamada a `/api/lead` e conferir cada campo, incluindo `cta_source`, `route_intent=GLP`, `lp_variant=GLP_C1_V1` e o `intent_cluster` recebido;
+- **sem `intent_cluster`** — confirmar que o payload sai com `intent_cluster: "UNKNOWN"`, tornando visível qualquer falha de parametrização da campanha.
+
+Também será verificado que as páginas institucionais continuam funcionando e que não enviam os campos de page context.
+
+Este QA é automatizado e **não libera a LP para tráfego pago**. O QA E2E real (URL → LP → LeadChat → webhook → Kommo, com Lead de teste confirmando atribuição e contexto) fica para depois do deploy, sob sua condução.
 
 ## Fase 4 — Relatório
 
-Ao final: rota criada, arquivos criados/alterados, componentes e tracking reutilizados, mudanças aditivas no tracking, eventos confirmados, testes executados, pendências e o que não foi alterado.
+Ao final: rota criada, arquivos criados/alterados, componentes e tracking reutilizados, mudanças aditivas no tracking, eventos confirmados, testes executados, pendências, o que não foi alterado e **a URL/host de produção da rota** (`/tratamento-glp1-a`) para confirmação do domínio de aquisição antes de qualquer veiculação.
 
 ## Detalhes técnicos
 
 - Arquivos novos: `src/pages/TratamentoGlp1.tsx` e `src/components/glp1/*.tsx`.
-- Arquivos alterados (mínimo): `src/App.tsx` (uma rota), `src/lib/tracking.ts` (4 chaves novas), `src/components/LeadChatWidget.tsx` (5 campos novos no payload), `public/sitemap.xml` opcional.
+- Arquivos alterados (mínimo): `src/App.tsx` (uma rota), `src/lib/tracking.ts` (`ad_id` + helper de page context), `src/components/LeadChatWidget.tsx` (campos novos no payload).
+- **`public/sitemap.xml` não será alterado** nesta implementação (SEO fora do escopo do MVP).
 - Não serão tocados: LeadChat UX/passos, `api/lead.ts`, `leadDelivery.ts`, funil Kommo, MCP/agent integrations, demais páginas.
