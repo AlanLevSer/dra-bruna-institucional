@@ -35,7 +35,7 @@ export const Glp1Cta = ({
         size={size}
         onClick={() => void openLeadChat(ctaSource)}
         data-cta-source={ctaSource}
-        className="w-full sm:w-auto h-14 px-7 text-base font-medium rounded-full shadow-warm"
+        className="w-full sm:w-auto h-14 px-7 text-base font-medium rounded-full shadow-lg"
       >
         {CTA_LABEL}
         <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
