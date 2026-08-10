@@ -1,0 +1,115 @@
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
+
+type AuthorizationDetails = {
+  client?: { name?: string } | null;
+  redirect_url?: string;
+  redirect_to?: string;
+};
+
+type OAuthNamespace = {
+  getAuthorizationDetails: (id: string) => Promise<{ data: AuthorizationDetails | null; error: { message: string } | null }>;
+  approveAuthorization: (id: string) => Promise<{ data: AuthorizationDetails | null; error: { message: string } | null }>;
+  denyAuthorization: (id: string) => Promise<{ data: AuthorizationDetails | null; error: { message: string } | null }>;
+};
+
+const oauth = () => (supabase.auth as unknown as { oauth: OAuthNamespace }).oauth;
+
+export default function OAuthConsent() {
+  const [params] = useSearchParams();
+  const authorizationId = params.get("authorization_id") ?? "";
+  const [details, setDetails] = useState<AuthorizationDetails | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+
+    (async () => {
+      if (!authorizationId) {
+        setError("Parâmetro authorization_id ausente.");
+        return;
+      }
+
+      const { data: sess } = await supabase.auth.getSession();
+      if (!sess.session) {
+        const next = window.location.pathname + window.location.search;
+        window.location.href = "/entrar?next=" + encodeURIComponent(next);
+        return;
+      }
+
+      const { data, error: detailsError } = await oauth().getAuthorizationDetails(authorizationId);
+      if (!active) return;
+      if (detailsError) {
+        setError(detailsError.message);
+        return;
+      }
+
+      const immediate = data?.redirect_url ?? data?.redirect_to;
+      if (immediate && !data?.client) {
+        window.location.href = immediate;
+        return;
+      }
+      setDetails(data);
+    })();
+
+    return () => {
+      active = false;
+    };
+  }, [authorizationId]);
+
+  async function decide(approve: boolean) {
+    setBusy(true);
+    const { data, error: decisionError } = approve
+      ? await oauth().approveAuthorization(authorizationId)
+      : await oauth().denyAuthorization(authorizationId);
+
+    if (decisionError) {
+      setBusy(false);
+      setError(decisionError.message);
+      return;
+    }
+
+    const target = data?.redirect_url ?? data?.redirect_to;
+    if (!target) {
+      setBusy(false);
+      setError("O servidor de autorização não retornou um redirecionamento.");
+      return;
+    }
+    window.location.href = target;
+  }
+
+  return (
+    <main className="min-h-screen flex items-center justify-center bg-background px-6 py-16">
+      <div className="w-full max-w-md space-y-6 rounded-3xl border border-border/60 bg-card p-8 shadow-lg">
+        {error ? (
+          <>
+            <h1 className="font-serif text-2xl text-foreground">Não foi possível continuar</h1>
+            <p className="text-sm text-muted-foreground">{error}</p>
+          </>
+        ) : !details ? (
+          <p className="text-sm text-muted-foreground">Carregando solicitação…</p>
+        ) : (
+          <>
+            <h1 className="font-serif text-2xl text-foreground">
+              Conectar {details.client?.name ?? "aplicativo"} à sua conta
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              {details.client?.name ?? "O aplicativo"} poderá usar as ferramentas deste site em seu nome.
+            </p>
+            <div className="flex gap-3">
+              <Button className="flex-1" disabled={busy} onClick={() => decide(true)}>
+                Autorizar
+              </Button>
+              <Button className="flex-1" variant="outline" disabled={busy} onClick={() => decide(false)}>
+                Recusar
+              </Button>
+            </div>
+          </>
+        )}
+      </div>
+    </main>
+  );
+}

@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sdk_version": "0.26.2",
+  "path": "/functions/v1/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://lzogolhiuhdjpqlizhxq.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "dra-bruna-institucional",
+      "version": "0.1.0",
+      "title": "dra-bruna-institucional"
+    },
+    "tools": [
+      {
+        "name": "clinic_info",
+        "title": "Informações da clínica",
+        "description": "Retorna dados de contato, endereço e horários de atendimento do consultório da Dra. Bruna Durelli.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_treatments",
+        "title": "Listar tratamentos",
+        "description": "Lista os tratamentos e programas oferecidos, com resumo e caminho da página no site.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "estimate_bmi",
+        "title": "Estimar IMC e faixa de risco",
+        "description": "Calcula o IMC a partir de peso e altura e retorna a faixa de classificação e uma orientação geral. Não substitui avaliação médica.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "weight_kg": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Peso em quilogramas."
+            },
+            "height_cm": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Altura em centímetros."
+            },
+            "waist_cm": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Circunferência abdominal em centímetros (opcional)."
+            }
+          },
+          "required": [
+            "weight_kg",
+            "height_cm"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
