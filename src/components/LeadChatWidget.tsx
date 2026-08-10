@@ -17,7 +17,7 @@ import avatarImage from "@/assets/dra-bruna-profile.avif";
 import { ZodError } from "zod";
 import { trackEvent, trackLeadChatAbandonment, trackWhatsAppClick } from "@/lib/analytics";
 import { getSessionId } from "@/lib/sessionTracking";
-import { buildAnalyticsLeadEventPayload, buildLeadTrackingPayload } from "@/lib/tracking";
+import { buildAnalyticsLeadEventPayload, buildLeadTrackingPayload, getPageContext } from "@/lib/tracking";
 import { queueFailedLeadPayload, submitLeadPayload } from "@/lib/leadDelivery";
 
 type Step = "name" | "whatsapp" | "email" | "confirm";
@@ -392,7 +392,10 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
       utm_referrer: trackingPayload.utm_referrer,
       campaign_id: trackingPayload.campaign_id,
       ad_group_id: trackingPayload.ad_group_id,
+      ad_id: trackingPayload.ad_id,
       keyword: trackingPayload.keyword,
+      ...(ctaSourceRef.current ? { cta_source: ctaSourceRef.current } : {}),
+      ...(getPageContext() || {}),
       landing_page: trackingPayload.landing_page,
       first_page: trackingPayload.first_page,
       last_page: trackingPayload.last_page,

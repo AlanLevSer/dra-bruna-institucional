@@ -44,6 +44,7 @@ export const TRACKING_PARAM_KEYS = [
   "utm_marketing_tactic",
   "campaign_id",
   "ad_group_id",
+  "ad_id",
   "keyword",
 ] as const;
 
@@ -109,6 +110,48 @@ export type AnalyticsLeadEventPayload = Pick<
 
 const FIRST_TOUCH_STORAGE_KEY = "first_touch_tracking";
 const LAST_TOUCH_STORAGE_KEY = "last_touch_tracking";
+
+/**
+ * Page context (route_intent / lp_variant / intent_cluster).
+ *
+ * Deliberadamente SEPARADO do mecanismo de atribuicao first-touch/last-touch:
+ * nao e persistido em storage, vale apenas para a pagina ativa e e limpo no
+ * unmount. `intent_cluster` vem exclusivamente da URL — nunca e inferido.
+ */
+export type PageContext = {
+  route_intent: string;
+  lp_variant: string;
+  intent_cluster: string;
+};
+
+export const INTENT_CLUSTER_FALLBACK = "UNKNOWN";
+
+let activePageContext: PageContext | null = null;
+
+export const setPageContext = (input: {
+  route_intent: string;
+  lp_variant: string;
+}): PageContext => {
+  const search =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search)
+      : new URLSearchParams();
+  const clusterFromUrl = (search.get("intent_cluster") || "").trim();
+
+  activePageContext = {
+    route_intent: input.route_intent,
+    lp_variant: input.lp_variant,
+    intent_cluster: clusterFromUrl || INTENT_CLUSTER_FALLBACK,
+  };
+
+  return activePageContext;
+};
+
+export const getPageContext = (): PageContext | null => activePageContext;
+
+export const clearPageContext = () => {
+  activePageContext = null;
+};
 
 const STANDARD_FB_EVENTS = new Set([
   "PageView",
