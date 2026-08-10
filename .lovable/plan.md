@@ -32,21 +32,23 @@ O que já existe e será **reutilizado sem reconstrução**:
 
 ### Extensões mínimas de tracking (aditivas)
 
-1. Em `src/lib/tracking.ts`: incluir `ad_id`, `route_intent`, `intent_cluster`, `lp_variant` em `TRACKING_PARAM_KEYS`, para serem capturados da URL e persistidos pelo mesmo mecanismo first/last touch já existente. Nada é renomeado.
-2. Em `src/components/LeadChatWidget.tsx`: acrescentar ao `baseWebhookPayload` os campos já disponíveis `cta_source` (do `ctaSourceRef`), `ad_id`, `route_intent`, `intent_cluster`, `lp_variant`. Campos vazios em outras páginas — sem impacto no institucional.
-3. Defaults da LP: ao montar a página, se a URL não trouxer `route_intent`/`lp_variant`, gravar `route_intent=GLP` e `lp_variant=GLP_C1_V1` via a persistência existente. `intent_cluster` **nunca** é hardcoded: vem da URL (`GLP_C1_G1_MEDICO_CLINICA` | `GLP_C1_G2_TRATAMENTO` | `GLP_C1_G3_CATEGORIA_GLP1`).
+Separação clara entre **atribuição de aquisição** (persistida) e **contexto de página** (não persistido):
+
+1. `src/lib/tracking.ts` — acrescentar apenas `ad_id` a `TRACKING_PARAM_KEYS` (campo opcional; capturado e preservado somente quando vier na URL/origem, nunca presumido). Nenhuma outra chave de aquisição é criada ou renomeada.
+2. `src/lib/tracking.ts` — novo helper leve de **page context**, separado do first/last touch: `setPageContext({ route_intent, lp_variant })` guarda o contexto em memória para a página ativa e lê `intent_cluster` exclusivamente da URL, sem inferência; ausente ⇒ `UNKNOWN`. `getPageContext()` devolve o objeto; limpeza no unmount da LP, para que páginas institucionais não enviem esses campos.
+3. `src/components/LeadChatWidget.tsx` — acrescentar ao `baseWebhookPayload`: `cta_source` (do `ctaSourceRef`), `ad_id` e o page context (`route_intent`, `lp_variant`, `intent_cluster`). Em páginas sem page context, os campos simplesmente não aparecem.
+4. Na LP: `route_intent = GLP`, `lp_variant = GLP_C1_V1`, definidos como contexto de página — não gravados no mecanismo de first/last touch.
+
+`cta_source` preservado nos valores: `hero_primary`, `journey_section`, `evaluation_section`, `final_cta`, `sticky_mobile`.
 
 ### Eventos
 
-Reutilizar a nomenclatura vigente, adicionando apenas o alias de page view da LP:
+Nomenclatura atual mantida, sem eventos duplicados para renomeação:
 
-- `lp_view` — disparado no mount da LP com o payload de tracking (única adição).
-- `cta_clicked` + `chat_open` (com `cta_source`) — já cobrem `leadchat_open`.
-- `chat_step` — já cobre `leadchat_start`.
-- `form_submit` — já cobre `lead_submit`.
-- `whatsapp_redirect` / `trackWhatsAppClick` — já cobrem `whatsapp_click`.
+- `cta_clicked`, `chat_open`, `chat_step`, `form_submit`, `whatsapp_redirect` — inalterados.
+- `lp_view` — única adição, no mount da LP, com o payload de tracking + page context.
 
-Nenhum desses é marcado como conversão primária. A conversão continua sendo 01-MQL, offline no Kommo.
+Nenhum é marcado como conversão primária. 01-MQL permanece offline no Kommo, sem alteração.
 
 ### Página e seções
 
