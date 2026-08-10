@@ -27,7 +27,6 @@ const seoData = {
   keywords:
     "tratamento do emagrecimento, clínica de emagrecimento São Paulo, avaliação médica, acompanhamento interdisciplinar, LevSer",
   canonical: "https://www.brunadurelli.com.br/tratamento-glp1-a",
-  noindex: true,
 } as const;
 
 const TratamentoGlp1 = () => {
@@ -43,10 +42,20 @@ const TratamentoGlp1 = () => {
       trackEvent("lp_view", { ...context, page_path: "/tratamento-glp1-a" });
     }
 
+    // LP de mídia paga: fora do índice orgânico (sitemap institucional inalterado).
+    let robots = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null;
+    if (!robots) {
+      robots = document.createElement("meta");
+      robots.name = "robots";
+      document.head.appendChild(robots);
+    }
+    robots.content = "noindex, nofollow";
+
     const timeoutId = window.setTimeout(() => setShowWidget(true), 1200);
 
     return () => {
       window.clearTimeout(timeoutId);
+      if (robots) robots.content = "index, follow";
       clearPageContext();
     };
   }, []);
