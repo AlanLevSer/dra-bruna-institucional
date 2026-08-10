@@ -76,13 +76,18 @@ Mobile-first, sem dependências novas. Todas as seções de conteúdo (leves) s�
 
 ## Fase 3 — QA
 
-Playwright headless em viewports mobile (iPhone/Android) e desktop: hero e CTA acima da dobra, abertura do LeadChat por todos os CTAs, sticky mobile, FAQ, link de WhatsApp, console sem erros, requisições quebradas, layout shift. Teste com URL contendo utm_*, gclid, campaign_id, ad_group_id, ad_id, intent_cluster, verificando persistência até o payload enviado a `/api/lead` (interceptando a requisição). Verificação de que as páginas institucionais continuam funcionando.
+Playwright headless em viewports mobile (iPhone/Android) e desktop: hero e CTA acima da dobra, abertura do LeadChat por todos os CTAs, sticky mobile, FAQ, link de WhatsApp, console sem erros, requisições quebradas, layout shift. Dois cenários de URL:
 
-Fora do meu alcance: confirmar a chegada real do Lead no Kommo (depende do webhook de produção) — fica como validação sua após o deploy.
+- **com parametrização completa** (utm_*, gclid, campaign_id, ad_group_id, ad_id, intent_cluster) — interceptar a chamada a `/api/lead` e conferir cada campo, incluindo `cta_source`, `route_intent=GLP`, `lp_variant=GLP_C1_V1` e o `intent_cluster` recebido;
+- **sem `intent_cluster`** — confirmar que o payload sai com `intent_cluster: "UNKNOWN"`, tornando visível qualquer falha de parametrização da campanha.
+
+Também será verificado que as páginas institucionais continuam funcionando e que não enviam os campos de page context.
+
+Este QA é automatizado e **não libera a LP para tráfego pago**. O QA E2E real (URL → LP → LeadChat → webhook → Kommo, com Lead de teste confirmando atribuição e contexto) fica para depois do deploy, sob sua condução.
 
 ## Fase 4 — Relatório
 
-Ao final: rota criada, arquivos criados/alterados, componentes e tracking reutilizados, mudanças aditivas no tracking, eventos confirmados, testes executados, pendências e o que não foi alterado.
+Ao final: rota criada, arquivos criados/alterados, componentes e tracking reutilizados, mudanças aditivas no tracking, eventos confirmados, testes executados, pendências, o que não foi alterado e **a URL/host de produção da rota** (`/tratamento-glp1-a`) para confirmação do domínio de aquisição antes de qualquer veiculação.
 
 ## Detalhes técnicos
 
