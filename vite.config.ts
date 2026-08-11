@@ -1,10 +1,7 @@
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { componentTagger } from "lovable-tagger";
 import { visualizer } from "rollup-plugin-visualizer";
-import { mcpPlugin } from "@lovable.dev/mcp-js/stacks/supabase/vite";
-
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -14,8 +11,6 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mcpPlugin(),
-    mode === "development" && componentTagger(),
 
     mode === "development" &&
       visualizer({
@@ -25,7 +20,6 @@ export default defineConfig(({ mode }) => ({
         filename: "dist/stats.html",
       }),
   ].filter(Boolean),
-  // Use esbuild to drop console/debugger in build without terser
   esbuild: {
     drop: ["console", "debugger"],
   },
@@ -44,9 +38,13 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks(moduleId) {
-          if (["react", "react-dom", "react-router-dom"].some((name) => moduleId.includes(`/node_modules/${name}/`))) return "vendor-react";
+          if (["react", "react-dom", "react-router-dom"].some((n) => moduleId.includes(`/node_modules/${n}/`))) return "vendor-react";
           if (moduleId.includes("/node_modules/@radix-ui/")) return "vendor-ui";
-          if (["react-hook-form", "@hookform/resolvers", "zod"].some((name) => moduleId.includes(`/node_modules/${name}/`))) return "vendor-form";
+          if (["react-hook-form", "@hookform/resolvers", "zod"].some((n) => moduleId.includes(`/node_modules/${n}/`))) return "vendor-form";
+          if (moduleId.includes("/node_modules/@supabase/") || moduleId.includes("/node_modules/supabase")) return "vendor-supabase";
+          if (moduleId.includes("/node_modules/embla-carousel")) return "vendor-carousel";
+          if (moduleId.includes("/node_modules/lucide-react")) return "vendor-icons";
+          if (moduleId.includes("/node_modules/canvas-confetti")) return "vendor-confetti";
         },
       },
     },
