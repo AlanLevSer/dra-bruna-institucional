@@ -46,7 +46,7 @@ export const Glp1Midia = () => (
               height={32}
               loading="lazy"
               decoding="async"
-              className="max-h-7 w-auto max-w-full object-contain opacity-80"
+              className="max-h-9 w-auto max-w-full object-contain"
             />
           </li>
         ))}
