@@ -1,5 +1,4 @@
 import {
-  ClipboardList,
   Compass,
   HeartPulse,
   Salad,
@@ -505,7 +504,3 @@ export const Glp1Disclaimer = () => (
     </div>
   </section>
 );
-
-/* Compatibilidade: seção de jornada substituída pelo Método LevSer */
-export const Glp1Jornada = Glp1Metodo;
-export const ClipboardListIconRef = ClipboardList;
