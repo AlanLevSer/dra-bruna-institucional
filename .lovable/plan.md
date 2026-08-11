@@ -24,9 +24,14 @@ Novo componente local `src/components/glp1/Glp1Avaliacoes.tsx` que consome o mes
 - Eyebrow: EXPERIÊNCIA LEVSER
 - Headline: "O cuidado também aparece na experiência de quem passa por aqui."
 - Sub: "Avaliações compartilhadas por pessoas que já conheceram a LevSer e nossa equipe."
-- Nota média e quantidade exibidas exatamente como vierem da fonte existente (sem números inventados). Se a chamada falhar, a seção simplesmente não é renderizada.
-- Regra de seleção previsível: elegíveis são reviews com `rating >= 4` e texto não vazio; entre os elegíveis, prioridade por menção a (1) acolhimento/atendimento/equipe/Dra. Bruna, (2) acompanhamento/cuidado/clareza/organização, (3) estrutura/experiência. Máximo de 6; se houver menos adequados, mostra menos, sem completar artificialmente. Texto original preservado integralmente.
+- Cabeçalho com prova de escala: estrelas + nota média e "X avaliações no Google", usando apenas os valores reais retornados pela fonte (`rating`, `total_reviews`), sem hardcode e sem link para o Google. Se a chamada falhar ou não houver reviews elegíveis, a seção não é renderizada (sem espaço vazio).
+- Regra de seleção previsível: elegíveis são reviews com `rating >= 4` e texto não vazio; entre os elegíveis, prioridade por menção a (1) acolhimento/atendimento/equipe/Dra. Bruna, (2) acompanhamento/cuidado/clareza/organização, (3) estrutura/experiência.
+- Protagonismo de 3: os 3 primeiros cards são escolhidos buscando diversidade temática (1 = Dra. Bruna/confiança, 2 = equipe/acompanhamento, 3 = experiência/estrutura), sem repetir a mesma dimensão. O conjunto carregado tem no máximo 6; se houver menos adequados, mostra menos, sem completar artificialmente. Texto original preservado integralmente (sem resumo ou reescrita).
+- Carrossel existente (embla, já no projeto): desktop exibe 3 cards simultâneos, mobile 1 card por viewport com swipe/navegação; as demais avaliações ficam acessíveis apenas dentro do próprio carrossel.
 - Sem "Ver no Google", sem link de Maps, sem CTA externo. Também será verificado que o card não gera navegação indireta (nome, avatar, logo Google, onClick ou cursor de link) — o único controle interativo é "Ler mais/Ler menos", que apenas expande o texto na própria página.
+
+### 3.1 Escopo encerrado
+Nenhuma seção nova além de mídia e reviews; sem números institucionais, selos, cases, antes/depois, vídeos ou CTAs novos. Hero permanece único (sem variação por `intent_cluster`), `lp_variant` continua `GLP_C1_V1`, sem feature flag nem biblioteca de experimentação. Os componentes ficam modulares o bastante para testes futuros de CRO sem reconstrução.
 
 ### 4. Ordem final das seções
 Hero → Para quem é → Problema → Método → Pilares → GLP-1/GIP → Frase-síntese → Avaliação Estratégica → Dra. Bruna + equipe → **Mídia** → Estrutura → Nosso espaço (vídeo/foto real já existente, mantido) → **Avaliações Google** → FAQ → CTA final → Disclaimer.
