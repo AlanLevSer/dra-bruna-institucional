@@ -144,9 +144,9 @@ export const createQuizWebhookData = (
     comorbidades: quizData.comorbidades?.join(", ") || "",
 
     // Resultados
-    tratamento_recomendado: output.tratamentoRecomendado || "",
-    timeline_meses: output.timelineMeses || "",
-    resumo_resultado: output.resumo || "",
+    tratamento_recomendado: output.mixEstrategias.intervencao?.nome || "",
+    timeline_meses: String(output.planoEnergetico.semanasPlano),
+    resumo_resultado: output.headline,
 
     // Origem
     origem: "quiz",

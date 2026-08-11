@@ -6,6 +6,7 @@ export interface ConversionMetadata {
   section?: string;
   position?: "hero" | "middle" | "bottom";
   scroll_depth?: number;
+  program_selected?: string;
 }
 
 export const openLeadChat = (
@@ -26,7 +27,7 @@ export const openLeadChat = (
       });
 
       if (typeof window !== "undefined" && window.LeadChat) {
-        window.LeadChat.open({ cta_source: source });
+        window.LeadChat.open({ cta_source: source, program_selected: conversionMetadata?.program_selected });
         // chat_open é disparado dentro de LeadChatWidget.handleOpen — sem segundo cta_clicked aqui
 
         if (conversionMetadata) {
@@ -46,7 +47,7 @@ export const openLeadChat = (
 
       setTimeout(() => {
         if (window.LeadChat) {
-          window.LeadChat.open({ cta_source: source });
+          window.LeadChat.open({ cta_source: source, program_selected: conversionMetadata?.program_selected });
           // chat_open disparado pelo widget — sem cta_clicked extra aqui
 
           if (conversionMetadata) {

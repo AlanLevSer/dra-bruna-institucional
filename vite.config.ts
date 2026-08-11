@@ -43,16 +43,10 @@ export default defineConfig(({ mode }) => ({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          "vendor-react": ["react", "react-dom", "react-router-dom"],
-          "vendor-ui": [
-            "@radix-ui/react-dialog",
-            "@radix-ui/react-accordion",
-            "@radix-ui/react-tabs",
-            "@radix-ui/react-select",
-            "@radix-ui/react-popover",
-          ],
-          "vendor-form": ["react-hook-form", "@hookform/resolvers", "zod"],
+        manualChunks(moduleId) {
+          if (["react", "react-dom", "react-router-dom"].some((name) => moduleId.includes(`/node_modules/${name}/`))) return "vendor-react";
+          if (moduleId.includes("/node_modules/@radix-ui/")) return "vendor-ui";
+          if (["react-hook-form", "@hookform/resolvers", "zod"].some((name) => moduleId.includes(`/node_modules/${name}/`))) return "vendor-form";
         },
       },
     },

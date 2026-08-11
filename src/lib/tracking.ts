@@ -1,7 +1,5 @@
 type Primitive = string | number | boolean | null | undefined;
 
-type FBQTrackMode = "track" | "trackCustom";
-
 type PandaPlayerInstance = {
   onEvent: (event: string, callback: (payload?: number) => void) => void;
 };
@@ -14,7 +12,6 @@ declare global {
       params?: Record<string, Primitive>,
     ) => void;
     dataLayer?: Array<Record<string, unknown>>;
-    fbq?: (mode: FBQTrackMode, eventName: string, params?: Record<string, Primitive>) => void;
     pandascripttag?: Array<() => void>;
     pandaplayer?: (id: string) => PandaPlayerInstance | undefined;
   }
@@ -521,7 +518,7 @@ export const trackEvent = (eventName: string, params?: Record<string, unknown>) 
   }
 
   if (window.fbq) {
-    const fbMode: FBQTrackMode = STANDARD_FB_EVENTS.has(eventName) ? "track" : "trackCustom";
+    const fbMode = STANDARD_FB_EVENTS.has(eventName) ? "track" : "trackCustom";
     try {
       window.fbq(fbMode, eventName, eventParams);
     } catch {

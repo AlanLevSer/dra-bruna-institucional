@@ -449,12 +449,9 @@ const Quiz = () => {
             showFloatingButton 
             origin="quiz"
             quizData={{
-              imc: quizData.imc,
-              peso: quizData.peso,
-              metaPeso: quizData.metaPeso,
-              comorbidades: quizData.comorbidades || [],
+              ...quizData,
               tratamentoRecomendado: quizOutput.mixEstrategias.intervencao?.nome || "",
-              timelineMeses: quizOutput.planoEnergetico.semanasPlano,
+              timelineMeses: String(quizOutput.planoEnergetico.semanasPlano),
               resumoWhatsApp: formatQuizResultadoWhatsApp(quizData, quizOutput),
             }}
           />
