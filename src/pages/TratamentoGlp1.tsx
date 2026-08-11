@@ -3,14 +3,19 @@ import { SEOHead } from "@/components/SEOHead";
 import { Glp1Hero } from "@/components/glp1/Glp1Hero";
 import {
   Glp1Autoridade,
+  Glp1Avaliacao,
   Glp1CtaFinal,
   Glp1Disclaimer,
+  Glp1Estrutura,
   Glp1Faq,
-  Glp1Jornada,
+  Glp1Ferramenta,
   Glp1Metodo,
   Glp1Perfil,
+  Glp1Pilares,
   Glp1Problema,
+  Glp1Sintese,
 } from "@/components/glp1/Glp1Sections";
+
 import { Glp1StickyCta } from "@/components/glp1/Glp1StickyCta";
 import { clearPageContext, setPageContext } from "@/lib/tracking";
 import { trackEvent } from "@/lib/analytics";
@@ -66,14 +71,19 @@ const TratamentoGlp1 = () => {
 
       <main>
         <Glp1Hero />
+        <Glp1Perfil />
         <Glp1Problema />
         <Glp1Metodo />
-        <Glp1Jornada />
-        <Glp1Perfil />
+        <Glp1Pilares />
+        <Glp1Ferramenta />
+        <Glp1Sintese />
+        <Glp1Avaliacao />
         <Glp1Autoridade />
+        <Glp1Estrutura />
         <Glp1Faq />
         <Glp1CtaFinal />
         <Glp1Disclaimer />
+
       </main>
 
       <Glp1StickyCta />
