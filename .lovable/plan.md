@@ -24,9 +24,9 @@ Novo componente local `src/components/glp1/Glp1Avaliacoes.tsx` que consome o mes
 - Eyebrow: EXPERIÊNCIA LEVSER
 - Headline: "O cuidado também aparece na experiência de quem passa por aqui."
 - Sub: "Avaliações compartilhadas por pessoas que já conheceram a LevSer e nossa equipe."
-- Nota média e quantidade exibidas exatamente como vierem da fonte existente (sem números inventados). Se a chamada falhar, a seção simplesmente não é renderizada (nada quebrado, nada inventado).
-- Priorização leve dos reviews por palavras-chave de acolhimento/atendimento/equipe/acompanhamento, mantendo o texto original intacto; máximo de 6 cards, carrossel já existente no mobile.
-- Sem "Ver no Google", sem link de Maps, sem CTA externo.
+- Nota média e quantidade exibidas exatamente como vierem da fonte existente (sem números inventados). Se a chamada falhar, a seção simplesmente não é renderizada.
+- Regra de seleção previsível: elegíveis são reviews com `rating >= 4` e texto não vazio; entre os elegíveis, prioridade por menção a (1) acolhimento/atendimento/equipe/Dra. Bruna, (2) acompanhamento/cuidado/clareza/organização, (3) estrutura/experiência. Máximo de 6; se houver menos adequados, mostra menos, sem completar artificialmente. Texto original preservado integralmente.
+- Sem "Ver no Google", sem link de Maps, sem CTA externo. Também será verificado que o card não gera navegação indireta (nome, avatar, logo Google, onClick ou cursor de link) — o único controle interativo é "Ler mais/Ler menos", que apenas expande o texto na própria página.
 
 ### 4. Ordem final das seções
 Hero → Para quem é → Problema → Método → Pilares → GLP-1/GIP → Frase-síntese → Avaliação Estratégica → Dra. Bruna + equipe → **Mídia** → Estrutura → Nosso espaço (vídeo/foto real já existente, mantido) → **Avaliações Google** → FAQ → CTA final → Disclaimer.
@@ -34,8 +34,11 @@ Hero → Para quem é → Problema → Método → Pilares → GLP-1/GIP → Fra
 ### 5. Auditoria de links
 Varredura da LP: os únicos elementos de conversão continuam sendo os CTAs do LeadChat. Logos sem navegação, reviews sem navegação, nenhum link externo novo.
 
-### Ponto de atenção — WhatsApp
-Você pediu antes para **remover** o contato direto por WhatsApp da LP (para não perder UTM), e ele está removido hoje. Este briefing o permite como alternativa secundária. Mantenho **removido** por padrão, para preservar a atribuição; se quiser reativá-lo abaixo do CTA final, é só dizer e eu incluo.
+### WhatsApp
+Permanece **removido** desta LP. O fluxo oficial da C1 é Google Ads → LP → LeadChat → Lead com atribuição → Kommo → WhatsApp → MQL; nenhum caminho paralelo de entrada será reativado.
+
+### Fonte dos logos de mídia
+Os veículos estão hardcoded nos componentes institucionais. Para evitar refatoração global de baixo benefício, a LP usará localmente os mesmos assets `src/assets/media/*.avif`, sem tocar nos componentes existentes.
 
 ## Detalhes técnicos
 
