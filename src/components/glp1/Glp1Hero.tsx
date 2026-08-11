@@ -1,5 +1,8 @@
 import { Stethoscope, Users, LineChart, MapPin } from "lucide-react";
 import { Glp1Cta } from "./Glp1Cta";
+import watermark1 from "@/assets/transformation-confidence.avif";
+import watermark2 from "@/assets/transformation-selfcare.avif";
+import watermark3 from "@/assets/patient-wellness-1.avif";
 
 const TRUST_ITEMS = [
   { icon: Stethoscope, label: "Tratamento médico" },
