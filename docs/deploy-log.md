@@ -5,6 +5,70 @@ Use este arquivo para registrar apenas desvios do fluxo normal de deploy.
 
 ---
 
+## 2026-08-11 — C1 GLP-1/GIP: portabilidade de vídeo + merge para produção
+
+**Commit em produção:** `cc54f3b`
+**PR:** #12 (squash merge, branch `fix/glp1-video-portability`)
+**Data/hora deploy Vercel (UTC):** 2026-08-11
+**URL canônica:** `https://www.brunadurelli.com.br/tratamento-glp1-a`
+**LP:** C1 GLP-1/GIP (`LP_VARIANT = GLP_C1_V1`, `ROUTE_INTENT = GLP`)
+
+### Escopo da mudança
+
+3 arquivos alterados / 2 binários adicionados:
+
+| Arquivo | Tipo | Alteração |
+|---|---|---|
+| `src/components/glp1/Glp1Espaco.tsx` | PATCH | Substituição de imports `.asset.json` (CDN Lovable `/__l5e/`) por constantes estáticas locais (`/media/`) |
+| `public/media/levser-estrutura.mp4` | BINARY | Vídeo H.264 1080×1920, 16.67s, 2.91 MB (SHA-256: `f2ba10c7…`) |
+| `public/media/levser-estrutura-poster.webp` | BINARY | Poster 720×1280, 183 KB (SHA-256: `9ceee7cd…`) |
+
+**Motivação:** arquivos `.asset.json` do Lovable apontavam para CDN privado `/__l5e/assets-v1/` — inacessível no Vercel. Solução cirúrgica: constantes estáticas + binários em `public/media/`.
+
+### Smoke test — produção (2026-08-11)
+
+| Verificação | Resultado |
+|---|---|
+| `GET /tratamento-glp1-a` | ✅ HTTP 200 |
+| `GET /media/levser-estrutura.mp4` | ✅ HTTP 200, `video/mp4`, `Accept-Ranges: bytes` |
+| `GET /media/levser-estrutura-poster.webp` | ✅ HTTP 200, `image/webp` |
+| Referências CDN Lovable no bundle | ✅ ZERO (`/__l5e/` ausente) |
+| Make webhook exposto no HTML | ✅ ZERO |
+| `noindex, nofollow` injetado | ✅ confirmado via `<meta name="robots">` no DOM |
+| Sitemap exclui C1 | ✅ rota ausente em `/sitemap.xml` |
+
+### QA de vídeo — Vercel Preview
+
+QA manual do vídeo aprovado pelo operador na rota `/tratamento-glp1-a` no preview Vercel (SSO protegido — não testável via curl). Vídeo carregou e reproduziu corretamente.
+
+### Rollback
+
+Reverter para commit imediatamente anterior ao PR #12. O vídeo voltará a não carregar no Vercel (dependência Lovable CDN), mas a página ficará funcional sem a seção de vídeo. Alternativa: desabilitar `<Glp1Espaco />` em `TratamentoGlp1.tsx`.
+
+### Auditoria de tracking — resultado
+
+Auditoria READ-ONLY realizada em 2026-08-11. Relatório completo disponível em: `https://claude.ai/code/artifact/8eda6cbb-5085-4266-b586-08e62c06dd0f`
+
+| Tecnologia | Status |
+|---|---|
+| GTM-WZFMV5R7 (published) | ✅ Funcionando |
+| GA4 G-KMMT4DTVQF | ⚠️ Problema — key event `whatsapp_click` ausente |
+| Google Ads conversão "Lead" | ✅ Funcionando |
+| Conversion Linker (T27) | ⚠️ Problema — GTM carrega com atraso 1.5–2s |
+| Microsoft Clarity (idm2xm22st) | ✅ Funcionando |
+| Meta Pixel 3581322512114101 | ⚠️ Problema — dupla inicialização (código + GTM) |
+| Consent Mode v2 | ❌ Não instalado |
+| dataLayer | ✅ Funcionando |
+| UTMs/GCLID atribuição | ✅ Funcionando |
+| LeadChat (5 cta_source) | ⏳ Não validado em runtime |
+| /api/lead proxy | ✅ Funcionando |
+| Kommo | ⏳ Sem acesso MCP |
+| 01-MQL offline conversion | ⚠️ Problema — sem campanha GLP-1 ativa |
+
+**Gate:** C1 NÃO declarada pronta para tráfego pago. Pendências: LeadChat runtime, Kommo end-to-end, campanha GLP-1, Meta Pixel duplo, Consent Mode v2.
+
+---
+
 ## 2026-07-31 — Plasma V2: encerramento do ciclo de QA e início da janela de observação
 
 **Commit em produção (no momento do QA):** `afd979f01754a3af862e7d2c82582ae970f6e57a`
