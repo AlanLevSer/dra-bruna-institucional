@@ -31,16 +31,37 @@ c1-glp1-sync/
 
 ## Classificação das dependências (entra no manifesto)
 
-Cada arquivo será classificado por data do último commit, comparando com o período de implementação da C1 (10–11/08/2026):
+Nenhum arquivo existente será classificado por data de commit. Todos os arquivos existentes tocados no período da C1 entram como:
 
-- Alterados para a C1, entram como **DIFF A AUDITAR**: `src/lib/tracking.ts`, `src/lib/analytics.ts`, `src/lib/leadChat.ts`, `src/components/LeadChatWidget.tsx`, `src/index.css`, `src/App.tsx`, `vercel.json`, `eslint.config.js`.
-- Não alterados, entram apenas como **dependência reutilizada** (não copiar/sobrescrever): `src/lib/leadDelivery.ts`, `src/hooks/useGoogleReviews.ts`, `src/components/GoogleReviewCard.tsx`, `src/components/SEOHead.tsx`, `src/lib/constants.ts`, `src/types/google-reviews.ts`, componentes `ui/`.
+`POSSIVELMENTE MODIFICADO DURANTE A IMPLEMENTAÇÃO C1 — DIFF OBRIGATÓRIO CONTRA O GITHUB OFICIAL (main / 5ef2462)`
 
-Para cada arquivo o manifesto trará: caminho, motivo da dependência, modificado SIM/NÃO, e o diff quando aplicável.
+São eles: `src/App.tsx`, `src/index.css`, `vercel.json`, `eslint.config.js`, `src/lib/tracking.ts`, `src/lib/analytics.ts`, `src/lib/leadChat.ts`, `src/components/LeadChatWidget.tsx`. Para cada um o pacote traz: versão completa atual do Lovable, patch (`git log -p -1`), SHA do último commit Lovable e descrição curta da alteração. O patch é material de auditoria — a integração é semântica, feita pelo Claude Code sobre o código atual do GitHub; nada é aplicado automaticamente e nenhuma melhoria já existente no GitHub é sobrescrita.
+
+Dependências reutilizadas e **não copiadas**: `src/lib/leadDelivery.ts`, `src/hooks/useGoogleReviews.ts`, `src/lib/googlePlaces.ts`, `src/components/GoogleReviewCard.tsx`, `src/components/SEOHead.tsx`, `src/lib/constants.ts`, `src/types/google-reviews.ts`, `src/components/ui/{button,accordion,carousel}`.
+
+## Hashes de integridade
+
+SHA-256 no `MANIFESTO.md` para: `levser-estrutura.mp4`, `levser-estrutura-poster.webp`, todos os `src/components/glp1/*`, `TratamentoGlp1.tsx`, assets específicos da C1 (foto Dra. Bruna, imagem do hero, 6 logos), os arquivos modificados completos e o ZIP final.
+
+## Histórico Lovable — C1 GLP-1/GIP
+
+Seção no manifesto com SHA, data e mensagem dos commits relevantes (criação da LP, tracking/page context, CRO, mídia, Google Reviews, CTA, rewrite `tratamento-glp1-a`, ajuste ESLint MCP), com aviso explícito de que esses SHAs **não** servem para cherry-pick — o histórico do GitHub é outro.
+
+## Vídeo e poster
+
+Binários reais incluídos com nome, tamanho, resolução, codec (ffprobe) e origem. Os `.asset.json` seguem apenas como referência histórica. `Glp1Espaco.tsx` não é alterado. O manifesto registra:
+
+- ESTADO ATUAL LOVABLE: `.asset.json` → `/__l5e/assets-v1/...` → dependência exclusiva da infraestrutura Lovable.
+- ESTADO NECESSÁRIO NO GITHUB/VERCEL: substituir por asset independente do Lovable. A escolha entre `public/media/` e `src/assets/` fica com o Claude Code. URL absoluta do CDN Lovable não é solução definitiva.
+
+## Varredura Lovable-only
+
+Busca por `__l5e`, `asset.json`, `lovable`, `lovable.app`, `lovable-gcp`, `assets-v1` restrita ao escopo da C1, com todas as ocorrências listadas e o contador `C1 LOVABLE-ONLY DEPENDENCIES = N`.
 
 ## Manifesto (seções A–E)
 
-A. arquivos novos · B. arquivos modificados (com diffs) · C. assets novos (com tamanho, resolução e codec obtidos via ffprobe) · D. dependências reutilizadas não copiadas · E. assets Lovable-only a eliminar, com o mapeamento sugerido `.asset.json` → `public/` ou `src/assets/` para o Claude Code aplicar no GitHub oficial.
+A. arquivos novos · B. arquivos modificados · C. assets novos · D. dependências reutilizadas não copiadas · E. assets Lovable-only a eliminar.
+
 
 ## Fora do escopo
 
