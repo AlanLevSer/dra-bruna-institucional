@@ -22,7 +22,7 @@ declare global {
       params?: Record<string, string | number | boolean | null | undefined>,
     ) => void;
     dataLayer?: Array<Record<string, unknown>>;
-    fbq?: (...args: unknown[]) => void;
+    fbq?: (mode: "track" | "trackCustom", eventName: string, params?: Record<string, string | number | boolean | null | undefined>) => void;
     pandascripttag?: Array<() => void>;
     pandaplayer?: (id: string) => PandaPlayerInstance | undefined;
   }

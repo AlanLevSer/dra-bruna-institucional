@@ -19,6 +19,7 @@ import { trackEvent, trackLeadChatAbandonment, trackWhatsAppClick } from "@/lib/
 import { getSessionId } from "@/lib/sessionTracking";
 import { buildAnalyticsLeadEventPayload, buildLeadTrackingPayload, getPageContext } from "@/lib/tracking";
 import { queueFailedLeadPayload, submitLeadPayload } from "@/lib/leadDelivery";
+import type { QuizData } from "@/types/quiz";
 
 type Step = "name" | "whatsapp" | "email" | "confirm";
 
@@ -29,11 +30,7 @@ type LeadChatOpenData = {
 type Props = {
   showFloatingButton?: boolean;
   origin?: string;
-  quizData?: {
-    imc: number;
-    peso: number;
-    metaPeso: number;
-    comorbidades: string[];
+  quizData?: QuizData & {
     tratamentoRecomendado?: string;
     timelineMeses?: string;
     resumoWhatsApp: string;
@@ -594,7 +591,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
     <>
       {showFloatingButton && !isOpen && (
         <div 
-          onClick={handleOpen}
+          onClick={() => handleOpen()}
           className="fixed bottom-6 right-6 z-[120] flex items-center gap-3 cursor-pointer hover:scale-105 transition-all duration-300 animate-fade-in group"
           role="button"
           aria-label="Comece sua jornada hoje"
@@ -866,7 +863,7 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
 declare global {
   interface Window {
     LeadChat: {
-      open: (data?: { cta_source?: string }) => void;
+      open: (data?: { cta_source?: string; program_selected?: string }) => void;
       close: () => void;
       isOpen: () => boolean;
     };
