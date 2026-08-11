@@ -518,7 +518,7 @@ export const trackEvent = (eventName: string, params?: Record<string, unknown>) 
   }
 
   if (window.fbq) {
-    const fbMode: FBQTrackMode = STANDARD_FB_EVENTS.has(eventName) ? "track" : "trackCustom";
+    const fbMode = STANDARD_FB_EVENTS.has(eventName) ? "track" : "trackCustom";
     try {
       window.fbq(fbMode, eventName, eventParams);
     } catch {
