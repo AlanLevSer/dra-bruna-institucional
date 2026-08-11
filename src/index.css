@@ -84,6 +84,8 @@ All colors MUST be HSL.
 
     --primary: 16 51% 58%;
     --primary-foreground: 0 0% 98%;
+    --primary-strong: 16 55% 45%;
+    --primary-stronger: 16 58% 38%;
 
     --secondary: 165 12% 55%;
     --secondary-foreground: 0 0% 95%;
