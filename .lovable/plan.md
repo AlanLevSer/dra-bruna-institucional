@@ -1,25 +1,25 @@
-# Vídeo do espaço físico na LP C1 (leve e sem travar a página)
+# Seção "Nossa estrutura" com vídeo na LP C1
 
-## Formato recomendado
-- **MP4 (H.264 + AAC)** como arquivo principal — compatível com todos os navegadores/iOS.
-- Opcional: **WebM (VP9)** como fonte alternativa para navegadores modernos (arquivo ~30% menor).
-- Resolução: **1080x1920 (9:16)** se for vertical mobile-first, ou **1280x720** se horizontal.
-- Duração: **8 a 20 segundos**, sem áudio (tour curto do espaço).
-- Bitrate alvo: **1.5–2.5 Mbps** → peso final ideal **abaixo de 4 MB**.
-- Hospedagem: enviar via Lovable Assets (CDN), não dentro do repositório.
+Os arquivos enviados estão dentro do ideal: MP4 H.264, 1080x1920 (9:16), 16,7s, **sem faixa de áudio**, 2,9 MB. Poster WebP de 184 KB. Nada precisa ser reencodado.
 
-## Como será implementado na LP
-- Seção "Nossa estrutura" com o vídeo em `<video>` nativo:
-  - `muted`, `loop`, `playsInline`, `autoPlay` (autoplay só funciona mudo)
-  - `preload="none"` + `poster` (imagem estática leve em .avif/.webp)
-  - vídeo só começa a carregar quando entra na viewport (IntersectionObserver), para não impactar o LCP da primeira dobra
-- Sem player externo (YouTube/Vimeo) — evita scripts de terceiros que pesam e vazam tracking.
-- Legenda curta abaixo do vídeo e nenhum CTA novo; o CTA existente segue sendo o LeadChat.
+## O que será feito
+
+- Publicar vídeo e poster no CDN (Lovable Assets), sem colocar os binários no repositório.
+- Novo componente `Glp1Espaco` renderizado logo após a seção "Estrutura e atendimento em São Paulo".
+- Player `<video>` nativo (sem YouTube/Vimeo), configurado para não pesar a página:
+  - `muted`, `loop`, `playsInline`, `poster` do WebP
+  - `preload="none"` — o vídeo só começa a baixar quando entra na viewport (IntersectionObserver), então não afeta o carregamento da primeira dobra
+  - autoplay silencioso ao entrar na tela; respeita `prefers-reduced-motion` (nesse caso fica só o poster com botão de play)
+  - controles nativos disponíveis para quem quiser pausar
+- Enquadramento vertical limitado (máx. ~420px de largura no desktop, centralizado) com cantos arredondados e borda no padrão da LP.
+- Título curto ("Conheça nosso espaço") e legenda com o endereço — sem novo CTA; o CTA da LP continua sendo o LeadChat.
+
+## Fora do escopo
+
+- Nenhuma mudança em tracking, LeadChat, webhook, rotas ou sitemap.
 
 ## Detalhes técnicos
-- Novo componente `src/components/glp1/Glp1Espaco.tsx` renderizado na seção de estrutura da LP.
-- Vídeo e poster publicados como `.asset.json` (CDN) e importados por URL.
-- Nenhuma mudança em tracking, LeadChat, webhook ou rotas.
 
-## O que preciso de você
-- O arquivo do vídeo (pode subir aqui) e, se quiser, uma imagem para o poster. Se não enviar poster, gero um frame estático a partir do vídeo.
+- `src/assets/levser-estrutura.mp4.asset.json` e `src/assets/levser-estrutura-poster.webp.asset.json` (pointers de CDN).
+- `src/components/glp1/Glp1Espaco.tsx`, importado em `src/pages/TratamentoGlp1.tsx` entre `Glp1Estrutura` e `Glp1Faq`.
+- Verificação com Playwright em 393px: poster visível de imediato, requisição do MP4 só após o scroll até a seção.
