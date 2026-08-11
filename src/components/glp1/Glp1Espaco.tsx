@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { CONTACT } from "@/lib/constants";
-import videoAsset from "@/assets/levser-estrutura.mp4.asset.json";
-import posterAsset from "@/assets/levser-estrutura-poster.webp.asset.json";
+
+const VIDEO_SRC = "/media/levser-estrutura.mp4";
+const POSTER_SRC = "/media/levser-estrutura-poster.webp";
 
 export const Glp1Espaco = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -31,7 +32,7 @@ export const Glp1Espaco = () => {
     if (!el || !inView) return;
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    el.src = videoAsset.url;
+    el.src = VIDEO_SRC;
     el.load();
     if (!reduced) {
       void el.play().catch(() => {
@@ -53,7 +54,7 @@ export const Glp1Espaco = () => {
         <div className="mt-6 flex justify-center">
           <video
             ref={videoRef}
-            poster={posterAsset.url}
+            poster={POSTER_SRC}
             preload="none"
             muted
             loop
