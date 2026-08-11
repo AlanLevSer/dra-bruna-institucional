@@ -1,38 +1,38 @@
-# Publicação da LP C1 (/tratamento-glp1-a) — procedimento oficial do projeto
+# Pré-deploy da LP C1 (/tratamento-glp1-a)
 
-## Fase 1 — Arquivo de referência de deploy encontrado
+Correção de deploy aprovada. Esta execução vai até o pré-deploy; commit, PR, merge e deploy Vercel ficam para execução externa.
 
-- **Arquivo vigente:** `docs/deploy-checklist.md` ("Deploy Checklist & Automação Guiada")
-- **Complementares:** `docs/deploy-log.md` (registro histórico de releases), `EDGE_FUNCTION_DEPLOY.md` e `docs/supabase-cli-deployment-guide.md` (apenas edge functions — fora de escopo aqui)
-- **Fluxo determinado:** alteração local → `npm run deploy:check` → commit → push da branch → PR → preview Vercel → QA em preview → merge na branch de produção → deploy de produção pelo caminho padrão do repositório → smoke test
-- **Plataforma:** Vercel (deploy disparado por commit na branch de produção; `vercel --prod` só como exceção documentada)
-- **Host de produção:** `https://www.brunadurelli.com.br` (demais hosts redirecionam via `vercel.json`)
-- **Obrigatório antes:** lint, type-check, build, validação do `vercel.json`, rotas/nomes ASCII, ausência de caracteres de substituição, working tree auditado, envs `MAKE_LEAD_WEBHOOK_URL` presentes em Production
-- **Obrigatório depois:** smoke test em produção (LP P0, console/network, `POST /api/lead`, ausência de chamada direta ao Make) e registro em `docs/deploy-log.md`
-- **Git:** produção deve sair de commit rastreável; sem force push, sem reset destrutivo
+## 1. Correção única de código
 
-## Bloqueio identificado (precisa de decisão antes de publicar)
+`vercel.json` — acrescentar `tratamento-glp1-a` ao grupo de rewrites SPA já existente (nenhuma regra nova, nenhum redirect, header, domínio ou fallback alterado):
 
-`vercel.json` tem uma lista explícita de rewrites de SPA e **`tratamento-glp1-a` não está nela**. A rota existe em `src/App.tsx:116`, funciona no preview do Lovable (dev server), mas em produção na Vercel o acesso direto a `https://www.brunadurelli.com.br/tratamento-glp1-a` cairia fora do `index.html`. Isso é exatamente o tipo de "correção estritamente necessária para o processo de build/deploy" previsto no seu escopo congelado.
+```text
+...|plasma-de-argonio-a|tratamento-glp1-a|politica-privacidade|...
+```
 
-**Correção proposta (única alteração de código desta tarefa):** acrescentar `tratamento-glp1-a` ao grupo de rotas do rewrite existente em `vercel.json`. Nada de copy, layout, tracking, sitemap ou MCP é tocado.
+Diff antes/depois será mostrado no relatório.
 
-## Limite operacional desta tarefa
+## 2. Validações (docs/deploy-checklist.md)
 
-Não executo comandos de git (add/commit/push/merge) nem disparo deploy na Vercel a partir daqui. O que consigo fazer é:
+- `npm run deploy:check` com resultado separado por etapa: lint, type-check, build, validação do `vercel.json`, rotas/nomes ASCII, caracteres de substituição.
+- Qualquer erro interrompe o processo com comando, mensagem completa, arquivo/linha e causa provável. Nenhuma correção fora do escopo.
 
-1. aplicar a correção do `vercel.json`;
-2. rodar `npm run deploy:check` (lint + type-check + build + validações do próprio script) e reportar o resultado;
-3. validar a build de produção localmente (rota, hero, mídia, avaliações, FAQ, sticky CTA, aberturas do LeadChat por `cta_source`, `lp_view` único, `noindex,nofollow`, console limpo) via navegador headless;
-4. confirmar `public/sitemap.xml` e arquivos de MCP inalterados;
-5. entregar o relatório técnico com os 24 itens, marcando como pendentes os que dependem de Git/Vercel.
+## 3. Validação da build de produção
 
-O commit, o PR, o merge na branch de produção e o deploy Vercel ficam com você (ou eu publico na URL Lovable, que é um caminho paralelo ao documentado — só faço se você pedir).
+- Servir `dist/` com fallback SPA equivalente ao `vercel.json` e testar `GET /tratamento-glp1-a` direto e refresh na rota (sem 404, sem página institucional errada, sem redirect indevido).
+- Testar também com a URL parametrizada de aquisição (utm_*, gclid, campaign_id, ad_group_id, ad_id, intent_cluster).
 
-## Rollback
+## 4. QA local sobre a build
 
-Conforme `docs/deploy-log.md`, o rollback é por redeploy do último commit estável na Vercel. Último estado estável registrado: **`146b517`** (Plasma V2 + lint fix + deploy-log + .gitattributes). Em falha crítica de smoke test: promover esse deployment anterior na Vercel, sem tentar correções ad-hoc em produção.
+Desktop e mobile 390px via navegador headless: hero, para quem é, método, pilares, GLP-1/GIP, avaliação, Dra. Bruna, mídia (6 logos, zero `<a>`), estrutura, espaço, reviews (nota/total, sem navegação externa, falha de API não quebra), FAQ, CTA final, sticky CTA, contraste dos CTAs, ausência de overflow, console limpo. LeadChat abrindo por `hero_primary`, `journey_section`, `evaluation_section`, `final_cta`, `sticky_mobile` com `cta_source` correto. `lp_view` único, page context preservado, `noindex,nofollow` presente, `sitemap.xml` e arquivos MCP inalterados.
 
-## Status final esperado
+## 5. Auditoria e ambiente
 
-`PRODUÇÃO PUBLICADA — AGUARDANDO QA E2E KOMMO` após o merge/deploy na Vercel. Enquanto isso, ao fim da minha execução o status será `DEPLOY BLOQUEADO — publicação em produção depende de Git/Vercel fora do sandbox`, com todo o pré-deploy aprovado.
+- Lista de todos os arquivos modificados em relação ao versionado; esperado apenas `vercel.json` além dos arquivos da LP já no release. Qualquer arquivo inesperado é listado e explicado.
+- Verificação de existência de `MAKE_LEAD_WEBHOOK_URL` em produção (apenas PRESENTE/AUSENTE, sem valor). Observação: essa variável é gerida na Vercel, fora deste sandbox — se não for legível daqui, será reportada como "não verificável aqui, confirmar no painel Vercel".
+
+## 6. Entrega
+
+Instruções exatas de branch, arquivos do commit, mensagem, push, PR, QA no Preview Vercel, condição de merge, comportamento pós-merge, smoke test de produção e atualização de `docs/deploy-log.md` (somente após a publicação real). Rollback de referência: `146b517`, a reconfirmar no Vercel antes da publicação. `docs/deploy-log.md` não será alterado agora.
+
+Status final desta execução: `PRÉ-DEPLOY APROVADO — AGUARDANDO GIT/PR/VERCEL` ou `PRÉ-DEPLOY BLOQUEADO — [motivo]`.
