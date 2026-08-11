@@ -1,8 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/lib/constants";
 import { openLeadChat } from "@/lib/leadChat";
-import { trackWhatsAppClick } from "@/lib/analytics";
 
 export const CTA_LABEL = "Quero iniciar minha Avaliação Estratégica";
 
@@ -11,7 +9,6 @@ type Glp1CtaProps = {
   label?: string;
   className?: string;
   microcopy?: string;
-  showWhatsApp?: boolean;
   size?: "default" | "lg";
 };
 
@@ -20,17 +17,8 @@ export const Glp1Cta = ({
   label = CTA_LABEL,
   className = "",
   microcopy,
-  showWhatsApp = false,
   size = "lg",
 }: Glp1CtaProps) => {
-  const handleWhatsApp = () => {
-    trackWhatsAppClick(ctaSource, {
-      action: "secondary_channel",
-      destination_url: CONTACT.WHATSAPP_URL,
-    });
-    window.open(CONTACT.WHATSAPP_URL, "_blank", "noopener,noreferrer");
-  };
-
   return (
     <div className={`flex flex-col items-start gap-3 ${className}`}>
       <Button
@@ -45,16 +33,6 @@ export const Glp1Cta = ({
 
       {microcopy && (
         <p className="text-sm text-muted-foreground leading-relaxed">{microcopy}</p>
-      )}
-
-      {showWhatsApp && (
-        <button
-          type="button"
-          onClick={handleWhatsApp}
-          className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors"
-        >
-          Prefere conversar diretamente pelo WhatsApp?
-        </button>
       )}
     </div>
   );
