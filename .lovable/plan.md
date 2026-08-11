@@ -56,3 +56,10 @@ Apenas copy, hierarquia, ordem de seções, imagens e contraste de CTA. Nenhuma 
 - `setPageContext`, `lp_view` único, `route_intent`, `lp_variant`, `intent_cluster` e a lógica de `ctaSourceRef` permanecem intocados.
 - QA com Playwright em 390px e desktop: hero e CTA acima da dobra, contraste, todos os CTAs, sticky, LeadChat abre/fecha/reabre com outro CTA e envia o último `cta_source` efetivo, FAQ, imagens, console limpo, `lp_view` único.
 - Relatório final com seções reordenadas, copy, headline, CTAs/cta_source, imagens, mudanças visuais, resultado de QA e pendências.
+
+## Refinamentos aprovados na revisão
+
+1. Message match GLP-1/GIP no primeiro viewport: linha discreta na área de confiança do Hero — "Tratamentos com GLP-1/GIP podem fazer parte da estratégia quando indicados." Sem virar headline, CTA ou destaque promocional; a headline principal permanece inalterada.
+2. Direção médica no Hero: linha discreta "Direção médica: Dra. Bruna Durelli · Jardim Paulista, São Paulo", sem currículo. A seção completa de autoridade continua mais abaixo.
+3. Método LevSer: sequência preservada exatamente (Entender → Definir direção → Acompanhar → Medir → Ajustar → Consolidar), com destaque visual estático extra nas etapas MEDIR e AJUSTAR (borda/fundo de ênfase, sem animação pesada).
+4. Autoridade: hierarquia da seção da Dra. Bruna organizada para responder "quem conduz meu tratamento" — obesidade, nutrologia e direção clínica da LevSer em primeiro plano; Endoscopia Digestiva listada como credencial secundária, com menos peso visual. Somente credenciais já aprovadas (CRM 124809 / RQE 57361).
