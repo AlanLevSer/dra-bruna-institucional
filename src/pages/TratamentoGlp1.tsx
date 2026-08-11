@@ -81,6 +81,8 @@ const TratamentoGlp1 = () => {
         <Glp1Avaliacao />
         <Glp1Autoridade />
         <Glp1Estrutura />
+        <Glp1Espaco />
+
         <Glp1Faq />
         <Glp1CtaFinal />
         <Glp1Disclaimer />
