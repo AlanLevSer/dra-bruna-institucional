@@ -1,6 +1,7 @@
 import { Stethoscope, Users, LineChart, MapPin } from "lucide-react";
 import { Glp1Cta } from "./Glp1Cta";
-import watermark from "@/assets/transformation-confidence.avif";
+
+const WATERMARK_URL = "/transformation-confidence.avif";
 
 const TRUST_ITEMS = [
   { icon: Stethoscope, label: "Tratamento médico" },
@@ -13,17 +14,16 @@ export const Glp1Hero = () => (
   <header className="relative overflow-hidden bg-background border-b border-border/60 min-h-[560px] md:min-h-[640px] flex items-center">
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 select-none">
       <img
-        src={watermark}
+        src={WATERMARK_URL}
         alt=""
         loading="eager"
-        decoding="async"
+        fetchPriority="high"
         className="absolute inset-0 h-full w-full object-cover object-[65%_center] md:object-[72%_center] opacity-60 md:opacity-40 saturate-[0.85]"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/55 to-background/35 md:bg-gradient-to-r md:from-background md:via-background/85 md:to-background/25" />
     </div>
 
     <div className="relative z-10 mx-auto w-full max-w-3xl px-5 pt-12 pb-10 md:pt-20 md:pb-16">
-
 
       <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary mb-5">
         LevSer · Tratamento médico do emagrecimento
