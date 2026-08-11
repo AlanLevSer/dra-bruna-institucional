@@ -17,6 +17,8 @@ import {
 } from "@/components/glp1/Glp1Sections";
 
 import { Glp1Espaco } from "@/components/glp1/Glp1Espaco";
+import { Glp1Midia } from "@/components/glp1/Glp1Midia";
+import { Glp1Avaliacoes } from "@/components/glp1/Glp1Avaliacoes";
 import { Glp1StickyCta } from "@/components/glp1/Glp1StickyCta";
 import { clearPageContext, setPageContext } from "@/lib/tracking";
 import { trackEvent } from "@/lib/analytics";
@@ -80,9 +82,10 @@ const TratamentoGlp1 = () => {
         <Glp1Sintese />
         <Glp1Avaliacao />
         <Glp1Autoridade />
+        <Glp1Midia />
         <Glp1Estrutura />
         <Glp1Espaco />
-
+        <Glp1Avaliacoes />
         <Glp1Faq />
         <Glp1CtaFinal />
         <Glp1Disclaimer />
