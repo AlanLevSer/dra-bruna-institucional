@@ -1,62 +1,47 @@
-# Divergência Lovable x GitHub — auditoria e plano de sincronização
+# Pacote de sincronização da LP C1 (sem push, sem deploy)
 
-## Resultado da auditoria (fase 1)
+Fonte: estado atual do Lovable, HEAD `2a018f5`, working tree limpo. Nenhum arquivo do projeto será alterado — a LP não é tocada, `Glp1Espaco.tsx` fica como está.
 
-O projeto Lovable **não está conectado a nenhum repositório GitHub**. O único remoto `origin` configurado é o armazenamento Git interno do Lovable:
+## O que será entregue
 
-```text
-origin  https://git.private.lovable-gcp.code.storage/07dbc8fe-430e-432c-9aaa-d633440ed6e3.git
-```
-
-| Item | Valor |
-| --- | --- |
-| Repositório conectado | Git interno do Lovable (não GitHub) |
-| Owner/repository GitHub | nenhum |
-| Branch atual | `edit/edt-260d1462-...` (working branch), `main` local existe |
-| HEAD | `2a018f5` — "Ignorou EdgeFuncs MCP do ESLint" |
-| `main` / `origin/main` | `2a018f5` (idênticos ao HEAD) |
-| Working tree | limpo, tudo commitado |
-
-**Motivo da divergência `8d2f451` vs `5ef2462`:** são históricos de dois repositórios diferentes. `8d2f451` é um commit do Git interno do Lovable (aparece no histórico local, antes de `7b40ad9` "Adicionou /tratamento-glp1-a"). `5ef2462` é o HEAD do GitHub auditado pelo Claude Code, que nunca recebeu esses commits porque a sincronização GitHub não está ativa neste projeto. Nenhum commit da C1 jamais saiu do ambiente Lovable.
-
-## Inventário da C1 (fase 2) — tudo presente e commitado
-
-- `src/pages/TratamentoGlp1.tsx`
-- `src/components/glp1/`: `Glp1Hero`, `Glp1Sections`, `Glp1Cta`, `Glp1StickyCta`, `Glp1Midia`, `Glp1Avaliacoes`, `Glp1Espaco`
-- `src/App.tsx` — rota `/tratamento-glp1-a` presente
-- `vercel.json` — rewrite `tratamento-glp1-a` presente
-- `eslint.config.js` — `{ ignores: ["dist", "supabase/functions/mcp/**"] }`
-- `src/index.css` — tokens de contraste dos CTAs
-- Infra reutilizada: `src/lib/tracking.ts`, `src/lib/analytics.ts`, `src/components/LeadChatWidget.tsx`, `src/hooks/useGoogleReviews.ts`
-- Logos de mídia: `src/assets/media/*.avif` — binários versionados, OK
-
-## Estado do vídeo (fase 5) — risco alto para produção
+Um pacote em `/mnt/documents/c1-glp1-sync/` com o código-fonte da C1, os assets reais (incluindo MP4 e poster baixados do CDN) e um manifesto de integração. Também um `.zip` único para download.
 
 ```text
-COMPONENTE:            src/components/glp1/Glp1Espaco.tsx
-CAMINHO DO ASSET:      src/assets/levser-estrutura.mp4.asset.json
-                       src/assets/levser-estrutura-poster.webp.asset.json
-TIPO DE REFERÊNCIA:    ponteiro JSON para CDN do Lovable (import do .asset.json, uso de .url)
-URL/PATH:              /__l5e/assets-v1/<id>/levser-estrutura.mp4  (caminho relativo, mesma origem)
-VERSIONADO NO GIT?     SIM, apenas os arquivos .asset.json (492 B e 468 B)
-BINÁRIO NO GIT?        NÃO — o MP4 (2,9 MB) e o WebP (184 KB) não existem em public/ nem em src/assets/
-PRESENTE NA BRANCH?    o ponteiro sim; o arquivo de mídia não
+c1-glp1-sync/
+  MANIFESTO.md
+  src/pages/TratamentoGlp1.tsx
+  src/components/glp1/{Glp1Hero,Glp1Sections,Glp1Cta,Glp1StickyCta,Glp1Midia,Glp1Avaliacoes,Glp1Espaco}.tsx
+  modificados/{App.tsx, index.css, vercel.json, eslint.config.js}
+  modificados/diffs/*.patch          (diff de cada arquivo modificado)
+  dependencias-auditar/              (arquivos alterados no Lovable para a C1)
+  assets/
+    dra-bruna-professional.avif
+    transformation-confidence.avif
+    media/*.avif  (6 logos)
+    levser-estrutura.mp4            (binário real, 2.910.780 bytes)
+    levser-estrutura-poster.webp    (binário real, 183.674 bytes)
+    pointers/*.asset.json           (referência atual, para o Claude Code substituir)
 ```
 
-O caminho `/__l5e/assets-v1/...` é servido pela infraestrutura de hospedagem do Lovable. Não há plugin no `vite.config.ts` que reescreva esse caminho no build, e o `vercel.json` não tem rewrite/proxy para `/__l5e/*`. **Em produção na Vercel, o vídeo e o poster devem retornar 404.** Esta é a causa provável do problema de mídia no deploy externo. Conforme instruído, nada será corrigido agora — a decisão fica para depois da auditoria do Claude Code (opções futuras: versionar os binários em `public/` ou usar a URL absoluta do CDN).
+## Verificações já feitas
 
-## Fases 3, 4 e 6 — bloqueio
+- Imports reais da C1 mapeados: `@/lib/tracking`, `@/lib/analytics`, `@/lib/leadChat`, `@/components/GoogleReviewCard`, `@/hooks/useGoogleReviews`, `@/lib/constants`, `@/types/google-reviews`, `@/components/SEOHead`, `@/components/ui/{button,accordion,carousel}`, `lucide-react`.
+- Ocorrências Lovable-only em código da C1: exatamente duas, ambas em `Glp1Espaco.tsx` (imports dos dois `.asset.json`), cujos `url` apontam para `/__l5e/assets-v1/...`. Nenhuma outra referência a `__l5e`, `lovable.app`, `lovable-gcp` ou `assets-v1` no código da LP. As demais ocorrências de "lovable" no projeto são do MCP (`@lovable.dev/mcp-js`) e da rota `/.lovable/oauth/consent` em `App.tsx` — fora do escopo da C1.
+- Binários confirmados como baixáveis do CDN (HTTP 200, `video/mp4`, 2.910.780 bytes; poster WebP 183.674 bytes). O pacote incluirá os arquivos reais, não apenas os ponteiros.
 
-Não é possível criar e enviar a branch `feat/glp-c1-sync` para o GitHub a partir daqui: não existe remoto GitHub configurado e o ambiente não executa operações Git de escrita fora do Git interno do Lovable. Nenhum push, force push, reset ou reescrita de histórico foi executado.
+## Classificação das dependências (entra no manifesto)
 
-## Plano de sincronização proposto
+Cada arquivo será classificado por data do último commit, comparando com o período de implementação da C1 (10–11/08/2026):
 
-1. Conectar o GitHub no editor Lovable: menu `+` no chat > GitHub > Connect project, autorizando a conta/organização dona do repositório que alimenta o Claude Code/Vercel (o que está em `5ef2462`).
-2. Se o Lovable não permitir vincular um repositório já existente com histórico próprio, a alternativa não destrutiva é: clonar o Git interno do Lovable, adicionar o GitHub como segundo remoto e empurrar apenas uma branch nova `feat/glp-c1-sync`, sem tocar em `main`. Como as duas histórias não têm ancestral comum, o PR precisará ser aberto como comparação de conteúdo (ou a branch construída a partir de `origin/main` do GitHub, aplicando por cima somente os arquivos da C1 listados acima).
-3. Com a branch no GitHub, o fluxo segue como planejado: auditoria do Claude Code, `deploy:check`, auditoria do vídeo, PR, Vercel Preview, QA, merge, produção.
+- Alterados para a C1, entram como **DIFF A AUDITAR**: `src/lib/tracking.ts`, `src/lib/analytics.ts`, `src/lib/leadChat.ts`, `src/components/LeadChatWidget.tsx`, `src/index.css`, `src/App.tsx`, `vercel.json`, `eslint.config.js`.
+- Não alterados, entram apenas como **dependência reutilizada** (não copiar/sobrescrever): `src/lib/leadDelivery.ts`, `src/hooks/useGoogleReviews.ts`, `src/components/GoogleReviewCard.tsx`, `src/components/SEOHead.tsx`, `src/lib/constants.ts`, `src/types/google-reviews.ts`, componentes `ui/`.
 
-Confirme como quer prosseguir: conectar o GitHub pela interface do Lovable, ou receber o pacote exato de arquivos e comandos para você mesmo criar a branch localmente.
+Para cada arquivo o manifesto trará: caminho, motivo da dependência, modificado SIM/NÃO, e o diff quando aplicável.
 
-## STATUS
+## Manifesto (seções A–E)
 
-`SINCRONIZAÇÃO BLOQUEADA — projeto Lovable não está conectado a nenhum repositório GitHub; origin aponta apenas para o Git interno do Lovable (HEAD 2a018f5). Risco adicional: vídeo/poster referenciados por URL exclusiva do CDN Lovable, sem binário versionado.`
+A. arquivos novos · B. arquivos modificados (com diffs) · C. assets novos (com tamanho, resolução e codec obtidos via ffprobe) · D. dependências reutilizadas não copiadas · E. assets Lovable-only a eliminar, com o mapeamento sugerido `.asset.json` → `public/` ou `src/assets/` para o Claude Code aplicar no GitHub oficial.
+
+## Fora do escopo
+
+Sem push, sem branch, sem alteração de `main`, sem publicação, sem correção da referência do vídeo, sem `dist/` ou `node_modules/`.
