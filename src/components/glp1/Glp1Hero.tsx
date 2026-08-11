@@ -16,19 +16,26 @@ export const Glp1Hero = () => (
       </p>
 
       <h1 className="font-serif text-3xl md:text-5xl font-bold leading-[1.15] text-foreground">
-        Seu tratamento para emagrecer começa antes da escolha da ferramenta.
+        Tratamento médico para emagrecer com estratégia, acompanhamento e direção clínica.
       </h1>
 
       <p className="mt-5 text-base md:text-lg text-muted-foreground leading-relaxed">
-        Na LevSer, o primeiro passo é entender seu histórico, seus objetivos e seu momento para
-        definir uma estratégia de tratamento com direção médica, acompanhamento e cuidado
-        interdisciplinar.
+        Você não precisa chegar sabendo qual ferramenta usar. Na LevSer, começamos entendendo seu
+        histórico, saúde metabólica, composição corporal, rotina e objetivos para definir uma
+        estratégia e acompanhar sua evolução.
+      </p>
+
+      <p className="mt-6 border-l-2 border-primary pl-4 font-serif text-lg md:text-xl font-semibold leading-snug text-foreground">
+        A medicação, quando indicada, é uma ferramenta.
+        <br />
+        A jornada é o tratamento.
       </p>
 
       <Glp1Cta
         ctaSource="hero_primary"
+        label="Quero entender qual tratamento faz sentido para mim"
         className="mt-8"
-        microcopy="Comece deixando seus dados. Nossa conversa continua pelo WhatsApp."
+        microcopy="Deixe seus dados e continue a conversa pelo WhatsApp."
       />
 
       <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-border/60 pt-6">
@@ -39,6 +46,13 @@ export const Glp1Hero = () => (
           </li>
         ))}
       </ul>
+
+      <p className="mt-5 text-sm text-muted-foreground leading-relaxed">
+        Tratamentos com GLP-1/GIP podem fazer parte da estratégia quando indicados.
+      </p>
+      <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+        Direção médica: Dra. Bruna Durelli · Jardim Paulista, São Paulo
+      </p>
     </div>
   </header>
 );

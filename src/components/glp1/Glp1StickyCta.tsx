@@ -23,9 +23,9 @@ export const Glp1StickyCta = () => {
       <Button
         onClick={() => void openLeadChat("sticky_mobile")}
         data-cta-source="sticky_mobile"
-        className="w-full h-12 rounded-full text-sm font-medium"
+        className="w-full h-12 rounded-full text-base font-semibold bg-primary text-primary-foreground shadow-lg transition-all hover:bg-primary/90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
-        Quero iniciar minha Avaliação Estratégica
+        Quero entender meu tratamento
       </Button>
     </div>
   );
