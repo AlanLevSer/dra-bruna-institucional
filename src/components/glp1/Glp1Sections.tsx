@@ -485,7 +485,7 @@ export const Glp1CtaFinal = () => (
         label="Quero conversar sobre meu tratamento"
         className="mt-7"
         microcopy="Atendimento humano. Seus dados são utilizados para continuidade do contato com a LevSer."
-        showWhatsApp
+        
       />
     </div>
   </section>
