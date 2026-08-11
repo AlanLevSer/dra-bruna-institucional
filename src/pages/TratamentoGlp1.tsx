@@ -71,14 +71,19 @@ const TratamentoGlp1 = () => {
 
       <main>
         <Glp1Hero />
+        <Glp1Perfil />
         <Glp1Problema />
         <Glp1Metodo />
-        <Glp1Jornada />
-        <Glp1Perfil />
+        <Glp1Pilares />
+        <Glp1Ferramenta />
+        <Glp1Sintese />
+        <Glp1Avaliacao />
         <Glp1Autoridade />
+        <Glp1Estrutura />
         <Glp1Faq />
         <Glp1CtaFinal />
         <Glp1Disclaimer />
+
       </main>
 
       <Glp1StickyCta />
