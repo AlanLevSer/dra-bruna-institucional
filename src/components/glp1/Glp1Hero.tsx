@@ -17,7 +17,7 @@ export const Glp1Hero = () => (
         alt=""
         loading="eager"
         decoding="async"
-        className="absolute inset-0 h-full w-full object-cover object-[72%_center] opacity-[0.18] md:opacity-[0.28] saturate-[0.85]"
+        className="absolute inset-0 h-full w-full object-cover object-[72%_center] opacity-40 saturate-[0.85]"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background/45 md:bg-gradient-to-r md:from-background md:via-background/85 md:to-background/25" />
     </div>
