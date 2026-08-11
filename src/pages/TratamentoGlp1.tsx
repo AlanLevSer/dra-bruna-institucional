@@ -16,6 +16,7 @@ import {
   Glp1Sintese,
 } from "@/components/glp1/Glp1Sections";
 
+import { Glp1Espaco } from "@/components/glp1/Glp1Espaco";
 import { Glp1StickyCta } from "@/components/glp1/Glp1StickyCta";
 import { clearPageContext, setPageContext } from "@/lib/tracking";
 import { trackEvent } from "@/lib/analytics";
