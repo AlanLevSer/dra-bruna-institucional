@@ -1,8 +1,6 @@
 import { Stethoscope, Users, LineChart, MapPin } from "lucide-react";
 import { Glp1Cta } from "./Glp1Cta";
-import watermark1 from "@/assets/transformation-confidence.avif";
-import watermark2 from "@/assets/transformation-selfcare.avif";
-import watermark3 from "@/assets/patient-wellness-1.avif";
+import watermark from "@/assets/transformation-confidence.avif";
 
 const TRUST_ITEMS = [
   { icon: Stethoscope, label: "Tratamento médico" },
@@ -12,36 +10,20 @@ const TRUST_ITEMS = [
 ];
 
 export const Glp1Hero = () => (
-  <header className="relative overflow-hidden bg-background border-b border-border/60">
+  <header className="relative overflow-hidden bg-background border-b border-border/60 min-h-[560px] md:min-h-[640px] flex items-center">
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 select-none">
-      <div className="absolute inset-y-0 right-0 w-full md:w-[55%] grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3 p-2">
-        <img
-          src={watermark1}
-          alt=""
-          loading="lazy"
-          decoding="async"
-          className="h-full w-full rounded-2xl object-cover opacity-[0.10] md:col-span-1 md:row-span-2"
-        />
-        <img
-          src={watermark2}
-          alt=""
-          loading="lazy"
-          decoding="async"
-          className="hidden md:block h-full w-full rounded-2xl object-cover opacity-[0.09]"
-        />
-        <img
-          src={watermark3}
-          alt=""
-          loading="lazy"
-          decoding="async"
-          className="hidden md:block h-full w-full rounded-2xl object-cover opacity-[0.09]"
-        />
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/70" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60" />
+      <img
+        src={watermark}
+        alt=""
+        loading="eager"
+        decoding="async"
+        className="absolute inset-0 h-full w-full object-cover object-[72%_center] opacity-[0.18] md:opacity-[0.28] saturate-[0.85]"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background/45 md:bg-gradient-to-r md:from-background md:via-background/85 md:to-background/25" />
     </div>
 
     <div className="relative z-10 mx-auto w-full max-w-3xl px-5 pt-12 pb-10 md:pt-20 md:pb-16">
+
 
       <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary mb-5">
         LevSer · Tratamento médico do emagrecimento
