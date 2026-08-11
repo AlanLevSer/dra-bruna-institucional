@@ -1,13 +1,11 @@
-import { supabase } from "@/integrations/supabase/client";
 import { GoogleReviewsResponse } from "@/types/google-reviews";
 
 export const fetchGoogleReviews = async (): Promise<GoogleReviewsResponse> => {
-  const { data, error } = await supabase.functions.invoke("get-google-reviews");
+  const res = await fetch("/api/google-reviews");
 
-  if (error) {
-    console.error("Error fetching Google reviews:", error);
-    throw error;
+  if (!res.ok) {
+    throw new Error(`Google Reviews API error: ${res.status}`);
   }
 
-  return data as GoogleReviewsResponse;
+  return res.json() as Promise<GoogleReviewsResponse>;
 };
