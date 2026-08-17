@@ -32,8 +32,6 @@ const VslMetodoLevser = lazy(() => import("./pages/VslMetodoLevser"));
 const MapaMetabolico = lazy(() => import("./pages/MapaMetabolico"));
 const MapaMetabolicoLP = lazy(() => import("./pages/MapaMetabolicoLP"));
 const TratamentoGlp1 = lazy(() => import("./pages/TratamentoGlp1"));
-const Entrar = lazy(() => import("./pages/Entrar"));
-const OAuthConsent = lazy(() => import("./pages/OAuthConsent"));
 
 const queryClient = new QueryClient();
 
@@ -114,8 +112,6 @@ const App = () => (
             <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
             <Route path="/termos-uso" element={<TermosUso />} />
             <Route path="/tratamento-glp1-a" element={<TratamentoGlp1 />} />
-            <Route path="/entrar" element={<Entrar />} />
-            <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

@@ -1,4 +1,0 @@
-project_id = "myiczzzzmzodljgmhogmt"
-
-[functions.get-google-reviews]
-verify_jwt = false

@@ -18,12 +18,12 @@ import {
 
 import { Glp1Espaco } from "@/components/glp1/Glp1Espaco";
 import { Glp1Midia } from "@/components/glp1/Glp1Midia";
-import { Glp1Avaliacoes } from "@/components/glp1/Glp1Avaliacoes";
 import { Glp1StickyCta } from "@/components/glp1/Glp1StickyCta";
 import { clearPageContext, setPageContext } from "@/lib/tracking";
 import { trackEvent } from "@/lib/analytics";
 
 const LeadChatWidget = lazy(() => import("@/components/LeadChatWidget"));
+const Glp1Avaliacoes = lazy(() => import("@/components/glp1/Glp1Avaliacoes").then((m) => ({ default: m.Glp1Avaliacoes })));
 
 const ROUTE_INTENT = "GLP";
 const LP_VARIANT = "GLP_C1_V1";
@@ -37,12 +37,56 @@ const seoData = {
   canonical: "https://www.brunadurelli.com.br/tratamento-glp1-a",
 } as const;
 
+const AvaliacoesSkeleton = () => (
+  <section aria-hidden="true" className="py-16 px-5">
+    <div className="max-w-3xl mx-auto space-y-4">
+      <div className="h-6 w-48 rounded bg-muted animate-pulse" />
+      <div className="h-4 w-full rounded bg-muted animate-pulse" />
+      <div className="h-4 w-3/4 rounded bg-muted animate-pulse" />
+    </div>
+  </section>
+);
+
+const LazyAvaliacoes = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px 0px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref}>
+      {visible ? (
+        <Suspense fallback={<AvaliacoesSkeleton />}>
+          <Glp1Avaliacoes />
+        </Suspense>
+      ) : (
+        <AvaliacoesSkeleton />
+      )}
+    </div>
+  );
+};
+
 const TratamentoGlp1 = () => {
   const [showWidget, setShowWidget] = useState(false);
   const viewedRef = useRef(false);
 
   useEffect(() => {
-    // Page context precisa existir ANTES do lp_view e de qualquer abertura do LeadChat.
     const context = setPageContext({ route_intent: ROUTE_INTENT, lp_variant: LP_VARIANT });
 
     if (!viewedRef.current) {
@@ -50,7 +94,6 @@ const TratamentoGlp1 = () => {
       trackEvent("lp_view", { ...context, page_path: "/tratamento-glp1-a" });
     }
 
-    // LP de mídia paga: fora do índice orgânico (sitemap institucional inalterado).
     let robots = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null;
     if (!robots) {
       robots = document.createElement("meta");
@@ -85,11 +128,10 @@ const TratamentoGlp1 = () => {
         <Glp1Midia />
         <Glp1Estrutura />
         <Glp1Espaco />
-        <Glp1Avaliacoes />
+        <LazyAvaliacoes />
         <Glp1Faq />
         <Glp1CtaFinal />
         <Glp1Disclaimer />
-
       </main>
 
       <Glp1StickyCta />

@@ -4,7 +4,7 @@ import { OptimizedImage } from "@/components/OptimizedImage";
 import transformationBeginning from "@/assets/transformation-beginning.avif";
 import transformationSelfcare from "@/assets/transformation-selfcare.avif";
 import transformationJoy from "@/assets/transformation-joy.avif";
-import transformationConfidence from "@/assets/transformation-confidence.avif";
+const transformationConfidence = "/transformation-confidence.avif";
 const journeySteps = [{
   icon: Heart,
   title: "Autoaceitação",

@@ -15,7 +15,7 @@ import Autoplay from "embla-carousel-autoplay";
 
 // Import transformation images
 import transformation1 from "@/assets/transformation-beginning.avif";
-import transformation2 from "@/assets/transformation-confidence.avif";
+const transformation2 = "/transformation-confidence.avif";
 import transformation3 from "@/assets/transformation-empowerment.avif";
 import transformation4 from "@/assets/transformation-health.avif";
 import transformation5 from "@/assets/transformation-joy.avif";
