@@ -6,17 +6,15 @@ declare global {
     dataLayer?: Record<string, unknown>[];
     clarity?: ClarityFn;
     __analyticsLoaded?: boolean;
+    __clarityLoaded?: boolean;
   }
 }
 
 const GTM_ID = "GTM-WZFMV5R7";
 const CLARITY_ID = "idm2xm22st";
 
-const loadThirdPartyScripts = () => {
-  if (typeof window === "undefined" || window.__analyticsLoaded) {
-    return;
-  }
-
+const loadGTM = () => {
+  if (typeof window === "undefined" || window.__analyticsLoaded) return;
   window.__analyticsLoaded = true;
 
   window.dataLayer = window.dataLayer || [];
@@ -26,6 +24,11 @@ const loadThirdPartyScripts = () => {
   gtmScript.async = true;
   gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
   document.head.appendChild(gtmScript);
+};
+
+const loadClarity = () => {
+  if (typeof window === "undefined" || window.__clarityLoaded) return;
+  window.__clarityLoaded = true;
 
   if (typeof window.clarity !== "function") {
     const queue: unknown[][] = [];
@@ -41,24 +44,32 @@ const loadThirdPartyScripts = () => {
   clarityScript.src = `https://www.clarity.ms/tag/${CLARITY_ID}`;
   clarityScript.crossOrigin = "anonymous";
   document.head.appendChild(clarityScript);
-
-  // Meta Pixel is initialized exclusively by GTM Tag 20.
-  // Initializing it here as well caused a duplicate PageView per session.
 };
 
 export const AnalyticsLoader = () => {
   useEffect(() => {
-    const scheduleLoad = () => {
-      setTimeout(loadThirdPartyScripts, 800);
+    const scheduleGTM = () => {
+      setTimeout(loadGTM, 800);
+    };
+
+    // Clarity deferred to requestIdleCallback — loads when browser is idle,
+    // after critical content is interactive. Timeout ensures it loads within 5s.
+    const scheduleClarity = () => {
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(loadClarity, { timeout: 5000 });
+      } else {
+        setTimeout(loadClarity, 3000);
+      }
     };
 
     if (document.readyState === "complete") {
-      scheduleLoad();
+      scheduleGTM();
+      scheduleClarity();
     } else {
-      window.addEventListener("load", scheduleLoad, { once: true });
-      return () => {
-        window.removeEventListener("load", scheduleLoad);
-      };
+      window.addEventListener("load", () => {
+        scheduleGTM();
+        scheduleClarity();
+      }, { once: true });
     }
   }, []);
 

@@ -1,4 +1,4 @@
-import grafismoImage from "@/assets/levser-grafismo.avif";
+const GRAFISMO_URL = "/levser-grafismo.avif";
 
 interface GrafismoDecorProps {
   variant?: "hero" | "background" | "accent" | "floating";
@@ -7,6 +7,7 @@ interface GrafismoDecorProps {
   opacity?: number;
   rotate?: number;
   color?: "primary" | "secondary" | "accent" | "gray";
+  eager?: boolean;
 }
 
 export const GrafismoDecor = ({
@@ -16,6 +17,7 @@ export const GrafismoDecor = ({
   opacity = 0.25,
   rotate = 0,
   color = "gray",
+  eager = false,
 }: GrafismoDecorProps) => {
   const sizeClasses = {
     sm: "w-32 h-32",
@@ -49,15 +51,17 @@ export const GrafismoDecor = ({
   return (
     <div
       className={`absolute ${positionClasses[position]} ${sizeClasses[size]} ${variantStyles[variant]} ${colorFilters[color]} pointer-events-none`}
-      style={{
-        opacity,
-        transform: `rotate(${rotate}deg)`,
-        backgroundImage: `url(${grafismoImage})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "contain",
-        backgroundPosition: "center",
-      }}
+      style={{ opacity, transform: `rotate(${rotate}deg)` }}
       aria-hidden="true"
-    />
+    >
+      <img
+        src={GRAFISMO_URL}
+        alt=""
+        aria-hidden="true"
+        loading={eager ? "eager" : "lazy"}
+        fetchPriority="low"
+        className="w-full h-full object-contain"
+      />
+    </div>
   );
 };

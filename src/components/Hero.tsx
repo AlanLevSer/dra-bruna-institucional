@@ -27,7 +27,7 @@ export const Hero = () => {
     }
   };
   return <section id="inicio" className="relative min-h-[80vh] xl:min-h-[85vh] flex items-center pt-32 pb-20 overflow-hidden">
-      <GrafismoDecor variant="hero" position="top-right" size="xl" opacity={0.2} rotate={-15} color="gray" />
+      <GrafismoDecor variant="hero" position="top-right" size="xl" opacity={0.2} rotate={-15} color="gray" eager={true} />
       <GrafismoDecor variant="background" position="bottom-left" size="lg" opacity={0.15} rotate={45} color="gray" />
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-10 xl:gap-20 items-center max-w-7xl mx-auto">
