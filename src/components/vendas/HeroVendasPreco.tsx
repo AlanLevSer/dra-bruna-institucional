@@ -45,13 +45,12 @@ const HeroVendasPreco = () => {
 
             {/* H1 */}
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight text-foreground">
-              Preço do Balão Gástrico em São Paulo
+              Quanto custa mudar de vida?
             </h1>
 
             {/* Subtítulo */}
             <p className="text-base md:text-xl text-muted-foreground leading-relaxed">
-              Entenda a faixa de investimento, o que está incluído no tratamento e qual
-              possibilidade pode fazer sentido para o seu objetivo.
+              O balão gástrico não é um gasto, é o investimento mais inteligente que você pode fazer na sua saúde, na sua autoestima e na sua longevidade. Com acompanhamento completo e tecnologia de ponta, é possível eliminar até 35 kg em apenas 6 meses, com segurança, conforto e suporte integral.
             </p>
 
             {/* CTA principal + microtexto */}
@@ -62,15 +61,15 @@ const HeroVendasPreco = () => {
                 onClick={handleCTA}
                 className="w-full sm:w-auto text-base px-8 py-6 h-auto shadow-elegant hover:shadow-hover"
               >
-                Ver faixa de investimento
+                Consultar Valores
               </Button>
               <p className="text-xs md:text-sm text-muted-foreground">
                 Resposta imediata · Sem compromisso · Indicação definida após Avaliação Estratégica
               </p>
             </div>
 
-            {/* Card de credenciais — oculto em telas muito pequenas para garantir CTA acima do fold */}
-            <div className="hidden sm:block bg-primary/5 backdrop-blur-sm rounded-xl p-6 border border-primary/10 space-y-4">
+            {/* Card de credenciais */}
+            <div className="bg-primary/5 backdrop-blur-sm rounded-xl p-6 border border-primary/10 space-y-4">
               <p className="text-base md:text-lg font-medium text-foreground">
                 Quer entender o valor real de um tratamento que funciona?
               </p>

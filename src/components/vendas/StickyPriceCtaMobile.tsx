@@ -64,14 +64,14 @@ export const StickyPriceCtaMobile = () => {
     <div
       className="fixed bottom-0 left-0 right-0 z-40 lg:hidden px-4 pb-[env(safe-area-inset-bottom,0px)] pt-3 bg-gradient-to-t from-background via-background/95 to-transparent"
       role="complementary"
-      aria-label="CTA fixo — ver faixa de investimento"
+      aria-label="CTA fixo — consultar valores"
     >
       <Button
         size="lg"
         onClick={handleCTA}
         className="w-full text-base py-6 h-auto shadow-hover"
       >
-        Ver faixa de investimento
+        Consultar Valores
       </Button>
     </div>
   );

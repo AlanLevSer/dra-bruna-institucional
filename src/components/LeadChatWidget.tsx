@@ -71,9 +71,11 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
   const sessionId = useRef(getSessionId());
   const submitLockRef = useRef(false);
   const ctaSourceRef = useRef("");
+  const formStartedRef = useRef(false);
 
   const handleOpen = useCallback((data?: LeadChatOpenData) => {
     ctaSourceRef.current = data?.cta_source ?? "";
+    formStartedRef.current = false;
 
     // Garante visibilidade do container caso idle callback ainda não tenha disparado
     if (typeof document !== "undefined") {
@@ -539,6 +541,14 @@ export default function LeadChatWidget({ showFloatingButton = false, origin = "u
   };
 
   const handleInputChange = (value: string) => {
+    if (step === "name" && !formStartedRef.current && value.length > 0) {
+      formStartedRef.current = true;
+      trackEvent("form_start", {
+        page_slug: window.location.pathname,
+        origin,
+        ...(ctaSourceRef.current ? { cta_source: ctaSourceRef.current } : {}),
+      });
+    }
     if (step === "whatsapp") {
       const digits = value.replace(/\D/g, "");
       setInputValue(formatBRPhone(digits));
