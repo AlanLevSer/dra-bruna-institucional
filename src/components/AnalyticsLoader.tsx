@@ -1,27 +1,14 @@
 import { useEffect } from "react";
+import { initClarityQueue, ensureClarityLoaded } from "@/lib/clarity";
 
 declare global {
-  type ClarityFn = ((...args: unknown[]) => void) & { q?: unknown[][] };
   interface Window {
     dataLayer?: Record<string, unknown>[];
-    clarity?: ClarityFn;
     __analyticsLoaded?: boolean;
-    __clarityLoaded?: boolean;
   }
 }
 
 const GTM_ID = "GTM-WZFMV5R7";
-const CLARITY_ID = "idm2xm22st";
-
-const initClarityQueue = () => {
-  if (typeof window === "undefined" || typeof window.clarity === "function") return;
-  const queue: unknown[][] = [];
-  const clarityFn: ClarityFn = ((...args: unknown[]) => {
-    queue.push(args);
-  }) as ClarityFn;
-  clarityFn.q = queue;
-  window.clarity = clarityFn;
-};
 
 const loadGTM = () => {
   if (typeof window === "undefined" || window.__analyticsLoaded) return;
@@ -36,17 +23,6 @@ const loadGTM = () => {
   document.head.appendChild(gtmScript);
 };
 
-const loadClarity = () => {
-  if (typeof window === "undefined" || window.__clarityLoaded) return;
-  window.__clarityLoaded = true;
-
-  const clarityScript = document.createElement("script");
-  clarityScript.async = true;
-  clarityScript.src = `https://www.clarity.ms/tag/${CLARITY_ID}`;
-  clarityScript.crossOrigin = "anonymous";
-  document.head.appendChild(clarityScript);
-};
-
 export const AnalyticsLoader = () => {
   useEffect(() => {
     // Queue proxy set up immediately so events before idle callback are buffered,
@@ -57,13 +33,14 @@ export const AnalyticsLoader = () => {
       setTimeout(loadGTM, 800);
     };
 
-    // Clarity script deferred to requestIdleCallback — loads when browser is idle,
-    // after critical content is interactive. Timeout ensures it loads within 5s.
+    // Clarity script deferred to requestIdleCallback for sessions with no
+    // interaction. On the first CRO event, ensureClarityLoaded() fires eagerly
+    // from trackEvent() — this idle path is the fallback for passive sessions.
     const scheduleClarity = () => {
       if ("requestIdleCallback" in window) {
-        requestIdleCallback(loadClarity, { timeout: 5000 });
+        requestIdleCallback(ensureClarityLoaded, { timeout: 5000 });
       } else {
-        setTimeout(loadClarity, 3000);
+        setTimeout(ensureClarityLoaded, 3000);
       }
     };
 

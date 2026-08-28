@@ -1,3 +1,5 @@
+import { initClarityQueue, ensureClarityLoaded } from "./clarity";
+
 type Primitive = string | number | boolean | null | undefined;
 
 type PandaPlayerInstance = {
@@ -14,7 +16,6 @@ declare global {
     dataLayer?: Array<Record<string, unknown>>;
     pandascripttag?: Array<() => void>;
     pandaplayer?: (id: string) => PandaPlayerInstance | undefined;
-    clarity?: (...args: unknown[]) => void;
   }
 }
 
@@ -545,14 +546,16 @@ export const trackEvent = (eventName: string, params?: Record<string, unknown>) 
     }
   }
 
-  if (window.clarity && CLARITY_CRO_EVENTS.has(eventName)) {
+  if (CLARITY_CRO_EVENTS.has(eventName)) {
+    initClarityQueue(); // idempotent — ensures queue exists even without AnalyticsLoader
     for (const [paramKey, tagKey] of CLARITY_PARAM_TAGS) {
       const val = params?.[paramKey];
       if (typeof val === "string" && val) {
-        window.clarity("set", tagKey, val);
+        window.clarity?.("set", tagKey, val);
       }
     }
-    window.clarity("event", eventName);
+    window.clarity?.("event", eventName);
+    ensureClarityLoaded(); // eager script load on first CRO event
   }
 
   if (import.meta.env.DEV) {
