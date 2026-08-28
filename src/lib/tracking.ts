@@ -14,6 +14,7 @@ declare global {
     dataLayer?: Array<Record<string, unknown>>;
     pandascripttag?: Array<() => void>;
     pandaplayer?: (id: string) => PandaPlayerInstance | undefined;
+    clarity?: (...args: unknown[]) => void;
   }
 }
 
@@ -149,6 +150,24 @@ export const getPageContext = (): PageContext | null => activePageContext;
 export const clearPageContext = () => {
   activePageContext = null;
 };
+
+const CLARITY_CRO_EVENTS = new Set([
+  "pricing_cta_clicked",
+  "chat_open",
+  "form_start",
+  "form_submit",
+  "whatsapp_redirect",
+  "whatsapp_click",
+]);
+
+// Maps event param keys to Clarity session tag keys. No PII. No GCLID.
+const CLARITY_PARAM_TAGS: Array<[string, string]> = [
+  ["source", "cta_source"],
+  ["cta_source", "cta_source"],
+  ["campaign_id", "campaign_id"],
+  ["ad_group_id", "ad_group_id"],
+  ["utm_term", "utm_term"],
+];
 
 const STANDARD_FB_EVENTS = new Set([
   "PageView",
@@ -524,6 +543,16 @@ export const trackEvent = (eventName: string, params?: Record<string, unknown>) 
     } catch {
       // ignore Meta Pixel failures
     }
+  }
+
+  if (window.clarity && CLARITY_CRO_EVENTS.has(eventName)) {
+    for (const [paramKey, tagKey] of CLARITY_PARAM_TAGS) {
+      const val = params?.[paramKey];
+      if (typeof val === "string" && val) {
+        window.clarity("set", tagKey, val);
+      }
+    }
+    window.clarity("event", eventName);
   }
 
   if (import.meta.env.DEV) {

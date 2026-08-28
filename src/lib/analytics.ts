@@ -242,6 +242,11 @@ export const trackPricingPageView = () => {
     page_title: document.title,
   });
 
+  // Session-level Clarity tags for this LP — allows filtering recordings/funnels
+  // by route and the current experiment variant.
+  window.clarity?.("set", "route", "balao-preco");
+  window.clarity?.("set", "variant", "hero_pre_aug02_restored");
+
   try {
     window.fbq?.("track", "ViewContent", {
       content_name: "Balao Intragastrico - Pagina de Precos",

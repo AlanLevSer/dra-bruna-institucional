@@ -13,6 +13,16 @@ declare global {
 const GTM_ID = "GTM-WZFMV5R7";
 const CLARITY_ID = "idm2xm22st";
 
+const initClarityQueue = () => {
+  if (typeof window === "undefined" || typeof window.clarity === "function") return;
+  const queue: unknown[][] = [];
+  const clarityFn: ClarityFn = ((...args: unknown[]) => {
+    queue.push(args);
+  }) as ClarityFn;
+  clarityFn.q = queue;
+  window.clarity = clarityFn;
+};
+
 const loadGTM = () => {
   if (typeof window === "undefined" || window.__analyticsLoaded) return;
   window.__analyticsLoaded = true;
@@ -30,15 +40,6 @@ const loadClarity = () => {
   if (typeof window === "undefined" || window.__clarityLoaded) return;
   window.__clarityLoaded = true;
 
-  if (typeof window.clarity !== "function") {
-    const queue: unknown[][] = [];
-    const clarityFn: ClarityFn = ((...args: unknown[]) => {
-      queue.push(args);
-    }) as ClarityFn;
-    clarityFn.q = queue;
-    window.clarity = clarityFn;
-  }
-
   const clarityScript = document.createElement("script");
   clarityScript.async = true;
   clarityScript.src = `https://www.clarity.ms/tag/${CLARITY_ID}`;
@@ -48,11 +49,15 @@ const loadClarity = () => {
 
 export const AnalyticsLoader = () => {
   useEffect(() => {
+    // Queue proxy set up immediately so events before idle callback are buffered,
+    // not lost. The real Clarity script replays the queue on load.
+    initClarityQueue();
+
     const scheduleGTM = () => {
       setTimeout(loadGTM, 800);
     };
 
-    // Clarity deferred to requestIdleCallback — loads when browser is idle,
+    // Clarity script deferred to requestIdleCallback — loads when browser is idle,
     // after critical content is interactive. Timeout ensures it loads within 5s.
     const scheduleClarity = () => {
       if ("requestIdleCallback" in window) {
