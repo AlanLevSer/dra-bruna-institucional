@@ -36,13 +36,24 @@ const Index = () => {
       <div className="min-h-screen">
         <Navigation />
         <main>
-          <Hero />
-          <SobreDraBrunaResumo />
-          <ProgramaLevSer />
-          <Comunidade />
-          
-          {/* Seção Tratamentos */}
-          <section id="tratamentos" className="py-16 xl:py-20 bg-muted/30">
+          {/* Hero — fundo claro, texto escuro */}
+          <div data-nav-theme="light"><Hero /></div>
+
+          {/* Sobre — tom neutro claro */}
+          <div data-nav-theme="light"><SobreDraBrunaResumo /></div>
+
+          {/* Programa LevSer — tons quentes */}
+          <div data-nav-theme="warm"><ProgramaLevSer /></div>
+
+          {/* Comunidade — tons quentes */}
+          <div data-nav-theme="warm"><Comunidade /></div>
+
+          {/* Tratamentos — terracota (cor de destaque da marca) */}
+          <section
+            id="tratamentos"
+            data-nav-theme="terracotta"
+            className="py-16 xl:py-20 bg-muted/30"
+          >
             <div className="container mx-auto px-4">
               <h2 className="text-4xl lg:text-5xl font-serif font-bold text-center mb-4">Tratamentos Disponíveis</h2>
               <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">Abordagem completa com terapias endoscópicas, farmacológicas e medicina regenerativa</p>
@@ -63,18 +74,41 @@ const Index = () => {
             </div>
           </section>
 
-          <Suspense fallback={<div className="min-h-[20vh] flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
-            <Depoimentos />
-            <ReconhecimentoMidia />
-          </Suspense>
+          {/* Depoimentos / Mídia — fundo neutro claro */}
+          <div data-nav-theme="light">
+            <Suspense fallback={<div className="min-h-[20vh] flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+              <Depoimentos />
+              <ReconhecimentoMidia />
+            </Suspense>
+          </div>
 
-          <Suspense fallback={<div className="min-h-[20vh]"></div>}>
-            <LazyInvestimento />
-          </Suspense>
-          
-          <section id="faq" className="py-16 bg-card"><div className="container mx-auto px-4"><h2 className="text-4xl font-serif font-bold text-center mb-8">Perguntas Frequentes</h2><FAQResumo /><div className="text-center mt-8"><Button variant="outline" onClick={() => navigate("/recursos#faq")}>Ver todas as perguntas <ArrowRight className="ml-2 h-4 w-4" /></Button></div></div></section>
-          
-          <Suspense fallback={<div className="min-h-[20vh]"></div>}><CTAFinal /><Footer /></Suspense>
+          {/* Investimento — tons quentes */}
+          <div data-nav-theme="warm">
+            <Suspense fallback={<div className="min-h-[20vh]"></div>}>
+              <LazyInvestimento />
+            </Suspense>
+          </div>
+
+          {/* FAQ — fundo de card claro */}
+          <section id="faq" data-nav-theme="light" className="py-16 bg-card">
+            <div className="container mx-auto px-4">
+              <h2 className="text-4xl font-serif font-bold text-center mb-8">Perguntas Frequentes</h2>
+              <FAQResumo />
+              <div className="text-center mt-8">
+                <Button variant="outline" onClick={() => navigate("/recursos#faq")}>
+                  Ver todas as perguntas <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          </section>
+
+          {/* CTA Final + Footer — fundo escuro */}
+          <div data-nav-theme="dark">
+            <Suspense fallback={<div className="min-h-[20vh]"></div>}>
+              <CTAFinal />
+              <Footer />
+            </Suspense>
+          </div>
         </main>
         <LeadChatWidget showFloatingButton origin="homepage" />
         <MobileCTA />

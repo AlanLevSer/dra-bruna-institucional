@@ -338,6 +338,22 @@ export const getTrackingParamsFromUrl = (): TrackingParams => {
     }
   }
 
+  // Account suffix uses utm_campaign={campaignid} but not campaign_id={campaignid}.
+  // Derive campaign_id from utm_campaign when absent so every ad click correctly
+  // overwrites stale storage values instead of silently keeping them.
+  if (!params.campaign_id && /^\d+$/.test(params.utm_campaign)) {
+    params.campaign_id = params.utm_campaign;
+  }
+
+  // Account suffix uses utm_content={adgroupid}-{creative}.
+  // Derive ad_group_id from the numeric prefix of utm_content when absent.
+  if (!params.ad_group_id && params.utm_content) {
+    const prefix = params.utm_content.split("-")[0];
+    if (/^\d+$/.test(prefix)) {
+      params.ad_group_id = prefix;
+    }
+  }
+
   return params;
 };
 

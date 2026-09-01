@@ -303,3 +303,72 @@ All colors MUST be HSL.
     transform: translateY(-4px);
   }
 }
+
+/* ── Adaptive Navigation Theme System ─────────────────────────────────
+   CSS custom properties set on <nav> via style prop.
+   Children inherit via the cascade — no JS per-element needed.
+   ──────────────────────────────────────────────────────────────────── */
+
+.nav-adaptive {
+  transition:
+    background-color 380ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color     380ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Opt-out for users who prefer no motion */
+@media (prefers-reduced-motion: reduce) {
+  .nav-adaptive,
+  .nav-adaptive * {
+    transition-duration: 0ms !important;
+  }
+}
+
+/* Links & buttons */
+.nav-adaptive .nav-link-text {
+  color: var(--nav-text);
+  transition: color 300ms ease;
+}
+.nav-adaptive .nav-link-text:hover,
+.nav-adaptive .nav-link-text:focus-visible {
+  color: var(--nav-text-hover);
+}
+
+/* Hamburger / close icon */
+.nav-adaptive .nav-icon {
+  color: var(--nav-icon);
+  transition: color 380ms ease;
+}
+
+/* Logo image */
+.nav-adaptive .nav-logo {
+  filter: var(--nav-logo-filter, none);
+  transition: filter 380ms ease, height 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dropdown panel */
+.nav-dropdown-panel {
+  background-color: var(--nav-dd-bg) !important;
+  border-color:     var(--nav-dd-border) !important;
+}
+
+/* Dropdown items */
+.nav-dropdown-item {
+  color: var(--nav-dd-text);
+  transition: background-color 140ms ease, color 140ms ease;
+}
+.nav-dropdown-item:hover,
+.nav-dropdown-item:focus-visible {
+  background-color: var(--nav-dd-hover) !important;
+  color: var(--nav-dd-text-hover);
+}
+
+/* Dropdown group labels */
+.nav-dropdown-group-label {
+  color: var(--nav-group-label);
+}
+
+/* Mobile menu panel */
+.nav-mobile-panel {
+  background-color: var(--nav-mobile-bg) !important;
+  border-color:     var(--nav-dd-border) !important;
+}
