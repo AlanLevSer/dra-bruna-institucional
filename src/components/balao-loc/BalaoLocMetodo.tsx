@@ -1,23 +1,25 @@
-import { Salad, HeartPulse, Dumbbell, Brain } from "lucide-react";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const PILARES = [
-  { icon: HeartPulse, title: "Saúde Metabólica & Regenerativa" },
-  { icon: Salad, title: "Nutrição Inteligente" },
-  { icon: Dumbbell, title: "Corpo em Movimento" },
-  { icon: Brain, title: "Mente & Comportamento" },
+  "Saúde Metabólica & Regenerativa",
+  "Nutrição Inteligente",
+  "Corpo em Movimento",
+  "Mente & Comportamento",
 ];
 
 export const BalaoLocMetodo = () => (
   <section id="metodo-levser" className="bg-muted/40">
     <div className="mx-auto w-full max-w-3xl px-5 py-12 md:py-16">
-      <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary mb-3">
-        Método LevSer
-      </p>
-      <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground leading-snug">
-        Mais do que colocar um balão
-      </h2>
+      <ScrollReveal>
+        <p className="text-xs font-medium tracking-[0.08em] text-primary mb-3">
+          Método LevSer
+        </p>
+        <h2 className="text-2xl md:text-3xl font-normal text-foreground leading-snug">
+          Mais do que colocar um balão
+        </h2>
+      </ScrollReveal>
 
-      <div className="mt-5 space-y-4 text-base text-muted-foreground leading-relaxed">
+      <ScrollReveal delay={80} className="mt-5 space-y-4 text-base text-muted-foreground leading-relaxed">
         <p>
           Na LevSer, o balão é uma ferramenta dentro do tratamento — não o tratamento inteiro.
         </p>
@@ -25,28 +27,33 @@ export const BalaoLocMetodo = () => (
           Quando essa rota é indicada, a intervenção é integrada ao Método LevSer, conectando
           direção clínica e indicadores aos quatro pilares do cuidado.
         </p>
-      </div>
+      </ScrollReveal>
 
-      <ul className="mt-7 grid grid-cols-2 gap-3">
-        {PILARES.map(({ icon: Icon, title }) => (
-          <li
-            key={title}
-            className="flex items-center gap-3 rounded-xl border border-border bg-background p-4"
-          >
-            <Icon className="h-4 w-4 text-primary shrink-0" aria-hidden="true" />
-            <span className="text-sm font-medium text-foreground leading-snug">{title}</span>
-          </li>
-        ))}
-      </ul>
+      <ScrollReveal delay={120} className="mt-7">
+        <ul className="grid grid-cols-2 gap-x-8 gap-y-3">
+          {PILARES.map((pilar) => (
+            <li key={pilar} className="flex items-center gap-2.5 text-sm font-medium text-foreground">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true" />
+              {pilar}
+            </li>
+          ))}
+        </ul>
+      </ScrollReveal>
 
-      <p className="mt-7 rounded-xl border border-primary/40 bg-primary/5 px-5 py-4 font-serif text-lg font-semibold text-foreground leading-snug">
-        A intervenção é ferramenta. A jornada é o tratamento.
-      </p>
+      <ScrollReveal delay={160} className="mt-7">
+        <blockquote className="border-l-4 border-primary pl-5">
+          <p className="text-lg font-normal text-foreground leading-snug">
+            A intervenção é ferramenta. A jornada é o tratamento.
+          </p>
+        </blockquote>
+      </ScrollReveal>
 
-      <p className="mt-5 text-base text-muted-foreground leading-relaxed">
-        O objetivo não é apenas chegar ao implante. É usar essa fase de forma estruturada e
-        preparar o que vem depois.
-      </p>
+      <ScrollReveal delay={180} className="mt-5">
+        <p className="text-base text-muted-foreground leading-relaxed">
+          O objetivo não é apenas chegar ao implante. É usar essa fase de forma estruturada e
+          preparar o que vem depois.
+        </p>
+      </ScrollReveal>
     </div>
   </section>
 );

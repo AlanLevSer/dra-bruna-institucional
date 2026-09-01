@@ -94,7 +94,7 @@ const BalaoVendas = () => {
         type="image/avif"
       />
 
-      <div className="min-h-screen overflow-x-hidden">
+      <div className="min-h-screen overflow-x-hidden font-kumbh">
         {/* S1 — Hero */}
         <BalaoLocHero />
 

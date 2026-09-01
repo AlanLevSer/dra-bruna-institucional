@@ -30,6 +30,7 @@ export default {
       fontFamily: {
         serif: ['Crimson Text', 'Georgia', 'Times New Roman', 'serif'],
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        kumbh: ["'Kumbh Sans'", 'system-ui', 'sans-serif'],
       },
       letterSpacing: {
         'luxury': '0.025em',

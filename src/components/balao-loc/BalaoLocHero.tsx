@@ -6,51 +6,70 @@ import draBrunaHero from "@/assets/dra-bruna-hero.avif";
 const CTA_LABEL = "Quero avaliar se o balão faz sentido para mim";
 
 export const BalaoLocHero = () => (
-  <header className="relative overflow-hidden bg-background border-b border-border/60 min-h-[580px] md:min-h-[660px] flex items-center">
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 select-none">
-      <img
-        src={draBrunaHero}
-        alt=""
-        loading="eager"
-        fetchPriority="high"
-        className="absolute inset-0 h-full w-full object-cover object-[70%_top] md:object-[75%_top] opacity-50 md:opacity-35 saturate-[0.8]"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/65 to-background/40 md:bg-gradient-to-r md:from-background md:via-background/90 md:to-background/30" />
-    </div>
+  <header className="bg-background border-b border-border/60">
+    <div className="mx-auto w-full max-w-5xl px-5 pt-14 pb-12 md:pt-20 md:pb-16 lg:px-10">
 
-    <div className="relative z-10 mx-auto w-full max-w-3xl px-5 pt-14 pb-12 md:pt-22 md:pb-18">
-      <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary mb-5">
-        Balão Intragástrico · São Paulo
-      </p>
+      {/* Mobile: flex-col (H1 → photo → body+CTA)
+          Desktop: grid col1=text, col2=photo spanning 2 rows */}
+      <div className="flex flex-col md:grid md:grid-cols-[1fr_360px] md:gap-14 md:items-start">
 
-      <h1 className="font-serif text-3xl md:text-5xl font-bold leading-[1.15] text-foreground">
-        Balão intragástrico em São Paulo com uma estratégia que vai além do procedimento
-      </h1>
+        {/* Row 1 col 1 — label + H1 */}
+        <div className="order-1">
+          <p className="text-xs font-medium tracking-[0.08em] text-primary mb-5">
+            Balão Intragástrico · São Paulo
+          </p>
+          <h1 className="font-light text-[clamp(2rem,1rem+3.5vw,3.75rem)] leading-[1.1] text-foreground">
+            Balão intragástrico em São Paulo com uma estratégia que vai além do procedimento
+          </h1>
+        </div>
 
-      <p className="mt-5 text-base md:text-lg text-muted-foreground leading-relaxed">
-        Se você está considerando colocar um balão, o primeiro passo é entender se essa ferramenta
-        faz sentido para o seu momento. Na LevSer, a indicação é individual e, quando essa rota é
-        adequada, o balão faz parte de uma estratégia que organiza o antes, o durante e o depois.
-      </p>
+        {/* Col 2 desktop (rows 1–2) / between H1 and body on mobile */}
+        <div className="order-2 md:col-start-2 md:row-start-1 md:row-span-2 mt-8 md:mt-0 relative">
+          <img
+            src="/levser-grafismo.avif"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            className="absolute -bottom-4 -right-4 w-36 opacity-[0.07] pointer-events-none select-none"
+          />
+          <img
+            src={draBrunaHero}
+            alt="Dra. Bruna Durelli, médica especialista em saúde metabólica"
+            loading="eager"
+            fetchPriority="high"
+            className="w-full rounded-xl object-cover object-[70%_top] aspect-[4/3] md:aspect-[4/5]"
+          />
+        </div>
 
-      <div className="mt-8 flex flex-col items-start gap-3">
-        <Button
-          size="lg"
-          onClick={() => void openLeadChat("hero_primary")}
-          data-cta-source="hero_primary"
-          className="w-full sm:w-auto h-auto min-h-14 py-4 px-7 text-base font-semibold rounded-full whitespace-normal bg-[hsl(var(--primary-strong))] text-primary-foreground shadow-lg transition-all hover:bg-[hsl(var(--primary-stronger))] hover:shadow-xl active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--primary-strong))] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-        >
-          <span className="text-left">{CTA_LABEL}</span>
-          <ArrowRight className="ml-2 h-5 w-5 shrink-0" aria-hidden="true" />
-        </Button>
-        <p className="text-sm text-muted-foreground">
-          A indicação depende de avaliação médica individual.
-        </p>
-      </div>
+        {/* Row 2 col 1 — body + CTA + credentials */}
+        <div className="order-3 md:col-start-1 md:row-start-2 mt-6 md:mt-5">
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+            Se você está considerando colocar um balão, o primeiro passo é entender se essa ferramenta
+            faz sentido para o seu momento. Na LevSer, a indicação é individual e, quando essa rota é
+            adequada, o balão faz parte de uma estratégia que organiza o antes, o durante e o depois.
+          </p>
 
-      <div className="mt-8 pt-6 border-t border-border/60">
-        <p className="text-sm font-medium text-foreground">Dra. Bruna Durelli</p>
-        <p className="text-sm text-muted-foreground">Direção médica LevSer · Jardim Paulista, São Paulo</p>
+          <div className="mt-8 flex flex-col items-start gap-3">
+            <Button
+              size="lg"
+              onClick={() => void openLeadChat("hero_primary")}
+              data-cta-source="hero_primary"
+              className="w-full sm:w-auto h-auto min-h-14 py-4 px-7 text-base font-semibold rounded-full whitespace-normal bg-[hsl(var(--primary-strong))] text-primary-foreground shadow-lg transition-all hover:bg-[hsl(var(--primary-stronger))] hover:shadow-xl active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--primary-strong))] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              <span className="text-left">{CTA_LABEL}</span>
+              <ArrowRight className="ml-2 h-5 w-5 shrink-0" aria-hidden="true" />
+            </Button>
+            <p className="text-sm text-muted-foreground">
+              A indicação depende de avaliação médica individual.
+            </p>
+          </div>
+
+          <div className="mt-8 pt-6 border-t border-border/60">
+            <p className="text-sm font-medium text-foreground">Dra. Bruna Durelli</p>
+            <p className="text-sm text-muted-foreground">Direção médica LevSer · Jardim Paulista, São Paulo</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </header>

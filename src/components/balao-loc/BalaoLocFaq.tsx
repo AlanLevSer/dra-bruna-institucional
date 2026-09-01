@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const FAQS = [
   {
@@ -51,21 +52,25 @@ const FAQS = [
 export const BalaoLocFaq = () => (
   <section id="faq" className="bg-background">
     <div className="mx-auto w-full max-w-3xl px-5 py-12 md:py-16">
-      <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary mb-3">
-        Dúvidas Frequentes
-      </p>
-      <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground leading-snug mb-6">
-        Perguntas comuns antes da avaliação
-      </h2>
+      <ScrollReveal>
+        <p className="text-xs font-medium tracking-[0.08em] text-primary mb-3">
+          Dúvidas frequentes
+        </p>
+        <h2 className="text-2xl md:text-3xl font-normal text-foreground leading-snug mb-6">
+          Perguntas comuns antes da avaliação
+        </h2>
+      </ScrollReveal>
 
-      <Accordion type="single" collapsible className="w-full">
-        {FAQS.map(({ q, a }) => (
-          <AccordionItem key={q} value={q}>
-            <AccordionTrigger className="text-left text-foreground">{q}</AccordionTrigger>
-            <AccordionContent className="text-muted-foreground leading-relaxed">{a}</AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
+      <ScrollReveal delay={80}>
+        <Accordion type="single" collapsible className="w-full">
+          {FAQS.map(({ q, a }) => (
+            <AccordionItem key={q} value={q}>
+              <AccordionTrigger className="text-left text-foreground">{q}</AccordionTrigger>
+              <AccordionContent className="text-muted-foreground leading-relaxed">{a}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </ScrollReveal>
     </div>
   </section>
 );

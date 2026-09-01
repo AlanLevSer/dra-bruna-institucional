@@ -1,4 +1,5 @@
 import { Glp1Cta } from "@/components/glp1/Glp1Cta";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const CTA_LABEL = "Quero avaliar se o balão faz sentido para mim";
 
@@ -23,38 +24,35 @@ const PERGUNTAS = [
 export const BalaoLocEntenda = () => (
   <section id="entenda-o-balao" className="bg-background">
     <div className="mx-auto w-full max-w-3xl px-5 py-12 md:py-16">
-      <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary mb-3">
-        Entenda o Balão
-      </p>
-      <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground leading-snug">
-        Está pensando em colocar um balão? Comece por estas três respostas.
-      </h2>
+      <ScrollReveal>
+        <p className="text-xs font-medium tracking-[0.08em] text-primary mb-3">
+          Entenda o balão
+        </p>
+        <h2 className="text-2xl md:text-3xl font-normal text-foreground leading-snug">
+          Está pensando em colocar um balão? Comece por estas três respostas.
+        </h2>
+      </ScrollReveal>
 
-      <div className="mt-8 space-y-5">
-        {PERGUNTAS.map(({ num, title, body }) => (
-          <div
-            key={num}
-            className="flex gap-4 rounded-xl border border-border bg-background p-5"
-          >
-            <span
-              className="flex-shrink-0 text-2xl font-serif font-bold text-primary/30 leading-none select-none"
-              aria-hidden="true"
-            >
-              {num}
-            </span>
-            <div>
-              <h3 className="font-semibold text-foreground leading-snug">{title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{body}</p>
+      <ScrollReveal delay={100} className="mt-8">
+        <div className="border-t border-border">
+          {PERGUNTAS.map(({ num, title, body }) => (
+            <div key={num} className="py-6 border-b border-border">
+              <span className="block text-xs font-medium text-primary/60 mb-2" aria-hidden="true">
+                {num}
+              </span>
+              <h3 className="font-semibold text-foreground leading-snug mb-2">{title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{body}</p>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </ScrollReveal>
 
-      <Glp1Cta
-        ctaSource="entenda_section"
-        label={CTA_LABEL}
-        className="mt-8"
-      />
+      <ScrollReveal delay={150} className="mt-8">
+        <Glp1Cta
+          ctaSource="entenda_section"
+          label={CTA_LABEL}
+        />
+      </ScrollReveal>
     </div>
   </section>
 );

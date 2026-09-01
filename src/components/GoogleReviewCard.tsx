@@ -7,9 +7,10 @@ import { useState } from "react";
 interface GoogleReviewCardProps {
   review: GoogleReview;
   variant?: "default" | "compact" | "minimal";
+  noHover?: boolean;
 }
 
-export const GoogleReviewCard = ({ review, variant = "default" }: GoogleReviewCardProps) => {
+export const GoogleReviewCard = ({ review, variant = "default", noHover = false }: GoogleReviewCardProps) => {
   const [expanded, setExpanded] = useState(false);
   const maxLength = variant === "compact" ? 150 : 200;
   const shouldTruncate = review.text.length > maxLength;
@@ -54,7 +55,7 @@ export const GoogleReviewCard = ({ review, variant = "default" }: GoogleReviewCa
   }
 
   return (
-    <Card className="h-full hover:shadow-hover transition-all duration-300 hover:-translate-y-1">
+    <Card className={`h-full transition-shadow duration-300 ${noHover ? "hover:shadow-hover" : "hover:shadow-hover hover:-translate-y-1 transition-all"}`}>
       <CardContent className="p-8 relative">
         {/* Google Logo - canto superior direito */}
         <div className="absolute top-6 right-6">

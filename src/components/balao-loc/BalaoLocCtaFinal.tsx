@@ -1,24 +1,34 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { openLeadChat } from "@/lib/leadChat";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const CTA_LABEL = "Quero avaliar se o balão faz sentido para mim";
 
 export const BalaoLocCtaFinal = () => (
-  <section id="cta-final" className="bg-muted/40 border-t border-border">
-    <div className="mx-auto w-full max-w-3xl px-5 py-14 md:py-20">
-      <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary mb-4">
-        Seu Próximo Passo
-      </p>
-      <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground leading-snug">
-        Se você está considerando o balão, o próximo passo é avaliar o seu caso.
-      </h2>
-      <p className="mt-4 text-base text-muted-foreground leading-relaxed">
-        A Avaliação Estratégica permite entender se a Rota com Balão faz sentido para você e
-        qual direção terapêutica deve ser considerada.
-      </p>
+  <section id="cta-final" className="bg-muted/40 border-t border-border relative overflow-hidden">
+    <img
+      src="/levser-grafismo.avif"
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+      className="absolute bottom-0 right-0 w-48 md:w-64 opacity-[0.06] pointer-events-none select-none"
+    />
+    <div className="relative z-10 mx-auto w-full max-w-3xl px-5 py-14 md:py-20">
+      <ScrollReveal>
+        <p className="text-xs font-medium tracking-[0.08em] text-primary mb-4">
+          Seu próximo passo
+        </p>
+        <h2 className="text-2xl md:text-3xl font-normal text-foreground leading-snug">
+          Se você está considerando o balão, o próximo passo é avaliar o seu caso.
+        </h2>
+        <p className="mt-4 text-base text-muted-foreground leading-relaxed">
+          A Avaliação Estratégica permite entender se a Rota com Balão faz sentido para você e
+          qual direção terapêutica deve ser considerada.
+        </p>
+      </ScrollReveal>
 
-      <div className="mt-8 flex flex-col items-start gap-3">
+      <ScrollReveal delay={100} className="mt-8 flex flex-col items-start gap-3">
         <Button
           size="lg"
           onClick={() => void openLeadChat("final_cta")}
@@ -31,7 +41,7 @@ export const BalaoLocCtaFinal = () => (
         <p className="text-sm text-muted-foreground">
           A indicação depende de avaliação médica individual.
         </p>
-      </div>
+      </ScrollReveal>
 
       <p className="mt-10 text-sm text-muted-foreground">
         LevSer · Jardim Paulista · São Paulo
