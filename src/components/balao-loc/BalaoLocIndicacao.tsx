@@ -4,13 +4,13 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 const CTA_LABEL = "Quero avaliar se o balão faz sentido para mim";
 
 export const BalaoLocIndicacao = () => (
-  <section id="indicacao" className="bg-muted/40">
-    <div className="mx-auto w-full max-w-3xl px-5 py-12 md:py-16">
+  <section id="indicacao" className="bg-background">
+    <div className="mx-auto w-full max-w-4xl px-5 py-12 md:py-16">
       <ScrollReveal>
         <p className="text-xs font-medium tracking-[0.08em] text-primary mb-3">
           Indicação individual
         </p>
-        <h2 className="text-2xl md:text-3xl font-normal text-foreground leading-snug">
+        <h2 className="font-kumbh text-xl md:text-2xl font-normal text-foreground leading-snug">
           O balão pode ser uma rota possível. A avaliação mostra se é a rota adequada para você.
         </h2>
       </ScrollReveal>
@@ -26,12 +26,14 @@ export const BalaoLocIndicacao = () => (
         </p>
       </ScrollReveal>
 
-      <ScrollReveal delay={120} className="mt-7">
-        <blockquote className="border-l-4 border-primary pl-5">
-          <p className="font-semibold text-foreground leading-snug">
-            A Rota com Balão não é automática para todo mundo.
+      {/* Amplified blockquote — primary visual anchor of this section */}
+      <ScrollReveal delay={120} className="mt-8">
+        <blockquote className="border-l-4 border-primary pl-6">
+          <p className="font-kumbh text-xl md:text-2xl font-normal text-foreground leading-[1.25]">
+            A Rota com Balão{" "}
+            <span className="font-medium text-primary">não é automática para todo mundo.</span>
           </p>
-          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+          <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
             A avaliação existe justamente para entender se essa ferramenta faz sentido para o seu
             momento ou se outra estratégia deve ser considerada.
           </p>

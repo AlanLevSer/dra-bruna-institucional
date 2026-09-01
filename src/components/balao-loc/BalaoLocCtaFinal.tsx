@@ -19,8 +19,9 @@ export const BalaoLocCtaFinal = () => (
         <p className="text-xs font-medium tracking-[0.08em] text-primary mb-4">
           Seu próximo passo
         </p>
-        <h2 className="text-2xl md:text-3xl font-normal text-foreground leading-snug">
-          Se você está considerando o balão, o próximo passo é avaliar o seu caso.
+        <h2 className="font-kumbh text-2xl md:text-3xl font-normal text-foreground leading-snug">
+          Se você está considerando o balão,{" "}
+          <span className="font-medium text-primary">o próximo passo</span> é avaliar o seu caso.
         </h2>
         <p className="mt-4 text-base text-muted-foreground leading-relaxed">
           A Avaliação Estratégica permite entender se a Rota com Balão faz sentido para você e

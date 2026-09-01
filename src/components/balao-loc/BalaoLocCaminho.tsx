@@ -35,22 +35,22 @@ export const BalaoLocCaminho = () => (
         <p className="text-xs font-medium tracking-[0.08em] text-primary mb-3">
           Seu caminho
         </p>
-        <h2 className="text-2xl md:text-3xl font-normal text-foreground leading-snug">
+        <h2 className="font-kumbh text-2xl md:text-3xl font-normal text-foreground leading-snug">
           Do primeiro passo à continuidade
         </h2>
       </ScrollReveal>
 
       <ScrollReveal delay={100} className="mt-8">
-        <ol className="relative pl-6 border-l-2 border-border space-y-7">
+        <ol className="relative pl-8 border-l-2 border-border space-y-9">
           {ETAPAS.map(({ num, title, body }) => (
             <li key={num} className="relative">
               <span
-                className="absolute -left-[calc(0.75rem+1px)] top-[0.35rem] flex h-3 w-3 rounded-full border-2 border-primary bg-background"
+                className="absolute -left-[calc(1rem+1px)] top-[0.3rem] flex h-3.5 w-3.5 rounded-full border-2 border-primary bg-background"
                 aria-hidden="true"
               />
-              <div className="flex items-baseline gap-2 mb-1">
-                <span className="text-xs font-medium text-primary">{num}</span>
-                <h3 className="font-semibold text-foreground text-sm leading-snug">{title}</h3>
+              <div className="flex items-baseline gap-3 mb-1.5">
+                <span className="font-kumbh text-sm font-medium text-primary tabular-nums min-w-[1.75rem]">{num}</span>
+                <h3 className="font-kumbh font-semibold text-foreground text-base leading-snug">{title}</h3>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">{body}</p>
             </li>

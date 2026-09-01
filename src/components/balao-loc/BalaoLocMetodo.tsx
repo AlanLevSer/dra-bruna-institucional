@@ -1,10 +1,10 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const PILARES = [
-  "Saúde Metabólica & Regenerativa",
-  "Nutrição Inteligente",
-  "Corpo em Movimento",
-  "Mente & Comportamento",
+  { num: "01", name: "Saúde Metabólica & Regenerativa" },
+  { num: "02", name: "Nutrição Inteligente" },
+  { num: "03", name: "Corpo em Movimento" },
+  { num: "04", name: "Mente & Comportamento" },
 ];
 
 export const BalaoLocMetodo = () => (
@@ -14,7 +14,7 @@ export const BalaoLocMetodo = () => (
         <p className="text-xs font-medium tracking-[0.08em] text-primary mb-3">
           Método LevSer
         </p>
-        <h2 className="text-2xl md:text-3xl font-normal text-foreground leading-snug">
+        <h2 className="font-kumbh text-2xl md:text-3xl font-normal text-foreground leading-snug">
           Mais do que colocar um balão
         </h2>
       </ScrollReveal>
@@ -29,18 +29,23 @@ export const BalaoLocMetodo = () => (
         </p>
       </ScrollReveal>
 
-      <ScrollReveal delay={120} className="mt-7">
-        <ul className="grid grid-cols-2 gap-x-8 gap-y-3">
-          {PILARES.map((pilar) => (
-            <li key={pilar} className="flex items-center gap-2.5 text-sm font-medium text-foreground">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true" />
-              {pilar}
-            </li>
-          ))}
-        </ul>
+      {/* 2×2 grid — large number as visual anchor */}
+      <ScrollReveal delay={120} className="mt-8 grid grid-cols-2 gap-x-10 gap-y-8">
+        {PILARES.map(({ num, name }) => (
+          <div key={num}>
+            <span className="font-kumbh text-5xl font-light text-primary tabular-nums leading-none">
+              {num}
+            </span>
+            <div className="mt-3 pt-3 border-t border-border">
+              <span className="font-kumbh font-semibold text-sm text-foreground leading-snug">
+                {name}
+              </span>
+            </div>
+          </div>
+        ))}
       </ScrollReveal>
 
-      <ScrollReveal delay={160} className="mt-7">
+      <ScrollReveal delay={160} className="mt-8">
         <blockquote className="border-l-4 border-primary pl-5">
           <p className="text-lg font-normal text-foreground leading-snug">
             A intervenção é ferramenta. A jornada é o tratamento.

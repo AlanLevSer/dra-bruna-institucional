@@ -51,26 +51,36 @@ const FAQS = [
 
 export const BalaoLocFaq = () => (
   <section id="faq" className="bg-background">
-    <div className="mx-auto w-full max-w-3xl px-5 py-12 md:py-16">
-      <ScrollReveal>
-        <p className="text-xs font-medium tracking-[0.08em] text-primary mb-3">
-          Dúvidas frequentes
-        </p>
-        <h2 className="text-2xl md:text-3xl font-normal text-foreground leading-snug mb-6">
-          Perguntas comuns antes da avaliação
-        </h2>
-      </ScrollReveal>
+    <div className="mx-auto w-full max-w-5xl px-5 py-12 md:py-16 lg:px-10">
+      <div className="md:grid md:grid-cols-[1fr_2fr] md:gap-14 md:items-start">
 
-      <ScrollReveal delay={80}>
-        <Accordion type="single" collapsible className="w-full">
-          {FAQS.map(({ q, a }) => (
-            <AccordionItem key={q} value={q}>
-              <AccordionTrigger className="text-left text-foreground">{q}</AccordionTrigger>
-              <AccordionContent className="text-muted-foreground leading-relaxed">{a}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </ScrollReveal>
+        {/* Left column — intro anchor */}
+        <ScrollReveal>
+          <p className="text-xs font-medium tracking-[0.08em] text-primary mb-3">
+            Dúvidas frequentes
+          </p>
+          <h2 className="font-kumbh text-2xl md:text-3xl font-normal text-foreground leading-snug">
+            Perguntas comuns antes da avaliação
+          </h2>
+          <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+            A avaliação médica responde ao seu caso específico. Aqui, as perguntas que costumam
+            aparecer antes dela.
+          </p>
+        </ScrollReveal>
+
+        {/* Right column — accordion unchanged */}
+        <ScrollReveal delay={80} className="mt-8 md:mt-0">
+          <Accordion type="single" collapsible className="w-full">
+            {FAQS.map(({ q, a }) => (
+              <AccordionItem key={q} value={q}>
+                <AccordionTrigger className="text-left text-foreground">{q}</AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed">{a}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </ScrollReveal>
+
+      </div>
     </div>
   </section>
 );

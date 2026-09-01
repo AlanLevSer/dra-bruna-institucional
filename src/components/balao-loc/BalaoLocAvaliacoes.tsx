@@ -27,7 +27,7 @@ export const BalaoLocAvaliacoes = () => {
           <p className="text-xs font-medium tracking-[0.08em] text-primary mb-3">
             Experiências reais
           </p>
-          <h2 className="text-2xl md:text-3xl font-normal text-foreground leading-snug">
+          <h2 className="font-kumbh text-2xl md:text-3xl font-normal text-foreground leading-snug">
             Experiências compartilhadas por pacientes da LevSer
           </h2>
         </ScrollReveal>

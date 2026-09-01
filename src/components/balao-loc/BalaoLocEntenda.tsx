@@ -28,7 +28,7 @@ export const BalaoLocEntenda = () => (
         <p className="text-xs font-medium tracking-[0.08em] text-primary mb-3">
           Entenda o balão
         </p>
-        <h2 className="text-2xl md:text-3xl font-normal text-foreground leading-snug">
+        <h2 className="font-kumbh text-2xl md:text-3xl font-normal text-foreground leading-snug">
           Está pensando em colocar um balão? Comece por estas três respostas.
         </h2>
       </ScrollReveal>
@@ -37,10 +37,10 @@ export const BalaoLocEntenda = () => (
         <div className="border-t border-border">
           {PERGUNTAS.map(({ num, title, body }) => (
             <div key={num} className="py-6 border-b border-border">
-              <span className="block text-xs font-medium text-primary/60 mb-2" aria-hidden="true">
+              <span className="block text-sm font-medium text-primary mb-2 tabular-nums" aria-hidden="true">
                 {num}
               </span>
-              <h3 className="font-semibold text-foreground leading-snug mb-2">{title}</h3>
+              <h3 className="font-kumbh font-semibold text-foreground leading-snug mb-2">{title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{body}</p>
             </div>
           ))}

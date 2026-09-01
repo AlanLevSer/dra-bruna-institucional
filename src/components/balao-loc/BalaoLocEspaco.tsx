@@ -48,7 +48,7 @@ export const BalaoLocEspaco = () => {
           <p className="text-xs font-medium tracking-[0.08em] text-primary mb-3">
             LevSer · Jardim Paulista
           </p>
-          <h2 className="text-2xl md:text-3xl font-normal text-foreground leading-snug">
+          <h2 className="font-kumbh text-2xl md:text-3xl font-normal text-foreground leading-snug">
             Conheça a estrutura da LevSer em São Paulo
           </h2>
           <p className="mt-3 text-base text-muted-foreground leading-relaxed">

@@ -10,16 +10,17 @@ export const BalaoLocHero = () => (
     <div className="mx-auto w-full max-w-5xl px-5 pt-14 pb-12 md:pt-20 md:pb-16 lg:px-10">
 
       {/* Mobile: flex-col (H1 → photo → body+CTA)
-          Desktop: grid col1=text, col2=photo spanning 2 rows */}
-      <div className="flex flex-col md:grid md:grid-cols-[1fr_360px] md:gap-14 md:items-start">
+          Desktop: grid ~55/45 proportion */}
+      <div className="flex flex-col md:grid md:grid-cols-[55fr_45fr] md:gap-12 md:items-start">
 
         {/* Row 1 col 1 — label + H1 */}
         <div className="order-1">
           <p className="text-xs font-medium tracking-[0.08em] text-primary mb-5">
             Balão Intragástrico · São Paulo
           </p>
-          <h1 className="font-light text-[clamp(2rem,1rem+3.5vw,3.75rem)] leading-[1.1] text-foreground">
-            Balão intragástrico em São Paulo com uma estratégia que vai além do procedimento
+          <h1 className="font-kumbh font-light text-[clamp(2.5rem,1.5rem+4.5vw,5rem)] leading-[1.0] text-foreground">
+            Balão intragástrico em São Paulo com uma estratégia que vai{" "}
+            <span className="font-medium text-primary">além do procedimento</span>
           </h1>
         </div>
 
@@ -30,7 +31,7 @@ export const BalaoLocHero = () => (
             alt=""
             aria-hidden="true"
             loading="lazy"
-            className="absolute -bottom-4 -right-4 w-36 opacity-[0.07] pointer-events-none select-none"
+            className="absolute -bottom-6 -right-6 w-44 md:w-56 opacity-[0.11] pointer-events-none select-none"
           />
           <img
             src={draBrunaHero}
